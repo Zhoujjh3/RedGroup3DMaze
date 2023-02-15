@@ -7,6 +7,16 @@ public class Maze {
 		this.difficulty = difficulty;
 		this.minMoves = populateMaze(difficulty);
 	}*/
+	/*
+	 * BaseMaze key: 
+	 * Flat room: 'Z'
+	 * Room with hatch: 'U'
+	 * Room with trapdoor: 'D'
+	 * Room with hatch and trapdoor: 'B'
+	 * Door: 'T'
+	 * Wall: 'F'
+	 * Absolute wall: 'A'
+	 */
 	public Maze(char[][][] providedBaseMaze) {
 		setActiveMaze(providedBaseMaze);
 	}
@@ -67,7 +77,38 @@ public class Maze {
 		}
 	}
 	public static void main(String[] args) {
-		// Testing
-		
+		// Basic testing
+		Maze maze;
+		char[][][] test = // 3x3x3 testing for now
+			{
+					{
+						{'A', 'A', 'A', 'A', 'A', 'A', 'A'},
+						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
+						{'A', 'F', 'A', 'F', 'A', 'F', 'A'},
+						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
+						{'A', 'F', 'A', 'F', 'A', 'F', 'A'},
+						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
+						{'A', 'A', 'A', 'A', 'A', 'A', 'A'}
+					},
+					{
+						{'A', 'A', 'A', 'A', 'A', 'A', 'A'},
+						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
+						{'A', 'F', 'A', 'F', 'A', 'F', 'A'},
+						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
+						{'A', 'F', 'A', 'F', 'A', 'F', 'A'},
+						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
+						{'A', 'A', 'A', 'A', 'A', 'A', 'A'}
+					},
+					{
+						{'A', 'A', 'A', 'A', 'A', 'A', 'A'},
+						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
+						{'A', 'F', 'A', 'F', 'A', 'F', 'A'},
+						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
+						{'A', 'F', 'A', 'F', 'A', 'F', 'A'},
+						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
+						{'A', 'A', 'A', 'A', 'A', 'A', 'A'}
+					}
+			};
+		maze = new Maze(test);
 	}
 }
