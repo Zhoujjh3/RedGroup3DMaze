@@ -1,14 +1,31 @@
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Run3DMaze {
 	
+	JFrame screen;
+	JPanel gamePanel;
+	Maze maze;
+	enum mazeState{
+		WELCOMESCREEN,
+		CHAMBERVIEW,
+		MAPVIEW,
+		LEADERBOARD
+	}
+	
 	public Run3DMaze() {
-		
+		screen = new JFrame();
+		gamePanel = new GamePanel();
+		gamePanel.setPreferredSize(new Dimension(2000, 1000));
+		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		screen.setContentPane(gamePanel);
+		screen.pack();
+	    screen.setVisible(true);
 	}
 	
 	public static void main(String[]args) {
-		System.out.println("Genuinely this has been the worst experience of my life"
-		+ " Oh my heebie jeebus I could not imagine something worse!!!!");
+		new Run3DMaze();
 	}
 }
-//change 5
-//Test Max Balakirsky (cutie)
