@@ -1,10 +1,15 @@
 public class Maze {
-	public static void main(String[]args) {
-		System.out.println("bruh please work");
+	private Room[][][] activeMaze;
+	private int difficulty;
+	private int minMoves;
+
+	public Maze(int difficulty) {
+		populateMaze(difficulty);
+		
 	}
 	
-	public Maze() {
-		System.out.println("test");
+	private void populateMaze(int difficulty) {
+		
 	}
 }
 
