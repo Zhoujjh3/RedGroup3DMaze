@@ -13,23 +13,26 @@ public class Room {
 		for (int i=0; i<directions.length; i++) {
 			this.directions[i] = directions[i];
 		}
-	}
+	}	
 	public boolean getDirection(char direction) {
-		if (direction == 'N') {
+		switch(direction) {
+		case 'N':
 			return directions[0];
-		} else if (direction == 'E') {
+		case 'E':
 			return directions[1];
-		} else if (direction == 'S') {
+		case 'S':
 			return directions[2];
-		} else if (direction == 'W') {
+		case 'W':
 			return directions[3];
-		} else if (direction == 'U') {
+		case 'U':
 			return directions[4];
-		} else if (direction == 'D') {
+		case 'D':
 			return directions[5];
+		default:
+			return directions[0];
 		}
-		return false;
 	}
+	
 	public int getCoordinate(char value) {
 		if (value == 'X') {
 			return coordinates[0];
