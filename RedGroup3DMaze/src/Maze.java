@@ -38,6 +38,9 @@ public class Maze {
 				for (int x=0; x<activeMaze.length; x++) {
 					int indexX = (x*2)+1;
 					int indexY = (y*2)+1;
+					coordinates[0] = x;
+					coordinates[1] = y;
+					coordinates[2] = z;
 					if (baseMaze[indexX][indexY-1][z] == 'T') { // Checking north
 						directions[0] = true;
 					}
@@ -58,6 +61,7 @@ public class Maze {
 					} else if (baseMaze[indexX][indexY][z] == 'D') { // Checking down
 						directions[5] = true;
 					}
+					activeMaze[x][y][z] = new Room(coordinates, directions);
 				}
 			}
 		}
