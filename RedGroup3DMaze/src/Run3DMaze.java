@@ -9,5 +9,5 @@ public class Run3DMaze {
 		System.out.println("Red Team has been infiltrated!");
 	}
 }
-// change 1
+// change 3
 //Test Max Balakirsky (cutie)
