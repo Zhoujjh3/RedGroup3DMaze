@@ -13,7 +13,7 @@ public class Map {
 	}
 	
 	public void display(Graphics g) {
-		
+		//testing
 	}
 	
 	public void display(Graphics g, int newLevel) {
