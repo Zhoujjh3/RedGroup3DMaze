@@ -16,7 +16,7 @@ public class PlayerData {
         return direction;
     }
 
-
+//<orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
     public int getScore() {
         return score;
     }
