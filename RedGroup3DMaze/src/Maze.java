@@ -29,7 +29,6 @@ public class Maze {
 	/*public int populateMaze(int difficulty) {
 		
 	}*/
-<<<<<<< HEAD
 	
 	
 	
@@ -45,11 +44,6 @@ public class Maze {
 	}*/
 	
 	
-=======
-	public Room getRoom(int x, int y, int z) {
-		return activeMaze[x][y][z];
-	}
->>>>>>> branch 'main' of https://github.com/Zhoujjh3/RedGroup3DMaze
 	public int getDifficulty() {
 		return difficulty;
 	}
