@@ -18,7 +18,7 @@ public class Run3DMaze {
 	public Run3DMaze() {
 		screen = new JFrame();
 		gamePanel = new GamePanel();
-		gamePanel.setPreferredSize(new Dimension(2000, 1000));
+		gamePanel.setPreferredSize(new Dimension(1000, 750));
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		screen.setContentPane(gamePanel);
 		screen.pack();
