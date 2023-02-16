@@ -23,16 +23,9 @@ public class Maze {
 	/*public int populateMaze(int difficulty) {
 		
 	}*/
-	/*public Room[][][] getActiveMaze() {
-		Room[][][] returnedMaze = new Room[activeMaze.length][activeMaze[0].length][activeMaze[0][0].length];
-		for (int i=0; i<activeMaze.length; i++) {
-			for (int j=0; j<activeMaze[0].length; j++) {
-				for (int k=0; k<activeMaze[0][0].length; k++) {
-					Room room = new Room({)
-				}
-			}
-		}
-	}*/
+	public Room getRoom(int x, int y, int z) {
+		return activeMaze[x][y][z];
+	}
 	public int getDifficulty() {
 		return difficulty;
 	}
