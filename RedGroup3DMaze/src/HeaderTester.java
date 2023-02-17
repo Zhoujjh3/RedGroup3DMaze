@@ -16,6 +16,8 @@ public class HeaderTester {
         /* Size and then display the frame. */
         frame.setSize(1000,750);
         frame.setVisible(true);
+        frame.setResizable(true);
+		frame.setLocationRelativeTo(null);
     }
 
     class Panel extends JPanel{
