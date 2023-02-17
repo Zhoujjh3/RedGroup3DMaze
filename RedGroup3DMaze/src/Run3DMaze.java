@@ -25,6 +25,7 @@ public class Run3DMaze {
 	    screen.setVisible(true);
 	    screen.setResizable(false);
 		screen.setLocationRelativeTo(null);
+		//comment
 	}
 	
 	public static void main(String[]args) {
