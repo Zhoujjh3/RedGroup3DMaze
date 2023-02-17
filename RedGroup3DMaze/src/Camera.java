@@ -8,7 +8,7 @@ public class Camera extends Entity{
 			canvasHeight, imageWidth, imageHeight;
 	Camera(double angle, double distance){
 		location = new Vertex(0,0,0);
-		w2l = new AffineTransform3D();
+		setLocalToWorld(new AffineTransform3D());
 		//canvasWidth = width;
 		//viewAngleH = Math.atan(width/(2*distance));
 		//viewAngleV = Math.atan(height/(2*distance));
@@ -32,35 +32,35 @@ public class Camera extends Entity{
 		visibility|=isVisible(t.v3);
 		return visibility;
 	}
-	public Vertex toScreen(Vertex v) {
+	private Vertex toScreen(Vertex v) {
 		Vertex point = new Vertex(screenDistance*v.x()/-v.z(),
 				screenDistance*v.y()/-v.z(),
 				-v.z());
 		return point;
 	}
-	public Triangle toScreen(Triangle t) {
+	private Triangle toScreen(Triangle t) {
 		t.v1 = toScreen(t.v1);
 		t.v2 = toScreen(t.v2);
 		t.v3 = toScreen(t.v3);
 		return t;
 	}
-	public Vertex toNDC(Vertex p) {
+	private Vertex toNDC(Vertex p) {
 		Vertex pNorm = new Vertex((p.x()+canvasWidth/2)/canvasWidth,
 				(p.y()+canvasHeight/2)/canvasHeight,p.z());
 		return pNorm;
 	}
-	public Triangle toNDC(Triangle t) {
+	private Triangle toNDC(Triangle t) {
 		t.v1 = toNDC(t.v1);
 		t.v2 = toNDC(t.v2);
 		t.v3 = toNDC(t.v3);
 		return t;
 	}
-	public static Vertex toRaster(Vertex p,int width,int height) {
+	private static Vertex toRaster(Vertex p,int width,int height) {
 		Vertex point = new Vertex(p.x()*width,
 				(1-p.y())*height,p.z());
 		return point;
 	}
-	public static Triangle toRaster(Triangle t,int width,int height) {
+	private static Triangle toRaster(Triangle t,int width,int height) {
 		t.v1 = toRaster(t.v1,width, height);
 		t.v2 = toRaster(t.v2,width, height);
 		t.v3 = toRaster(t.v3,width, height);
