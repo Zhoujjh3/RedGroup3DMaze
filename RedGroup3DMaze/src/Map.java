@@ -9,7 +9,7 @@ public class Map {
 	Map(Maze maze, PlayerData player) {
 		this.maze = maze;
 		this.player = player;
-		level = player.getLevel();
+		level = player.getCoordinate('z');
 	}
 	
 	public void display(Graphics g) {

@@ -1,5 +1,6 @@
 import java.awt.*;
-
+//requires java.datatransfer;
+//    requires java.desktop;
 public class Header {
     private boolean chamberView;
     private Maze maze;
