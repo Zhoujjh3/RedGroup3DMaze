@@ -18,6 +18,7 @@ public class HeaderTester {
         frame.setVisible(true);
         frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
+		//comment
     }
 
     class Panel extends JPanel{
