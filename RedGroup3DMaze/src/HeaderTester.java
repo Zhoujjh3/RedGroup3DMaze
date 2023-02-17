@@ -14,15 +14,17 @@ public class HeaderTester {
         frame.setContentPane(panel);
 
         /* Size and then display the frame. */
-        frame.setSize(500,500);
+        frame.setSize(1000,750);
         frame.setVisible(true);
+        frame.setResizable(true);
+		frame.setLocationRelativeTo(null);
     }
 
     class Panel extends JPanel{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             header.display(g);
-            g.dispose();
+            //g.dispose();
         }
     }
     public static void main(String[] args){

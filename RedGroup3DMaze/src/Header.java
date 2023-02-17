@@ -13,13 +13,14 @@ public class Header {
 
     public void display(Graphics g) {
         g.setColor(Color.gray);
-        g.fillRect(0,0,500,50);
+        g.fillRect(0,0,1000,50);
         g.setColor(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
-        g.drawString("X: " + player.getCoordinate('x'), 20, 25);
-        g.drawString("Y: " + player.getCoordinate('y'), 60, 25);
-        g.drawString("Player Level: " + player.getCoordinate('z'), 120, 25);
-        g.drawString("Moves: " + player.getScore(), 240, 25);
+        g.drawString("X: " + player.getCoordinate('X'), 20, 25);
+        g.drawString("Y: " + player.getCoordinate('Y'), 60, 25);
+        g.drawString("Player Level: " + player.getCoordinate('Z'), 250, 25);
+        g.drawString("Moves: " + player.getScore(), 540, 25);
+        g.drawString(Character.toString(player.getDirection()), 600, 25);
 
     }
     public void update() {
