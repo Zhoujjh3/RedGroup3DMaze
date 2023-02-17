@@ -1,13 +1,12 @@
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
 public class HeaderTester {
     JFrame frame;
     JPanel panel;
     Header header;
-    Maze maze = new Maze();
+    Maze maze = new Maze(new char[1][1][1]);
     PlayerData player = new PlayerData(maze);
-    public Main() {
+    public HeaderTester() {
         header = new Header(maze, player);
         frame = new JFrame("game test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,6 +26,6 @@ public class HeaderTester {
         }
     }
     public static void main(String[] args){
-        new Main();
+        new HeaderTester();
     }
 }
