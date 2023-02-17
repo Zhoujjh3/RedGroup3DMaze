@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Maze {
 	// Room at coordinates (2, 4, 1) = activeMaze[2][4][1]
 	
@@ -26,9 +27,39 @@ public class Maze {
 	public Maze(char[][][] providedBaseMaze) {
 		setActiveMaze(providedBaseMaze);
 	}
-	/*public int populateMaze(int difficulty) {
+	public int populateMaze(int difficulty) {
+		char[][][] baseMaze;
+		ArrayList<int[]> walls = new ArrayList<int[]>();
+		if (difficulty == 3) {
+			baseMaze = new char[11][11][5];
+		} else {
+			baseMaze = new char[9][9][4];
+		}
+		setBaseMazeAndWalls(baseMaze, walls);
 		
-	}*/
+		
+		
+		
+		return -1;
+	}
+	public void setBaseMazeAndWalls(char[][][] baseMaze, ArrayList<int[]> walls) {
+		for (int x=0; x<baseMaze.length; x++) {
+			for (int y=0; y<baseMaze[0].length; y++) {
+				for (int z=0; z<baseMaze[0][0].length; z++) {
+					if (x%2 == 1 && y%2 == 1) {
+						baseMaze[x][y][z] = 'Z';
+					} else if (x > 0 && x < baseMaze.length-1 && y > 0 && y < baseMaze[0].length-1 && (x%2 == 1 || y%2 == 1)) { 
+						baseMaze[x][y][z] = 'F';
+						walls.add(getCoords(x, y, z));
+					} else {
+						baseMaze[x][y][z] = 'A';
+					}
+				}
+			}
+		}
+	}
+
+
 	
 	
 	
@@ -198,4 +229,3 @@ public class Maze {
 		maze.setActiveMaze(test);
 	}
 }
-
