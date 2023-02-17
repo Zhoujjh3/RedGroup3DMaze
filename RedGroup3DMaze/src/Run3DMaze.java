@@ -23,6 +23,9 @@ public class Run3DMaze {
 		screen.setContentPane(gamePanel);
 		screen.pack();
 	    screen.setVisible(true);
+	    screen.setResizable(false);
+		screen.setLocationRelativeTo(null);
+		//comment
 	}
 	
 	public static void main(String[]args) {
