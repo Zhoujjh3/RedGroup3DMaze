@@ -53,7 +53,6 @@ public class Maze {
 		return minMoves;
 	}
 	
-	
 	private void setActiveMaze(char[][][] baseMaze) { // Untested
 //		activeMaze = new Room[(baseMaze.length-1)/2][(baseMaze[0].length-1)/2][baseMaze[0][0].length];
 //		int[] coordinates = new int[3];
@@ -92,13 +91,29 @@ public class Maze {
 //		}
 		int roomCount = getMazeSize();
 		activeMaze = new Room[roomCount][roomCount][roomCount];
-		for(int i = 0; i<roomCount; i++) {
-			for(int j = 0; j<roomCount; j++) {
-				for(int k = 0; k < roomCount; k++) {
+		int counterx = 0;
+		int countery = 0;
+		int counterz = 0;
+		for(int i = 0; i<baseMaze.length; i++) {
+			for(int j = 0; j<baseMaze[0].length; j++) {
+				for(int k = 0; k < baseMaze[0][0].length; k++) {
+					if(baseMaze[i][j][k] != 'A' && (baseMaze[i][j][k] != ('T') && baseMaze[i][j][k] != 'F')) {
+						System.out.println(baseMaze[i][j][k]);
+						activeMaze[counterx][countery][counterz] = new Room(getCoords(i, j, k), getRoomDirections(baseMaze, i, j, k));
+					} if(counterx < roomCount)
+						counterx++;
+					else if(counterx >= roomCount) {
+						counterx=0;
+						if(countery < roomCount)
+							countery++;
+						else if (countery >= roomCount) {
+							countery=0;
+							counterz++;
+						}
+					}
 				}
 			}
 		}
-		
 	}
 	
 	public int getMazeSize() {
@@ -113,8 +128,34 @@ public class Maze {
 		}
 	}
 	
-	public boolean[] getRoomDirections(char baseMaze[][][], int coordinates[]){
+	public boolean[] getRoomDirections(char baseMaze[][][], int x, int y, int z){
+
 		boolean[] result = {false, false, false, false, false, false};
+
+
+		switch (baseMaze[x][y][z]) {
+		case 'U':
+			result[4] = true;
+		case 'D':
+			result[5] = true;
+		case 'B':
+			result[4] = true;
+			result[5] = true;
+		}
+		if(baseMaze[x-1][y][z] == 'T') 
+			result[3] = true;
+		if(baseMaze[x+1][y][z] == 'T')
+			result[1] = true;
+		if(baseMaze[x][y-1][z] == 'T')
+			result[0] = true;
+		if(baseMaze[x][y+1][z] == 'T')
+			result[2] = true;
+		//n e s w u d
+		return result;
+	}
+	
+	private int[] getCoords(int x, int y, int z) {
+		int[] result = {x, y, z};
 		return result;
 	}
 	
@@ -152,5 +193,9 @@ public class Maze {
 					}
 			};
 		maze = new Maze(test);
+		
+		
+		maze.setActiveMaze(test);
 	}
 }
+
