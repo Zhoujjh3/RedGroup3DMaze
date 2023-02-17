@@ -20,8 +20,9 @@ public class Header {
         g.drawString("Y: " + player.getCoordinate('Y'), 60, 25);
         g.drawString("Player Level: " + player.getCoordinate('Z'), 250, 25);
         g.drawString("Moves: " + player.getScore(), 540, 25);
-        g.drawString(Character.toString(player.getDirection()), 600, 25);
-
+        g.drawString(Character.toString(player.getDirection()), 640, 25);
+        g.setColor(Color.BLACK);
+        g.drawRect(740,10,100,30);
     }
     public void update() {
 
