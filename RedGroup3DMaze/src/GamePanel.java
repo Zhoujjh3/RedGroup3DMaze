@@ -14,4 +14,16 @@ public class GamePanel extends JPanel{
 	public void setMapView(Graphics g) {
 		
 	}
+	
+	public void setHeader(Graphics g) {
+		
+	}
+	
+	public void setLeaderboard(Graphics g) {
+		
+	}
+	
+	public void setSelectionScreen(Graphics g) {
+		
+	}
 }
