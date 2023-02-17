@@ -1,12 +1,12 @@
 import java.awt.*;
 
-public class Map {
+public class MazeMap {
 	
 	private int level;
 	private Maze maze;
 	private PlayerData player;
 	
-	Map(Maze maze, PlayerData player) {
+	MazeMap(Maze maze, PlayerData player) {
 		this.maze = maze;
 		this.player = player;
 		level = player.getCoordinate('z');

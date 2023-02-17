@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class AffineTransform3D {
 	double[][] matrix;
@@ -74,5 +75,8 @@ public class AffineTransform3D {
 		}
 		result[3][3] = 1;
 		return new AffineTransform3D(result);
+	}
+	public void print() {
+			System.out.println(Arrays.deepToString(matrix));
 	}
 }

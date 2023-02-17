@@ -3,11 +3,9 @@ import java.awt.Point;
 import java.util.Arrays;
 
 public class Camera extends Entity{
-	Vertex location;
-	double screenDistance, viewAngleH,viewAngleV, canvasWidth,
+	private double screenDistance, viewAngleH,viewAngleV, canvasWidth,
 			canvasHeight, imageWidth, imageHeight;
 	Camera(double angle, double distance){
-		location = new Vertex(0,0,0);
 		setLocalToWorld(new AffineTransform3D());
 		//canvasWidth = width;
 		//viewAngleH = Math.atan(width/(2*distance));
@@ -18,7 +16,16 @@ public class Camera extends Entity{
 		screenDistance = distance;
 		canvasWidth= 2*Math.tan(angle/2)*screenDistance;
 		canvasHeight= 2*Math.tan(angle/2)*screenDistance;
-}
+	}
+	public double getDistance() {
+		return screenDistance;
+	}
+	public double getWidth() {
+		return canvasWidth;
+	}
+	public double getHeight() {
+		return canvasHeight;
+	}
 	public boolean isVisible(Vertex p) {
 		p=toScreen(p);
 		if((Math.abs(p.x())<=canvasWidth/2&&Math.abs(p.y())<=canvasHeight/2)&&p.z()>screenDistance) {
@@ -71,9 +78,6 @@ public class Camera extends Entity{
 		t = toNDC(t);
 		t = toRaster(t,width, height);
 		return t;
-	}
-	public void transform(AffineTransform3D t) {
-		location = location.transform(t);
 	}
 	
 }

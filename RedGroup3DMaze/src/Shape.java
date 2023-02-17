@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Shape extends Entity {
-	Triangle[] triangles;
+	private Triangle[] triangles;
 	Shape(Triangle[] tri, double[] fromOrigin){
 		triangles=tri;
 		setLocalToWorld(new AffineTransform3D());
@@ -14,14 +14,22 @@ public class Shape extends Entity {
 	private Triangle[] transformTris(AffineTransform3D t) {
 		Triangle[] tempTri = triangles.clone();
 		for (int i=0;i<tempTri.length;i++) {
-			tempTri[i]=tempTri[i].transform(localToWorld());
+			tempTri[i]=tempTri[i].transform(t);
 		}
 		return tempTri;
 	}
+	public Triangle[] getTriangles() {
+		return triangles.clone();
+	}
 	public Shape transform(AffineTransform3D t) {
-		t = localToWorld().concatenate(t);
+		t = localToWorld().concatenate(t.invert());
 		return new Shape(triangles.clone(),t);
 	}
+	public Shape changeCoords(AffineTransform3D t) {
+		AffineTransform3D t2 = localToWorld().concatenate(t.invert());
+		return new Shape(transformTris(t),t2);
+	}
+	
 	public void print() {
 		for(Triangle tri:triangles) {
 			System.out.println(Arrays.toString(tri.v1.coordinate)+", "+
