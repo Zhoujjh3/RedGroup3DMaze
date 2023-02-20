@@ -42,7 +42,7 @@ public class Maze {
 		
 		return -1;
 	}
-	public void setBaseMazeAndWalls(char[][][] baseMaze, ArrayList<int[]> walls) {
+	private void setBaseMazeAndWalls(char[][][] baseMaze, ArrayList<int[]> walls) {
 		for (int x=0; x<baseMaze.length; x++) {
 			for (int y=0; y<baseMaze[0].length; y++) {
 				for (int z=0; z<baseMaze[0][0].length; z++) {
