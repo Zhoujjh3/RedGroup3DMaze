@@ -164,7 +164,6 @@ public class Maze {
 					int baseX = (x*2)+1;
 					int baseY = (y*2)+1;
 					if(baseMaze[baseX][baseY][z] != 'A' && (baseMaze[baseX][baseY][z] != ('T') && baseMaze[baseX][baseY][z] != 'F')) {
-						System.out.println(baseMaze[baseX][baseY][z]);
 						activeMaze[x][y][z] = new Room(getCoords(x, y, z), getRoomDirections(baseMaze, baseX, baseY, z));
 					}
 				}
