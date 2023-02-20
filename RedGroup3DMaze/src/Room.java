@@ -1,6 +1,6 @@
 public class Room {
-	private boolean[] directions;
-	private int[] coordinates;
+	private boolean[] directions = new boolean[6];
+	private int[] coordinates = new int[3];
 	private boolean marked;
 	/*
 	 * Coordinates are stored: {X, Y, Z}

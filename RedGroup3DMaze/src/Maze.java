@@ -74,6 +74,18 @@ public class Maze {
 		}
 	}*/
 	
+	public Room getRoom(int x, int y, int z) {
+		Room room = new Room(getCoords(x, y, z), new boolean[] {
+				activeMaze[x][y][z].getDirection('N'),
+				activeMaze[x][y][z].getDirection('E'),
+				activeMaze[x][y][z].getDirection('S'),
+				activeMaze[x][y][z].getDirection('W'),
+				activeMaze[x][y][z].getDirection('U'),
+				activeMaze[x][y][z].getDirection('D'),
+		});
+		return room;
+	}
+	
 	
 	public int getDifficulty() {
 		return difficulty;
@@ -120,7 +132,7 @@ public class Maze {
 //				}
 //			}
 //		}
-		int roomCount = getMazeSize();
+		/*int roomCount = getMazeSize();
 		activeMaze = new Room[roomCount][roomCount][roomCount];
 		int counterx = 0;
 		int countery = 0;
@@ -141,6 +153,19 @@ public class Maze {
 							countery=0;
 							counterz++;
 						}
+					}
+				}
+			}
+		}*/
+		activeMaze = new Room[(baseMaze.length-1)/2][(baseMaze[0].length-1)/2][baseMaze[0][0].length];
+		for(int z = 0; z<activeMaze[0][0].length; z++) {
+			for(int y = 0; y<activeMaze[0].length; y++) {
+				for(int x = 0; x < activeMaze.length; x++) {
+					int baseX = (x*2)+1;
+					int baseY = (y*2)+1;
+					if(baseMaze[baseX][baseY][z] != 'A' && (baseMaze[baseX][baseY][z] != ('T') && baseMaze[baseX][baseY][z] != 'F')) {
+						System.out.println(baseMaze[baseX][baseY][z]);
+						activeMaze[x][y][z] = new Room(getCoords(x, y, z), getRoomDirections(baseMaze, baseX, baseY, z));
 					}
 				}
 			}
