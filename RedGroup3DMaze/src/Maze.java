@@ -27,7 +27,7 @@ public class Maze {
 	public Maze(char[][][] providedBaseMaze) {
 		setActiveMaze(providedBaseMaze);
 	}
-	public int populateMaze(int difficulty) {
+	private int populateMaze(int difficulty) {
 		char[][][] baseMaze;
 		ArrayList<int[]> walls = new ArrayList<int[]>();
 		if (difficulty == 3) {
@@ -42,6 +42,13 @@ public class Maze {
 		
 		return -1;
 	}
+	private int pathFind(int[] startCoords, int[] endCoords) {
+		
+		
+		
+		return -1;
+	}
+	
 	private void setBaseMazeAndWalls(char[][][] baseMaze, ArrayList<int[]> walls) {
 		for (int x=0; x<baseMaze.length; x++) {
 			for (int y=0; y<baseMaze[0].length; y++) {
