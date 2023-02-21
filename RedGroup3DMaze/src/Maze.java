@@ -209,6 +209,8 @@ public class Maze {
 		return result;
 	}
 	
+	
+	
 	private int[] getCoords(int x, int y, int z) {
 		int[] result = {x, y, z};
 		return result;
