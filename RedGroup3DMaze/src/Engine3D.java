@@ -15,6 +15,8 @@ public class Engine3D {
 	private Camera c;
 	private double playerSpeed;
 	private Shape tetra;
+	private RectanglePrism room;
+	private ArrayList<Shape> shapes;
 	Map<String, double[]> keyTracker = 
 			new HashMap<String, double[]>();
 	Engine3D(double angle, double distance){
@@ -22,6 +24,7 @@ public class Engine3D {
 		displayFrame = new JFrame("Dodger");
 		displayFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		c = new Camera(angle,distance);
+		shapes = new ArrayList<Shape>();
 		Vertex v1 = new Vertex(10, 10, 10);
 		Vertex v2 = new Vertex(-10, -10, 10);
 		Vertex v3 = new Vertex(-10, 10, -10);
@@ -31,6 +34,18 @@ public class Engine3D {
 				new Triangle(v3,v4,v1,Color.GREEN),
 				new Triangle(v3,v4,v2,Color.BLUE)};
 		tetra = new Shape(ts, new double[] {30,30,-30});
+		v1 = new Vertex(100, 100, 100);
+		v2 = new Vertex(-400, 100, 100);
+		v3 = new Vertex(-400, 100, -400);
+		v4 = new Vertex(100, 100, -100);
+		Vertex v5 = new Vertex(100, -100, 100);
+		Vertex v6 = new Vertex(-100, -100, 100);
+		Vertex v7 = new Vertex(-100, -100, -100);
+		Vertex v8 = new Vertex(40, -10, -40);
+		room = new RectanglePrism(new Vertex[]{v1,v2,v3,v4,v5,v6,v7,v8},
+				new double[]{0,0,0}, new Color[]{Color.BLUE,Color.BLUE,
+						Color.CYAN,Color.CYAN,Color.GREEN,Color.MAGENTA});
+		shapes.add(room);
 		displayPane = new World();
 		RotateCamera r = new RotateCamera();
 		displayPane.addMouseMotionListener(r);
@@ -54,7 +69,7 @@ public class Engine3D {
 		displayFrame.add(displayPane);
 		displayFrame.setSize(600, 600);
 		displayFrame.setResizable(false);
-		displayFrame.setVisible(true);	
+		displayFrame.setVisible(true);
 	}
 	public void createActions() {
 		addMove("UP",0,0,-playerSpeed);
@@ -130,7 +145,8 @@ public class Engine3D {
 				    zBuffer[x][y] = Double.POSITIVE_INFINITY;
 				}
 			}
-			Shape tris = tetra.changeCoords(tetra.localToWorld());
+			for (Shape shape:shapes) {
+			Shape tris = shape.changeCoords(tetra.localToWorld());
 			tris = tris.changeCoords(c.worldToLocal());
 			for (int i=0;i<tris.getTriangles().length;i++) {
 				Triangle tri = tris.getTriangles()[i];
@@ -162,6 +178,7 @@ public class Engine3D {
 					}
 				}
 				}
+			}
 			}
 			g2.drawImage(img, 0, 0, null);
 			g2.drawImage(ig, 0, 0, null);
@@ -233,6 +250,6 @@ public class Engine3D {
 		}
 	}
 	public static void main(String[] args) {
-		Engine3D test = new Engine3D(Math.PI/2,0.4);
+		Engine3D test = new Engine3D(Math.PI/2,0.01);
 	}
 }
