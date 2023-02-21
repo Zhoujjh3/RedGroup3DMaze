@@ -27,6 +27,11 @@ public class Maze {
 	public Maze(char[][][] providedBaseMaze) {
 		setActiveMaze(providedBaseMaze);
 	}
+	
+	public Maze() {
+		
+	}
+	
 	private int populateMaze(int difficulty) {
 		char[][][] baseMaze;
 		ArrayList<int[]> walls = new ArrayList<int[]>();
@@ -61,9 +66,6 @@ public class Maze {
 	}
 	
 	private int pathFind(char[][][] baseMaze, int[] startCoords, int[] endCoords) {
-		
-		
-		
 		return -1;
 	}
 	
