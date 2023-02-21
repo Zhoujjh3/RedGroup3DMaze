@@ -70,12 +70,26 @@ public class Maze {
 	}
 	
 	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
-		
-		for (int i=0; i<walls.size(); i++) {
-			int[] wallCoords = walls.get(i);
-			int[] startCoords, endCoords;
+		int wallsSize = walls.size();
+		for (int i=0; i<wallsSize; i++) {
+			int[] wallCoords = walls.remove(0);
+			int[] startCoords = new int[3];
+			int[] endCoords = new int[3];
+			startCoords[2] = wallCoords[2];
+			endCoords[2] = wallCoords[2];
 			if (baseMaze[wallCoords[0]-1][wallCoords[1]][wallCoords[2]] == 'A' && baseMaze[wallCoords[0]+1][wallCoords[1]][wallCoords[2]] == 'A') {
-				
+				startCoords[0] = wallCoords[0];
+				startCoords[1] = wallCoords[1]-1;
+				endCoords[0] = wallCoords[0];
+				endCoords[1] = wallCoords[1]+1;
+			} else {
+				startCoords[0] = wallCoords[0]-1;
+				startCoords[1] = wallCoords[1];
+				endCoords[0] = wallCoords[0]+1;
+				endCoords[1] = wallCoords[1];
+			}
+			if (pathFind(baseMaze, startCoords, endCoords) > 0) {
+				baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
 			}
 		}
 		
