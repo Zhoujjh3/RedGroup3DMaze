@@ -41,7 +41,11 @@ public class Maze {
 		} else {
 			baseMaze = new char[4][9][9];
 		}
-		setBaseMazeAndWalls(baseMaze, walls);
+		do {
+			setBaseMazeAndWalls(baseMaze, walls);
+			// creating the set path
+			fillBaseMaze(baseMaze, walls);
+		} while (false /* while minMoves does not fit */);
 		return -1;
 	}
 	
