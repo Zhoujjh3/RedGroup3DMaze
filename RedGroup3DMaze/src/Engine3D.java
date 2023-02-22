@@ -17,7 +17,6 @@ public class Engine3D {
 	private Shape tetra;
 	Checker cc;
 	private RectanglePrism room;
-	Color[][] colorBuffer; 
 	private ArrayList<Shape> shapes;
 	Map<String, double[]> keyTracker = 
 			new HashMap<String, double[]>();
@@ -144,11 +143,9 @@ public class Engine3D {
 			g2.setColor(Color.BLACK);
 			g2.fillRect(0, 0, getWidth(), getHeight());
 			double[][] zBuffer = new double[img.getWidth()][img.getHeight()];
-			Color[][]colorBuffer = new Color[img.getWidth()][img.getHeight()];
 			for (int x= 0; x< img.getWidth(); x++) {
 				for (int y = 0; y < img.getHeight(); y++) {
 				    zBuffer[x][y] = Double.POSITIVE_INFINITY;
-				    colorBuffer[x][y] = Color.BLACK;
 				}
 			}
 			for (Shape shape:shapes) {
@@ -178,7 +175,6 @@ public class Engine3D {
 								if (zBuffer[x][y] > depth&&(depth>c.getDistance())) {
 									img.setRGB((int)x, (int)y, tri.color.getRGB());
 									zBuffer[x][y] = depth;
-									colorBuffer[x][y] = tri.color;
 								}else if (zBuffer[x][y] == depth&&!(tempTri.getByZ(2).z()< depth)) {
 								}
 							}
@@ -231,7 +227,6 @@ public class Engine3D {
 		public void mouseMoved(MouseEvent e) {
 		}
 		public void mouseClicked(MouseEvent e) {
-			System.out.println(colorBuffer[e.getX()][e.getY()].getRGB());
 		}
 		public void mousePressed(MouseEvent e) {
 			xStart=e.getX();
