@@ -21,13 +21,9 @@ public class Header {
         g.drawString("Player Level: " + player.getCoordinate('Z'), 250, 25);
         g.drawString("Moves: " + player.getScore(), 510, 25);
         g.drawString(Character.toString(player.getDirection()), 640, 25);
-        g.setColor(Color.BLACK);
-        g.drawRect(740,7,100,25);
-        if(chamberView) {
-            g.drawString("MAP",775,25);
-        } else {
-            g.drawString("CHAMBER",750,25);
-        }
+//        g.setColor(Color.BLACK);
+//        g.drawRect(740,7,100,25);
+
     }
     public void update() {
 
@@ -37,6 +33,14 @@ public class Header {
             chamberView = false;
         } else {
             chamberView = true;
+        }
+    }
+
+    public String getView() {
+        if(chamberView) {
+            return("MAP");
+        } else {
+            return("CHAMBER");
         }
     }
 

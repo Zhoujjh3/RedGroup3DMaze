@@ -10,18 +10,25 @@ public class HeaderTester {
     PlayerData player = new PlayerData(1);
     MazeMap map = new MazeMap(maze, player);
     JButton changeView;
+    String buttonText;
     public HeaderTester() {
         header = new Header(maze, player);
         frame = new JFrame("game test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        buttonText = header.getView();
         panel = new Panel();
-        changeView = new JButton("MAP");
-        changeView.setLayout(null);
-        changeView.setLocation(840,7);
+        changeView = new JButton(buttonText);
+        panel.setLayout(null);
+        changeView.setBounds(740
+                , 5,
+                80,
+                30 );
+
         changeView.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 header.changeView();
                 panel.repaint();
+
             }
         });
         frame.setContentPane(panel);
@@ -39,7 +46,7 @@ public class HeaderTester {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             header.display(g);
-            //g.dispose();
+            buttonText = header.getView();
         }
     }
     public static void main(String[] args){
