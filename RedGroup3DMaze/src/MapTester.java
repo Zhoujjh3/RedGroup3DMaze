@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MapTester {
-	
     JFrame frame;
     JPanel panel;
     Header header;
