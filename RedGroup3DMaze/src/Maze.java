@@ -51,7 +51,7 @@ public class Maze {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
 					if (x%2 == 1 && y%2 == 1) {
 						baseMaze[level][x][y] = 'Z';
-					} else if (x > 0 && x < baseMaze.length-1 && y > 0 && level < baseMaze[0].length-1 && (x%2 == 1 || level%2 == 1)) { 
+					} else if (x > 0 && x < baseMaze[0].length-1 && y > 0 && y < baseMaze[0][0].length-1 && (x%2 == 1 || y%2 == 1)) { 
 						baseMaze[level][x][y] = 'F';
 						walls.add(getCoords(level, x, y));
 					} else {
@@ -220,7 +220,17 @@ public class Maze {
 			};
 		maze = new Maze(test);
 		
-		
 		maze.setActiveMaze(test);
+		char[][][] baseMaze = new char[4][9][9];
+		maze.setBaseMazeAndWalls(baseMaze, new ArrayList<int[]>());
+		for (int level=0; level<baseMaze.length; level++) {
+			for (int x=0; x<baseMaze[0].length; x++) {
+				for (int y=0; y<baseMaze[0][0].length; y++) {
+					System.out.print(baseMaze[level][x][y] + " ");
+				}
+				System.out.println();
+			}
+			System.out.println("\n");
+		}
 	}
 }
