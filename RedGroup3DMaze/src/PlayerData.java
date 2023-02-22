@@ -3,13 +3,13 @@ public class PlayerData {
     private char direction;
     private int score;
     private int mazeSize;
-    public PlayerData(Maze maze) {
+    public PlayerData(int size) {
         coordinates[0] = 0;
         coordinates[1] = 0;
         coordinates[2] = 0;
         direction = 'S';
         score = 0;
-        mazeSize = maze.getMazeSize();
+        mazeSize = size;
     }
 
     public int getCoordinate(char value) {

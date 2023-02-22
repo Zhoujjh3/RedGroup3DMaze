@@ -1,17 +1,31 @@
 import javax.swing.*;
+import java.awt.event.*;
 import java.awt.*;
+
 public class HeaderTester {
     JFrame frame;
     JPanel panel;
     Header header;
-    Maze maze = new Maze(new char[1][1][1]);
-    PlayerData player = new PlayerData(maze);
+    Maze maze = new Maze(1);
+    PlayerData player = new PlayerData(1);
+    MazeMap map = new MazeMap(maze, player);
+    JButton changeView;
     public HeaderTester() {
         header = new Header(maze, player);
         frame = new JFrame("game test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new Panel();
+        changeView = new JButton("MAP");
+        changeView.setLayout(null);
+        changeView.setLocation(840,7);
+        changeView.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                header.changeView();
+                panel.repaint();
+            }
+        });
         frame.setContentPane(panel);
+        panel.add(changeView);
 
         /* Size and then display the frame. */
         frame.setSize(1000,750);
