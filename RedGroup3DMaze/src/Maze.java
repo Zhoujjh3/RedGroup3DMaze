@@ -66,8 +66,42 @@ public class Maze {
 		}
 	}
 	
-	private int pathFind(char[][][] baseMaze, int[] startCoords, int[] endCoords) { // coords are (level, x, y)
-		return -1;
+	private boolean pathFind(char[][][] baseMaze, int[] startCoords, int[] endCoords) {
+		int startz = startCoords[0];
+		int startx = startCoords[1];
+		int starty = startCoords[2];
+		
+		int endz = endCoords[0];
+		int endx = endCoords[1];
+		int endy = endCoords[2];
+		
+		
+		char[][] currentLevel = baseMaze[startz];
+		for(int x = 0; x<currentLevel.length; x++) {
+			for(int y = 0; y<currentLevel[0].length; y++) {
+				if(baseMaze[startz][x][y] != 'F' && baseMaze[startz][x][y] != 'A') {
+					currentLevel[x][y] = 'P';
+				}
+			}
+		}
+		
+		
+		for(int x = 1; x<currentLevel.length-1;x++) {
+			for(int y = 1; y<currentLevel[0].length-1;y++) {
+				char[] dirs = {currentLevel[x+1][y], currentLevel[x-1][y], currentLevel[x][y+1], currentLevel[x][y-1]};
+				int counter = 0;
+				for(int i = 0; i<4; i++) {
+					if(dirs[i] =='P' || dirs[i] == 'R')
+						counter++;
+				}
+				if(counter != 0 && currentLevel[x][y] == 'P')
+					currentLevel[x][y] = 'R';
+			}
+		}
+		
+		if(currentLevel[startx][starty] == 'R' && currentLevel[endx][endy] == 'R')
+			return true;
+		return false;
 	}
 	
 	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
