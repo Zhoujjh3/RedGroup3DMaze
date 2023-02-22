@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Maze {
-	// Room at coordinates (2, 4, 1) = activeMaze[2][4][1]
+	// Room at coordinates (2, 4, 1) = activeMaze[1][2][4]
 	//COORDINATES WILL BE AS FOLLOWS: [level][x][y], or (level/z, x, y)
 	
 	private Room[][][] activeMaze;
@@ -29,7 +29,7 @@ public class Maze {
 		setActiveMaze(providedBaseMaze);
 	}
 	
-	public Maze() {
+	public Maze(int difficulty) {
 		
 	}
 	
@@ -62,7 +62,7 @@ public class Maze {
 		}
 	}
 	
-	private int pathFind(char[][][] baseMaze, int[] startCoords, int[] endCoords) {
+	private int pathFind(char[][][] baseMaze, int[] startCoords, int[] endCoords) { // coords are (level, x, y)
 		return -1;
 	}
 	
@@ -72,18 +72,18 @@ public class Maze {
 			int[] wallCoords = walls.remove(0);
 			int[] startCoords = new int[3];
 			int[] endCoords = new int[3];
-			startCoords[2] = wallCoords[2];
-			endCoords[2] = wallCoords[2];
-			if (baseMaze[wallCoords[0]-1][wallCoords[1]][wallCoords[2]] == 'A' && baseMaze[wallCoords[0]+1][wallCoords[1]][wallCoords[2]] == 'A') {
-				startCoords[0] = wallCoords[0];
-				startCoords[1] = wallCoords[1]-1;
-				endCoords[0] = wallCoords[0];
-				endCoords[1] = wallCoords[1]+1;
-			} else {
-				startCoords[0] = wallCoords[0]-1;
+			startCoords[0] = wallCoords[0];
+			endCoords[0] = wallCoords[0];
+			if (baseMaze[wallCoords[0]][wallCoords[1]-1][wallCoords[2]] == 'A' && baseMaze[wallCoords[0]][wallCoords[1]+1][wallCoords[2]] == 'A') {
 				startCoords[1] = wallCoords[1];
-				endCoords[0] = wallCoords[0]+1;
+				startCoords[2] = wallCoords[2]-1;
 				endCoords[1] = wallCoords[1];
+				endCoords[2] = wallCoords[2]+1;
+			} else {
+				startCoords[1] = wallCoords[1]-1;
+				startCoords[2] = wallCoords[2];
+				endCoords[1] = wallCoords[1]+1;
+				endCoords[2] = wallCoords[2];
 			}
 			if (pathFind(baseMaze, startCoords, endCoords) > 0) {
 				baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
