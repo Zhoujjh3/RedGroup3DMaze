@@ -6,8 +6,8 @@ public class HeaderTester {
     JFrame frame;
     JPanel panel;
     Header header;
-    Maze maze = new Maze();
-    PlayerData player = new PlayerData(maze);
+    Maze maze = new Maze(1);
+    PlayerData player = new PlayerData(1);
     MazeMap map = new MazeMap(maze, player);
     JButton changeView;
     public HeaderTester() {
