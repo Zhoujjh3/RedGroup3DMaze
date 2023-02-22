@@ -1,6 +1,5 @@
 
 public class ManualTestMaze {
-	//manual maze
 	
 	private Room[][][] activeMaze = new Room[4][4][4];
 	private boolean[][][][] directions; // N, E, S, W, U, D
