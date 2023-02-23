@@ -1,14 +1,14 @@
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 
 public class MazeMap {
 	
 	private int level;
-	private Maze maze;
+	private ManualTestMaze maze;
 	private PlayerData player;
 	
-	MazeMap(Maze maze, PlayerData player) {
+	MazeMap(ManualTestMaze maze, PlayerData player) {
 		this.maze = maze;
 		this.player = player;
 		level = player.getCoordinate('z');
@@ -17,6 +17,35 @@ public class MazeMap {
 	public void display(Graphics g) {
 		Painter painter = new Painter();
 		painter.displayGrid(g);
+		int length = 4;
+		/*for (int i=0; i<length; i++) {
+			for (int o=0; o<length; o++) {
+				Room room = maze.getRoom(level, i, o);
+				if (room.hasVisited()) {
+					if (room.getDirection('N')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('E')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('S')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('W')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('U')) {
+						painter.displayHatch(g);
+					}
+					if (room.getDirection('D')) {
+						painter.displayTrap(g);
+					}
+				} else {
+					painter.gray(g);
+				}
+			}
+		}*/
+		painter.mapIcons(g);
 	}
 	
 	public void display(Graphics g, int newLevel) {
@@ -62,12 +91,20 @@ public class MazeMap {
 		
 		public void mapIcons(Graphics g) {
 			super.paintComponent(g);
+			int[] coord = {0,0};
 			
-			int[] x1 = {100, 300, 500, 500, 300, 100, 100};
-			int[] y1 = {250, 300, 250, 200, 250, 200, 250};
+			int[] trapX = {180, 250, 320, 320, 250, 180, 180};
+			int[] trapY = {165, 180, 165, 180, 195, 180, 165};
 			
-			g.drawPolygon(x1, y1, 7);
-			g.fillPolygon(x1, y1, 7);
+			int[] hatchX = {180, 250, 320, 320, 250, 180, 180};
+			int[] hatchY = {70, 55, 70, 85, 70, 85, 70};
+			
+			//Trapdoor
+			g.setColor(Color.orange);
+			g.fillPolygon(trapX, trapY, 7);
+			//Hatch
+			g.setColor(Color.blue);
+			g.fillPolygon(hatchX, hatchY, 7);
 		}
 		
 	}
