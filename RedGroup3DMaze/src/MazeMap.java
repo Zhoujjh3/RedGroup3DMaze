@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 
 
@@ -11,7 +10,7 @@ public class MazeMap {
 	MazeMap(ManualTestMaze maze, PlayerData player) {
 		this.maze = maze;
 		this.player = player;
-		level = player.getCoordinate('z');
+		level = player.getCoordinate('Z');
 	}
 	
 	public void display(Graphics g) {

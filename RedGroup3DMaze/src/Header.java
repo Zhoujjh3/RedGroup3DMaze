@@ -16,9 +16,9 @@ public class Header {
         g.fillRect(0,0,1000,40);
         g.setColor(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
-        g.drawString("X: " + player.getCoordinate('X'), 20, 25);
-        g.drawString("Y: " + player.getCoordinate('Y'), 60, 25);
-        g.drawString("Player Level: " + player.getCoordinate('Z'), 250, 25);
+        g.drawString("X: " + (player.getCoordinate('X') + 1), 20, 25);
+        g.drawString("Y: " + (player.getCoordinate('Y') + 1), 60, 25);
+        g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), 250, 25);
         g.drawString("Moves: " + player.getScore(), 510, 25);
         g.drawString(Character.toString(player.getDirection()), 640, 25);
 //        g.setColor(Color.BLACK);
