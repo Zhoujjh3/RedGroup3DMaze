@@ -62,7 +62,7 @@ public class Maze {
 		}
 	}
 	
-	private boolean pathFind(char[][][] baseMaze, int[] startCoords, int[] endCoords) {
+	public boolean pathFind(char[][][] baseMaze, int[] startCoords, int[] endCoords) {
 		int startz = startCoords[0];
 		int startx = startCoords[1];
 		int starty = startCoords[2];
@@ -72,38 +72,49 @@ public class Maze {
 		int endy = endCoords[2];
 		
 		
-		char[][] currentLevel = new char[baseMaze[0].length][baseMaze[0][0].length];
+		char[][][] floodingMaze = new char[baseMaze.length][baseMaze[0].length][baseMaze[0][0].length];
 		
-		for (int x=0; x<baseMaze[0].length; x++) {
-			for (int y=0; y<baseMaze[0][0].length; y++) {
-				currentLevel[x][y] = baseMaze[startz][x][y];
-				if(baseMaze[startz][x][y] != 'F' && baseMaze[startz][x][y] != 'A') {
-					currentLevel[x][y] = 'P';
+		for (int level=0; level<baseMaze.length; level++) {
+			for (int x=0; x<baseMaze[0].length; x++) {
+				for (int y=0; y<baseMaze[0][0].length; y++) {
+					floodingMaze[level][x][y] = baseMaze[level][x][y];
+					if(baseMaze[level][x][y] != 'F' && baseMaze[level][x][y] != 'A') {
+						floodingMaze[level][x][y] = 'P';
+					}
 				}
 			}
 		}
 		
 		boolean pathsLeft = true;
-		currentLevel[startx][starty] = 'R';
+		floodingMaze[startz][startx][starty] = 'R';
 		while(pathsLeft) {
 			pathsLeft = false;
-			for(int x = 1; x<currentLevel.length-1;x++) {
-				for(int y = 1; y<currentLevel[0].length-1;y++) {
-					char[] dirs = {currentLevel[x+1][y], currentLevel[x-1][y], currentLevel[x][y+1], currentLevel[x][y-1]};
-					int counter = 0;
-					for(int i = 0; i<4; i++) {
-						if(dirs[i] == 'R')
+			for (int level=0; level<floodingMaze.length; level++) {
+				for (int x = 1; x<floodingMaze[0].length-1;x++) {
+					for (int y = 1; y<floodingMaze[0][0].length-1;y++) {
+						char[] dirs = {floodingMaze[level][x+1][y], floodingMaze[level][x-1][y], floodingMaze[level][x][y+1], floodingMaze[level][x][y-1]};
+						int counter = 0;
+						for(int i = 0; i<dirs.length; i++) {
+							if(dirs[i] == 'R')
+								counter++;
+						}
+						char currentBasePos = baseMaze[level][x][y];
+						if (level < floodingMaze.length-1 && (currentBasePos == 'D' || currentBasePos == 'B' || baseMaze[level+1][x][y] == 'U' || baseMaze[level+1][x][y] == 'B') && floodingMaze[level+1][x][y] == 'R') {
 							counter++;
-					}
-					if(counter != 0 && currentLevel[x][y] == 'P') {
-						currentLevel[x][y] = 'R';
-						pathsLeft = true;
+						}
+						if (level > 0 && (currentBasePos == 'U' || currentBasePos == 'B' || baseMaze[level-1][x][y] == 'D' || baseMaze[level-1][x][y] == 'B') && floodingMaze[level-1][x][y] == 'R') {
+							counter++;
+						}
+						if(counter != 0 && floodingMaze[level][x][y] == 'P') {
+							floodingMaze[level][x][y] = 'R';
+							pathsLeft = true;
+						}
 					}
 				}
 			}
 		}
 		
-		if(currentLevel[startx][starty] == 'R' && currentLevel[endx][endy] == 'R')
+		if(floodingMaze[startz][startx][starty] == 'R' && floodingMaze[endz][endx][endy] == 'R')
 			return true;
 		return false;
 	}
@@ -112,33 +123,6 @@ public class Maze {
 		char[][][] x = new char[1][baseMazeLevel.length][baseMazeLevel[0].length];
 		x[0] = baseMazeLevel;
 		return pathFind(x, startCoords, endCoords);
-	}
-	
-	private boolean fullMazePathFind(char[][][] baseMaze) {
-		int[] startCoords = new int[3];
-		int[] endCoords = new int[3];
-		for (int level=0; level<baseMaze.length; level++) {
-			// finding startCoords and endCoords
-			// note: WILL THROW ERROR IF LEVEL DOESN'T HAVE BOTH A 'U' AND A 'D'
-			startCoords[0] = level;
-			endCoords[0] = level;
-			for (int x=0; x<baseMaze[0].length; x++) {
-				for (int y=0; y<baseMaze[0][0].length; y++) {
-					if (baseMaze[level][x][y] == 'U' || baseMaze[level][x][y] == 'B') {
-						startCoords[1] = x;
-						startCoords[2] = y;
-					}
-					if (baseMaze[level][x][y] == 'D' || baseMaze[level][x][y] == 'B') {
-						endCoords[1] = x;
-						endCoords[2] = y;
-					}
-				}
-			}
-			if (!pathFind(baseMaze, startCoords, endCoords)) {
-				return false;
-			}
-		}
-		return true;
 	}
 	
 	private char[][][] createPath(char[][][] baseMaze) {
