@@ -63,11 +63,18 @@ public class MazeMap {
 		public void mapIcons(Graphics g) {
 			super.paintComponent(g);
 			
-			int[] x1 = {100, 300, 500, 500, 300, 100, 100};
-			int[] y1 = {250, 300, 250, 200, 250, 200, 250};
+			int[] trapX = {180, 250, 320, 320, 250, 180, 180};
+			int[] trapY = {165, 180, 165, 180, 195, 180, 165};
 			
-			g.drawPolygon(x1, y1, 7);
-			g.fillPolygon(x1, y1, 7);
+			int[] hatchX = {180, 250, 320, 320, 250, 180, 180};
+			int[] hatchY = {70, 55, 70, 85, 70, 85, 70};
+			
+			//Trapdoor
+			g.setColor(Color.orange);
+			g.fillPolygon(trapX, trapY, 7);
+			//Hatch
+			g.setColor(Color.blue);
+			g.fillPolygon(hatchX, hatchY, 7);
 		}
 		
 	}
