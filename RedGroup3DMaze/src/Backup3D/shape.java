@@ -9,8 +9,6 @@ public class shape extends Shapes{
 	public int state;
 	public boolean dir = true;
 	
-	// eeeeeeeeee
-	
 	shape(int theState) {
 		state = theState;
 		if(theState == 0) {
@@ -39,6 +37,11 @@ public class shape extends Shapes{
 		
 		g.setColor(new Color(243, 243, 243));
 		g.fillPolygon(shapeX, shapeY, 4);
+		g.setColor(Color.black);
+		g.drawLine((int) xTL,(int) yTL,(int) xBL,(int) yBL);
+		g.drawLine((int) xTR,(int) yTR,(int) xBR,(int) yBR);
+		g.drawLine((int) xTL,(int) yTL,(int) xTR,(int) yTR);
+		g.drawLine((int) xBL,(int) yBL,(int) xBR,(int) yBR);
 	}
 
 	@Override

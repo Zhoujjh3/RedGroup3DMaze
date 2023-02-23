@@ -92,23 +92,46 @@ public class Maze {
 				}
 			}
 		}
-		
-		for(int x = 1; x<currentLevel.length-1;x++) {
-			for(int y = 1; y<currentLevel[0].length-1;y++) {
-				char[] dirs = {currentLevel[x+1][y], currentLevel[x-1][y], currentLevel[x][y+1], currentLevel[x][y-1]};
-				int counter = 0;
-				for(int i = 0; i<4; i++) {
-					if(dirs[i] =='P' || dirs[i] == 'R')
-						counter++;
+		boolean pathsLeft = true;
+		currentLevel[startx][starty] = 'R';
+		while(pathsLeft) {
+			pathsLeft = false;
+			for(int x = 1; x<currentLevel.length-1;x++) {
+				for(int y = 1; y<currentLevel[0].length-1;y++) {
+					char[] dirs = {currentLevel[x+1][y], currentLevel[x-1][y], currentLevel[x][y+1], currentLevel[x][y-1]};
+					int counter = 0;
+					for(int i = 0; i<4; i++) {
+						if(dirs[i] == 'R')
+							counter++;
+					}
+					if(counter != 0 && currentLevel[x][y] == 'P') {
+						currentLevel[x][y] = 'R';
+						pathsLeft = true;
+					}
 				}
-				if(counter != 0 && currentLevel[x][y] == 'P')
-					currentLevel[x][y] = 'R';
 			}
 		}
 		
 		if(currentLevel[startx][starty] == 'R' && currentLevel[endx][endy] == 'R')
 			return true;
 		return false;
+	}
+	
+	private void createPath(char[][][] baseMaze) {
+		/*
+		 * difficulty = 1: minMoves = 15 - 17
+		 * difficulty = 2: minMoves = 18 - 20
+		 * difficulty = 3: minMoves = 22 - 24
+		 */
+		int aimMinMoves;
+		if (difficulty == 1) {
+			aimMinMoves = 16;
+		} else if (difficulty == 2) {
+			aimMinMoves = 19;
+		} else {
+			aimMinMoves = 23;
+		}
+		int movesPerLevel = (int)(aimMinMoves / baseMaze.length);
 	}
 	
 	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
