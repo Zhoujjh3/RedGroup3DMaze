@@ -98,8 +98,8 @@ public class Selection implements ActionListener{
    }
 
 
-	public void actionPerformed(ActionEvent event) {
-		String eventName = event.getActionCommand();
+	public void actionPerformed(ActionEvent e) {
+		String eventName = e.getActionCommand();
 		System.out.println(eventName);
 		
 	}
