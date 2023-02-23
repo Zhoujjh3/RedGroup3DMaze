@@ -123,6 +123,7 @@ public class MazeMap {
 				playerIconX[i] = playerIconX[i] + startX;
 				playerIconY[i] = playerIconY[i] + startY;
 			}
+			
 			g.setColor(Color.black);
 			g.drawPolygon(playerIconX, playerIconY, 7);
 			Color playerIconColor = new Color(255, 255, 0);
