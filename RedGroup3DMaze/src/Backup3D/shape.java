@@ -9,6 +9,8 @@ public class shape extends Shapes{
 	public int state;
 	public boolean dir = true;
 	
+	// eeeeeeeeee
+	
 	shape(int theState) {
 		state = theState;
 		if(theState == 0) {
