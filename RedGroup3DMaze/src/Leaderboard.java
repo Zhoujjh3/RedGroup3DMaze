@@ -5,8 +5,8 @@ import java.awt.event.*;
 public class Leaderboard implements ActionListener {
 	
 	JTextField[] top10 = new JTextField[10];
-	int scoresList[] = new int[10];
-	int score = 20;
+	int scoresList[] = {2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647};
+	int score;
 //	Player player;
 	
 	JFrame frame;
@@ -17,7 +17,9 @@ public class Leaderboard implements ActionListener {
 	
 	Leaderboard(/*Player playerData*/) {
 //		score = playerData.getScore();
-		sortScores(score);
+		if (score != 0) {
+			sortScores(score);	
+		}
 		
 		frame = new JFrame("Leaderboard");
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,7 +42,7 @@ public class Leaderboard implements ActionListener {
 	    contentPane.add(yourScore);
 	    
 	    for (int i = 0; i < top10.length; i++) {
-	    	if (scoresList[i] == 0) {
+	    	if (scoresList[i] == 2147483647) {
 	    		top10[i] = new JTextField("---");
 	    	} else {
 	    		top10[i] = new JTextField(Integer.toString(scoresList[i]));
@@ -62,6 +64,8 @@ public class Leaderboard implements ActionListener {
 	    restartButt.setFont(new Font("Serif", Font.PLAIN, 25));
 	    restartButt.setBounds(545, 500, 300, 50);
 	    restartButt.setBackground(new Color(150, 150, 148));
+	    restartButt.setActionCommand("click");
+	    restartButt.addActionListener(this);
 	    contentPane.add(restartButt);
 
 	    frame.setContentPane(contentPane);
@@ -74,23 +78,8 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	private void sortScores(int newScore) {
-		bubbleSort();
-		boolean thereisanemptybox = false;
-		for (int i = 0; i < scoresList.length; i++) {
-			if (scoresList[i] == 0) {
-				thereisanemptybox = true;
-			}
-		}
-		if (thereisanemptybox) {
-			boolean found = false;
-			int num = 0;
-			while (!found) {
-				if (scoresList[num] == 0) {
-					scoresList[num] = newScore;
-					found = true;
-				}
-			}	
-		} else if (newScore < scoresList[scoresList.length - 1]) {
+		bubbleSort();	
+		if (newScore < scoresList[scoresList.length - 1]) {
 			scoresList[scoresList.length - 1] = newScore;
 			bubbleSort();
 		}
@@ -111,25 +100,9 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		restartGame();
+		if (e.getActionCommand() == "click") {
+			restartGame();
+		}
 	}
-	
-	private static void runGUI() {
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		Leaderboard testb = new Leaderboard();
-	}
-	
-	public static void main(String[] args) {
-		/*
-		 * Methods that create and show a GUI should be
-		 * run from an event-dispatching thread
-		 */
-		javax.swing.SwingUtilities.invokeLater(new Runnable(){
-			public void run() {
-				runGUI();
-			}
-		});
-	}
-	
 	
 }
