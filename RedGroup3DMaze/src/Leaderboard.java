@@ -29,7 +29,7 @@ public class Leaderboard implements ActionListener {
 	    
 	    title = new JTextField("Leaderboard");
 	    title.setEditable(false);
-	    title.setBounds(400, 75, 200, 50);
+	    title.setBounds(400, 75, 250, 50);
 	    title.setFont(new Font("Serif", Font.PLAIN, 40));
 	    title.setBorder(BorderFactory.createEmptyBorder());
 	    contentPane.add(title);
