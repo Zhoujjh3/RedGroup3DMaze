@@ -117,7 +117,13 @@ public class Maze {
 		return false;
 	}
 	
-	private void createPath(char[][][] baseMaze) {
+	private boolean pathFind(char[][] baseMazeLevel, int[] startCoords, int[] endCoords) {
+		char[][][] x = new char[1][baseMazeLevel.length][baseMazeLevel[0].length];
+		x[0] = baseMazeLevel;
+		return pathFind(x, startCoords, endCoords);
+	}
+	
+	private char[][][] createPath(char[][][] baseMaze) {
 		/*
 		 * difficulty = 1: minMoves = 15 - 17
 		 * difficulty = 2: minMoves = 18 - 20
@@ -132,6 +138,37 @@ public class Maze {
 			aimMinMoves = 23;
 		}
 		int movesPerLevel = (int)(aimMinMoves / baseMaze.length);
+		
+		
+		return baseMaze;
+	}
+	
+	private char[][] createLevelPath(char[][][] baseMaze, int givenMoves){
+		char[][] level = new char[baseMaze[0].length][baseMaze[0].length];
+		boolean pathWorks = false;
+		while(!pathWorks) {
+			int startx;
+			int starty; 
+			int endx;
+			int endy;
+			if(((int)Math.random()*100000) < 50000) {
+				startx = 1;
+				starty = (((int)Math.random() * (level.length-1)/2) *2) +1;
+			} else {
+				starty = 1;
+				startx = (((int)Math.random() * (level.length-1)/2) *2) +1;
+			}
+					
+			for(int i = 0; i< givenMoves; i++) {
+				
+			}
+			
+			
+			int[] startC = {0, startx, starty};
+			int[] endC = {0, endx, endy};
+			pathWorks = pathFind(level, startC, endC);
+		}
+		return level;
 	}
 	
 	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
