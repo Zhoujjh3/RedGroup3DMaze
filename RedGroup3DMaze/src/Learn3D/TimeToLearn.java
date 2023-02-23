@@ -57,6 +57,11 @@ public class TimeToLearn {
 				});
 				MatrixLearn transform = headingTransform.multiply(pitchTransform);
 				
+				double[] zBuffer = new double[img.getWidth() * img.getHeight()];
+				for(int q =0; q < zBuffer.length; q++) {
+					zBuffer[q] = Double.NEGATIVE_INFINITY;
+				}
+				
 				for(TriangleLearn t : tris) {
 					VertexLearn v1 = transform.transform(t.vertices[0]);
 					VertexLearn v2 = transform.transform(t.vertices[1]);
@@ -84,10 +89,16 @@ public class TimeToLearn {
 							boolean V2 = sameSide(v2, v3, v1, p);
 							boolean V3 = sameSide(v3, v1, v2, p);
 							if(V3 && V2 && V1) {
-								img.setRGB(x,  y,  t.theColor.getRGB());
+								double depth = v1.coordinates[2] + v2.coordinates[2] + v3.coordinates[2];
+								int zIndex = y * img.getWidth() + x;
+								if(zBuffer[zIndex] < depth) {
+									img.setRGB(x,  y,  t.theColor.getRGB());
+									zBuffer[zIndex] = depth;
+								}
 							}
 						}
 					}
+					
 				}
 				
 				g2.drawImage(img, 0, 0, null);

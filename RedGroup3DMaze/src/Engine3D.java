@@ -15,6 +15,9 @@ public class Engine3D {
 	private Camera c;
 	private double playerSpeed;
 	private Shape tetra;
+	Checker cc;
+	private RectanglePrism room;
+	private ArrayList<Shape> shapes;
 	Map<String, double[]> keyTracker = 
 			new HashMap<String, double[]>();
 	Engine3D(double angle, double distance){
@@ -22,6 +25,7 @@ public class Engine3D {
 		displayFrame = new JFrame("Dodger");
 		displayFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		c = new Camera(angle,distance);
+		shapes = new ArrayList<Shape>();
 		Vertex v1 = new Vertex(10, 10, 10);
 		Vertex v2 = new Vertex(-10, -10, 10);
 		Vertex v3 = new Vertex(-10, 10, -10);
@@ -31,10 +35,24 @@ public class Engine3D {
 				new Triangle(v3,v4,v1,Color.GREEN),
 				new Triangle(v3,v4,v2,Color.BLUE)};
 		tetra = new Shape(ts, new double[] {30,30,-30});
+		v1 = new Vertex(100, 100, 100);
+		v2 = new Vertex(-100, 100, 100);
+		v3 = new Vertex(-100, 100, -100);
+		v4 = new Vertex(100, 100, -100);
+		Vertex v5 = new Vertex(100, -100, 100);
+		Vertex v6 = new Vertex(-100, -100, 100);
+		Vertex v7 = new Vertex(-100, -100, -100);
+		Vertex v8 = new Vertex(100, -100, -100);
+		room = new RectanglePrism(new Vertex[]{v1,v2,v3,v4,v5,v6,v7,v8},
+				new double[]{0,0,0}, new Color[]{Color.BLUE,Color.BLUE,
+						Color.CYAN,Color.CYAN,Color.GREEN,Color.MAGENTA});
+		shapes.add(room);
 		displayPane = new World();
 		RotateCamera r = new RotateCamera();
 		displayPane.addMouseMotionListener(r);
 		displayPane.addMouseListener(r);
+		cc = new Checker();
+		displayPane.addMouseListener(cc);
 //		displayPane.addMouseMotionListener(new MouseMotionListener() {
 //            @Override
 //            public void mouseDragged(MouseEvent e) {
@@ -54,7 +72,7 @@ public class Engine3D {
 		displayFrame.add(displayPane);
 		displayFrame.setSize(600, 600);
 		displayFrame.setResizable(false);
-		displayFrame.setVisible(true);	
+		displayFrame.setVisible(true);
 	}
 	public void createActions() {
 		addMove("UP",0,0,-playerSpeed);
@@ -130,37 +148,41 @@ public class Engine3D {
 				    zBuffer[x][y] = Double.POSITIVE_INFINITY;
 				}
 			}
-			Shape tris = tetra.changeCoords(tetra.localToWorld());
-			tris = tris.changeCoords(c.worldToLocal());
-			for (int i=0;i<tris.getTriangles().length;i++) {
-				Triangle tri = tris.getTriangles()[i];
-				if(c.isVisible(tri)) {
-				Triangle tempTri = c.worldToRaster(tri,getWidth(),getHeight());
-				int minX = (int) Math.max(0, Math.ceil(tempTri.getByX(0).x()));
-				int maxX = (int) Math.min(img.getWidth() - 1,tempTri.getByX(2).x());
-				int minY = (int) Math.max(0, Math.ceil(tempTri.getByY(0).y()));
-				int maxY = (int) Math.min(img.getHeight() - 1,tempTri.getByY(2).y());
-                tempTri.toClockwise();
-                for (int y = minY; y <= maxY; y++) {
-					for (int x = minX; x <= maxX; x++) {
-						Vertex p = new Vertex(x,y,0);
-						double triArea = inTriangle(tempTri.v1,tempTri.v2,tempTri.v3);
-						double bary1 = inTriangle(tempTri.v2,tempTri.v3,p);
-						double bary2 = inTriangle(tempTri.v3,tempTri.v1,p);
-						double bary3 = inTriangle(tempTri.v1,tempTri.v2,p);
-						if (bary1>=0&&bary2>= 0&&bary3>= 0) {
-							bary1/=triArea;
-							bary2/=triArea;
-							bary3/=triArea;
-							double depth = 1/(bary1/tempTri.v1.z()+bary2/tempTri.v2.z()+bary3/tempTri.v3.z());
-							if (zBuffer[x][y] > depth&&(depth>c.getDistance())) {
-								img.setRGB((int)x, (int)y, tri.color.getRGB());
-								zBuffer[x][y] = depth;
-							}else if (zBuffer[x][y] == depth&&!(tempTri.getByZ(2).z()< depth)) {
+			for (Shape shape:shapes) {
+				Shape tris = shape.changeCoords(tetra.localToWorld());
+				tris = tris.changeCoords(c.worldToLocal());
+				for (int i=0;i<tris.getTriangles().length;i++) {
+					Triangle tri = tris.getTriangles()[i];
+					cc.setT(i, tri,c);
+					Triangle tempTri = c.worldToRaster(tri,getWidth(),getHeight());
+					int minX = (int) Math.max(0, Math.ceil(tempTri.getByX(0).x()));
+					int maxX = (int) Math.min(img.getWidth() - 1,tempTri.getByX(2).x());
+					int minY = (int) Math.max(0, Math.ceil(tempTri.getByY(0).y()));
+					int maxY = (int) Math.min(img.getHeight() - 1,tempTri.getByY(2).y());
+	                tempTri.toClockwise();
+	                for (int y = minY; y <= maxY; y++) {
+						for (int x = minX; x <= maxX; x++) {
+							Vertex p = new Vertex(x,y,0);
+							double triArea = inTriangle(tempTri.v1,tempTri.v2,tempTri.v3);
+							double bary1 = inTriangle(tempTri.v2,tempTri.v3,p);
+							double bary2 = inTriangle(tempTri.v3,tempTri.v1,p);
+							double bary3 = inTriangle(tempTri.v1,tempTri.v2,p);
+							if (bary1>=0&&bary2>= 0&&bary3>= 0) {
+								bary1/=triArea;
+								bary2/=triArea;
+								bary3/=triArea;
+								double depth = 1/(bary1/tempTri.v1.z()+bary2/tempTri.v2.z()+bary3/tempTri.v3.z());
+								if (zBuffer[x][y] > depth&&(depth>c.getDistance())) {
+									img.setRGB((int)x, (int)y, tri.color.getRGB());
+									zBuffer[x][y] = depth;
+								}else if (zBuffer[x][y] == depth&&!(tempTri.getByZ(2).z()< depth)) {
+								}
 							}
 						}
 					}
-				}
+	                gg = img.getGraphics();
+	                gg.setColor(tri.color);
+	                gg.drawRect(minX, minY, maxX-minX, maxY-minY);
 				}
 			}
 			g2.drawImage(img, 0, 0, null);
@@ -205,8 +227,6 @@ public class Engine3D {
 		public void mouseMoved(MouseEvent e) {
 		}
 		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
 		}
 		public void mousePressed(MouseEvent e) {
 			xStart=e.getX();
@@ -233,6 +253,6 @@ public class Engine3D {
 		}
 	}
 	public static void main(String[] args) {
-		Engine3D test = new Engine3D(Math.PI/2,0.4);
+		Engine3D test = new Engine3D(Math.PI/2,0.01);
 	}
 }
