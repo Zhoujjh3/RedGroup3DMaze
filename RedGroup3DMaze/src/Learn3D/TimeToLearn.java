@@ -3,6 +3,7 @@ package Learn3D;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Path2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -19,6 +20,7 @@ public class TimeToLearn {
 		pane.setLayout(new BorderLayout());
 		JPanel renderPanel = new JPanel() {
 			public void paintComponent(Graphics g) {
+				BufferedImage img = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setColor(Color.BLACK);
 				g2.fillRect(0, 0,  getWidth(), getHeight());
@@ -55,22 +57,53 @@ public class TimeToLearn {
 				});
 				MatrixLearn transform = headingTransform.multiply(pitchTransform);
 				
-				g2.translate(getWidth() / 2, getHeight() / 2);
-				g2.setColor(Color.WHITE);
+				double[] zBuffer = new double[img.getWidth() * img.getHeight()];
+				for(int q =0; q < zBuffer.length; q++) {
+					zBuffer[q] = Double.NEGATIVE_INFINITY;
+				}
+				
 				for(TriangleLearn t : tris) {
 					VertexLearn v1 = transform.transform(t.vertices[0]);
 					VertexLearn v2 = transform.transform(t.vertices[1]);
 					VertexLearn v3 = transform.transform(t.vertices[2]);
-					Path2D path = new Path2D.Double();
-					path.moveTo(v1.coordinates[0], v1.coordinates[1]);
-					path.lineTo(v2.coordinates[0], v2.coordinates[1]);
-					path.lineTo(v3.coordinates[0], v3.coordinates[1]);
-					path.closePath();
-					g2.draw(path);
+					v1.coordinates[0] += getWidth() / 2.0;
+					v1.coordinates[1] += getHeight() / 2.0;
+					v2.coordinates[0] += getWidth() / 2.0;
+					v2.coordinates[1] += getHeight() / 2.0;
+					v3.coordinates[0] += getWidth() / 2.0;
+					v3.coordinates[1] += getHeight() / 2.0;
+					int minX = (int) Math.max(0, Math.ceil(Math.min(v1.coordinates[0], 
+					Math.min(v2.coordinates[0], v3.coordinates[0]))));
+					int maxX = (int) Math.min(img.getWidth() - 1, Math.floor(Math.max(v1.coordinates[0], 
+					Math.max(v2.coordinates[0], v3.coordinates[0]))));
+					int minY = (int) Math.max(0, Math.ceil(Math.min(v1.coordinates[1], 
+					Math.min(v2.coordinates[1], v3.coordinates[1]))));
+					int maxY = (int) Math.min(img.getHeight() - 1, Math.floor(Math.max(v1.coordinates[1], 
+					Math.max(v2.coordinates[1], v3.coordinates[1]))));
+					
+					for(int y = minY; y <= maxY; y++) {
+						for(int x = minX; x <= maxX; x++) {
+							VertexLearn p = new VertexLearn(x, y, 0);
+							
+							boolean V1 = sameSide(v1, v2, v3, p);
+							boolean V2 = sameSide(v2, v3, v1, p);
+							boolean V3 = sameSide(v3, v1, v2, p);
+							if(V3 && V2 && V1) {
+								double depth = v1.coordinates[2] + v2.coordinates[2] + v3.coordinates[2];
+								int zIndex = y * img.getWidth() + x;
+								if(zBuffer[zIndex] < depth) {
+									img.setRGB(x,  y,  t.theColor.getRGB());
+									zBuffer[zIndex] = depth;
+								}
+							}
+						}
+					}
+					
 				}
 				
-				
+				g2.drawImage(img, 0, 0, null);
 			}
+			
 		};
 		
 		pane.add(renderPanel, BorderLayout.CENTER);
@@ -118,6 +151,20 @@ public class TimeToLearn {
 	};
 	
 	static Timer animation = new Timer(15, moveDaTriangle);
+	
+	static boolean sameSide(VertexLearn A, VertexLearn B, VertexLearn C, VertexLearn p) {
+		VertexLearn V1V2 = new VertexLearn(B.coordinates[0] - A.coordinates[0], 
+		B.coordinates[1] - A.coordinates[1], B.coordinates[2] - A.coordinates[2]);
+		VertexLearn V1V3 = new VertexLearn(C.coordinates[0] - A.coordinates[0], 
+		C.coordinates[1] - A.coordinates[1], C.coordinates[2] - A.coordinates[2]);
+		VertexLearn V1P = new VertexLearn(p.coordinates[0] - A.coordinates[0], 
+		p.coordinates[1] - A.coordinates[1], p.coordinates[2] - A.coordinates[2]);
+		
+		double V1V2CrossV1V3 = V1V2.coordinates[0] * V1V3.coordinates[1] - V1V3.coordinates[0] * V1V2.coordinates[1];
+		double V1V2CrossP = V1V2.coordinates[0] * V1P.coordinates[1] - V1P.coordinates[0] * V1V2.coordinates[1];
+
+		return V1V2CrossV1V3 * V1V2CrossP >= 0;
+	}
 	
 }
 

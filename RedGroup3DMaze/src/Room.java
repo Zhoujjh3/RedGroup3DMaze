@@ -1,7 +1,9 @@
 public class Room {
-	private boolean[] directions;
-	private int[] coordinates;
+	private boolean[] directions = new boolean[6];
+	private int[] coordinates = new int[3];
 	private boolean marked;
+	private boolean visited;
+	
 	/*
 	 * Coordinates are stored: {X, Y, Z}
 	 * Directions are stored: {N, E, S, W, U, D}
@@ -13,6 +15,7 @@ public class Room {
 		for (int i=0; i<directions.length; i++) {
 			this.directions[i] = directions[i];
 		}
+		visited = false;
 	}	
 	public boolean getDirection(char direction) {
 		switch(direction) {
@@ -52,4 +55,12 @@ public class Room {
 	public boolean isMarked() {
 		return marked;
 	}
+	public boolean hasVisited() {
+		boolean x = visited;
+		return x;
+	}
+	public void setVisited(boolean newVal) {
+		visited = newVal;
+	}
 }
+

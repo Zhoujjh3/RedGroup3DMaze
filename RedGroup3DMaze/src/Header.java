@@ -13,13 +13,16 @@ public class Header {
 
     public void display(Graphics g) {
         g.setColor(Color.gray);
-        g.fillRect(0,0,500,50);
+        g.fillRect(0,0,1000,40);
         g.setColor(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
-        g.drawString("X: " + player.getCoordinate('x'), 20, 25);
-        g.drawString("Y: " + player.getCoordinate('y'), 60, 25);
-        g.drawString("Player Level: " + player.getCoordinate('z'), 120, 25);
-        g.drawString("Moves: " + player.getScore(), 240, 25);
+        g.drawString("X: " + player.getCoordinate('X'), 20, 25);
+        g.drawString("Y: " + player.getCoordinate('Y'), 60, 25);
+        g.drawString("Player Level: " + player.getCoordinate('Z'), 250, 25);
+        g.drawString("Moves: " + player.getScore(), 510, 25);
+        g.drawString(Character.toString(player.getDirection()), 640, 25);
+//        g.setColor(Color.BLACK);
+//        g.drawRect(740,7,100,25);
 
     }
     public void update() {
@@ -30,6 +33,14 @@ public class Header {
             chamberView = false;
         } else {
             chamberView = true;
+        }
+    }
+
+    public String getView() {
+        if(chamberView) {
+            return("MAP");
+        } else {
+            return("CHAMBER");
         }
     }
 

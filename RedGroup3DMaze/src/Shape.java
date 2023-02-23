@@ -1,30 +1,35 @@
 import java.util.*;
 
 public class Shape extends Entity {
-	Triangle[] triangles;
+	private Triangle[] triangles;
 	Shape(Triangle[] tri, double[] fromOrigin){
 		triangles=tri;
-//		print();
-		w2l = new AffineTransform3D();
-		w2l.translate(fromOrigin[0], fromOrigin[1], fromOrigin[2]);
-		triangles = transformTris(w2l.invert());
+		setLocalToWorld(new AffineTransform3D());
+		localToWorld().translate(fromOrigin[0], fromOrigin[1], fromOrigin[2]);
 	}
 	Shape(Triangle[] tri, AffineTransform3D w2l){
 		triangles=tri;
-		this.w2l = w2l;
-		triangles = transformTris(w2l.invert());
+		setLocalToWorld(w2l);
 	}
 	private Triangle[] transformTris(AffineTransform3D t) {
 		Triangle[] tempTri = triangles.clone();
 		for (int i=0;i<tempTri.length;i++) {
-			tempTri[i]=tempTri[i].transform(w2l);
+			tempTri[i]=tempTri[i].transform(t);
 		}
 		return tempTri;
 	}
-	public Shape transform(AffineTransform3D t) {
-		t = w2l.concatenate(t);
-		return new Shape(transformTris(w2l),t);
+	public Triangle[] getTriangles() {
+		return triangles.clone();
 	}
+	public Shape transform(AffineTransform3D t) {
+		t = localToWorld().concatenate(t.invert());
+		return new Shape(triangles.clone(),t);
+	}
+	public Shape changeCoords(AffineTransform3D t) {
+		AffineTransform3D t2 = localToWorld().concatenate(t.invert());
+		return new Shape(transformTris(t),t2);
+	}
+	
 	public void print() {
 		for(Triangle tri:triangles) {
 			System.out.println(Arrays.toString(tri.v1.coordinate)+", "+

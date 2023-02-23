@@ -1,11 +1,13 @@
+import java.util.ArrayList;
 public class Maze {
-	// Room at coordinates (2, 4, 1) = activeMaze[2][4][1]
+	// Room at coordinates (2, 4, 1) = activeMaze[1][2][4]
+	//COORDINATES WILL BE AS FOLLOWS: [level][x][y], or (level/z, x, y)
 	
 	private Room[][][] activeMaze;
 	
-	private int difficulty;
+	private int difficulty = 0;
 	
-	private int minMoves;
+	private int minMoves = 0;
 	
 //	public Maze(int difficulty) {
 //		this.difficulty = difficulty;
@@ -26,9 +28,120 @@ public class Maze {
 	public Maze(char[][][] providedBaseMaze) {
 		setActiveMaze(providedBaseMaze);
 	}
-	/*public int populateMaze(int difficulty) {
+	
+	public Maze(int difficulty) {
+		this.difficulty = difficulty;
+		// this.minMoves = populateMaze(difficulty);
+	}
+	
+	private int populateMaze(int difficulty) {
+		char[][][] baseMaze;
+		ArrayList<int[]> walls = new ArrayList<int[]>();
+		if (difficulty == 3) {
+			baseMaze = new char[5][11][11];
+		} else {
+			baseMaze = new char[4][9][9];
+		}
+		do {
+			setBaseMazeAndWalls(baseMaze, walls);
+			// creating the set path
+			fillBaseMaze(baseMaze, walls);
+		} while (false /* while minMoves does not fit */);
+		return -1;
+	}
+	
+	private void setBaseMazeAndWalls(char[][][] baseMaze, ArrayList<int[]> walls) {
+		for (int level=0; level<baseMaze.length; level++) {
+			for (int x=0; x<baseMaze[0].length; x++) {
+				for (int y=0; y<baseMaze[0][0].length; y++) {
+					if (x%2 == 1 && y%2 == 1) {
+						baseMaze[level][x][y] = 'Z';
+					} else if (x > 0 && x < baseMaze[0].length-1 && y > 0 && y < baseMaze[0][0].length-1 && (x%2 == 1 || y%2 == 1)) { 
+						baseMaze[level][x][y] = 'F';
+						walls.add(getCoords(level, x, y));
+					} else {
+						baseMaze[level][x][y] = 'A';
+					}
+				}
+			}
+		}
+	}
+	
+	private boolean pathFind(char[][][] baseMaze, int[] startCoords, int[] endCoords) {
+		int startz = startCoords[0];
+		int startx = startCoords[1];
+		int starty = startCoords[2];
 		
-	}*/
+		int endz = endCoords[0];
+		int endx = endCoords[1];
+		int endy = endCoords[2];
+		
+		
+		char[][] currentLevel = new char[baseMaze[0].length][baseMaze[0][0].length];
+		
+		for (int x=0; x<baseMaze[0].length; x++) {
+			for (int y=0; y<baseMaze[0][0].length; y++) {
+				currentLevel[x][y] = baseMaze[startz][x][y];
+			}
+		}
+		
+		for(int x = 0; x<currentLevel.length; x++) {
+			for(int y = 0; y<currentLevel[0].length; y++) {
+				if(baseMaze[startz][x][y] != 'F' && baseMaze[startz][x][y] != 'A') {
+					currentLevel[x][y] = 'P';
+				}
+			}
+		}
+		boolean pathsLeft = true;
+		currentLevel[startx][starty] = 'R';
+		while(pathsLeft) {
+			pathsLeft = false;
+			for(int x = 1; x<currentLevel.length-1;x++) {
+				for(int y = 1; y<currentLevel[0].length-1;y++) {
+					char[] dirs = {currentLevel[x+1][y], currentLevel[x-1][y], currentLevel[x][y+1], currentLevel[x][y-1]};
+					int counter = 0;
+					for(int i = 0; i<4; i++) {
+						if(dirs[i] == 'R')
+							counter++;
+					}
+					if(counter != 0 && currentLevel[x][y] == 'P') {
+						currentLevel[x][y] = 'R';
+						pathsLeft = true;
+					}
+				}
+			}
+		}
+		
+		if(currentLevel[startx][starty] == 'R' && currentLevel[endx][endy] == 'R')
+			return true;
+		return false;
+	}
+	
+	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
+		int wallsSize = walls.size();
+		for (int i=0; i<wallsSize; i++) {
+			int[] wallCoords = walls.remove((int)(Math.random()*walls.size()));
+			int[] startCoords = new int[3];
+			int[] endCoords = new int[3];
+			startCoords[0] = wallCoords[0];
+			endCoords[0] = wallCoords[0];
+			if (baseMaze[wallCoords[0]][wallCoords[1]-1][wallCoords[2]] == 'A' && baseMaze[wallCoords[0]][wallCoords[1]+1][wallCoords[2]] == 'A') {
+				startCoords[1] = wallCoords[1];
+				startCoords[2] = wallCoords[2]-1;
+				endCoords[1] = wallCoords[1];
+				endCoords[2] = wallCoords[2]+1;
+			} else {
+				startCoords[1] = wallCoords[1]-1;
+				startCoords[2] = wallCoords[2];
+				endCoords[1] = wallCoords[1]+1;
+				endCoords[2] = wallCoords[2];
+			}
+			if (pathFind(baseMaze, startCoords, endCoords)) {
+				baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
+			}
+		}
+		
+	}
 	
 	
 	
@@ -43,6 +156,18 @@ public class Maze {
 		}
 	}*/
 	
+	public Room getRoom(int level, int x, int y) {
+		Room room = new Room(getCoords(level, x, y), new boolean[] {
+				activeMaze[level][x][y].getDirection('N'),
+				activeMaze[level][x][y].getDirection('E'),
+				activeMaze[level][x][y].getDirection('S'),
+				activeMaze[level][x][y].getDirection('W'),
+				activeMaze[level][x][y].getDirection('U'),
+				activeMaze[level][x][y].getDirection('D'),
+		});
+		return room;
+	}
+	
 	
 	public int getDifficulty() {
 		return difficulty;
@@ -53,52 +178,19 @@ public class Maze {
 		return minMoves;
 	}
 	
-	
 	private void setActiveMaze(char[][][] baseMaze) { // Untested
-//		activeMaze = new Room[(baseMaze.length-1)/2][(baseMaze[0].length-1)/2][baseMaze[0][0].length];
-//		int[] coordinates = new int[3];
-//		boolean[] directions = {false, false, false, false, false, false};
-//		for (int z=0; z<activeMaze[0][0].length; z++) {
-//			for (int y=0; y<activeMaze[0].length; y++) {
-//				for (int x=0; x<activeMaze.length; x++) {
-//					int indexX = (x*2)+1;
-//					int indexY = (y*2)+1;
-//					coordinates[0] = x;
-//					coordinates[1] = y;
-//					coordinates[2] = z;
-//					if (baseMaze[indexX][indexY-1][z] == 'T') { // Checking north
-//						directions[0] = true;
-//					}
-//					if (baseMaze[indexX+1][indexY][z] == 'T') { // Checking east
-//						directions[1] = true;
-//					}
-//					if (baseMaze[indexX][indexY+1][z] == 'T') { // Checking south
-//						directions[2] = true;
-//					}
-//					if (baseMaze[indexX-1][indexY][z] == 'T') { // Checking west
-//						directions[3] = true;
-//					}
-//					if (baseMaze[indexX][indexY][z] == 'B') { // Checking up and down
-//						directions[4] = true;
-//						directions[5] = true;
-//					} else if (baseMaze[indexX][indexY][z] == 'U') { // Checking up
-//						directions[4] = true;
-//					} else if (baseMaze[indexX][indexY][z] == 'D') { // Checking down
-//						directions[5] = true;
-//					}
-//					activeMaze[x][y][z] = new Room(coordinates, directions);
-//				}
-//			}
-//		}
-		int roomCount = getMazeSize();
-		activeMaze = new Room[roomCount][roomCount][roomCount];
-		for(int i = 0; i<roomCount; i++) {
-			for(int j = 0; j<roomCount; j++) {
-				for(int k = 0; k < roomCount; k++) {
+		activeMaze = new Room[baseMaze.length][(baseMaze[0].length-1)/2][(baseMaze[0][0].length-1)/2];
+		for(int level = 0; level<activeMaze.length; level++) {
+			for(int x = 0; x<activeMaze[0].length; x++) {
+				for(int y = 0; y < activeMaze[0][0].length; y++) {
+					int baseX = (x*2)+1;
+					int baseY = (y*2)+1;
+					if(baseMaze[level][baseX][baseY] != 'A' && (baseMaze[level][baseX][baseY] != ('T') && baseMaze[level][baseX][baseY] != 'F')) {
+						activeMaze[level][x][y] = new Room(getCoords(level, x, y), getRoomDirections(baseMaze, level, baseX, baseY));
+					}
 				}
 			}
 		}
-		
 	}
 	
 	public int getMazeSize() {
@@ -113,8 +205,34 @@ public class Maze {
 		}
 	}
 	
-	public boolean[] getRoomDirections(char baseMaze[][][], int coordinates[]){
+	public boolean[] getRoomDirections(char baseMaze[][][], int level, int x, int y){
+
 		boolean[] result = {false, false, false, false, false, false};
+
+
+		switch (baseMaze[level][x][y]) {
+		case 'U':
+			result[4] = true;
+		case 'D':
+			result[5] = true;
+		case 'B':
+			result[4] = true;
+			result[5] = true;
+		}
+		if(baseMaze[level][x-1][y] == 'T') 
+			result[3] = true;
+		if(baseMaze[level][x+1][y] == 'T')
+			result[1] = true;
+		if(baseMaze[level][x][y-1] == 'T')
+			result[0] = true;
+		if(baseMaze[level][x][y+1] == 'T')
+			result[2] = true;
+		//n e s w u d
+		return result;
+	}
+	
+	private int[] getCoords(int level, int x, int y) {
+		int[] result = {level, x, y};
 		return result;
 	}
 	
@@ -152,5 +270,18 @@ public class Maze {
 					}
 			};
 		maze = new Maze(test);
+		
+		maze.setActiveMaze(test);
+		char[][][] baseMaze = new char[4][9][9];
+		maze.setBaseMazeAndWalls(baseMaze, new ArrayList<int[]>());
+		for (int level=0; level<baseMaze.length; level++) {
+			for (int x=0; x<baseMaze[0].length; x++) {
+				for (int y=0; y<baseMaze[0][0].length; y++) {
+					System.out.print(baseMaze[level][x][y] + " ");
+				}
+				System.out.println();
+			}
+			System.out.println("\n");
+		}
 	}
 }
