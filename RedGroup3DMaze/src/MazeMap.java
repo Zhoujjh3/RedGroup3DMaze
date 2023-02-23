@@ -113,9 +113,5 @@ public class MazeMap {
 			g.setColor(Color.blue);
 			g.fillPolygon(hatchX, hatchY, 7);
 		}
-		
 	}
-	
-	
-	
 }
