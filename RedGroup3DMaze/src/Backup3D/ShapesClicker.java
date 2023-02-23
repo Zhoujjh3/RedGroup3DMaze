@@ -8,7 +8,7 @@ public class ShapesClicker implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		
 		
-		if(e.getX() > 500) {	
+		if(e.getX() < 500) {	
 			for(shape i : ShapesPanel.shapesList) {
 				i.dir = true;
 				if (clicks > 0) {
