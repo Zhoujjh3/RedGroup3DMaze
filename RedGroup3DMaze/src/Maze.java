@@ -117,6 +117,23 @@ public class Maze {
 		return false;
 	}
 	
+	private void createPath(char[][][] baseMaze) {
+		/*
+		 * difficulty = 1: minMoves = 15 - 17
+		 * difficulty = 2: minMoves = 18 - 20
+		 * difficulty = 3: minMoves = 22 - 24
+		 */
+		int aimMinMoves;
+		if (difficulty == 1) {
+			aimMinMoves = 16;
+		} else if (difficulty == 2) {
+			aimMinMoves = 19;
+		} else {
+			aimMinMoves = 23;
+		}
+		int movesPerLevel = (int)(aimMinMoves / baseMaze.length);
+	}
+	
 	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
 		int wallsSize = walls.size();
 		for (int i=0; i<wallsSize; i++) {
