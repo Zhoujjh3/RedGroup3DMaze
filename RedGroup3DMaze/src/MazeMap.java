@@ -15,7 +15,8 @@ public class MazeMap {
 	}
 	
 	public void display(Graphics g) {
-		//testing
+		Painter painter = new Painter();
+		painter.displayGrid(g);
 	}
 	
 	public void display(Graphics g, int newLevel) {

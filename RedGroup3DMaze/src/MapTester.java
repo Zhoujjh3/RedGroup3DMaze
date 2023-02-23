@@ -1,26 +1,29 @@
 import javax.swing.*;
 import java.awt.*;
-
 public class MapTester {
     JFrame frame;
     JPanel panel;
-    Header header;
-    Maze maze = new Maze();
-    PlayerData player = new PlayerData(maze);
+    MazeMap map;
+    Maze maze = new Maze(4);
+    PlayerData player = new PlayerData(4);
     public MapTester() {
-        MazeMap map = new MazeMap(maze, player);
+        map = new MazeMap(maze, player);
         frame = new JFrame("map tester");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panel = new JPanel();
+        panel = new Panel();
         frame.setContentPane(panel);
 
-        /* Size and then display the frame. */
         frame.setSize(1000,750);
         frame.setVisible(true);
         frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
-		
-		
+    }
+    
+    class Panel extends JPanel{
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            map.display(g);
+        }
     }
 
     public static void main(String[] args){
