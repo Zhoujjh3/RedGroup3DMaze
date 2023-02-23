@@ -7,7 +7,7 @@ public class Leaderboard implements ActionListener {
 	JTextField[] top10 = new JTextField[10];
 	int scoresList[] = {2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647};
 	int score;
-//	Player player;
+	PlayerData player;
 	
 	JFrame frame;
 	JPanel contentPane;
@@ -15,8 +15,8 @@ public class Leaderboard implements ActionListener {
 	JScrollPane scrollPane;
 	JTextField title, yourScore;
 	
-	Leaderboard(/*Player playerData*/) {
-//		score = playerData.getScore();
+	Leaderboard(PlayerData thePlayer) {
+		score = thePlayer.getScore();
 		if (score != 0) {
 			sortScores(score);	
 		}
@@ -77,6 +77,7 @@ public class Leaderboard implements ActionListener {
 //		Selection newGame = new Selection();
 	}
 	
+	//if the new score is lower than the 10th score, the 10th score is removed
 	private void sortScores(int newScore) {
 		bubbleSort();	
 		if (newScore < scoresList[scoresList.length - 1]) {
@@ -85,7 +86,7 @@ public class Leaderboard implements ActionListener {
 		}
 	}
 
-	
+	//sorts the top 10 scores from lowest to greatest
 	private void bubbleSort() {
 		int temp;
 		for (int i = 0; i < scoresList.length; i++) {
@@ -105,4 +106,21 @@ public class Leaderboard implements ActionListener {
 		}
 	}
 	
+	//testing
+	private static void runGUI() {
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		Leaderboard testb = new Leaderboard(new PlayerData(1));
+	}
+	
+	public static void main(String[] args) {
+		/*
+		 * Methods that create and show a GUI should be
+		 * run from an event-dispatching thread
+		 */
+		javax.swing.SwingUtilities.invokeLater(new Runnable(){
+			public void run() {
+				runGUI();
+			}
+		});
+	}
 }
