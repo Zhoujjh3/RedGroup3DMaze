@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 //https://www.tutorialspoint.com/how-to-set-the-location-of-a-button-anywhere-in-jframe
 
@@ -98,12 +97,12 @@ public class Selection implements ActionListener{
 		});
    }
 
-@Override
-public void actionPerformed(ActionEvent event) {
-	String eventName = event.getActionCommand();
-	System.out.println(eventName);
-	
-}
+
+	public void actionPerformed(ActionEvent event) {
+		String eventName = event.getActionCommand();
+		System.out.println(eventName);
+		
+	}
 
 
 
