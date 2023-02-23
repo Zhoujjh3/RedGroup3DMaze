@@ -1,14 +1,14 @@
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 
 public class MazeMap {
 	
 	private int level;
-	private Maze maze;
+	private ManualTestMaze maze;
 	private PlayerData player;
 	
-	MazeMap(Maze maze, PlayerData player) {
+	MazeMap(ManualTestMaze maze, PlayerData player) {
 		this.maze = maze;
 		this.player = player;
 		level = player.getCoordinate('z');
