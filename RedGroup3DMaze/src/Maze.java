@@ -156,10 +156,30 @@ public class Maze {
 	}
 	
 	private boolean fullMazePathFind(char[][][] baseMaze) {
-		
-		
-		
-		return false;
+		int[] startCoords = new int[3];
+		int[] endCoords = new int[3];
+		for (int level=0; level<baseMaze.length; level++) {
+			// finding startCoords and endCoords
+			// note: WILL THROW ERROR IF LEVEL DOESN'T HAVE BOTH A 'U' AND A 'D'
+			startCoords[0] = level;
+			endCoords[0] = level;
+			for (int x=0; x<baseMaze[0].length; x++) {
+				for (int y=0; y<baseMaze[0][0].length; y++) {
+					if (baseMaze[level][x][y] == 'U' || baseMaze[level][x][y] == 'B') {
+						startCoords[1] = x;
+						startCoords[2] = y;
+					}
+					if (baseMaze[level][x][y] == 'D' || baseMaze[level][x][y] == 'B') {
+						endCoords[1] = x;
+						endCoords[2] = y;
+					}
+				}
+			}
+			if (!pathFind(baseMaze, startCoords, endCoords)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public Room getRoom(int level, int x, int y) {
