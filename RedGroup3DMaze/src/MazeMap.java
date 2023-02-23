@@ -18,11 +18,12 @@ public class MazeMap {
 		Painter painter = new Painter();
 		painter.displayGrid(g);
 		int length = 4;
-		/*for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) {
 			for (int o=0; o<length; o++) {
 				Room room = maze.getRoom(level, i, o);
+				int[] coord = {i,o};
 				if (room.hasVisited()) {
-					if (room.getDirection('N')) {
+					/*if (room.getDirection('N')) {
 						painter.displayDoor(g);
 					}
 					if (room.getDirection('E')) {
@@ -33,29 +34,27 @@ public class MazeMap {
 					}
 					if (room.getDirection('W')) {
 						painter.displayDoor(g);
-					}
+					}*/
 					if (room.getDirection('U')) {
-						painter.displayHatch(g);
+						painter.displayHatch(g, coord);
 					}
 					if (room.getDirection('D')) {
-						painter.displayTrap(g);
+						painter.displayTrap(g, coord);
 					}
-				} else {
+				}/* else {
 					painter.gray(g);
-				}
+				}*/
 			}
-		}*/
-		painter.mapIcons(g);
+		}
 	}
 	
 	public void display(Graphics g, int newLevel) {
 		
 	}
 	
-	public class Painter extends JPanel {
+	public class Painter {
 		
 		public void displayGrid(Graphics g) {
-			super.paintComponent(g);
 			
 			//Header placeholder
 	        g.setColor(Color.gray);
@@ -88,21 +87,29 @@ public class MazeMap {
 			g.fillRect(0, 40, 165, 670);
 			g.fillRect(835, 40, 165, 670);
 		}
-		
-		public void mapIcons(Graphics g) {
-			super.paintComponent(g);
-			int[] coord = {0,0};
-			
+		public void displayTrap(Graphics g, int[] coord) {
+			int startX = coord[0]*167;
+			int startY = coord[1]*167;
 			int[] trapX = {180, 250, 320, 320, 250, 180, 180};
 			int[] trapY = {165, 180, 165, 180, 195, 180, 165};
+			for (int i=0; i<7; i++) {
+				trapX[i] = trapX[i] + startX;
+				trapY[i] = trapY[i] + startY;
+			}
 			
-			int[] hatchX = {180, 250, 320, 320, 250, 180, 180};
-			int[] hatchY = {70, 55, 70, 85, 70, 85, 70};
-			
-			//Trapdoor
 			g.setColor(Color.orange);
 			g.fillPolygon(trapX, trapY, 7);
-			//Hatch
+		}
+		public void displayHatch(Graphics g, int[] coord) {
+			int startX = coord[0]*167;
+			int startY = coord[1]*167;
+			int[] hatchX = {180, 250, 320, 320, 250, 180, 180};
+			int[] hatchY = {70, 55, 70, 85, 70, 85, 70};
+			for (int i=0; i<7; i++) {
+				hatchX[i] = hatchX[i] + startX;
+				hatchY[i] = hatchY[i] + startY;
+			}
+			
 			g.setColor(Color.blue);
 			g.fillPolygon(hatchX, hatchY, 7);
 		}
