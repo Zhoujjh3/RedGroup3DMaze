@@ -9,11 +9,6 @@ public class Maze {
 	
 	private int minMoves = 0;
 	
-//	public Maze(int difficulty) {
-//		this.difficulty = difficulty;
-//		this.minMoves = populateMaze(difficulty);
-//	}
-	
 	/*
 	 * BaseMaze key: 
 	 * Flat room: 'Z'
@@ -44,9 +39,9 @@ public class Maze {
 		}
 		do {
 			setBaseMazeAndWalls(baseMaze, walls);
-			// creating the set path
+			createPath(baseMaze);
 			fillBaseMaze(baseMaze, walls);
-		} while (false /* while minMoves does not fit */);
+		} while (!fullMazePathFind(baseMaze));
 		return -1;
 	}
 	
@@ -160,18 +155,12 @@ public class Maze {
 		
 	}
 	
-	
-	
-	/*public Room[][][] getActiveMaze() {
-		Room[][][] returnedMaze = new Room[activeMaze.length][activeMaze[0].length][activeMaze[0][0].length];
-		for (int i=0; i<activeMaze.length; i++) {
-			for (int j=0; j<activeMaze[0].length; j++) {
-				for (int k=0; k<activeMaze[0][0].length; k++) {
-					Room room = new Room({)
-				}
-			}
-		}
-	}*/
+	private boolean fullMazePathFind(char[][][] baseMaze) {
+		
+		
+		
+		return false;
+	}
 	
 	public Room getRoom(int level, int x, int y) {
 		Room room = new Room(getCoords(level, x, y), new boolean[] {
