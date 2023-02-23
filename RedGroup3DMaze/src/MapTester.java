@@ -4,7 +4,7 @@ public class MapTester {
     JFrame frame;
     JPanel panel;
     MazeMap map;
-    Maze maze = new Maze(4);
+    ManualTestMaze maze = new ManualTestMaze();
     PlayerData player = new PlayerData(4);
     public MapTester() {
         map = new MazeMap(maze, player);
