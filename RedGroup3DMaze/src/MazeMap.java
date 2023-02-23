@@ -28,23 +28,6 @@ public class MazeMap {
 		public void displayGrid(Graphics g) {
 			super.paintComponent(g);
 			
-			/*
-			g.setColor(Color.black);
-			
-			g.fillRect(0, 50, 1000, 10);
-			g.fillRect(0, 50, 10, 650);
-			g.fillRect(0, 690, 1000, 10);
-			g.fillRect(990, 50, 10, 650);
-			
-			g.fillRect(245, 50, 10, 650);
-			g.fillRect(510, 50, 10, 650);
-			g.fillRect(765, 50, 10, 650);
-			
-			g.fillRect(0, 217, 1000, 10);
-			g.fillRect(0, 375, 1000, 10);
-			g.fillRect(0, 532, 1000, 10);
-			*/
-			
 			//Header placeholder
 	        g.setColor(Color.gray);
 	        g.fillRect(0,0,1000,40);
