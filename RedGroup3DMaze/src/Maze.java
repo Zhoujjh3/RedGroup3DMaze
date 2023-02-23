@@ -92,17 +92,23 @@ public class Maze {
 				}
 			}
 		}
-		
-		for(int x = 1; x<currentLevel.length-1;x++) {
-			for(int y = 1; y<currentLevel[0].length-1;y++) {
-				char[] dirs = {currentLevel[x+1][y], currentLevel[x-1][y], currentLevel[x][y+1], currentLevel[x][y-1]};
-				int counter = 0;
-				for(int i = 0; i<4; i++) {
-					if(dirs[i] =='P' || dirs[i] == 'R')
-						counter++;
+		boolean pathsLeft = true;
+		currentLevel[startx][starty] = 'R';
+		while(pathsLeft) {
+			pathsLeft = false;
+			for(int x = 1; x<currentLevel.length-1;x++) {
+				for(int y = 1; y<currentLevel[0].length-1;y++) {
+					char[] dirs = {currentLevel[x+1][y], currentLevel[x-1][y], currentLevel[x][y+1], currentLevel[x][y-1]};
+					int counter = 0;
+					for(int i = 0; i<4; i++) {
+						if(dirs[i] == 'R')
+							counter++;
+					}
+					if(counter != 0 && currentLevel[x][y] == 'P') {
+						currentLevel[x][y] = 'R';
+						pathsLeft = true;
+					}
 				}
-				if(counter != 0 && currentLevel[x][y] == 'P')
-					currentLevel[x][y] = 'R';
 			}
 		}
 		
