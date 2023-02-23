@@ -1,32 +1,59 @@
 import java.awt.*;
-import javax.swing.*;
 
 
 public class MazeMap {
 	
 	private int level;
-	private Maze maze;
+	private ManualTestMaze maze;
 	private PlayerData player;
 	
-	MazeMap(Maze maze, PlayerData player) {
+	MazeMap(ManualTestMaze maze, PlayerData player) {
 		this.maze = maze;
 		this.player = player;
-		level = player.getCoordinate('z');
+		level = player.getCoordinate('Z');
 	}
 	
 	public void display(Graphics g) {
 		Painter painter = new Painter();
 		painter.displayGrid(g);
+		int length = 4;
+		for (int i=0; i<length; i++) {
+			for (int o=0; o<length; o++) {
+				Room room = maze.getRoom(level, i, o);
+				int[] coord = {i,o};
+				if (room.hasVisited()) {
+					/*if (room.getDirection('N')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('E')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('S')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('W')) {
+						painter.displayDoor(g);
+					}*/
+					if (room.getDirection('U')) {
+						painter.displayHatch(g, coord);
+					}
+					if (room.getDirection('D')) {
+						painter.displayTrap(g, coord);
+					}
+				}/* else {
+					painter.gray(g);
+				}*/
+			}
+		}
 	}
 	
 	public void display(Graphics g, int newLevel) {
 		
 	}
 	
-	public class Painter extends JPanel {
+	public class Painter {
 		
 		public void displayGrid(Graphics g) {
-			super.paintComponent(g);
 			
 			//Header placeholder
 	        g.setColor(Color.gray);
@@ -59,19 +86,48 @@ public class MazeMap {
 			g.fillRect(0, 40, 165, 670);
 			g.fillRect(835, 40, 165, 670);
 		}
-		
-		public void mapIcons(Graphics g) {
-			super.paintComponent(g);
-			
-			int[] x1 = {100, 300, 500, 500, 300, 100, 100};
-			int[] y1 = {250, 300, 250, 200, 250, 200, 250};
-			
-			g.drawPolygon(x1, y1, 7);
-			g.fillPolygon(x1, y1, 7);
+		public void displayTrap(Graphics g, int[] coord) {
+			int startX = coord[0]*167;
+			int startY = coord[1]*167;
+			int[] trapX = {180, 250, 320, 320, 250, 180, 180};
+			int[] trapY = {165, 180, 165, 180, 195, 180, 165};
+			for (int i=0; i<7; i++) {
+				trapX[i] = trapX[i] + startX;
+				trapY[i] = trapY[i] + startY;
+			}
+			Color trapColor = new Color(255, 128, 0);
+			g.setColor(trapColor);
+			g.fillPolygon(trapX, trapY, 7);
+		}
+		public void displayHatch(Graphics g, int[] coord) {
+			int startX = coord[0]*167;
+			int startY = coord[1]*167;
+			int[] hatchX = {180, 250, 320, 320, 250, 180, 180};
+			int[] hatchY = {70, 55, 70, 85, 70, 85, 70};
+			for (int i=0; i<7; i++) {
+				hatchX[i] = hatchX[i] + startX;
+				hatchY[i] = hatchY[i] + startY;
+			}
+			Color hatchColor = new Color(0, 0, 255);
+			g.setColor(hatchColor);
+			g.fillPolygon(hatchX, hatchY, 7);
 		}
 		
+		public void displayPlayerIcon(Graphics g, int[] coord) {
+			int startX = coord[0]*167;
+			int startY = coord[1]*167;
+			int[] playerIconX = {220, 250, 280, 265, 250, 235, 220};
+			int[] playerIconY = {140, 110, 140, 140, 125, 140, 140};
+			for (int i=0; i<7; i++) {
+				playerIconX[i] = playerIconX[i] + startX;
+				playerIconY[i] = playerIconY[i] + startY;
+			}
+			
+			g.setColor(Color.black);
+			g.drawPolygon(playerIconX, playerIconY, 7);
+			Color playerIconColor = new Color(255, 255, 0);
+			g.setColor(playerIconColor);
+			g.fillPolygon(playerIconX, playerIconY, 7);
+		}
 	}
-	
-	
-	
 }

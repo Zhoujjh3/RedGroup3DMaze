@@ -9,11 +9,6 @@ public class Maze {
 	
 	private int minMoves = 0;
 	
-//	public Maze(int difficulty) {
-//		this.difficulty = difficulty;
-//		this.minMoves = populateMaze(difficulty);
-//	}
-	
 	/*
 	 * BaseMaze key: 
 	 * Flat room: 'Z'
@@ -44,9 +39,9 @@ public class Maze {
 		}
 		do {
 			setBaseMazeAndWalls(baseMaze, walls);
-			// creating the set path
+			createPath(baseMaze);
 			fillBaseMaze(baseMaze, walls);
-		} while (false /* while minMoves does not fit */);
+		} while (!fullMazePathFind(baseMaze));
 		return -1;
 	}
 	
@@ -197,18 +192,32 @@ public class Maze {
 		
 	}
 	
-	
-	
-	/*public Room[][][] getActiveMaze() {
-		Room[][][] returnedMaze = new Room[activeMaze.length][activeMaze[0].length][activeMaze[0][0].length];
-		for (int i=0; i<activeMaze.length; i++) {
-			for (int j=0; j<activeMaze[0].length; j++) {
-				for (int k=0; k<activeMaze[0][0].length; k++) {
-					Room room = new Room({)
+	private boolean fullMazePathFind(char[][][] baseMaze) {
+		int[] startCoords = new int[3];
+		int[] endCoords = new int[3];
+		for (int level=0; level<baseMaze.length; level++) {
+			// finding startCoords and endCoords
+			// note: WILL THROW ERROR IF LEVEL DOESN'T HAVE BOTH A 'U' AND A 'D'
+			startCoords[0] = level;
+			endCoords[0] = level;
+			for (int x=0; x<baseMaze[0].length; x++) {
+				for (int y=0; y<baseMaze[0][0].length; y++) {
+					if (baseMaze[level][x][y] == 'U' || baseMaze[level][x][y] == 'B') {
+						startCoords[1] = x;
+						startCoords[2] = y;
+					}
+					if (baseMaze[level][x][y] == 'D' || baseMaze[level][x][y] == 'B') {
+						endCoords[1] = x;
+						endCoords[2] = y;
+					}
 				}
 			}
+			if (!pathFind(baseMaze, startCoords, endCoords)) {
+				return false;
+			}
 		}
-	}*/
+		return true;
+	}
 	
 	public Room getRoom(int level, int x, int y) {
 		Room room = new Room(getCoords(level, x, y), new boolean[] {
