@@ -96,8 +96,8 @@ public class MazeMap {
 				trapX[i] = trapX[i] + startX;
 				trapY[i] = trapY[i] + startY;
 			}
-			
-			g.setColor(Color.orange);
+			Color trapColor = new Color(255, 128, 0);
+			g.setColor(trapColor);
 			g.fillPolygon(trapX, trapY, 7);
 		}
 		public void displayHatch(Graphics g, int[] coord) {
@@ -109,9 +109,25 @@ public class MazeMap {
 				hatchX[i] = hatchX[i] + startX;
 				hatchY[i] = hatchY[i] + startY;
 			}
-			
-			g.setColor(Color.blue);
+			Color hatchColor = new Color(0, 0, 255);
+			g.setColor(hatchColor);
 			g.fillPolygon(hatchX, hatchY, 7);
+		}
+		
+		public void displayPlayerIcon(Graphics g, int[] coord) {
+			int startX = coord[0]*167;
+			int startY = coord[1]*167;
+			int[] playerIconX = {220, 250, 280, 265, 250, 235, 220};
+			int[] playerIconY = {140, 110, 140, 140, 125, 140, 140};
+			for (int i=0; i<7; i++) {
+				playerIconX[i] = playerIconX[i] + startX;
+				playerIconY[i] = playerIconY[i] + startY;
+			}
+			g.setColor(Color.black);
+			g.drawPolygon(playerIconX, playerIconY, 7);
+			Color playerIconColor = new Color(255, 255, 0);
+			g.setColor(playerIconColor);
+			g.fillPolygon(playerIconX, playerIconY, 7);
 		}
 	}
 }
