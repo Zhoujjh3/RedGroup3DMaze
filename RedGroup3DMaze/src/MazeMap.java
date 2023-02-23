@@ -17,6 +17,35 @@ public class MazeMap {
 	public void display(Graphics g) {
 		Painter painter = new Painter();
 		painter.displayGrid(g);
+		int length = 4;
+		/*for (int i=0; i<length; i++) {
+			for (int o=0; o<length; o++) {
+				Room room = maze.getRoom(level, i, o);
+				if (room.hasVisited()) {
+					if (room.getDirection('N')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('E')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('S')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('W')) {
+						painter.displayDoor(g);
+					}
+					if (room.getDirection('U')) {
+						painter.displayHatch(g);
+					}
+					if (room.getDirection('D')) {
+						painter.displayTrap(g);
+					}
+				} else {
+					painter.gray(g);
+				}
+			}
+		}*/
+		painter.mapIcons(g);
 	}
 	
 	public void display(Graphics g, int newLevel) {
@@ -62,6 +91,7 @@ public class MazeMap {
 		
 		public void mapIcons(Graphics g) {
 			super.paintComponent(g);
+			int[] coord = {0,0};
 			
 			int[] trapX = {180, 250, 320, 320, 250, 180, 180};
 			int[] trapY = {165, 180, 165, 180, 195, 180, 165};
