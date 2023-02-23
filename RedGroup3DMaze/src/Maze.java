@@ -30,7 +30,8 @@ public class Maze {
 	}
 	
 	public Maze(int difficulty) {
-		
+		this.difficulty = difficulty;
+		// this.minMoves = populateMaze(difficulty);
 	}
 	
 	private int populateMaze(int difficulty) {
@@ -76,7 +77,14 @@ public class Maze {
 		int endy = endCoords[2];
 		
 		
-		char[][] currentLevel = baseMaze[startz];
+		char[][] currentLevel = new char[baseMaze[0].length][baseMaze[0][0].length];
+		
+		for (int x=0; x<baseMaze[0].length; x++) {
+			for (int y=0; y<baseMaze[0][0].length; y++) {
+				currentLevel[x][y] = baseMaze[startz][x][y];
+			}
+		}
+		
 		for(int x = 0; x<currentLevel.length; x++) {
 			for(int y = 0; y<currentLevel[0].length; y++) {
 				if(baseMaze[startz][x][y] != 'F' && baseMaze[startz][x][y] != 'A') {
@@ -84,7 +92,6 @@ public class Maze {
 				}
 			}
 		}
-		
 		
 		for(int x = 1; x<currentLevel.length-1;x++) {
 			for(int y = 1; y<currentLevel[0].length-1;y++) {
@@ -123,7 +130,7 @@ public class Maze {
 				endCoords[1] = wallCoords[1]+1;
 				endCoords[2] = wallCoords[2];
 			}
-			if (pathFind(baseMaze, startCoords, endCoords) > 0) {
+			if (pathFind(baseMaze, startCoords, endCoords)) {
 				baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
 			}
 		}
