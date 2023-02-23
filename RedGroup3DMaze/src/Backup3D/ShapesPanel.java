@@ -17,7 +17,8 @@ public class ShapesPanel extends JPanel{
 	public static int timeCounter = 200;
 	
 	public void paintComponent(Graphics g) {
-		g.setColor(new Color(50, 50, 50));
+		//g.setColor(new Color(50, 50, 50));
+		g.setColor(new Color(243, 243, 243));
 		g.fillRect(0, 0, 1000, 700);
 		
 		for(Shapes shape : shapesList) {

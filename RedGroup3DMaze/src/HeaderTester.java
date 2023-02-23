@@ -15,13 +15,17 @@ public class HeaderTester {
         frame = new JFrame("game test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new Panel();
-        changeView = new JButton("MAP");
-        changeView.setLayout(null);
-        changeView.setLocation(840,7);
+        changeView = new JButton(header.getView());
+        panel.setLayout(null);
+        changeView.setBounds(740
+                , 5,
+                100,
+                30 );
+
         changeView.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 header.changeView();
-                panel.repaint();
+                changeView.setText(header.getView());
             }
         });
         frame.setContentPane(panel);
@@ -39,7 +43,6 @@ public class HeaderTester {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             header.display(g);
-            //g.dispose();
         }
     }
     public static void main(String[] args){

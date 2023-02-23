@@ -5,9 +5,9 @@ public class Maze {
 	
 	private Room[][][] activeMaze;
 	
-	private int difficulty;
+	private int difficulty = 0;
 	
-	private int minMoves;
+	private int minMoves = 0;
 	
 //	public Maze(int difficulty) {
 //		this.difficulty = difficulty;
@@ -120,7 +120,7 @@ public class Maze {
 	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
 		int wallsSize = walls.size();
 		for (int i=0; i<wallsSize; i++) {
-			int[] wallCoords = walls.remove(0);
+			int[] wallCoords = walls.remove((int)(Math.random()*walls.size()));
 			int[] startCoords = new int[3];
 			int[] endCoords = new int[3];
 			startCoords[0] = wallCoords[0];
