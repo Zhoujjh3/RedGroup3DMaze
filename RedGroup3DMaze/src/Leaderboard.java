@@ -59,7 +59,6 @@ public class Leaderboard implements ActionListener {
 	    	contentPane.add(top10[i + 5]);
 	    }
 	    
-	    
 	    restartButt = new JButton("Restart");
 	    restartButt.setFont(new Font("Serif", Font.PLAIN, 25));
 	    restartButt.setBounds(545, 500, 300, 50);
