@@ -52,7 +52,7 @@ public class MazeMap {
 				} else {
 					painter.gray(g);
 				}*/
-				painter.gray(g, coord);
+				//painter.gray(g, coord);
 			}
 		}
 		
@@ -175,19 +175,19 @@ public class MazeMap {
 		
 		public void displayDoorN(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165+(int)(0.25*width), 40, (int)(0.5*width), 5);
+			g.fillRect(165+(int)(0.25*width)+coord[0]*width, 40+coord[0]*width, (int)(0.5*width), 5);
 		}
 		public void displayDoorW(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165, 40+(int)(0.25*width), 5, (int)(0.5*width));
+			g.fillRect(165+coord[0]*width, 40+(int)(0.25*width)+coord[0]*width, 5, (int)(0.5*width));
 		}
 		public void displayDoorS(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165+(int)(0.25*width), 40+width, (int)(0.5*width), 5);
+			g.fillRect(165+(int)(0.25*width)+coord[0]*width, 40+width+coord[0]*width, (int)(0.5*width), 5);
 		}
 		public void displayDoorE(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165+width, 40+(int)(0.25*width), 5, (int)(0.5*width));
+			g.fillRect(165+width+coord[0]*width, 40+(int)(0.25*width)+coord[0]*width, 5, (int)(0.5*width));
 		}
 	}
 }
