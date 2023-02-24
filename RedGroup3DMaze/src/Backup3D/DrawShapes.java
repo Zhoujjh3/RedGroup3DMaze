@@ -10,9 +10,7 @@ import javax.swing.Timer;
 public class DrawShapes {
 	public JFrame screen;
 	public static JPanel panel;
-	public static boolean runTimer = false;
-	
-	//Attempt 3
+	public static boolean clicked;
 	
 	public DrawShapes() {
 		screen = new JFrame();
@@ -33,6 +31,24 @@ public class DrawShapes {
 			}
 			panel.repaint();
 			ShapesPanel.timeCounter++;
+			
+			//updates states after animation is finished
+			if(ShapesPanel.timeCounter >= 200 && clicked) {
+				for(Shapes i : ShapesPanel.shapesList) {
+					if(ShapesClicker.dir) {
+						i.setState(i.getState() + 1);
+						i.setState(i.getState() % 4);
+						clicked = false;
+					} else if (!ShapesClicker.dir) {
+						i.setState(i.getState() - 1);
+						if(i.getState() == -1) {
+							i.setState(3);
+						}
+						clicked = false;
+					}
+				}
+			} 
+			
 		}
 	};
 	Timer ShapesTimer = new Timer(1, rotate);

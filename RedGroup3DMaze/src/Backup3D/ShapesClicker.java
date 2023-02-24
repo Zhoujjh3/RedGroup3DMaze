@@ -4,39 +4,22 @@ import java.awt.event.MouseListener;
 
 public class ShapesClicker implements MouseListener{
 
-	int clicks = 0;
+	public static boolean dir;
 	public void mouseClicked(MouseEvent e) {
 		
-		
 		if(e.getX() < 500) {	
+			dir = true;
 			for(Shapes i : ShapesPanel.shapesList) {
 				i.setDir(true);
-				//i.dir = true
-				if (clicks > 0) {
-					i.setState(i.getState() + 1);
-					//i.state += 1;
-					i.setState(i.getState() % 4);
-					//i.state = i.state % 4;
-				}
 			}
 		} else {
+			dir = false;
 			for(Shapes i : ShapesPanel.shapesList) {
 				i.setDir(false);
-				//i.dir = false;
-				if (clicks > 0) {
-					i.setState(i.getState() - 1);
-					//i.state -= 1;
-					if(i.getState() == -1) {
-						i.setState(3);
-					}
-					/*if(i.state == -1) {
-						i.state = 3;
-					}*/
-				}
 			}
 		}
 		ShapesPanel.timeCounter = 0;
-		clicks++;
+		DrawShapes.clicked = true;
 	}
 
 	public void mousePressed(MouseEvent e) {
