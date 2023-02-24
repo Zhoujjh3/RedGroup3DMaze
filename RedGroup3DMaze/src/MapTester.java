@@ -36,7 +36,7 @@ public class MapTester {
         });
         frame.setSize(1000,750);
         frame.setVisible(true);
-        frame.setResizable(false);
+        frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
     }
     

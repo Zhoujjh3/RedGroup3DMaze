@@ -27,7 +27,7 @@ public class MazeMap {
 		int length = size;
 		for (int i=0; i<length; i++) {
 			for (int o=0; o<length; o++) {
-				Room room = maze.getRoom(i, o, level);
+				Room room = maze.getRoom(1, o, i);
 				int[] coord = {i,o};
 				if (room.getDirection('N')) {
 					painter.displayDoorN(g, coord);
@@ -175,19 +175,19 @@ public class MazeMap {
 		
 		public void displayDoorN(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165+(int)(0.25*width)+coord[0]*width, 40+coord[0]*width, (int)(0.5*width), 5);
+			g.fillRect(165+(int)(0.25*width)+coord[0]*width, 40+coord[1]*width, (int)(0.5*width), 5);
 		}
 		public void displayDoorW(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165+coord[0]*width, 40+(int)(0.25*width)+coord[0]*width, 5, (int)(0.5*width));
+			g.fillRect(165+coord[0]*width, 40+(int)(0.25*width)+coord[1]*width, 5, (int)(0.5*width));
 		}
 		public void displayDoorS(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165+(int)(0.25*width)+coord[0]*width, 40+width+coord[0]*width, (int)(0.5*width), 5);
+			g.fillRect(165+(int)(0.25*width)+coord[0]*width, 40+width+coord[1]*width, (int)(0.5*width), 5);
 		}
 		public void displayDoorE(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165+width+coord[0]*width, 40+(int)(0.25*width)+coord[0]*width, 5, (int)(0.5*width));
+			g.fillRect(165+width+coord[0]*width, 40+(int)(0.25*width)+coord[1]*width, 5, (int)(0.5*width));
 		}
 	}
 }
