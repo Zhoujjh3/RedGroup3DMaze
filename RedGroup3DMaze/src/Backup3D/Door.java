@@ -14,13 +14,13 @@ public class Door extends Shapes {
 		state = theState;
 		if(theState == 0) {
 			xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-			yTL = 337; yTR = 340; yBR = 560; yBL = 640;
+			yTL = 340; yTR = 340; yBR = 560; yBL = 640;
 		} else if(theState == 1) {
-			xTL = 250; xBL = 250; xTR = 750; xBR = 750;
+			xTL = 450; xBL = 450; xTR = 550; xBR = 550;
 			yTL = 340; yBL = 500; yTR = 340; yBR = 500;
 		} else if(theState == 2) {
 			xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-			yTL = 340; yTR = 337; yBR = 640; yBL = 560;
+			yTL = 340; yTR = 340; yBR = 640; yBL = 560;
 		} else if(theState == 3) {
 			if(dir) {
 				xTL = 0; xTR = 0; xBR = 0; xBL = 0;
