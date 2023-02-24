@@ -5,7 +5,7 @@ public class Maze {
 	
 	private Room[][][] activeMaze;
 	
-	private int difficulty = 0;
+	private int difficulty = 1;
 	
 	private int minMoves = 0;
 	
@@ -134,31 +134,33 @@ public class Maze {
 		 */
 		int aimMinMoves;
 		if (difficulty == 1) {
-			aimMinMoves = (int)(Math.random()*2) + 15;
+			aimMinMoves = (int)(Math.random()*2) + 5;
 		} else if (difficulty == 2) {
-			aimMinMoves = (int)(Math.random()*2) + 18;
+			aimMinMoves = (int)(Math.random()*2) + 6;
 		} else {
-			aimMinMoves = (int)(Math.random()*2) + 22;
+			aimMinMoves = (int)(Math.random()*2) + 7;
 		}
-		int movesPerLevel = (int)(aimMinMoves / baseMaze.length);
-		
-		int[] endC = this.createLevelPath(baseMaze[0], aimMinMoves, 1, 1);
+
+		int movesPerLevel = aimMinMoves;
+
+		int[] endC = this.createLevelPath(baseMaze[0], movesPerLevel, 1, 1);
 		int endx = endC[0];
 		int endy = endC[1];
-		char[][] temp = new char[baseMaze[0].length][baseMaze[0].length];
+//		endC = this.createLevelPath(baseMaze[1], movesPerLevel, 1, 1);
+		System.out.println(movesPerLevel + " " + endC[1] + " " +endC[2]);
 		
-		for(int i = 1; i<baseMaze.length; i++) {
-			for(int k = 0; k<temp.length;k++) {
-				for(int j = 0; j<temp.length;j++) {
-					temp[k][j] = baseMaze[i][k][j];
-				}
-			}
-			this.createLevelPath(temp, movesPerLevel, endx, endy);
-			for(int k = 0; k<temp.length;k++) {
-				for(int j = 0; j<temp.length;j++) {
-					baseMaze[i][k][j] = temp[k][j];
-				}
-			}
+		
+		
+		for(int i = 1; i< baseMaze.length;i++) {
+			endC = this.createLevelPath(baseMaze[i], movesPerLevel, endC[1], endC[2]);
+//			System.out.println(i);
+//			for(int k = 0; k<baseMaze[1].length;k++) {
+//				for(int j = 0; j<baseMaze[1].length;j++) {
+//					System.out.print(baseMaze[i][k][j] +" ");
+//				}
+//				System.out.println();
+//			}
+//			System.out.println("------------------------------");
 		}
 		return baseMaze;
 	}
@@ -189,6 +191,7 @@ public class Maze {
 				int[] results = moveInDir(level, endx, endy);
 				endx = results[0];
 				endy = results[1];
+				System.out.println(endx + " " + endy);
 			}
 			
 			
@@ -206,12 +209,12 @@ public class Maze {
 //			System.out.println("------------------------------");
 		}
 		
-//		for(int i = 0; i<level.length; i++) {
-//			for(int j = 0; j<level.length;j++) {
-//				System.out.print(level[i][j] +" ");
-//			}
-//			System.out.println();
-//		}
+		for(int i = 0; i<level.length; i++) {
+			for(int j = 0; j<level.length;j++) {
+				System.out.print(level[i][j] +" ");
+			}
+			System.out.println();
+		}
 		return endCC;
 	}
 	
@@ -254,7 +257,7 @@ public class Maze {
 					}else
 						break;
 			}
-			System.out.println(endx + " " + endy);
+//			System.out.println(endx + " " + endy);
 			dir = generateDirection();
 		}
 		
@@ -310,7 +313,7 @@ public class Maze {
 						}
 				} else {
 					failCounter++;
-					System.out.println(currentY + "<" + (level[0].length-3));
+//					System.out.println(currentY + "<" + (level[0].length-3));
 					meets = false;
 					break;
 				}
@@ -567,7 +570,8 @@ public class Maze {
 //		maze.createLevelPath(test[1], 6, 1, 1);
 //		System.out.println(maze.meetsConditions(1, 4, test[0], 'E'));
 //		maze.moveInDir(test[0], 5, 3);
-//		System.out.println(maze.createLevelPath(test[0], 4, 1, 1));
+//		int[] x = maze.createLevelPath(test[2], 6, 1, 1);
+//		System.out.println("this:" + x[0] + " " + x);
 		maze.createPath(test);
 	}
 }
