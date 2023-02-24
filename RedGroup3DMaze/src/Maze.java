@@ -145,33 +145,67 @@ public class Maze {
 		return baseMaze;
 	}
 	
-	private char[][] createLevelPath(char[][][] baseMaze, int givenMoves){
-		char[][] level = new char[baseMaze[0].length][baseMaze[0].length];
+	private char[][] createLevelPath(char[][] level, int givenMoves, int startX, int startY){
+		int[] troddenx = new int[givenMoves];
+		int[] troddeny = new int[givenMoves];
+		level[startX][startY] = 'V';
 		boolean pathWorks = false;
+		int previousX = startX;
+		int previousY = startY;
+		int endx;
+		int endy;	
 		while(!pathWorks) {
-			int startx;
-			int starty; 
-			int endx;
-			int endy;
-			if(((int)Math.random()*100000) < 50000) {
-				startx = 1;
-				starty = (((int)Math.random() * (level.length-1)/2) *2) +1;
-			} else {
-				starty = 1;
-				startx = (((int)Math.random() * (level.length-1)/2) *2) +1;
-			}
-					
 			for(int i = 0; i< givenMoves; i++) {
-				
+				boolean works = false;
+				while(!false) {
+					switch(generateDirection) {
+					case 'N':
+						level[]
+					}
+				}
 			}
 			
 			
-			int[] startC = {0, startx, starty};
+			int[] startC = {0, startX, startY};
 			int[] endC = {0, endx, endy};
 			pathWorks = pathFind(level, startC, endC);
 		}
 		return level;
 	}
+	
+	private char generateDirection() {
+		int x = (int)Math.random()*100;
+		if(x<25)
+			return 'N';
+		if(x<50 && x>=25)
+			return 'S';
+		if(x>=50 && x<75)
+			return 'W';
+		if(x >= 75)
+			return 'E';
+		return 'E';
+	}
+	
+	private boolean meetsConditions(int currentX, int currentY, char level[][]) {
+		boolean meets = true;
+		if(level[currentX][currentY] == 'T' || level[currentX][currentY] == 'A')
+			meets = false;
+		if() {
+			
+		}
+		return meets;
+	}
+	
+	private boolean nextToStart(int x, int y, char currentLevel[][]) {
+		boolean boolVal = false;
+		if(currentLevel[x+1][y] == 'V' || currentLevel[x-1][y] == 'V')
+			boolVal = true;
+		if(currentLevel[x][y+1] == 'V' || currentLevel[x][y-1] == 'V')
+			boolVal = true;
+		return boolVal;
+	}
+	
+	
 	
 	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
 		int wallsSize = walls.size();
