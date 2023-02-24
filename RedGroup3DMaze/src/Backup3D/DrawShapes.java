@@ -12,6 +12,8 @@ public class DrawShapes {
 	public static JPanel panel;
 	public static boolean runTimer = false;
 	
+	//Attempt 2
+	
 	public DrawShapes() {
 		screen = new JFrame();
 		panel = new ShapesPanel();
