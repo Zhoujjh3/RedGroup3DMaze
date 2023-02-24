@@ -12,7 +12,7 @@ public class DrawShapes {
 	public static JPanel panel;
 	public static boolean runTimer = false;
 	
-	//Attempt 2
+	//Attempt 3
 	
 	public DrawShapes() {
 		screen = new JFrame();
