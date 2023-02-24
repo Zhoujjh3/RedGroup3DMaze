@@ -12,6 +12,8 @@ public class DrawShapes {
 	public static JPanel panel;
 	public static boolean runTimer = false;
 	
+	//Attempt 3
+	
 	public DrawShapes() {
 		screen = new JFrame();
 		panel = new ShapesPanel();
@@ -24,7 +26,6 @@ public class DrawShapes {
 	    ShapesTimer.start();
 	}
 	
-	//public static int counter = 0;
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			for(Shapes shape : ShapesPanel.shapesList) {
