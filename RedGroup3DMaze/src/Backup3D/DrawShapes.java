@@ -24,7 +24,6 @@ public class DrawShapes {
 	    ShapesTimer.start();
 	}
 	
-	//public static int counter = 0;
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			for(Shapes shape : ShapesPanel.shapesList) {

@@ -2,14 +2,14 @@ package Backup3D;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class shape extends Shapes{
+public class Wall extends Shapes{
 	
 	double xTL, xTR, xBR, xBL;
 	double  yTL, yTR, yBR, yBL;
 	public int state;
 	public boolean dir = true;
 	
-	shape(int theState) {
+	Wall(int theState) {
 		state = theState;
 		if(theState == 0) {
 			xTL = 0; xTR = 250; xBR = 250; xBL = 0;
@@ -32,11 +32,11 @@ public class shape extends Shapes{
 	}
 	
 	public void paint(Graphics g) {
-		int[] shapeX = {(int) xTL, (int) xTR, (int) xBR, (int) xBL};
-		int[] shapeY = {(int) yTL, (int) yTR, (int) yBR, (int) yBL};
+		int[] wallX = {(int) xTL, (int) xTR, (int) xBR, (int) xBL};
+		int[] wallY = {(int) yTL, (int) yTR, (int) yBR, (int) yBL};
 		
-		g.setColor(new Color(243, 243, 243));
-		g.fillPolygon(shapeX, shapeY, 4);
+		g.setColor(new Color(243,243,243));
+		g.fillPolygon(wallX, wallY, 4);
 		g.setColor(Color.black);
 		g.drawLine((int) xTL,(int) yTL,(int) xBL,(int) yBL);
 		g.drawLine((int) xTR,(int) yTR,(int) xBR,(int) yBR);
@@ -141,4 +141,21 @@ public class shape extends Shapes{
 		}
 		
 	}
+
+	public int getState() {
+		return state;
+	}
+
+	public boolean getDir() {
+		return dir;
+	}
+	
+	public void setState(int theState) {
+		state = theState;
+	}
+
+	public void setDir(boolean theDir) {
+		dir = theDir;
+	}
+
 }
