@@ -77,7 +77,7 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	//if the new score is lower than the 10th score, the 10th score is removed
-	private void sortScores(int newScore) {
+	public void sortScores(int newScore) {
 		bubbleSort();	
 		if (newScore < scoresList[scoresList.length - 1]) {
 			scoresList[scoresList.length - 1] = newScore;
