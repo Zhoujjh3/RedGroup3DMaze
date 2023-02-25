@@ -32,16 +32,16 @@ public class Wall extends Shapes{
 	}
 	
 	public void paint(Graphics g) {
-		int[] wallX = {(int) xTL, (int) xTR, (int) xBR, (int) xBL};
-		int[] wallY = {(int) yTL, (int) yTR, (int) yBR, (int) yBL};
+		int[] wallX = {(int) Math.rint(xTL),(int) Math.rint(xTR),(int) Math.rint(xBR),(int) Math.rint(xBL)};
+		int[] wallY = {(int) Math.rint(yTL),(int) Math.rint(yTR),(int) Math.rint(yBR),(int) Math.rint(yBL)};
 		
 		g.setColor(new Color(243,243,243));
 		g.fillPolygon(wallX, wallY, 4);
 		g.setColor(Color.black);
-		g.drawLine((int) xTL,(int) yTL,(int) xBL,(int) yBL);
-		g.drawLine((int) xTR,(int) yTR,(int) xBR,(int) yBR);
-		g.drawLine((int) xTL,(int) yTL,(int) xTR,(int) yTR);
-		g.drawLine((int) xBL,(int) yBL,(int) xBR,(int) yBR);
+		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
+		g.drawLine((int) Math.rint(xTR),(int) Math.rint(yTR),(int) Math.rint(xBR),(int) Math.rint(yBR));
+		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xTR),(int) Math.rint(yTR));
+		g.drawLine((int) Math.rint(xBL),(int) Math.rint(yBL),(int) Math.rint(xBR),(int) Math.rint(yBR));
 	}
 
 	@Override
