@@ -27,7 +27,7 @@ public class Maze {
 	
 	public Maze(int difficulty) {
 		this.difficulty = difficulty;
-		this.minMoves = populateMaze();
+		// this.minMoves = populateMaze();
 	}
 	
 	private int populateMaze() {
