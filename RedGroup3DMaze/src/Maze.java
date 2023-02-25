@@ -27,12 +27,13 @@ public class Maze {
 	
 	public Maze(int difficulty) {
 		this.difficulty = difficulty;
-		// this.minMoves = populateMaze(difficulty);
+		this.minMoves = populateMaze();
 	}
 	
-	private int populateMaze(int difficulty) {
+	private int populateMaze() {
 		char[][][] baseMaze;
 		ArrayList<int[]> walls = new ArrayList<int[]>();
+		int minMoves;
 		if (difficulty == 3) {
 			baseMaze = new char[5][11][11];
 		} else {
@@ -42,8 +43,10 @@ public class Maze {
 			setBaseMazeAndWalls(baseMaze, walls);
 			createPath(baseMaze);
 			fillBaseMaze(baseMaze, walls);
-		} while (false /* while minMoves does not fit */);
-		return -1;
+			minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
+		} while (!movesMatchWithDifficulty(minMoves, difficulty));
+		setActiveMaze(baseMaze);
+		return minMoves;
 	}
 	
 	private void setBaseMazeAndWalls(char[][][] baseMaze, ArrayList<int[]> walls) {
@@ -532,6 +535,12 @@ public class Maze {
 			}
 		}
 		return true;
+	}
+	
+	private boolean movesMatchWithDifficulty(int moves, int difficulty) {
+		return ((difficulty == 1 && minMoves >= 15 && minMoves <= 17) 
+				|| (difficulty == 2 && minMoves >= 18 && minMoves <= 20) 
+				|| (difficulty == 3 && minMoves >= 22 && minMoves <= 24));
 	}
 	
 	public static void main(String[] args) {
