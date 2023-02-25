@@ -13,6 +13,7 @@ public class ShapesPanel extends JPanel{
 		new Door(2),
 		new Wall(3),
 		new Door(3),
+		new Trapdoor(0)
 	};
 	public static int timeCounter = 200;
 	
