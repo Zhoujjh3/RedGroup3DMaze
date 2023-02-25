@@ -44,7 +44,6 @@ public class Wall extends Shapes{
 		g.drawLine((int) Math.rint(xBL),(int) Math.rint(yBL),(int) Math.rint(xBR),(int) Math.rint(yBR));
 	}
 
-	@Override
 	public void update() {
 		if(dir) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
@@ -122,7 +121,7 @@ public class Wall extends Shapes{
 				}
 				xTL -= 2.5;
 				xBL -= 2.5;
-				if(ShapesPanel.timeCounter > 100) {
+				if(ShapesPanel.timeCounter > 99) {
 					xTR -= 2.5;
 					xBR -= 2.5;
 					yTR += 2;
