@@ -22,6 +22,7 @@ public class Maze {
 	 */
 	
 	public Maze(char[][][] providedBaseMaze) {
+		this.minMoves = pathFind(providedBaseMaze, getCoords(0, 1, 1), getCoords(providedBaseMaze.length-1, providedBaseMaze[0].length-2, providedBaseMaze[0][0].length-2));
 		setActiveMaze(providedBaseMaze);
 	}
 	
@@ -44,7 +45,7 @@ public class Maze {
 			createPath(baseMaze);
 			fillBaseMaze(baseMaze, walls);
 			minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
-		} while (!movesMatchWithDifficulty(minMoves, difficulty));
+		} while (!movesMatchWithDifficulty(minMoves));
 		setActiveMaze(baseMaze);
 		return minMoves;
 	}
@@ -159,8 +160,7 @@ public class Maze {
 				surroundingR += 1;
 			}
 			if ((charAtCoord != 'P' && charAtCoord != 'R') || surroundingR > 1 || (charAtDirCoord != 'A' && charAtDirCoord != 'F' && charAtDirCoord != 'R')
-					|| coordsMatch(coords, startCoords) || coordsMatch(coords, endCoords) 
-					|| coordsMatch(dirs.get(i), startCoords) || coordsMatch(dirs.get(i), endCoords)) {
+					|| coordsMatch(coords, startCoords) || coordsMatch(coords, endCoords)) {
 				return false;
 			}
 		}
@@ -537,10 +537,10 @@ public class Maze {
 		return true;
 	}
 	
-	private boolean movesMatchWithDifficulty(int moves, int difficulty) {
-		return ((difficulty == 1 && minMoves >= 15 && minMoves <= 17) 
-				|| (difficulty == 2 && minMoves >= 18 && minMoves <= 20) 
-				|| (difficulty == 3 && minMoves >= 22 && minMoves <= 24));
+	private boolean movesMatchWithDifficulty(int moves) {
+		return ((difficulty == 1 && moves >= 15 && moves <= 17) 
+				|| (difficulty == 2 && moves >= 18 && moves <= 20) 
+				|| (difficulty == 3 && moves >= 22 && moves <= 24));
 	}
 	
 	public static void main(String[] args) {
