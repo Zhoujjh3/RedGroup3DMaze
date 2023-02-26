@@ -92,7 +92,7 @@ public class Wall extends Shapes{
 				yTR = ShapesPanel.walls[nextWallIndex].getyTL();//+= 1;
 				yBR = ShapesPanel.walls[nextWallIndex].getyBL();//-= 1;
 				xTR = ShapesPanel.walls[nextWallIndex].getxTL();//+= 1.25;
-				xBR = ShapesPanel.walls[nextWallIndex].getxTL();//+= 1.25;
+				xBR = ShapesPanel.walls[nextWallIndex].getxBL();//+= 1.25;				
 			}
 		} else {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
