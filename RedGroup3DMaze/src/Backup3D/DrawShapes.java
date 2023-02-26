@@ -38,11 +38,11 @@ public class DrawShapes {
 			//updates states after animation is finished
 			if(ShapesPanel.timeCounter >= 200 && clicked) {
 				for(Shapes i : ShapesPanel.walls) {
-					if(ShapesClicker.dir) {
+					if(ShapesClicker.dir == 0) {
 						i.setState(i.getState() + 1);
 						i.setState(i.getState() % 4);
 						clicked = false;
-					} else if (!ShapesClicker.dir) {
+					} else if (ShapesClicker.dir == 1) {
 						i.setState(i.getState() - 1);
 						if(i.getState() == -1) {
 							i.setState(3);
@@ -77,11 +77,11 @@ public class DrawShapes {
 					ShapesPanel.walls[i] = ShapesPanel.tempWalls[i]; 
 				}*/
 				for(Shapes i : ShapesPanel.doors) {
-					if(ShapesClicker.dir) {
+					if(ShapesClicker.dir == 0) {
 						i.setState(i.getState() + 1);
 						i.setState(i.getState() % 4);
 						clicked = false;
-					} else if (!ShapesClicker.dir) {
+					} else if (ShapesClicker.dir == 1) {
 						i.setState(i.getState() - 1);
 						if(i.getState() == -1) {
 							i.setState(3);

@@ -8,7 +8,7 @@ public class Door extends Shapes {
 	double xTL, xTR, xBR, xBL;
 	double  yTL, yTR, yBR, yBL;
 	public int state;
-	public boolean dir = true;
+	public int dir = 0;
 
 	Door(int theState) {
 		state = theState;
@@ -22,10 +22,10 @@ public class Door extends Shapes {
 			xTL = 825; xTR = 925; xBR = 925; xBL = 825;
 			yTL = 340; yTR = 340; yBR = 640; yBL = 560;
 		} else if(theState == 3) {
-			if(dir) {
+			if(dir == 0) {
 				xTL = 0; xTR = 0; xBR = 0; xBL = 0;
 				yTL = 400; yTR = 400; yBR = 700; yBL = 700;
-			} else {
+			} else if (dir == 1) {
 				xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
 				yTL = 400; yTR = 400; yBR = 700; yBL = 700;
 			}
@@ -45,7 +45,7 @@ public class Door extends Shapes {
 	}
 	
 	public void update() {
-		if(dir) {
+		if(dir == 0) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
@@ -119,7 +119,7 @@ public class Door extends Shapes {
 				yBL -= 0.3;
 				yBR -= 0.7;
 			}
-		} else {
+		} else if (dir == 1) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
@@ -193,6 +193,8 @@ public class Door extends Shapes {
 				yBR -= 0.3;
 				yBL -= 0.7;
 			}
+		} else {
+			
 		}
 	}
 
@@ -200,7 +202,7 @@ public class Door extends Shapes {
 		return state;
 	}
 
-	public boolean getDir() {
+	public int getDir() {
 		return dir;
 	}
 	
@@ -208,7 +210,7 @@ public class Door extends Shapes {
 		state = theState;
 	}
 
-	public void setDir(boolean theDir) {
+	public void setDir(int theDir) {
 		dir = theDir;
 	}
 	

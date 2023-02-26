@@ -4,24 +4,31 @@ import java.awt.event.MouseListener;
 
 public class ShapesClicker implements MouseListener{
 
-	public static boolean dir;
+	public static int dir;
 	public void mouseClicked(MouseEvent e) {
 		
-		if(e.getX() < 500) {		//left
-			dir = true;
+		if(e.getX() < 400) {		//left
+			dir = 0;
 			for(Shapes i : ShapesPanel.walls) {
-				i.setDir(true);
+				i.setDir(0);
 			}
 			for(Shapes i : ShapesPanel.doors) {
-				i.setDir(true);
+				i.setDir(0);
 			}
-		} else {					//right
-			dir = false;
+		} else if (e.getX() > 600) {					//right
+			dir = 1;
 			for(Shapes i : ShapesPanel.walls) {
-				i.setDir(false);
+				i.setDir(1);
 			}
 			for(Shapes i : ShapesPanel.doors) {
-				i.setDir(false);
+				i.setDir(1);
+			}
+		} else {
+			for(Shapes i : ShapesPanel.walls) {
+				i.setDir(2);
+			}
+			for(Shapes i : ShapesPanel.doors) {
+				i.setDir(2);
 			}
 		}
 		ShapesPanel.timeCounter = 0;

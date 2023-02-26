@@ -7,7 +7,7 @@ public class Hatch extends Shapes{
 	double xTL, xTR, xBR, xBL;
 	double  yTL, yTR, yBR, yBL;
 	public int state;
-	public boolean dir = true;
+	public int dir = 0;
 	
 	Hatch(int theState) {
 		state = theState;
@@ -40,7 +40,7 @@ public class Hatch extends Shapes{
 	}
 
 	public void update() {
-		if(!dir) {
+		if(dir == 1) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 425; xTR = 575; xBR = 550; xBL = 450;
@@ -86,7 +86,7 @@ public class Hatch extends Shapes{
 				yBR += 0.5;
 				xBL -= 0.5;
 			}
-		} else {
+		} else if (dir == 0) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 425; xTR = 575; xBR = 550; xBL = 450;
@@ -132,15 +132,16 @@ public class Hatch extends Shapes{
 				xBL += 0.125;
 				yBL -= 0.5;
 			}
+		} else {
+			
 		}
-		
 	}
 
 	public int getState() {
 		return state;
 	}
 
-	public boolean getDir() {
+	public int getDir() {
 		return dir;
 	}
 	
@@ -148,7 +149,7 @@ public class Hatch extends Shapes{
 		state = theState;
 	}
 
-	public void setDir(boolean theDir) {
+	public void setDir(int theDir) {
 		dir = theDir;
 	}
 

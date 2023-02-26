@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class Wall extends Shapes{
 	
 	public int state, index, previousWallIndex, nextWallIndex;
-	public boolean dir = true;
+	public int dir = 0;
 	
 	Wall(int theState) {
 		state = theState;
@@ -22,10 +22,10 @@ public class Wall extends Shapes{
 			xTL = 750; xBL = 750; xTR = 1000; xBR = 1000;
 			yTL = 200; yBL = 500; yTR = 0; yBR = 700;
 		} else if(theState == 3) {
-			if(dir) {
+			if(dir == 0) {
 				xTL = 0; xTR = 0; xBR = 0; xBL = 0;
 				yTL = 0; yTR = 0; yBR = 700; yBL = 700;
-			} else {
+			} else if (dir == 1){
 				xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
 				yTL = 0; yTR = 0; yBR = 700; yBL = 700;
 			}
@@ -46,7 +46,7 @@ public class Wall extends Shapes{
 	}
 
 	public void update() {
-		if(dir) {
+		if(dir == 0) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 0; xTR = 250; xBR = 250; xBL = 0;
@@ -94,7 +94,7 @@ public class Wall extends Shapes{
 				xTR = ShapesPanel.walls[nextWallIndex].getxTL();//+= 1.25;
 				xBR = ShapesPanel.walls[nextWallIndex].getxBL();//+= 1.25;				
 			}
-		} else {
+		} else if (dir == 1) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 0; xTR = 250; xBR = 250; xBL = 0;
@@ -140,6 +140,8 @@ public class Wall extends Shapes{
 				xTL = ShapesPanel.walls[previousWallIndex].getxTR();//-= 1.25;
 				xBL = ShapesPanel.walls[previousWallIndex].getxBR();//-= 1.25;
 			}
+		} else {
+			
 		}
 		
 	}
@@ -148,7 +150,7 @@ public class Wall extends Shapes{
 		return state;
 	}
 
-	public boolean getDir() {
+	public int getDir() {
 		return dir;
 	}
 	
@@ -156,7 +158,7 @@ public class Wall extends Shapes{
 		state = theState;
 	}
 
-	public void setDir(boolean theDir) {
+	public void setDir(int theDir) {
 		dir = theDir;
 	}
 	

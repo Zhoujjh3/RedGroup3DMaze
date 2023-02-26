@@ -7,7 +7,7 @@ public class Trapdoor extends Shapes{
 	double xTL, xTR, xBR, xBL;
 	double  yTL, yTR, yBR, yBL;
 	public int state;
-	public boolean dir = true;
+	public int dir = 0;
 	
 	Trapdoor(int theState) {
 		state = theState;
@@ -40,7 +40,7 @@ public class Trapdoor extends Shapes{
 	}
 
 	public void update() {
-		if(dir) {
+		if(dir == 0) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 450; xTR = 550; xBR = 575; xBL = 425;
@@ -86,7 +86,7 @@ public class Trapdoor extends Shapes{
 				yBR += 0.5;
 				xBL -= 0.75;
 			}
-		} else {
+		} else if (dir == 1) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 450; xTR = 550; xBR = 575; xBL = 425;
@@ -132,15 +132,16 @@ public class Trapdoor extends Shapes{
 				yBL += 0.5;
 				xBR += 0.75;
 			}
+		} else {
+			
 		}
-		
 	}
 
 	public int getState() {
 		return state;
 	}
 
-	public boolean getDir() {
+	public int getDir() {
 		return dir;
 	}
 	
@@ -148,7 +149,7 @@ public class Trapdoor extends Shapes{
 		state = theState;
 	}
 
-	public void setDir(boolean theDir) {
+	public void setDir(int theDir) {
 		dir = theDir;
 	}
 
