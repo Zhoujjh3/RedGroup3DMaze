@@ -50,32 +50,6 @@ public class DrawShapes {
 						clicked = false;
 					}
 				}
-				/*for(int i = 0; i < ShapesPanel.walls.length; i++) {
-					if(ShapesClicker.dir) {
-						ShapesPanel.walls[i].setState(ShapesPanel.walls[i].getState() + 1);
-						ShapesPanel.walls[i].setState(ShapesPanel.walls[i].getState() % 4);
-						clicked = false;
-						if(i > 0) {
-							ShapesPanel.tempWalls[i-1] = ShapesPanel.walls[i];
-						} else {
-							ShapesPanel.tempWalls[3] = ShapesPanel.walls[i];
-						}
-					} else if (!ShapesClicker.dir) {
-						ShapesPanel.walls[i].setState(ShapesPanel.walls[i].getState() - 1);
-						if(ShapesPanel.walls[i].getState() == -1) {
-							ShapesPanel.walls[i].setState(3);
-						}
-						clicked = false;
-						if(i == 3) {
-							ShapesPanel.tempWalls[0] = ShapesPanel.walls[i];
-						} else {
-							ShapesPanel.tempWalls[i+1] = ShapesPanel.walls[i];
-						}
-					}
-				}
-				for(int i = 0; i < ShapesPanel.walls.length; i++) {
-					ShapesPanel.walls[i] = ShapesPanel.tempWalls[i]; 
-				}*/
 				for(Shapes i : ShapesPanel.doors) {
 					if(ShapesClicker.dir == 0) {
 						i.setState(i.getState() + 1);
@@ -93,7 +67,7 @@ public class DrawShapes {
 			
 		}
 	};
-	Timer ShapesTimer = new Timer(2, rotate);
+	Timer ShapesTimer = new Timer(1, rotate);
 	
 	
 	public static void main(String[] args) {
