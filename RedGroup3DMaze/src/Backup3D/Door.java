@@ -193,8 +193,67 @@ public class Door extends Shapes {
 				yBR -= 0.3;
 				yBL -= 0.7;
 			}
-		} else {
-			
+		} else if (dir == 2) {
+			if(ShapesPanel.timeCounter <= 200 && state == 0) {
+				if(ShapesPanel.timeCounter == 0) {
+					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
+					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+				}
+				if(ShapesPanel.timeCounter < 200) {
+					xTL -= 0.375;
+					xBL -= 0.375;
+					xTR -= 0.875;
+					xBR -= 0.875;
+					yTL += 0.3;
+					yTR += 0.3;
+					yBR += 0.7;
+					yBL += 0.3;
+				} else {
+					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
+					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+				}
+			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
+				if(ShapesPanel.timeCounter == 0) {
+					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
+					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+				}
+				if(ShapesPanel.timeCounter < 200) {
+					xTL -= 0.25; 
+					yTL -= (2.0/30.0);
+					xBL -= 0.25;
+					yBL += 1; 
+					xTR += 0.25; 
+					yTR -= (2.0/30.0);
+					xBR += 0.25;
+					yBR += 1;
+				} else {
+					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
+					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+				}
+			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
+				if(ShapesPanel.timeCounter == 0) {
+					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
+					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+				}
+				if(ShapesPanel.timeCounter < 200) {
+					xTR += 0.375;
+					xBR += 0.375;
+					xTL += 0.875;
+					xBL += 0.875;
+					yTL += 0.3;
+					yTR += 0.3;
+					yBR += 0.3;
+					yBL += 0.7;
+				} else {
+					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
+					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+				}
+			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
+				if(ShapesPanel.timeCounter == 0) {
+					xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
+					yTL = 400; yTR = 400; yBR = 700; yBL = 700;
+				}
+			}
 		}
 	}
 

@@ -67,7 +67,7 @@ public class DrawShapes {
 			
 		}
 	};
-	Timer ShapesTimer = new Timer(1, rotate);
+	Timer ShapesTimer = new Timer(5, rotate);
 	
 	
 	public static void main(String[] args) {
