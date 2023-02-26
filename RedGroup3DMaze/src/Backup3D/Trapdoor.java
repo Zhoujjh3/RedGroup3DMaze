@@ -15,14 +15,14 @@ public class Trapdoor extends Shapes{
 			xTL = 450; xTR = 550; xBR = 575; xBL = 425;
 			yTL = 550; yTR = 550; yBR = 650; yBL = 650;
 		} else if(theState == 1) {
-			xTL = 425; xTR = 450; xBR = 550; xBL = 575;
-			yTL = 650; yTR = 550; yBR = 550; yBL = 650;
+			xTL = 550; xTR = 575; xBR = 425; xBL = 450;
+			yTL = 550; yTR = 650; yBR = 650; yBL = 550;
 		} else if(theState == 2) {
 			xTL = 575; xTR = 425; xBR = 450; xBL = 550;
 			yTL = 650; yTR = 650; yBR = 550; yBL = 550;
 		} else if(theState == 3) {
-			xTL = 550; xTR = 575; xBR = 425; xBL = 450;
-			yTL = 550; yTR = 650; yBR = 650; yBL = 550;
+			xTL = 425; xTR = 450; xBR = 550; xBL = 575;
+			yTL = 650; yTR = 550; yBR = 550; yBL = 650;
 		}
 	}
 	
