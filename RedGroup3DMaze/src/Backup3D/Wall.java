@@ -4,13 +4,14 @@ import java.awt.Graphics;
 
 public class Wall extends Shapes{
 	
-	double xTL, xTR, xBR, xBL;
-	double  yTL, yTR, yBR, yBL;
-	public int state;
+	public int state, index, previousWallIndex, nextWallIndex;
 	public boolean dir = true;
 	
 	Wall(int theState) {
 		state = theState;
+		index = theState;
+		previousWallIndex = previousWallIndex(index);
+		nextWallIndex = nextWallIndex(index);
 		if(theState == 0) {
 			xTL = 0; xTR = 250; xBR = 250; xBL = 0;
 			yTL = 0; yTR = 200; yBR = 500; yBL = 700;
@@ -77,19 +78,21 @@ public class Wall extends Shapes{
 					xTL = 750; xBL = 750; xTR = 1000; xBR = 1000;
 					yTL = 200; yBL = 500; yTR = 0; yBR = 700;
 				}
-				yTL -= 1;
-				yBL += 1;
-				xTL += 1.25;
-				xBL += 1.25;
+				yTL = ShapesPanel.walls[previousWallIndex].getyTR();
+				yBL = ShapesPanel.walls[previousWallIndex].getyBR();
+				xTL = ShapesPanel.walls[previousWallIndex].getxTR();//+= 2.5;
+				xBL = ShapesPanel.walls[previousWallIndex].getxBR();//+= 2.5;
+				
+				
 			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 0; xTR = 0; xBR = 0; xBL = 0;
 					yTL = 0; yTR = 0; yBR = 700; yBL = 700;
 				}
-				yTR += 1;
-				yBR -= 1;
-				xTR += 1.25;
-				xBR += 1.25;
+				yTR = ShapesPanel.walls[nextWallIndex].getyTL();//+= 1;
+				yBR = ShapesPanel.walls[nextWallIndex].getyBL();//-= 1;
+				xTR = ShapesPanel.walls[nextWallIndex].getxTL();//+= 1.25;
+				xBR = ShapesPanel.walls[nextWallIndex].getxTL();//+= 1.25;
 			}
 		} else {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
@@ -97,10 +100,10 @@ public class Wall extends Shapes{
 					xTL = 0; xTR = 250; xBR = 250; xBL = 0;
 					yTL = 0; yTR = 200; yBR = 500; yBL = 700;
 				}
-				yTR -= 1;
-				yBR += 1;
-				xTR -= 1.25;
-				xBR -= 1.25;
+				yTR = ShapesPanel.walls[nextWallIndex].getyTL();//-= 1;
+				yBR = ShapesPanel.walls[nextWallIndex].getyBL();//+= 1;
+				xTR = ShapesPanel.walls[nextWallIndex].getxTL();//-= 1.25;
+				xBR = ShapesPanel.walls[nextWallIndex].getxBL();//-= 1.25;
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 250; xBL = 250; xTR = 750; xBR = 750;
@@ -132,10 +135,10 @@ public class Wall extends Shapes{
 					xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
 					yTL = 0; yTR = 0; yBR = 700; yBL = 700;
 				}
-				yTL += 1;
-				yBL -= 1;
-				xTL -= 1.25;
-				xBL -= 1.25;
+				yTL = ShapesPanel.walls[previousWallIndex].getyTR();//+= 1;
+				yBL = ShapesPanel.walls[previousWallIndex].getyBR();//-= 1;
+				xTL = ShapesPanel.walls[previousWallIndex].getxTR();//-= 1.25;
+				xBL = ShapesPanel.walls[previousWallIndex].getxBR();//-= 1.25;
 			}
 		}
 		
@@ -156,5 +159,19 @@ public class Wall extends Shapes{
 	public void setDir(boolean theDir) {
 		dir = theDir;
 	}
-
+	
+	public int previousWallIndex(int index) {
+		if(index > 0) {
+			return index-1;
+		} else {
+			return 3;
+		}
+	}
+	public int nextWallIndex(int index) {
+		if(index < 3) {
+			return index+1;
+		} else {
+			return 0;
+		}
+	}
 }

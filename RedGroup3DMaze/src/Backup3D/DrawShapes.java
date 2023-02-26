@@ -26,7 +26,10 @@ public class DrawShapes {
 	
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			for(Shapes shape : ShapesPanel.shapesList) {
+			for(Shapes shape : ShapesPanel.walls) {
+				shape.update();
+			}
+			for(Shapes shape : ShapesPanel.doors) {
 				shape.update();
 			}
 			panel.repaint();
@@ -34,7 +37,20 @@ public class DrawShapes {
 			
 			//updates states after animation is finished
 			if(ShapesPanel.timeCounter >= 200 && clicked) {
-				for(Shapes i : ShapesPanel.shapesList) {
+				for(Shapes i : ShapesPanel.walls) {
+					if(ShapesClicker.dir) {
+						i.setState(i.getState() + 1);
+						i.setState(i.getState() % 4);
+						clicked = false;
+					} else if (!ShapesClicker.dir) {
+						i.setState(i.getState() - 1);
+						if(i.getState() == -1) {
+							i.setState(3);
+						}
+						clicked = false;
+					}
+				}
+				for(Shapes i : ShapesPanel.doors) {
 					if(ShapesClicker.dir) {
 						i.setState(i.getState() + 1);
 						i.setState(i.getState() % 4);
@@ -51,7 +67,7 @@ public class DrawShapes {
 			
 		}
 	};
-	Timer ShapesTimer = new Timer(5, rotate);
+	Timer ShapesTimer = new Timer(1, rotate);
 	
 	
 	public static void main(String[] args) {

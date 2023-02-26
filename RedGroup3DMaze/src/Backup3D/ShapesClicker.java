@@ -7,14 +7,20 @@ public class ShapesClicker implements MouseListener{
 	public static boolean dir;
 	public void mouseClicked(MouseEvent e) {
 		
-		if(e.getX() < 500) {	
+		if(e.getX() < 500) {		//left
 			dir = true;
-			for(Shapes i : ShapesPanel.shapesList) {
+			for(Shapes i : ShapesPanel.walls) {
 				i.setDir(true);
 			}
-		} else {
+			for(Shapes i : ShapesPanel.doors) {
+				i.setDir(true);
+			}
+		} else {					//right
 			dir = false;
-			for(Shapes i : ShapesPanel.shapesList) {
+			for(Shapes i : ShapesPanel.walls) {
+				i.setDir(false);
+			}
+			for(Shapes i : ShapesPanel.doors) {
 				i.setDir(false);
 			}
 		}
