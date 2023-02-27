@@ -212,8 +212,6 @@ public class Door extends Shapes {
 					xBL -= 1.25;
 					xTR -= 1.25;
 					xBR -= 1.25;
-					yTL += 1;
-					yTR += 1;
 					yBR += 1;
 					yBL += 1;
 				} else {
@@ -248,8 +246,6 @@ public class Door extends Shapes {
 					xBL += 1.25;
 					xTR += 1.25;
 					xBR += 1.25;
-					yTL += 1;
-					yTR += 1;
 					yBR += 1;
 					yBL += 1;
 				} else {
