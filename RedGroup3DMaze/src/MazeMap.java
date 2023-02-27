@@ -22,12 +22,16 @@ public class MazeMap {
 	}
 	
 	public void display(Graphics g) {
+		display(g, level);
+	}
+	
+	public void display(Graphics g, int newLevel) {
 		Painter painter = new Painter();
 		painter.displayGrid(g);
 		int length = size;
 		for (int i=0; i<length; i++) {
 			for (int o=0; o<length; o++) {
-				Room room = maze.getRoom(1, o, i);
+				Room room = maze.getRoom(newLevel, o, i);
 				int[] coord = {i,o};
 				if (room.getDirection('N')) {
 					painter.displayDoorN(g, coord);
@@ -55,11 +59,18 @@ public class MazeMap {
 				//painter.gray(g, coord);
 			}
 		}
-		
-	}
-	
-	public void display(Graphics g, int newLevel) {
-		
+		if (newLevel==level) {
+			int[] coord = {player.getCoordinate('X'), player.getCoordinate('Y')};
+			if (player.getDirection()=='N') {
+				painter.displayPlayerIconN(g, coord);
+			} else if (player.getDirection()=='E') {
+				painter.displayPlayerIconE(g, coord);
+			} else if (player.getDirection()=='S') {
+				painter.displayPlayerIconS(g, coord);
+			} else {
+				painter.displayPlayerIconW(g, coord);
+			}
+		}
 	}
 	
 	public class Painter {
@@ -147,18 +158,65 @@ public class MazeMap {
 			g.fillPolygon(hatchX, hatchY, 7);
 		}
 		
-		public void displayPlayerIcon(Graphics g, int[] coord) {
+		public void displayPlayerIconN(Graphics g, int[] coord) {
 			int startX = coord[0]*width;
 			int startY = coord[1]*width;
 			int[] playerIconX = {220, 250, 280, 265, 250, 235, 220};
 			int[] playerIconY = {140, 110, 140, 140, 125, 140, 140};
-			/*if (size==5) {
-				trapX = {};
-				trapY = {};
-			}*/
 			for (int i=0; i<7; i++) {
 				playerIconX[i] = playerIconX[i] + startX;
 				playerIconY[i] = playerIconY[i] + startY;
+			}
+			
+			g.setColor(Color.black);
+			g.drawPolygon(playerIconX, playerIconY, 7);
+			Color playerIconColor = new Color(255, 255, 0);
+			g.setColor(playerIconColor);
+			g.fillPolygon(playerIconX, playerIconY, 7);
+		}
+		public void displayPlayerIconE(Graphics g, int[] coord) {
+			int startX = (coord[0]+1)*width;
+			int startY = coord[1]*width;
+			int[] playerIconX = {140, 110, 140, 140, 125, 140, 140};
+			int[] playerIconY = {220, 250, 280, 265, 250, 235, 220};
+			for (int i=0; i<7; i++) {
+				playerIconX[i] = -playerIconX[i] + startX+165+40;
+				
+				playerIconY[i] = playerIconY[i] + startY-165+40;
+			}
+			
+			g.setColor(Color.black);
+			g.drawPolygon(playerIconX, playerIconY, 7);
+			Color playerIconColor = new Color(255, 255, 0);
+			g.setColor(playerIconColor);
+			g.fillPolygon(playerIconX, playerIconY, 7);
+		}
+		public void displayPlayerIconS(Graphics g, int[] coord) {
+			int startX = (coord[0]+1)*width;
+			int startY = (coord[1]+1)*width;
+			int[] playerIconX = {220, 250, 280, 265, 250, 235, 220};
+			int[] playerIconY = {140, 110, 140, 140, 125, 140, 140};
+			for (int i=0; i<7; i++) {
+				playerIconX[i] = -playerIconX[i] + startX+330;
+				
+				playerIconY[i] = -playerIconY[i] + startY+80;
+			}
+			
+			g.setColor(Color.black);
+			g.drawPolygon(playerIconX, playerIconY, 7);
+			Color playerIconColor = new Color(255, 255, 0);
+			g.setColor(playerIconColor);
+			g.fillPolygon(playerIconX, playerIconY, 7);
+		}
+		public void displayPlayerIconW(Graphics g, int[] coord) {
+			int startX = coord[0]*width;
+			int startY = coord[1]*width;
+			int[] playerIconX = {140, 110, 140, 140, 125, 140, 140};
+			int[] playerIconY = {220, 250, 280, 265, 250, 235, 220};
+			for (int i=0; i<7; i++) {
+				playerIconX[i] = playerIconX[i] + startX-40+165;
+				
+				playerIconY[i] = playerIconY[i] + startY-165+40;
 			}
 			
 			g.setColor(Color.black);
