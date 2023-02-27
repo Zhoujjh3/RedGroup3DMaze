@@ -17,6 +17,8 @@ public class MapTester {
         frame = new JFrame("map tester");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new Panel();
+        panel.setPreferredSize(new Dimension(1000, 750));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         frame.setContentPane(panel);
 
         header = new Header(basicMaze, player);
@@ -32,7 +34,7 @@ public class MapTester {
                 panel.repaint();
             }
         });
-        frame.setSize(1000,750);
+        frame.pack();
         frame.setVisible(true);
         frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
