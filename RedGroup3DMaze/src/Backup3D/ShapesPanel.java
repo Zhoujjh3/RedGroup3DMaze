@@ -24,7 +24,8 @@ public class ShapesPanel extends JPanel{
 	};
 	
 	public static Shapes[] ceilingAndFloor = {
-			new Ceiling(0)
+			new Ceiling(),
+			new Floor()
 	};
 	
 	

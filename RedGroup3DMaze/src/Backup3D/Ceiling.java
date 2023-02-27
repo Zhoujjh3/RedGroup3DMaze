@@ -4,15 +4,12 @@ import java.awt.Graphics;
 
 public class Ceiling extends Shapes{
 	
-	public int state;
+	public int state = 0;
 	public int dir = 0;
 	
-	Ceiling(int theState) {
-		state = theState;
-		if(theState == 0) {
-			xTL = 0; xTR = 250; xBR = 250; xBL = 0;
-			yTL = 0; yTR = 200; yBR = 500; yBL = 700;
-		}
+	Ceiling() {
+		xTL = 0; xTR = 250; xBR = 250; xBL = 0;
+		yTL = 0; yTR = 200; yBR = 500; yBL = 700;
 	}
 	
 	public void paint(Graphics g) {

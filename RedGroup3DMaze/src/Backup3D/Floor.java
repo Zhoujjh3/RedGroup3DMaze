@@ -10,7 +10,7 @@ public class Floor extends Shapes{
 	
 	Floor(){
 		xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-		yTL = 700; yTR = 500; yBR = 700; yBL = 500;
+		yTL = 500; yTR = 500; yBR = 700; yBL = 700;
 	}
 	
 	public void paint(Graphics g) {
@@ -31,7 +31,7 @@ public class Floor extends Shapes{
 		if(dir == 3) {
 			if(ShapesPanel.timeCounter == 0) {
 				xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-				yTL = 700; yTR = 500; yBR = 700; yBL = 500;
+				yTL = 500; yTR = 500; yBR = 700; yBL = 700;
 			}
 			if(ShapesPanel.timeCounter < 200) {
 				yBR += 3.5;
@@ -40,12 +40,12 @@ public class Floor extends Shapes{
 				yTL += 3.5;
 			} else {
 				xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-				yTL = 700; yTR = 500; yBR = 700; yBL = 500;
+				yTL = 500; yTR = 500; yBR = 700; yBL = 700;
 			}
 		} else if(dir == 4) {
 			if(ShapesPanel.timeCounter == 0) {
 				xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-				yTL = 700; yTR = 500; yBR = 700; yBL = 500;
+				yTL = 500; yTR = 500; yBR = 700; yBL = 700;
 			}
 			if(ShapesPanel.timeCounter < 200) {
 				yBR -= 3.5;
@@ -54,7 +54,7 @@ public class Floor extends Shapes{
 				yTL -= 3.5;
 			} else {
 				xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-				yTL = 700; yTR = 500; yBR = 700; yBL = 500;
+				yTL = 500; yTR = 500; yBR = 700; yBL = 700;
 			}
 		}
 		
