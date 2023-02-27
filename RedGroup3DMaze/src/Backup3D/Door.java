@@ -103,27 +103,31 @@ public class Door extends Shapes {
 					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
 					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
 				}
-				xTL += 0.875;
-				xBL += 0.875;
-				xTR += 0.375;
-				xBR += 0.375;
-				yTL += 0.3;
-				yTR += 0.3;
-				yBR += 0.3;
-				yBL += 0.7;
+				xTR += 2.3333;
+				xBR += 2.3333;
+				xTL += 2.3333;
+				xBL += 2.3333;
+				yTL += 0.8;
+				yTR += 0.8;
+				yBR += 1.818181;
+				yBL += 1.866666667;
 			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 0; xTR = 0; xBR = 0; xBL = 0;
 					yTL = 400; yTR = 400; yBR = 700; yBL = 700;
 				}
-				xTR += 0.875;
-				xBR += 0.875;
-				xTL += 0.375;
-				xBL += 0.375;
-				yTR -= 0.3;
-				yTL -= 0.3;
-				yBL -= 0.3;
-				yBR -= 0.7;
+				if(ShapesPanel.timeCounter > 125) {
+					xTR += 2.3333;
+					xBR += 2.3333;
+					yTR -= 0.8;
+					yTL -= 0.8;
+					yBR -= 1.866666667;
+				}
+				if(ShapesPanel.timeCounter > 167) {
+					xTL += 2.272727;
+					xBL += 2.272727;
+					yBL -= 1.818181;
+				}
 			}
 		} else if (dir == 1) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
@@ -131,14 +135,14 @@ public class Door extends Shapes {
 					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
 					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
 				}
-				xTR -= 0.875;
-				xBR -= 0.875;
-				xTL -= 0.375;
-				xBL -= 0.375;
-				yTR += 0.3;
-				yTL += 0.3;
-				yBL += 0.3;
-				yBR += 0.7;
+				xTR -= 2.3333;
+				xBR -= 2.3333;
+				xTL -= 2.3333;
+				xBL -= 2.3333;
+				yTL += 0.8;
+				yTR += 0.8;
+				yBR += 1.818181;
+				yBL += 1.866666667;
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
@@ -194,14 +198,18 @@ public class Door extends Shapes {
 					xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
 					yTL = 400; yTR = 400; yBR = 700; yBL = 700;
 				}
-				xTL -= 0.875;
-				xBL -= 0.875;
-				xTR -= 0.375;
-				xBR -= 0.375;
-				yTL -= 0.3;
-				yTR -= 0.3;
-				yBR -= 0.3;
-				yBL -= 0.7;
+				if(ShapesPanel.timeCounter > 125) {
+					xTL -= 2.3333;
+					xBL -= 2.3333;
+					yTL -= 0.8;
+					yTR -= 0.8;
+					yBL -= 1.866666667;
+				}
+				if(ShapesPanel.timeCounter > 167) {
+					xTR -= 2.272727;
+					xBR -= 2.272727;
+					yBR -= 1.818181;
+				}
 			}
 		} else if (dir == 2) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
