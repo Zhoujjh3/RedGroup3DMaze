@@ -82,9 +82,10 @@ public class Maze {
 		for (int level=0; level<baseMaze.length; level++) {
 			for (int x=0; x<baseMaze[0].length; x++) {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
-					floodingMaze[level][x][y] = baseMaze[level][x][y];
 					if(baseMaze[level][x][y] != 'F' && baseMaze[level][x][y] != 'A') {
 						floodingMaze[level][x][y] = 'P';
+					} else {
+						floodingMaze[level][x][y] = baseMaze[level][x][y];
 					}
 				}
 			}
@@ -97,18 +98,7 @@ public class Maze {
 			for (int level=0; level<floodingMaze.length; level++) {
 				for (int x = 1; x<floodingMaze[0].length-1;x++) {
 					for (int y = 1; y<floodingMaze[0][0].length-1;y++) {
-						ArrayList<int[]> dirs = new ArrayList<int[]>();
-						dirs.add(getCoords(level, x+1, y));
-						dirs.add(getCoords(level, x-1, y));
-						dirs.add(getCoords(level, x, y+1));
-						dirs.add(getCoords(level, x, y-1));
-						char currentBasePos = baseMaze[level][x][y];
-						if (level < floodingMaze.length-1 && (currentBasePos == 'D' || currentBasePos == 'B' || baseMaze[level+1][x][y] == 'U' || baseMaze[level+1][x][y] == 'B')) {
-							dirs.add(getCoords(level+1, x, y));
-						}
-						if (level > 0 && (currentBasePos == 'U' || currentBasePos == 'B' || baseMaze[level-1][x][y] == 'D' || baseMaze[level-1][x][y] == 'B')) {
-							dirs.add(getCoords(level-1, x, y));
-						}
+						ArrayList<int[]> dirs = getDirsAroundCoords(baseMaze, getCoords(level, x, y));
 						int counter = 0;
 						for(int i = 0; i<dirs.size(); i++) {
 							char charAtCoord = floodingMaze[dirs.get(i)[0]][dirs.get(i)[1]][dirs.get(i)[2]];
@@ -129,7 +119,8 @@ public class Maze {
 			}
 		}
 		
-		int rCounter = -1;
+		/*
+		int rCounter = 0;
 		for (int level=0; level<floodingMaze.length; level++) {
 			for (int x=0; x<floodingMaze[0].length; x++) {
 				for (int y=0; y<floodingMaze[0][0].length; y++) {
@@ -139,9 +130,10 @@ public class Maze {
 				}
 			}
 		}
+		*/
 		
 		if(floodingMaze[startz][startx][starty] == 'R' && floodingMaze[endz][endx][endy] == 'R')
-			return rCounter;
+			return findRPath(floodingMaze, baseMaze, startCoords, endCoords, startCoords, 99) / 2;
 		return -1;
 	}
 	
@@ -165,6 +157,32 @@ public class Maze {
 			}
 		}
 		return true;
+	}
+	
+	private int findRPath(char[][][] floodingMaze, char[][][] baseMaze, int[] startCoords, int[] endCoords, int[] previousCoords, int maxDepth) {
+		if (coordsMatch(startCoords, endCoords) || maxDepth < 1) {
+			return 0;
+		} else {
+			ArrayList<int[]> dirs = getDirsAroundCoords(baseMaze, startCoords);
+			int minMoves = Integer.MAX_VALUE;
+			int dirMoves = minMoves;
+			for (int i=0; i<dirs.size(); i++) {
+				int[] dirCoords = dirs.get(i);
+				if (i < 4) {
+					if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && !coordsMatch(dirCoords, previousCoords)) {
+						dirMoves = 1 + findRPath(floodingMaze, baseMaze, dirCoords, endCoords, startCoords, maxDepth-1);
+					}
+				} else {
+					if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && canTravelVertically(baseMaze, startCoords, dirCoords) && !coordsMatch(dirCoords, previousCoords)) {
+						dirMoves = 2 + findRPath(floodingMaze, baseMaze, dirCoords, endCoords, startCoords, maxDepth-1);
+					}
+				}
+				if (dirMoves < minMoves) {
+					minMoves = dirMoves;
+				}
+			}
+			return minMoves;
+		}
 	}
 	
 	private char[][][] createPath(char[][][] baseMaze) {
@@ -543,6 +561,36 @@ public class Maze {
 				|| (difficulty == 3 && moves >= 22 && moves <= 24));
 	}
 	
+	private ArrayList<int[]> getDirsAroundCoords(char[][][] baseMaze, int[] coords) {
+		int startz = coords[0];
+		int startx = coords[1];
+		int starty = coords[2];
+		ArrayList<int[]> dirs = new ArrayList<int[]>();
+		dirs.add(getCoords(startz, startx+1, starty));
+		dirs.add(getCoords(startz, startx-1, starty));
+		dirs.add(getCoords(startz, startx, starty+1));
+		dirs.add(getCoords(startz, startx, starty-1));
+		char currentBasePos = baseMaze[startz][startx][starty];
+		if (startz < baseMaze.length-1 && (currentBasePos == 'D' || currentBasePos == 'B' || baseMaze[startz+1][startx][starty] == 'U' || baseMaze[startz+1][startx][starty] == 'B')) {
+			dirs.add(getCoords(startz+1, startx, starty));
+		}
+		if (startz > 0 && (currentBasePos == 'U' || currentBasePos == 'B' || baseMaze[startz-1][startx][starty] == 'D' || baseMaze[startz-1][startx][starty] == 'B')) {
+			dirs.add(getCoords(startz-1, startx, starty));
+		}
+		return dirs;
+	}
+	
+	private boolean canTravelVertically(char[][][] baseMaze, int[] startCoords, int[] endCoords) {
+		char startChar = baseMaze[startCoords[0]][startCoords[1]][startCoords[2]];
+		char endChar = baseMaze[endCoords[0]][endCoords[1]][endCoords[2]];
+		if (Math.abs(startCoords[0]-endCoords[0]) == 1 && startCoords[1] == endCoords[1] && startCoords[2] == endCoords[2]
+				&& (startChar == 'B' || endChar == 'B' || (startCoords[0] > endCoords[0] && (startChar == 'U' || endChar == 'D')) 
+				|| (startCoords[0] < endCoords[0] && (startChar == 'D' || endChar == 'U')))) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static void main(String[] args) {
 		// Basic testing
 		Maze maze;
@@ -553,7 +601,7 @@ public class Maze {
 						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
 						{'A', 'F', 'A', 'F', 'A', 'F', 'A', 'F', 'A'},
 						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
-						{'A', 'F', 'A', 'F', 'A', 'T', 'A', 'F', 'A'},
+						{'A', 'F', 'A', 'F', 'A', 'F', 'A', 'F', 'A'},
 						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
 						{'A', 'F', 'A', 'F', 'A', 'F', 'A', 'F', 'A'},
 						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
@@ -631,7 +679,7 @@ public class Maze {
 				System.out.println();
 			}
 			System.out.println("\n");
-		}
-		System.out.println(maze.pathFind(test, new int[] {0, 1, 1}, new int[] {0, 7, 7}));*/
+		}*/
+		System.out.println(maze.pathFind(test, new int[] {0, 1, 1}, new int[] {0, 7, 7}));
 	}
 }

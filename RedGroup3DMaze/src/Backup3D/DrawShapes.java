@@ -26,6 +26,9 @@ public class DrawShapes {
 	
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			for(Shapes shape : ShapesPanel.ceilingAndFloor) {
+				shape.update();
+			}
 			for(Shapes shape : ShapesPanel.walls) {
 				shape.update();
 			}
