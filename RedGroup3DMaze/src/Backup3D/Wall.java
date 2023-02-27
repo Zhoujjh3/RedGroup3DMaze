@@ -232,6 +232,8 @@ public class Wall extends Shapes{
 					yTL = 0; yTR = 0; yBR = 700; yBL = 700;
 				}
 			}
+		} else if (dir == 3) {
+			
 		}
 		
 	}

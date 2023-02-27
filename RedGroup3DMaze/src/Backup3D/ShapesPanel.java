@@ -22,6 +22,12 @@ public class ShapesPanel extends JPanel{
 			new Trapdoor(0),
 			new Hatch(0)
 	};
+	
+	public static Shapes[] ceilingAndFloor = {
+			
+	};
+	
+	
 	public static int timeCounter = 200;
 	
 	public void paintComponent(Graphics g) {
