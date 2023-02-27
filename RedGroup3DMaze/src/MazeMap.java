@@ -59,6 +59,7 @@ public class MazeMap {
 				//painter.gray(g, coord);
 			}
 		}
+		
 		if (newLevel==level) {
 			int[] coord = {player.getCoordinate('X'), player.getCoordinate('Y')};
 			if (player.getDirection()=='N') {
