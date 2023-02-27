@@ -51,22 +51,24 @@ public class Door extends Shapes {
 					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
 					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
 				}
-				xTL += 0.75;
-				xBL += 0.75;
+				xTL += 1.25;//0.75;
+				xBL += 1.25;//0.75;
 				xTR += 1.75;
 				xBR += 1.75;
+				
+				yBL -= 0.2;  //this used to not exist
 				if(ShapesPanel.timeCounter > 99) {
-					xTL += 2.25;
+					xTL += 1.25;//2.25;
 					xTR += 0.25;
-					xBL += 2.25;
+					xBL += 1.25;//2.25;
 					xBR += 0.25;
 				}
 				if(ShapesPanel.timeCounter > 99 && ShapesPanel.timeCounter < 150) {
-					yBL -= 1.55;
+					yBL -= 1.05;//1.55
 					yBR -= 0.5;
 				}
 				if(ShapesPanel.timeCounter > 149) {
-					yBL -= 1.25;
+					yBL -= 0.95;//1.25
 					yBR -= 0.7;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
@@ -74,22 +76,24 @@ public class Door extends Shapes {
 					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
 					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
 				}
-				xTR += 0.75;
-				xBR += 0.75;
+				xTR += 1.25;//0.75;
+				xBR += 1.25;//0.75;
 				xTL += 1.75;
 				xBL += 1.75;
+				
+				yBR += 0.2;	//this used to not exist
 				if(ShapesPanel.timeCounter < 100) {
-					xTR += 2.25;
+					xTR += 1.25;//2.25;
 					xTL += 0.25;
-					xBR += 2.25;
+					xBR += 1.25;//2.25;
 					xBL += 0.25;
 				}
 				if(ShapesPanel.timeCounter < 100 && ShapesPanel.timeCounter > 49) {
-					yBR += 1.55;
+					yBR += 1.05;//+= 1.55;
 					yBL += 0.5;
 				}
 				if(ShapesPanel.timeCounter < 50) {
-					yBR += 1.25;
+					yBR += 0.95;//1.25;
 					yBL += 0.7;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 2){
@@ -138,22 +142,24 @@ public class Door extends Shapes {
 					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
 					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
 				}
-				xTL -= 0.75;
-				xBL -= 0.75;
+				xTL -= 1.25;//0.75;
+				xBL -= 1.25;//0.75;
 				xTR -= 1.75;
 				xBR -= 1.75;
+				
+				yBL += 0.2;  //this used to not exist
 				if(ShapesPanel.timeCounter < 100) {
-					xTL -= 2.25;
+					xTL -= 1.25;//2.25;
 					xTR -= 0.25;
-					xBL -= 2.25;
+					xBL -= 1.25;//2.25;
 					xBR -= 0.25;
 				}
 				if(ShapesPanel.timeCounter < 100 && ShapesPanel.timeCounter > 49) {
-					yBL += 1.55;
+					yBL += 1.05;//1.55;
 					yBR += 0.5;
 				}
 				if(ShapesPanel.timeCounter < 50) {
-					yBL += 1.25;
+					yBL += 0.95;//1.25;
 					yBR += 0.7;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 2){
@@ -161,22 +167,24 @@ public class Door extends Shapes {
 					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
 					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
 				}
-				xTR -= 0.75;
-				xBR -= 0.75;
+				xTR -= 1.25;//0.75;
+				xBR -= 1.25;//0.75;
 				xTL -= 1.75;
 				xBL -= 1.75;
+				
+				yBR -= 0.2;  //this used to not exist
 				if(ShapesPanel.timeCounter > 99) {
-					xTR -= 2.25;
+					xTR -= 1.25;//2.25;
 					xTL -= 0.25;
-					xBR -= 2.25;
+					xBR -= 1.25;//2.25;
 					xBL -= 0.25;
 				}
 				if(ShapesPanel.timeCounter > 99 && ShapesPanel.timeCounter < 150) {
-					yBR -= 1.55;
+					yBR -= 1.05;//1.55;
 					yBL -= 0.5;
 				}
 				if(ShapesPanel.timeCounter > 149) {
-					yBR -= 1.25;
+					yBR -= 0.95;//1.25;
 					yBL -= 0.7;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
