@@ -10,6 +10,8 @@ public class Door extends Shapes {
 	public int state;
 	public int dir = 0;
 
+	// Justin
+	
 	Door(int theState) {
 		state = theState;
 		if(theState == 0) {
