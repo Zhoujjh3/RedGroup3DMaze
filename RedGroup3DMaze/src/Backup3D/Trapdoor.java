@@ -139,10 +139,14 @@ public class Trapdoor extends Shapes{
 					yTL = 550; yTR = 550; yBR = 650; yBL = 650;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTL += 0.75;
-					yTR += 0.75;
-					yBR += 0.25;
-					yBL += 0.25;
+					xTL -= 0.25; 
+					xBL -= 0.25;
+					xTR += 0.25; 
+					xBR += 0.25;
+					yTL += 1;
+					yTR += 1;
+					yBR += 1;
+					yBL += 1;
 				} else {
 					xTL = 450; xTR = 550; xBR = 575; xBL = 425;
 					yTL = 550; yTR = 550; yBR = 650; yBL = 650;
@@ -153,10 +157,14 @@ public class Trapdoor extends Shapes{
 					yTL = 550; yTR = 650; yBR = 650; yBL = 550;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTL += 0.75;
-					yTR += 0.25;
-					yBR += 0.25;
-					yBL += 0.75;
+					xTL += 0.25; 
+					xBL -= 0.25;
+					xTR += 0.25; 
+					xBR -= 0.25;
+					yTL += 1;
+					yTR += 1;
+					yBR += 1;
+					yBL += 1;
 				} else {
 					xTL = 550; xTR = 575; xBR = 425; xBL = 450;
 					yTL = 550; yTR = 650; yBR = 650; yBL = 550;
@@ -167,10 +175,14 @@ public class Trapdoor extends Shapes{
 					yTL = 650; yTR = 650; yBR = 550; yBL = 550;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTL += 0.25;
-					yTR += 0.25;
-					yBR += 0.75;
-					yBL += 0.75;
+					xTL += 0.25; 
+					xBL += 0.25;
+					xTR -= 0.25; 
+					xBR -= 0.25;
+					yTL += 1;
+					yTR += 1;
+					yBR += 1;
+					yBL += 1;
 				} else {
 					xTL = 575; xTR = 425; xBR = 450; xBL = 550;
 					yTL = 650; yTR = 650; yBR = 550; yBL = 550;
@@ -181,10 +193,14 @@ public class Trapdoor extends Shapes{
 					yTL = 650; yTR = 550; yBR = 550; yBL = 650;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTL += 0.25;
-					yTR += 0.75;
-					yBR += 0.75;
-					yBL += 0.25;
+					xTL -= 0.25; 
+					xBL += 0.25;
+					xTR -= 0.25; 
+					xBR += 0.25;
+					yTL += 1;
+					yTR += 1;
+					yBR += 1;
+					yBL += 1;
 				} else {
 					xTL = 425; xTR = 450; xBR = 550; xBL = 575;
 					yTL = 650; yTR = 550; yBR = 550; yBL = 650;

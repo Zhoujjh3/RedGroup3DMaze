@@ -139,10 +139,14 @@ public class Hatch extends Shapes{
 					yTL = 50; yTR = 50; yBR = 150; yBL = 150;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTL -= 0.25;
-					yTR -= 0.25;
-					yBR -= 0.75;
-					yBL -= 0.75;
+					xTL -= 0.25; 
+					xBL -= 0.25;
+					xTR += 0.25; 
+					xBR += 0.25;
+					yTL -= 1;
+					yTR -= 1;
+					yBR -= 1;
+					yBL -= 1;
 				} else {
 					xTL = 425; xTR = 575; xBR = 550; xBL = 450;
 					yTL = 50; yTR = 50; yBR = 150; yBL = 150;
@@ -153,10 +157,14 @@ public class Hatch extends Shapes{
 					yTL = 50; yTR = 150; yBR = 150; yBL = 50;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTL -= 0.25;
-					yTR -= 0.75;
-					yBR -= 0.75;
-					yBL -= 0.25;
+					xTL += 0.25; 
+					xBL -= 0.25;
+					xTR += 0.25; 
+					xBR -= 0.25;
+					yTL -= 1;
+					yTR -= 1;
+					yBR -= 1;
+					yBL -= 1;
 				} else {
 					xTL = 575; xTR = 550; xBR = 450; xBL = 425;
 					yTL = 50; yTR = 150; yBR = 150; yBL = 50;
@@ -167,10 +175,14 @@ public class Hatch extends Shapes{
 					yTL = 150; yTR = 150; yBR = 50; yBL = 50;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTL -= 0.75;
-					yTR -= 0.75;
-					yBR -= 0.25;
-					yBL -= 0.25;
+					xTL += 0.25; 
+					xBL += 0.25;
+					xTR -= 0.25; 
+					xBR -= 0.25;
+					yTL -= 1;
+					yTR -= 1;
+					yBR -= 1;
+					yBL -= 1;
 				} else {
 					xTL = 550; xTR = 450; xBR = 425; xBL = 575;
 					yTL = 150; yTR = 150; yBR = 50; yBL = 50;
@@ -181,10 +193,14 @@ public class Hatch extends Shapes{
 					yTL = 150; yTR = 50; yBR = 50; yBL = 150;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTL -= 0.75;
-					yTR -= 0.25;
-					yBR -= 0.25;
-					yBL -= 0.75;
+					xTL -= 0.25; 
+					xBL += 0.25;
+					xTR -= 0.25; 
+					xBR += 0.25;
+					yTL -= 1;
+					yTR -= 1;
+					yBR -= 1;
+					yBL -= 1;
 				} else {
 					xTL = 450; xTR = 425; xBR = 575; xBL = 550;
 					yTL = 150; yTR = 50; yBR = 50; yBL = 150;
