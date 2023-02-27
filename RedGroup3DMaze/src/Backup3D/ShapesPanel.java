@@ -14,13 +14,6 @@ public class ShapesPanel extends JPanel{
 		new Wall(3)
 	};
 	
-	public static Shapes[] tempWalls = {
-			new Wall(0),
-			new Wall(1),
-			new Wall(2),
-			new Wall(3)
-		};
-	
 	public static Shapes[] doors = {
 			new Door(0),
 			new Door(1),
