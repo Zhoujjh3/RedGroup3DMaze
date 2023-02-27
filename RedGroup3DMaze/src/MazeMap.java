@@ -21,10 +21,6 @@ public class MazeMap {
 		}
 	}
 	
-	public void display(Graphics g) {
-		display(g, level);
-	}
-	
 	public void display(Graphics g, int newLevel) {
 		Painter painter = new Painter();
 		painter.displayGrid(g);
@@ -72,6 +68,10 @@ public class MazeMap {
 				painter.displayPlayerIconW(g, coord);
 			}
 		}
+		g.setColor(Color.white);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
+		Integer newlevel = newLevel;
+		g.drawString("Displayed level: " + newlevel.toString(), 625, 735);
 	}
 	
 	public class Painter {
