@@ -23,10 +23,7 @@ public class MapTester {
         changeView = new JButton(header.getView());
         panel.setLayout(null);
         panel.add(changeView);
-        changeView.setBounds(740
-                , 5,
-                100,
-                30 );
+        changeView.setBounds(740, 5, 100, 30);
         changeView.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 header.changeView();
