@@ -24,11 +24,14 @@ public class ShapesClicker implements MouseListener{
 				i.setDir(1);
 			}
 		} else {
+			for(Shapes i : ShapesPanel.ceilingAndFloor) {
+				i.setDir(3);
+			}
 			for(Shapes i : ShapesPanel.walls) {
-				i.setDir(2);
+				i.setDir(3);
 			}
 			for(Shapes i : ShapesPanel.doors) {
-				i.setDir(2);
+				i.setDir(3);
 			}
 		}
 		ShapesPanel.timeCounter = 0;

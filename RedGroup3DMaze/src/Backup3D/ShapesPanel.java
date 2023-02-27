@@ -24,7 +24,7 @@ public class ShapesPanel extends JPanel{
 	};
 	
 	public static Shapes[] ceilingAndFloor = {
-			
+			new Ceiling(0)
 	};
 	
 	
@@ -34,6 +34,9 @@ public class ShapesPanel extends JPanel{
 		g.setColor(new Color(243,243,243));
 		g.fillRect(0, 0, 1000, 700);
 		
+		for(Shapes shape : ceilingAndFloor) {
+			shape.paint(g);
+		}
 		for(Shapes shape : walls) {
 			shape.paint(g);
 		}
