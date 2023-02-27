@@ -60,7 +60,7 @@ public class MapTester {
         frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
     }
-    
+    //rip
     class Panel extends JPanel{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
