@@ -3,6 +3,8 @@ import java.awt.Point;
 import java.util.Arrays;
 
 public class Camera extends Entity{
+	Vertex location;
+	double rotateX,rotateY;
 	public double screenDistance, viewAngleH,viewAngleV, canvasWidth,
 			canvasHeight, imageWidth, imageHeight;
 	Camera(double angle, double distance){
@@ -49,6 +51,9 @@ public class Camera extends Entity{
 		visibility|=isVisible(t.v3,nearClip);
 //		System.out.println("invisible: "+!visibility+"\n\n\n");
 		return !visibility;
+	}
+	public void rotateY() {
+		
 	}
 	public Vertex toScreen(Vertex v) {
 		double z;
