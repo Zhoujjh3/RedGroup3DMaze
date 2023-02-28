@@ -81,9 +81,10 @@ public class Maze {
 		for (int level=0; level<baseMaze.length; level++) {
 			for (int x=0; x<baseMaze[0].length; x++) {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
-					floodingMaze[level][x][y] = baseMaze[level][x][y];
 					if(baseMaze[level][x][y] != 'F' && baseMaze[level][x][y] != 'A') {
 						floodingMaze[level][x][y] = 'P';
+					} else {
+						floodingMaze[level][x][y] = baseMaze[level][x][y];
 					}
 				}
 			}
@@ -96,18 +97,7 @@ public class Maze {
 			for (int level=0; level<floodingMaze.length; level++) {
 				for (int x = 1; x<floodingMaze[0].length-1;x++) {
 					for (int y = 1; y<floodingMaze[0][0].length-1;y++) {
-						ArrayList<int[]> dirs = new ArrayList<int[]>();
-						dirs.add(getCoords(level, x+1, y));
-						dirs.add(getCoords(level, x-1, y));
-						dirs.add(getCoords(level, x, y+1));
-						dirs.add(getCoords(level, x, y-1));
-						char currentBasePos = baseMaze[level][x][y];
-						if (level < floodingMaze.length-1 && (currentBasePos == 'D' || currentBasePos == 'B' || baseMaze[level+1][x][y] == 'U' || baseMaze[level+1][x][y] == 'B')) {
-							dirs.add(getCoords(level+1, x, y));
-						}
-						if (level > 0 && (currentBasePos == 'U' || currentBasePos == 'B' || baseMaze[level-1][x][y] == 'D' || baseMaze[level-1][x][y] == 'B')) {
-							dirs.add(getCoords(level-1, x, y));
-						}
+						ArrayList<int[]> dirs = getDirsAroundCoords(baseMaze, getCoords(level, x, y));
 						int counter = 0;
 						for(int i = 0; i<dirs.size(); i++) {
 							char charAtCoord = floodingMaze[dirs.get(i)[0]][dirs.get(i)[1]][dirs.get(i)[2]];
@@ -128,7 +118,8 @@ public class Maze {
 			}
 		}
 		
-		int rCounter = -1;
+		/*
+		int rCounter = 0;
 		for (int level=0; level<floodingMaze.length; level++) {
 			for (int x=0; x<floodingMaze[0].length; x++) {
 				for (int y=0; y<floodingMaze[0][0].length; y++) {
@@ -138,9 +129,10 @@ public class Maze {
 				}
 			}
 		}
+		*/
 		
 		if(floodingMaze[startz][startx][starty] == 'R' && floodingMaze[endz][endx][endy] == 'R')
-			return rCounter;
+			return findRPath(floodingMaze, baseMaze, startCoords, endCoords, startCoords, 99) / 2;
 		return -1;
 	}
 	
@@ -166,7 +158,33 @@ public class Maze {
 		return true;
 	}
 	
-private char[][][] createPath(char[][][] baseMaze) {
+	private int findRPath(char[][][] floodingMaze, char[][][] baseMaze, int[] startCoords, int[] endCoords, int[] previousCoords, int maxDepth) {
+		if (coordsMatch(startCoords, endCoords) || maxDepth < 1) {
+			return 0;
+		} else {
+			ArrayList<int[]> dirs = getDirsAroundCoords(baseMaze, startCoords);
+			int minMoves = Integer.MAX_VALUE;
+			int dirMoves = minMoves;
+			for (int i=0; i<dirs.size(); i++) {
+				int[] dirCoords = dirs.get(i);
+				if (i < 4) {
+					if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && !coordsMatch(dirCoords, previousCoords)) {
+						dirMoves = 1 + findRPath(floodingMaze, baseMaze, dirCoords, endCoords, startCoords, maxDepth-1);
+					}
+				} else {
+					if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && canTravelVertically(baseMaze, startCoords, dirCoords) && !coordsMatch(dirCoords, previousCoords)) {
+						dirMoves = 2 + findRPath(floodingMaze, baseMaze, dirCoords, endCoords, startCoords, maxDepth-1);
+					}
+				}
+				if (dirMoves < minMoves) {
+					minMoves = dirMoves;
+				}
+			}
+			return minMoves;
+		}
+	}
+		
+	private char[][][] createPath(char[][][] baseMaze) {
 		/*
 		 * difficulty = 1: minMoves = 15 - 17
 		 * difficulty = 2: minMoves = 18 - 20
@@ -180,39 +198,39 @@ private char[][][] createPath(char[][][] baseMaze) {
 		} else {
 			aimMinMoves = (int)(Math.random()*2) + 7;
 		}
-
+	
 		int movesPerLevel = aimMinMoves;
-
+	
 		int[] endC = this.createLevelPath(baseMaze[0], movesPerLevel, 1, 1);
 		int endx = endC[0];
 		int endy = endC[1];
-//		endC = this.createLevelPath(baseMaze[1], movesPerLevel, 1, 1);
+	//	endC = this.createLevelPath(baseMaze[1], movesPerLevel, 1, 1);
 		System.out.println(movesPerLevel + " " + endC[1] + " " +endC[2]);
 		
 		
 		
 		for(int i = 1; i< baseMaze.length;i++) {
 			endC = this.createLevelPath(baseMaze[i], movesPerLevel, endC[1], endC[2]);
-//			System.out.println(i);
-//			for(int k = 0; k<baseMaze[1].length;k++) {
-//				for(int j = 0; j<baseMaze[1].length;j++) {
-//					System.out.print(baseMaze[i][k][j] +" ");
-//				}
-//				System.out.println();
-//			}
-//			System.out.println("------------------------------");
+	//		System.out.println(i);
+	//		for(int k = 0; k<baseMaze[1].length;k++) {
+	//			for(int j = 0; j<baseMaze[1].length;j++) {
+	//				System.out.print(baseMaze[i][k][j] +" ");
+	//			}
+	//			System.out.println();
+	//		}
+	//		System.out.println("------------------------------");
 		}
 		return baseMaze;
 	}
-	
+
 	private int[] createLevelPath(char[][] level, int givenMoves, int startX, int startY){
-//		System.out.println("starting: " + startX + " " + startY);	
+	//	System.out.println("starting: " + startX + " " + startY);	
 		char[][] levelCopy = new char[level.length][level.length];
 		
 		ArrayList<Integer> xTrace = new ArrayList<Integer>();
 		ArrayList<Integer> yTrace = new ArrayList<Integer>();
-
-
+	
+	
 		for(int i = 0; i<level.length;i++) {
 			for(int j = 0; j<level.length;j++) {
 				levelCopy[i][j] = level[i][j];
@@ -248,13 +266,13 @@ private char[][][] createPath(char[][][] baseMaze) {
 			endCC = endC;
 			pathWorks = pathFind(level, startC, endC) >= 0;
 			
-//			for(int i = 0; i<level.length;i++) {
-//				for(int j = 0; j<level.length;j++) {
-//					System.out.print(level[i][j] +" ");
-//				}
-//				System.out.println();
-//			}
-//			System.out.println("------------------------------");
+	//		for(int i = 0; i<level.length;i++) {
+	//			for(int j = 0; j<level.length;j++) {
+	//				System.out.print(level[i][j] +" ");
+	//			}
+	//			System.out.println();
+	//		}
+	//		System.out.println("------------------------------");
 		}
 		
 		for(int i = 0; i<level.length; i++) {
@@ -272,8 +290,8 @@ private char[][][] createPath(char[][][] baseMaze) {
 		char dir = generateDirection();
 		boolean works = false;
 		while(!works) {
-//			System.out.println("dir1" + dir);
-//			System.out.println("stuff" + endx +" " + endy);
+	//		System.out.println("dir1" + dir);
+	//		System.out.println("stuff" + endx +" " + endy);
 			switch(dir) {
 				case 'N':
 					if(meetsConditions(endx, endy, level, 'N', xTrace, yTrace)) {
@@ -305,16 +323,16 @@ private char[][][] createPath(char[][][] baseMaze) {
 					}else
 						break;
 			}
-//			System.out.println(endx + " " + endy);
+	//		System.out.println(endx + " " + endy);
 			dir = generateDirection();
 		}
 		
-//		for(int i = 0; i<level.length; i++) {
-//			for(int j = 0; j<level.length;j++) {
-//				System.out.print(level[i][j] +" ");
-//			}
-//			System.out.println();
-//		}
+	//	for(int i = 0; i<level.length; i++) {
+	//		for(int j = 0; j<level.length;j++) {
+	//			System.out.print(level[i][j] +" ");
+	//		}
+	//		System.out.println();
+	//	}
 		int[] results = {endx, endy};
 		return results;
 	}
@@ -363,7 +381,7 @@ private char[][][] createPath(char[][][] baseMaze) {
 						}
 				} else {
 					failCounter++;
-//					System.out.println(currentY + "<" + (level[0].length-3));
+	//				System.out.println(currentY + "<" + (level[0].length-3));
 					meets = false;
 					break;
 				}
@@ -399,17 +417,17 @@ private char[][][] createPath(char[][][] baseMaze) {
 				}
 				break;
 		}
-//		for(int i = 0; i<level.length; i++) {
-//			for(int j = 0; j<level.length;j++) {
-//				System.out.print(level[i][j] +" ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println("----------------------------");
-
+	//	for(int i = 0; i<level.length; i++) {
+	//		for(int j = 0; j<level.length;j++) {
+	//			System.out.print(level[i][j] +" ");
+	//		}
+	//		System.out.println();
+	//	}
+	//	System.out.println("----------------------------");
+	
 		return meets;
 	}
-	
+
 	private boolean nextToStart(int x, int y, char currentLevel[][]) {
 		boolean boolVal = false;
 		if(x>0) {
@@ -427,7 +445,7 @@ private char[][][] createPath(char[][][] baseMaze) {
 		}
 		return boolVal;
 	}
-	
+
 	private boolean alreadyBeenOn(ArrayList<Integer> xTrace, ArrayList<Integer> yTrace, int x, int y) {
 		boolean result = false;
 		System.out.println("X:" + x + " Y:" + y );
@@ -440,8 +458,6 @@ private char[][][] createPath(char[][][] baseMaze) {
 		System.out.println();
 		return result;
 	}
-
-	
 	
 	
 	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
@@ -568,6 +584,36 @@ private char[][][] createPath(char[][][] baseMaze) {
 				|| (difficulty == 3 && moves >= 22 && moves <= 24));
 	}
 	
+	private ArrayList<int[]> getDirsAroundCoords(char[][][] baseMaze, int[] coords) {
+		int startz = coords[0];
+		int startx = coords[1];
+		int starty = coords[2];
+		ArrayList<int[]> dirs = new ArrayList<int[]>();
+		dirs.add(getCoords(startz, startx+1, starty));
+		dirs.add(getCoords(startz, startx-1, starty));
+		dirs.add(getCoords(startz, startx, starty+1));
+		dirs.add(getCoords(startz, startx, starty-1));
+		char currentBasePos = baseMaze[startz][startx][starty];
+		if (startz < baseMaze.length-1 && (currentBasePos == 'D' || currentBasePos == 'B' || baseMaze[startz+1][startx][starty] == 'U' || baseMaze[startz+1][startx][starty] == 'B')) {
+			dirs.add(getCoords(startz+1, startx, starty));
+		}
+		if (startz > 0 && (currentBasePos == 'U' || currentBasePos == 'B' || baseMaze[startz-1][startx][starty] == 'D' || baseMaze[startz-1][startx][starty] == 'B')) {
+			dirs.add(getCoords(startz-1, startx, starty));
+		}
+		return dirs;
+	}
+	
+	private boolean canTravelVertically(char[][][] baseMaze, int[] startCoords, int[] endCoords) {
+		char startChar = baseMaze[startCoords[0]][startCoords[1]][startCoords[2]];
+		char endChar = baseMaze[endCoords[0]][endCoords[1]][endCoords[2]];
+		if (Math.abs(startCoords[0]-endCoords[0]) == 1 && startCoords[1] == endCoords[1] && startCoords[2] == endCoords[2]
+				&& (startChar == 'B' || endChar == 'B' || (startCoords[0] > endCoords[0] && (startChar == 'U' || endChar == 'D')) 
+				|| (startCoords[0] < endCoords[0] && (startChar == 'D' || endChar == 'U')))) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static void main(String[] args) {
 		// Basic testing
 		Maze maze;
@@ -578,13 +624,12 @@ private char[][][] createPath(char[][][] baseMaze) {
 						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
 						{'A', 'F', 'A', 'F', 'A', 'F', 'A', 'F', 'A'},
 						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
-						{'A', 'F', 'A', 'F', 'A', 'T', 'A', 'F', 'A'},
+						{'A', 'F', 'A', 'F', 'A', 'F', 'A', 'F', 'A'},
 						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
 						{'A', 'F', 'A', 'F', 'A', 'F', 'A', 'F', 'A'},
 						{'A', 'Z', 'F', 'Z', 'F', 'Z', 'F', 'Z', 'A'},
 						{'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'},
 					},
-					
 					
 					
 					//technically looks like this instead:
@@ -658,7 +703,7 @@ private char[][][] createPath(char[][][] baseMaze) {
 				System.out.println();
 			}
 			System.out.println("\n");
-		}
-		System.out.println(maze.pathFind(test, new int[] {0, 1, 1}, new int[] {0, 7, 7}));*/
+		}*/
+		System.out.println(maze.pathFind(test, new int[] {0, 1, 1}, new int[] {0, 7, 7}));
 	}
 }
