@@ -29,7 +29,4 @@ public class Vertex {
 		}
 		return new Vertex(coord);
 	}
-	public void print() {
-		System.out.println("("+x()+", "+y()+", "+z()+")");
-	}
 }

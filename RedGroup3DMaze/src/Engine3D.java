@@ -34,7 +34,7 @@ public class Engine3D {
 				new Triangle(v1,v2,v4,Color.RED),
 				new Triangle(v3,v4,v1,Color.GREEN),
 				new Triangle(v3,v4,v2,Color.BLUE)};
-//		tetra = new Shape(ts, new double[] {30,30,-30});
+		tetra = new Shape(ts, new double[] {30,30,-30});
 		v1 = new Vertex(100, 100, 100);
 		v2 = new Vertex(-100, 100, 100);
 		v3 = new Vertex(-100, 100, -100);
@@ -43,15 +43,14 @@ public class Engine3D {
 		Vertex v6 = new Vertex(-100, -100, 100);
 		Vertex v7 = new Vertex(-100, -100, -100);
 		Vertex v8 = new Vertex(100, -100, -100);
-//		tetra = new Shape(new Triangle[] {new Triangle(v1,v4,v8,Color.BLUE)}, new double[] {0,0,-30});
 		room = new RectanglePrism(new Vertex[]{v1,v2,v3,v4,v5,v6,v7,v8},
-				new double[]{0,0,-30}, new Color[]{Color.BLUE,Color.BLUE,
+				new double[]{0,0,0}, new Color[]{Color.BLUE,Color.BLUE,
 						Color.CYAN,Color.CYAN,Color.GREEN,Color.MAGENTA});
 		shapes.add(room);
 		displayPane = new World();
-		CameraRotation r = new CameraRotation();
-//		displayPane.addMouseMotionListener(r);
-//		displayPane.addMouseListener(r);
+		RotateCamera r = new RotateCamera();
+		displayPane.addMouseMotionListener(r);
+		displayPane.addMouseListener(r);
 		cc = new Checker();
 		displayPane.addMouseListener(cc);
 //		displayPane.addMouseMotionListener(new MouseMotionListener() {
@@ -80,19 +79,15 @@ public class Engine3D {
 		addMove("DOWN",0,0,playerSpeed);
 		addMove("X",0,playerSpeed,0);
 		addMove("Z",0,-playerSpeed,0);
-//		addMove("LEFT",-playerSpeed,0,0);
-//		addMove("RIGHT",playerSpeed,0,0);
-		Action newAction = new CameraRotate("LEFT");
-		KeyStroke key = KeyStroke.getKeyStroke("LEFT");
-		displayPane.getInputMap().put(key, "LEFT");
-		displayPane.getActionMap().put("LEFT", newAction);
+		addMove("LEFT",-playerSpeed,0,0);
+		addMove("RIGHT",playerSpeed,0,0);
 		addActions();
 		addMove("released UP",0,0,0);
 		addMove("released DOWN",0,0,0);
 		addMove("released X",0,0,0);
 		addMove("released Z",0,0,0);
-//		addMove("released LEFT",0,0,0);
-//		addMove("released RIGHT",0,0,0);
+		addMove("released LEFT",0,0,0);
+		addMove("released RIGHT",0,0,0);
 		timer = new ScheduledThreadPoolExecutor(2);
 		timer.scheduleAtFixedRate(new Refresh(), 0, 5, TimeUnit.MILLISECONDS);
 	}
@@ -137,39 +132,6 @@ public class Engine3D {
 			}
 		}
 	}
-	class CameraRotate extends AbstractAction{
-		private String name;
-		private double xShift;
-		private double yShift;
-		private double zShift;
-		CameraRotate(String name){
-			super(name);
-		}
-		public void actionPerformed(ActionEvent e) {
-			Timer t = new Timer(10, null);
-			ActionListener rotate = new ActionListener() {
-				int i=0;
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					AffineTransform3D movement = new AffineTransform3D();
-					movement.translate(0, 0, 100);
-					c.setLocalToWorld(c.localToWorld().concatenate(movement));
-					movement.rotateY(Math.PI/200);
-					c.setLocalToWorld(movement.concatenate(c.localToWorld()));
-					movement.translate(0, 0, -100);
-					c.setLocalToWorld(c.localToWorld().concatenate(movement));
-					System.out.println(i);
-					i++;
-					displayPane.repaint();
-					if (i==50)
-						t.stop();
-				}
-			};
-			t.addActionListener(rotate);
-			t.setRepeats(true);
-			t.start();
-		}
-	}
 	class World extends JPanel {
 		public void paintComponent(Graphics g) {
 			Graphics2D g2 = (Graphics2D) g;
@@ -187,26 +149,12 @@ public class Engine3D {
 				}
 			}
 			for (Shape shape:shapes) {
-				Shape tris = shape.changeCoords(shape.localToWorld());
+				Shape tris = shape.changeCoords(tetra.localToWorld());
 				tris = tris.changeCoords(c.worldToLocal());
 				for (int i=0;i<tris.getTriangles().length;i++) {
 					Triangle tri = tris.getTriangles()[i];
-					Triangle[] t = {tri};
-//					System.out.println("huk"+(!c.isVisible(tri,c.screenDistance)&&!c.isInvisible(tri,c.screenDistance)));
-					if (!c.isVisible(tri,c.screenDistance)&&!c.isInvisible(tri, c.screenDistance)) {
-						for (Vertex v:tri.v) {
-//							if (v.z() == 0)
-//								v.coordinate[2] = 0.001;
-						}
-						t = tri.clipTriangle(c.screenDistance);
-					}
-//						t[0].v1.print();
-//						t[0].v2.print();
-//						t[0].v3.print();
-//						System.out.println("\n\n\n\n");
-					cc.setT(0, tri,c,getWidth(),getHeight());
-					for (Triangle tempTri:t) {
-					tempTri = c.worldToRaster(tempTri,getWidth(),getHeight());
+					cc.setT(i, tri,c);
+					Triangle tempTri = c.worldToRaster(tri,getWidth(),getHeight());
 					int minX = (int) Math.max(0, Math.ceil(tempTri.getByX(0).x()));
 					int maxX = (int) Math.min(img.getWidth() - 1,tempTri.getByX(2).x());
 					int minY = (int) Math.max(0, Math.ceil(tempTri.getByY(0).y()));
@@ -224,7 +172,7 @@ public class Engine3D {
 								bary2/=triArea;
 								bary3/=triArea;
 								double depth = 1/(bary1/tempTri.v1.z()+bary2/tempTri.v2.z()+bary3/tempTri.v3.z());
-								if (zBuffer[x][y] > depth&&(depth>c.screenDistance)) {
+								if (zBuffer[x][y] > depth&&(depth>c.getDistance())) {
 									img.setRGB((int)x, (int)y, tri.color.getRGB());
 									zBuffer[x][y] = depth;
 								}else if (zBuffer[x][y] == depth&&!(tempTri.getByZ(2).z()< depth)) {
@@ -233,11 +181,8 @@ public class Engine3D {
 						}
 					}
 	                gg = img.getGraphics();
-//	                gg.drawRect(minX, minY, maxX-minX, maxY-minY);
-	                gg.drawLine((int)tempTri.getByX(0).x(), (int)tempTri.getByX(0).y(), (int)tempTri.getByX(1).x(), (int)tempTri.getByX(1).y());
-	                gg.drawLine((int)tempTri.getByX(1).x(), (int)tempTri.getByX(1).y(), (int)tempTri.getByX(2).x(), (int)tempTri.getByX(2).y());
-	                gg.drawLine((int)tempTri.getByX(2).x(), (int)tempTri.getByX(2).y(), (int)tempTri.getByX(0).x(), (int)tempTri.getByX(0).y());
-				}
+	                gg.setColor(tri.color);
+	                gg.drawRect(minX, minY, maxX-minX, maxY-minY);
 				}
 			}
 			g2.drawImage(img, 0, 0, null);
@@ -256,25 +201,50 @@ public class Engine3D {
 			displayPane.repaint();
 		}
 	}
-	class CameraRotation implements Runnable{
-		int i;
-		public void run() {
-			i=0;
-			Timer t = new Timer(10, null);
-			ActionListener rotate = new ActionListener() {
+	class RotateCamera implements MouseMotionListener,MouseListener{
+		double xStart;
+		double yStart;
+	    int xCoord;
+	    int yCoord;
+		Robot robot;
+		public void mouseDragged(MouseEvent e) {
+			double XZ = Math.toRadians((xCoord-e.getX())/5);
+			double YZ = Math.toRadians((yCoord-e.getY())/5);
+			AffineTransform3D v = new AffineTransform3D();
+			v.rotateX(YZ);
+			v.rotateY(XZ);
+			c.setLocalToWorld(v.concatenate(c.localToWorld()));
+			try {
+			    // These coordinates are screen coordinates
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					AffineTransform3D movement = new AffineTransform3D();
-					movement.rotateY(Math.PI/200);
-					i++;
-					if (i==100)
-						t.stop();
-				}
-			};
-			t.addActionListener(rotate);
-			t.setRepeats(true);
-			t.start();
+			    // Move the cursor
+			    robot = new Robot();
+			    robot.mouseMove(xCoord, yCoord);
+			} catch (AWTException a) {
+			}
+			displayPane.repaint();
+		}
+		public void mouseMoved(MouseEvent e) {
+		}
+		public void mouseClicked(MouseEvent e) {
+		}
+		public void mousePressed(MouseEvent e) {
+			xStart=e.getX();
+			yStart=e.getY();
+			xCoord = 500;
+		    yCoord = 500;
+		}
+		public void mouseReleased(MouseEvent e) {
+			
+			
+		}
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 		
 	}

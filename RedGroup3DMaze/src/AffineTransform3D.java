@@ -36,11 +36,6 @@ public class AffineTransform3D {
 		matrix[1][3] += y;
 		matrix[2][3] += z;
 	}
-	public void relativeTranslate(double x,double y,double z) {
-		AffineTransform3D m = new AffineTransform3D();
-		m.translate(x, y, z);
-		concatenate(m);
-	}
 	public void rotate(double xRad,double yRad, double zRad) {
 		rotateX(xRad);
 		rotateY(yRad);
@@ -48,7 +43,7 @@ public class AffineTransform3D {
 	}
 	public void rotateX(double xRad) {
 		double[][] matrix = {{1,0,0,0},
-				{1,Math.cos(xRad),Math.sin(xRad),0},
+				{0,Math.cos(xRad),Math.sin(xRad),0},
 				{0,-Math.sin(xRad),Math.cos(xRad),0},
 				{0,0,0,1}};
 		this.matrix=this.concatenate(new AffineTransform3D(matrix)).matrix;

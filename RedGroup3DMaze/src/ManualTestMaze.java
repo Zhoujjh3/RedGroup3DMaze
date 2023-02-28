@@ -1,4 +1,3 @@
-
 public class ManualTestMaze {
 	
 	private Room[][][] activeMaze = new Room[4][4][4];

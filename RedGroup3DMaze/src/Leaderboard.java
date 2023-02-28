@@ -18,7 +18,7 @@ public class Leaderboard implements ActionListener {
 	Leaderboard(PlayerData thePlayer) {
 		score = thePlayer.getScore();
 		if (score != 0) {
-			sortScores(score);	
+			sortScores(score);
 		}
 		
 		frame = new JFrame("Leaderboard");
@@ -29,7 +29,7 @@ public class Leaderboard implements ActionListener {
 	    
 	    title = new JTextField("Leaderboard");
 	    title.setEditable(false);
-	    title.setBounds(400, 75, 250, 50);
+	    title.setBounds(400, 75, 275, 50);
 	    title.setFont(new Font("Serif", Font.PLAIN, 40));
 	    title.setBorder(BorderFactory.createEmptyBorder());
 	    contentPane.add(title);
@@ -73,7 +73,7 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	public void restartGame() {
-//		Selection newGame = new Selection();
+		Selection newGame = new Selection();
 	}
 	
 	//if the new score is lower than the 10th score, the 10th score is removed

@@ -10,4 +10,3 @@ public abstract class Entity {
 		l2w = t;
 	}
 }
-

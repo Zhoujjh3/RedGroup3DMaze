@@ -22,12 +22,22 @@ public class ShapesPanel extends JPanel{
 			new Trapdoor(0),
 			new Hatch(0)
 	};
+	
+	public static Shapes[] ceilingAndFloor = {
+			new Ceiling(),
+			new Floor()
+	};
+	
+	
 	public static int timeCounter = 200;
 	
 	public void paintComponent(Graphics g) {
 		g.setColor(new Color(243,243,243));
 		g.fillRect(0, 0, 1000, 700);
 		
+		for(Shapes shape : ceilingAndFloor) {
+			shape.paint(g);
+		}
 		for(Shapes shape : walls) {
 			shape.paint(g);
 		}
