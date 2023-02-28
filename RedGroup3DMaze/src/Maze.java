@@ -28,7 +28,7 @@ public class Maze {
 	
 	public Maze(int difficulty) {
 		this.difficulty = difficulty;
-		// this.minMoves = populateMaze();
+		this.minMoves = populateMaze();
 	}
 	
 	private int populateMaze() {
@@ -40,15 +40,14 @@ public class Maze {
 		} else {
 			baseMaze = new char[4][9][9];
 		}
-		do {
-			setBaseMazeAndWalls(baseMaze, walls);
-			createPath(baseMaze);
-			fillBaseMaze(baseMaze, walls);
-			minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
-		} while (!movesMatchWithDifficulty(minMoves));
+		setBaseMazeAndWalls(baseMaze, walls);
+		createPath(baseMaze);
+		fillBaseMaze(baseMaze, walls);
+		minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
 		setActiveMaze(baseMaze);
 		return minMoves;
 	}
+
 	
 	private void setBaseMazeAndWalls(char[][][] baseMaze, ArrayList<int[]> walls) {
 		for (int level=0; level<baseMaze.length; level++) {
@@ -167,7 +166,7 @@ public class Maze {
 		return true;
 	}
 	
-	private char[][][] createPath(char[][][] baseMaze) {
+private char[][][] createPath(char[][][] baseMaze) {
 		/*
 		 * difficulty = 1: minMoves = 15 - 17
 		 * difficulty = 2: minMoves = 18 - 20
@@ -209,6 +208,10 @@ public class Maze {
 	private int[] createLevelPath(char[][] level, int givenMoves, int startX, int startY){
 //		System.out.println("starting: " + startX + " " + startY);	
 		char[][] levelCopy = new char[level.length][level.length];
+		
+		ArrayList<Integer> xTrace = new ArrayList<Integer>();
+		ArrayList<Integer> yTrace = new ArrayList<Integer>();
+
 
 		for(int i = 0; i<level.length;i++) {
 			for(int j = 0; j<level.length;j++) {
@@ -217,7 +220,9 @@ public class Maze {
 		}
 		boolean pathWorks = false;
 		int endx = startX;
-		int endy = startY;	
+		int endy = startY;
+		xTrace.add(endx);
+		yTrace.add(endy);
 		int[] endCC = null;
 		while(!pathWorks) {
 			
@@ -229,9 +234,11 @@ public class Maze {
 			
 			
 			for(int i = 0; i< givenMoves; i++) {
-				int[] results = moveInDir(level, endx, endy);
+				int[] results = moveInDir(level, endx, endy, xTrace, yTrace);
 				endx = results[0];
 				endy = results[1];
+				xTrace.add(endx);
+				yTrace.add(endy);
 				System.out.println(endx + " " + endy);
 			}
 			
@@ -259,7 +266,7 @@ public class Maze {
 		return endCC;
 	}
 	
-	private int[] moveInDir(char[][] level, int endx, int endy) {
+	private int[] moveInDir(char[][] level, int endx, int endy, ArrayList<Integer> xTrace, ArrayList<Integer> yTrace) {
 		
 		
 		char dir = generateDirection();
@@ -269,28 +276,28 @@ public class Maze {
 //			System.out.println("stuff" + endx +" " + endy);
 			switch(dir) {
 				case 'N':
-					if(meetsConditions(endx, endy, level, 'N')) {
+					if(meetsConditions(endx, endy, level, 'N', xTrace, yTrace)) {
 						level[endx][endy-1] = 'X';
 						endy -= 2;
 						works = true;
 						break;
 					}
 				case 'S':
-					if(meetsConditions(endx, endy, level, 'S')) {
+					if(meetsConditions(endx, endy, level, 'S', xTrace, yTrace)) {
 						level[endx][endy+1] = 'X';
 						endy += 2;
 						works = true;
 						break;
 					}
 				case 'E':
-					if(meetsConditions(endx, endy, level, 'E')) {
+					if(meetsConditions(endx, endy, level, 'E', xTrace, yTrace)) {
 						level[endx-1][endy] = 'X';
 						endx -= 2;
 						works = true;
 						break;
 					}
 				case 'W':
-					if(meetsConditions(endx, endy, level, 'W')) {
+					if(meetsConditions(endx, endy, level, 'W', xTrace, yTrace)) {
 						level[endx+1][endy] = 'X';
 						endx += 2;
 						works = true;
@@ -325,14 +332,15 @@ public class Maze {
 		return 'E';
 	}
 	
-	private boolean meetsConditions(int currentX, int currentY, char level[][], char dir) {
+	private boolean meetsConditions(int currentX, int currentY, char level[][], char dir, ArrayList<Integer> xTrace, ArrayList<Integer> yTrace) {
 		boolean[] backup = {true, true, true, true};
 		int failCounter = 0;
 		boolean meets = true;
 		switch(dir) {
 			case 'N':
 				if(currentY > 2) {
-					if(level[currentX][currentY-1] == 'X' || nextToStart(currentX, currentY-1, level)) {
+					System.out.println(alreadyBeenOn(xTrace, yTrace, currentX, currentY-1));
+					if(alreadyBeenOn(xTrace, yTrace, currentX, currentY-2)|| nextToStart(currentX, currentY-1, level)) {
 						backup[0] = false;
 						failCounter++;
 						meets = false;
@@ -346,7 +354,8 @@ public class Maze {
 				break;
 			case 'S':
 				if(currentY < level[0].length-3) {
-					if(level[currentX][currentY+1] == 'X' || nextToStart(currentX, currentY+1, level)) {
+					System.out.println(alreadyBeenOn(xTrace, yTrace, currentX, currentY+1));
+					if(alreadyBeenOn(xTrace, yTrace, currentX, currentY+2)|| nextToStart(currentX, currentY+1, level)) {
 						backup[1] = false;
 						failCounter++;
 						meets = false;
@@ -361,7 +370,8 @@ public class Maze {
 				break;
 			case 'W':
 				if(currentX < level.length-3) {
-					if(level[currentX+1][currentY] == 'X' || nextToStart(currentX+1, currentY, level)) {
+					System.out.println(alreadyBeenOn(xTrace, yTrace, currentX+1, currentY));
+					if(alreadyBeenOn(xTrace, yTrace, currentX+2, currentY)|| nextToStart(currentX+1, currentY, level)) {
 						backup[2] = false;
 						failCounter++;
 						meets = false;
@@ -375,7 +385,8 @@ public class Maze {
 				break;
 			case 'E':
 				if(currentX>2) {
-					if(level[currentX-1][currentY] == 'X' || nextToStart(currentX-1, currentY, level)){
+					System.out.println(alreadyBeenOn(xTrace, yTrace, currentX-1, currentY));
+					if(alreadyBeenOn(xTrace, yTrace, currentX-2, currentY)|| nextToStart(currentX-1, currentY, level)){
 						backup[3] = false;
 						failCounter++;
 						meets = false;
@@ -416,6 +427,20 @@ public class Maze {
 		}
 		return boolVal;
 	}
+	
+	private boolean alreadyBeenOn(ArrayList<Integer> xTrace, ArrayList<Integer> yTrace, int x, int y) {
+		boolean result = false;
+		System.out.println("X:" + x + " Y:" + y );
+		for(int i = 0; i<xTrace.size(); i++) {
+			System.out.print(xTrace.get(i) + " " + yTrace.get(i) + " ||||");
+			if(xTrace.get(i).equals(x) && yTrace.get(i).equals(y)) {
+				result = true;
+			}
+		}
+		System.out.println();
+		return result;
+	}
+
 	
 	
 	
@@ -611,6 +636,8 @@ public class Maze {
 			};
 		
 		maze = new Maze(test);
+		
+		Maze maze2 = new Maze(2);
 		
 //		int[] x = maze.createLevelPath(test[0], 6, 1, 1);
 //		maze.createLevelPath(test[1], 6, 1, 1);
