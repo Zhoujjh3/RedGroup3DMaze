@@ -1,7 +1,6 @@
 public class Room {
 	private boolean[] directions = new boolean[6];
 	private int[] coordinates = new int[3];
-	private boolean marked;
 	private boolean visited;
 	
 	/*
@@ -45,15 +44,6 @@ public class Room {
 			return coordinates[2];
 		}
 		return -1;
-	}
-	public void mark() {
-		marked = true;
-	}
-	public void unMark() {
-		marked = false;
-	}
-	public boolean isMarked() {
-		return marked;
 	}
 	public boolean hasVisited() {
 		boolean x = visited;
