@@ -1,15 +1,21 @@
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 public class Triangle {
 	Vertex v1;
 	Vertex v2;
 	Vertex v3;
+	Vertex[] v;
 	Color color;
 	Triangle(Vertex v1, Vertex v2, Vertex v3, Color color) {
 		this.v1 = v1;
 		this.v2 = v2;
 		this.v3 = v3;
+		v = new Vertex[3];
+		v[0] = v1;
+		v[1] = v2;
+		v[2] = v3;
 //		System.out.print(Arrays.toString(this.v3.coordinate));
 		this.color = color;
 	}
@@ -17,11 +23,55 @@ public class Triangle {
 		this.v1 = tri.v1;
 		this.v2 = tri.v2;
 		this.v3 = tri.v3;
+		v = new Vertex[3];
+		v[0] = v1;
+		v[1] = v2;
+		v[2] = v3;
 		this.color = tri.color;
 	}
 	public Triangle transform(AffineTransform3D t) {
 		return new Triangle(v1.transform(t),v2.transform(t),
 				v3.transform(t), color);
+	}
+	public Triangle[] clipTriangle(double nearClip) {
+		ArrayList<Vertex> outVerts = new ArrayList<Vertex>();
+		ArrayList<Vertex> inVerts = new ArrayList<Vertex>();
+		ArrayList<Vertex> newVerts = new ArrayList<Vertex>();
+		for(Vertex vv: v) {
+			if (vv.z()<0) {
+				inVerts.add(vv);
+				newVerts.add(vv);
+			}else outVerts.add(vv);
+		}
+//		System.out.println(newVerts.size());
+		for(Vertex inV: inVerts) {
+			for(Vertex outV: outVerts) {
+				Vertex vector = new Vertex(outV.x()-inV.x(), outV.y()-inV.y(),outV.z()-inV.z());
+				double t = (nearClip-inV.z())/(outV.z()-inV.z());
+				double x = inV.x()+((outV.x()-inV.x())*t);
+				double y = inV.y()+((outV.y()-inV.y())*t);
+//				System.out.println(t+": "+x+", "+y+", "+nearClip);
+//				System.out.println(t+": "+vector.x()+", "+vector.y()+", "+vector.z());
+				newVerts.add(new Vertex(x,y,-nearClip));
+			}
+		}
+//		System.out.println(newVerts.size());
+//		newVerts.get(0).print();
+//		newVerts.get(1).print();
+//		newVerts.get(2).print();
+//		newVerts.get(3).print();
+		
+		if (newVerts.size()==3) {
+			return new Triangle[] {new Triangle
+					(newVerts.get(0),newVerts.get(1),newVerts.get(2),color)};
+		}else {
+			Triangle[] t = {new Triangle
+					(newVerts.get(0),newVerts.get(1),newVerts.get(2),color),null};
+				t[1] = new Triangle
+				(t[0].v2, t[0].v3, newVerts.get(3),color);
+			return t;
+		}
+		
 	}
 	public void toClockwise() {
 		Vertex n1 = new Vertex

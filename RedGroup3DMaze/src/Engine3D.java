@@ -43,6 +43,7 @@ public class Engine3D {
 		Vertex v6 = new Vertex(-100, -100, 100);
 		Vertex v7 = new Vertex(-100, -100, -100);
 		Vertex v8 = new Vertex(100, -100, -100);
+		tetra = new Shape(new Triangle[] {new Triangle(v1,v4,v8,Color.BLUE)}, new double[] {0,0,0});
 		room = new RectanglePrism(new Vertex[]{v1,v2,v3,v4,v5,v6,v7,v8},
 				new double[]{0,0,0}, new Color[]{Color.BLUE,Color.BLUE,
 						Color.CYAN,Color.CYAN,Color.GREEN,Color.MAGENTA});
@@ -153,8 +154,22 @@ public class Engine3D {
 				tris = tris.changeCoords(c.worldToLocal());
 				for (int i=0;i<tris.getTriangles().length;i++) {
 					Triangle tri = tris.getTriangles()[i];
-					cc.setT(i, tri,c);
-					Triangle tempTri = c.worldToRaster(tri,getWidth(),getHeight());
+					Triangle[] t = {tri};
+//					System.out.println("huk"+(!c.isVisible(tri,c.screenDistance)&&!c.isInvisible(tri,c.screenDistance)));
+					if (!c.isVisible(tri,c.screenDistance)&&!c.isInvisible(tri, c.screenDistance)) {
+						for (Vertex v:tri.v) {
+//							if (v.z() == 0)
+//								v.coordinate[2] = 0.001;
+						}
+						t = tri.clipTriangle(c.screenDistance);
+					}
+//						t[0].v1.print();
+//						t[0].v2.print();
+//						t[0].v3.print();
+//						System.out.println("\n\n\n\n");
+					cc.setT(0, tri,c,getWidth(),getHeight());
+					for (Triangle tempTri:t) {
+					tempTri = c.worldToRaster(tempTri,getWidth(),getHeight());
 					int minX = (int) Math.max(0, Math.ceil(tempTri.getByX(0).x()));
 					int maxX = (int) Math.min(img.getWidth() - 1,tempTri.getByX(2).x());
 					int minY = (int) Math.max(0, Math.ceil(tempTri.getByY(0).y()));
@@ -172,7 +187,7 @@ public class Engine3D {
 								bary2/=triArea;
 								bary3/=triArea;
 								double depth = 1/(bary1/tempTri.v1.z()+bary2/tempTri.v2.z()+bary3/tempTri.v3.z());
-								if (zBuffer[x][y] > depth&&(depth>c.getDistance())) {
+								if (zBuffer[x][y] > depth&&(depth>c.screenDistance)) {
 									img.setRGB((int)x, (int)y, tri.color.getRGB());
 									zBuffer[x][y] = depth;
 								}else if (zBuffer[x][y] == depth&&!(tempTri.getByZ(2).z()< depth)) {
@@ -181,8 +196,11 @@ public class Engine3D {
 						}
 					}
 	                gg = img.getGraphics();
-	                gg.setColor(tri.color);
-	                gg.drawRect(minX, minY, maxX-minX, maxY-minY);
+//	                gg.drawRect(minX, minY, maxX-minX, maxY-minY);
+	                gg.drawLine((int)tempTri.getByX(0).x(), (int)tempTri.getByX(0).y(), (int)tempTri.getByX(1).x(), (int)tempTri.getByX(1).y());
+	                gg.drawLine((int)tempTri.getByX(1).x(), (int)tempTri.getByX(1).y(), (int)tempTri.getByX(2).x(), (int)tempTri.getByX(2).y());
+	                gg.drawLine((int)tempTri.getByX(2).x(), (int)tempTri.getByX(2).y(), (int)tempTri.getByX(0).x(), (int)tempTri.getByX(0).y());
+				}
 				}
 			}
 			g2.drawImage(img, 0, 0, null);
