@@ -55,6 +55,9 @@ public class Maze {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
 					if (x%2 == 1 && y%2 == 1) {
 						baseMaze[level][x][y] = 'Z';
+						if (level < baseMaze.length-1 && ((int)(Math.random()*100)) < 30) {
+						 	walls.add(getCoords(level, x, y));
+						}
 					} else if (x > 0 && x < baseMaze[0].length-1 && y > 0 && y < baseMaze[0][0].length-1 && (x%2 == 1 || y%2 == 1)) { 
 						baseMaze[level][x][y] = 'F';
 						walls.add(getCoords(level, x, y));
@@ -117,19 +120,6 @@ public class Maze {
 				}
 			}
 		}
-		
-		/*
-		int rCounter = 0;
-		for (int level=0; level<floodingMaze.length; level++) {
-			for (int x=0; x<floodingMaze[0].length; x++) {
-				for (int y=0; y<floodingMaze[0][0].length; y++) {
-					if (floodingMaze[level][x][y] == 'R' && baseMaze[level][x][y] != 'T') {
-						rCounter++;
-					}
-				}
-			}
-		}
-		*/
 		
 		if(floodingMaze[startz][startx][starty] == 'R' && floodingMaze[endz][endx][endy] == 'R')
 			return findRPath(floodingMaze, baseMaze, startCoords, endCoords, startCoords, 99) / 2;
@@ -483,24 +473,47 @@ public class Maze {
 			int[] wallCoords = walls.remove((int)(Math.random()*walls.size()));
 			int[] startCoords = new int[3];
 			int[] endCoords = new int[3];
-			startCoords[0] = wallCoords[0];
-			endCoords[0] = wallCoords[0];
-			if (baseMaze[wallCoords[0]][wallCoords[1]-1][wallCoords[2]] == 'A' && baseMaze[wallCoords[0]][wallCoords[1]+1][wallCoords[2]] == 'A') {
+			char charAtCoord = baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]];
+			
+			if (charAtCoord == 'F') {
+				startCoords[0] = wallCoords[0];
+				endCoords[0] = wallCoords[0];
+				if (baseMaze[wallCoords[0]][wallCoords[1]-1][wallCoords[2]] == 'A' && baseMaze[wallCoords[0]][wallCoords[1]+1][wallCoords[2]] == 'A') {
+					startCoords[1] = wallCoords[1];
+					startCoords[2] = wallCoords[2]-1;
+					endCoords[1] = wallCoords[1];
+					endCoords[2] = wallCoords[2]+1;
+				} else {
+					startCoords[1] = wallCoords[1]-1;
+					startCoords[2] = wallCoords[2];
+					endCoords[1] = wallCoords[1]+1;
+					endCoords[2] = wallCoords[2];
+				}
+				if (pathFind(baseMaze, startCoords, endCoords) < 0) {
+					baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
+				}
+			} else if (charAtCoord == 'Z' || charAtCoord == 'U' || charAtCoord == 'D') {
+				startCoords[0] = wallCoords[0];
+				endCoords[0] = wallCoords[0]+1;
 				startCoords[1] = wallCoords[1];
-				startCoords[2] = wallCoords[2]-1;
 				endCoords[1] = wallCoords[1];
-				endCoords[2] = wallCoords[2]+1;
-			} else {
-				startCoords[1] = wallCoords[1]-1;
 				startCoords[2] = wallCoords[2];
-				endCoords[1] = wallCoords[1]+1;
 				endCoords[2] = wallCoords[2];
-			}
-			if (pathFind(baseMaze, startCoords, endCoords) < 0) {
-				baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
+				if (pathFind(baseMaze, startCoords, endCoords) < 0) {
+					if (charAtCoord == 'U') {
+						baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'B';
+					} else {
+						baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'D';
+					}
+					char charUnderCoord = baseMaze[endCoords[0]][endCoords[1]][endCoords[2]];
+					if (charUnderCoord == 'D') {
+						baseMaze[endCoords[0]][endCoords[1]][endCoords[2]] = 'B';
+					} else {
+						baseMaze[endCoords[0]][endCoords[1]][endCoords[2]] = 'U';
+					}
+				}
 			}
 		}
-		
 	}
 	
 	public Room getRoom(int level, int x, int y) {
