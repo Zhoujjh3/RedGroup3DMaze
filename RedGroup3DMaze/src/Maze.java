@@ -31,6 +31,30 @@ public class Maze {
 		this.minMoves = populateMaze();
 	}
 	
+	public Room getRoom(int level, int x, int y) {
+		return activeMaze[level][x][y];
+	}
+	
+	public int getDifficulty() {
+		return difficulty;
+	}
+	
+	public int getMinMoves() {
+		return minMoves;
+	}
+	
+	public int getMazeSize() {
+		switch (difficulty) {
+		case 1: 
+			return 4;
+		case 2:
+			return 4;
+		case 3:
+			return 5;
+		default:return 4;
+		}
+	}
+	
 	private int populateMaze() {
 		char[][][] baseMaze;
 		ArrayList<int[]> walls = new ArrayList<int[]>();
@@ -122,7 +146,7 @@ public class Maze {
 		}
 		
 		if(floodingMaze[startz][startx][starty] == 'R' && floodingMaze[endz][endx][endy] == 'R')
-			return findRPath(floodingMaze, baseMaze, startCoords, endCoords, startCoords, 99) / 2;
+			return findRPath(floodingMaze, baseMaze, startCoords, endCoords, startCoords, 50) / 2;
 		return -1;
 	}
 	
@@ -149,6 +173,7 @@ public class Maze {
 	}
 	
 	private int findRPath(char[][][] floodingMaze, char[][][] baseMaze, int[] startCoords, int[] endCoords, int[] previousCoords, int maxDepth) {
+		// For efficiency, put maxDepth as just over maximum moves * 2
 		if (coordsMatch(startCoords, endCoords) || maxDepth < 1) {
 			return 0;
 		} else {
@@ -516,29 +541,7 @@ public class Maze {
 		}
 	}
 	
-	public Room getRoom(int level, int x, int y) {
-		Room room = new Room(getCoords(level, x, y), new boolean[] {
-				activeMaze[level][x][y].getDirection('N'),
-				activeMaze[level][x][y].getDirection('E'),
-				activeMaze[level][x][y].getDirection('S'),
-				activeMaze[level][x][y].getDirection('W'),
-				activeMaze[level][x][y].getDirection('U'),
-				activeMaze[level][x][y].getDirection('D'),
-		});
-		return room;
-	}
-	
-	
-	public int getDifficulty() {
-		return difficulty;
-	}
-	
-	
-	public int getMinMoves() {
-		return minMoves;
-	}
-	
-	private void setActiveMaze(char[][][] baseMaze) { // Untested
+	private void setActiveMaze(char[][][] baseMaze) {
 		activeMaze = new Room[baseMaze.length][(baseMaze[0].length-1)/2][(baseMaze[0][0].length-1)/2];
 		for(int level = 0; level<activeMaze.length; level++) {
 			for(int x = 0; x<activeMaze[0].length; x++) {
@@ -553,23 +556,9 @@ public class Maze {
 		}
 	}
 	
-	public int getMazeSize() {
-		switch (difficulty) {
-		case 1: 
-			return 4;
-		case 2:
-			return 4;
-		case 3:
-			return 5;
-		default:return 4;
-		}
-	}
-	
-	public boolean[] getRoomDirections(char baseMaze[][][], int level, int x, int y){
-
+	private boolean[] getRoomDirections(char baseMaze[][][], int level, int x, int y){
 		boolean[] result = {false, false, false, false, false, false};
-
-
+		
 		switch (baseMaze[level][x][y]) {
 		case 'U':
 			result[4] = true;
