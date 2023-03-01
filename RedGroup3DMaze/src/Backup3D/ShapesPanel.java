@@ -1,11 +1,16 @@
 package Backup3D;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 public class ShapesPanel extends JPanel{
+	
+	ShapesPanel(int width, int height) {
+		setPreferredSize(new Dimension(width, height));
+	}
 	
 	public static Shapes[] walls = {
 		new Wall(0),
@@ -33,7 +38,7 @@ public class ShapesPanel extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		g.setColor(new Color(243,243,243));
-		g.fillRect(0, 0, 1000, 700);
+		g.fillRect(0, 0, DrawShapes.width, DrawShapes.height);
 		
 		for(Shapes shape : ceilingAndFloor) {
 			shape.paint(g);

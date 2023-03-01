@@ -2,7 +2,6 @@ package Backup3D;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -11,11 +10,12 @@ public class DrawShapes {
 	public JFrame screen;
 	public static JPanel panel;
 	public static boolean clicked;
+	public static int width = 1000;
+	public static int height = 700;
 	
 	public DrawShapes() {
 		screen = new JFrame();
-		panel = new ShapesPanel();
-		panel.setPreferredSize(new Dimension(1000, 700));
+		panel = new ShapesPanel(width, height);
 		panel.addMouseListener(new ShapesClicker());
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		screen.setContentPane(panel);
@@ -26,6 +26,12 @@ public class DrawShapes {
 	
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			if(width != panel.getWidth() || height != panel.getHeight()) {
+				ShapesPanel.timeCounter = 0;
+			}
+			width = panel.getWidth();
+			height = panel.getHeight();
+			System.out.println(ShapesPanel.timeCounter);
 			for(Shapes shape : ShapesPanel.ceilingAndFloor) {
 				shape.update();
 			}
