@@ -4,7 +4,7 @@ public class Room {
 	private boolean visited;
 	
 	/*
-	 * Coordinates are stored: {X, Y, Z}
+	 * Coordinates are stored: {Z, X, Y}
 	 * Directions are stored: {N, E, S, W, U, D}
 	 */
 	public Room(int[] coordinates, boolean[] directions) {
@@ -36,11 +36,11 @@ public class Room {
 	}
 	
 	public int getCoordinate(char value) {
-		if (value == 'X') {
+		if (value == 'Z') {
 			return coordinates[0];
-		} else if (value == 'Y') {
+		} else if (value == 'X') {
 			return coordinates[1];
-		} else if (value == 'Z') {
+		} else if (value == 'Y') {
 			return coordinates[2];
 		}
 		return -1;
