@@ -45,14 +45,18 @@ public class MapTester {
         });
         levelDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                levelIncrement--;
-                panel.repaint();
+                if (player.getCoordinate('Z') + levelIncrement != 0) {
+                    levelIncrement--;
+                    panel.repaint();
+                }
             }
         });
         levelUp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                levelIncrement++;
-                panel.repaint();
+                if (player.getCoordinate('Z') + levelIncrement != 3) {
+                    levelIncrement++;
+                    panel.repaint();
+                }
             }
         });
         frame.pack();
@@ -64,6 +68,16 @@ public class MapTester {
     class Panel extends JPanel{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
+            if (player.getCoordinate('Z') + levelIncrement == 3) {
+                levelUp.setBackground(Color.GRAY);
+            } else {
+                levelUp.setBackground(Color.WHITE);
+            }
+            if (player.getCoordinate('Z') + levelIncrement == 0) {
+                levelDown.setBackground(Color.GRAY);
+            } else {
+                levelDown.setBackground(Color.WHITE);
+            }
             if (header.getView().equals("CHAMBER")){
                 map.display(g, player.getCoordinate('Z') + levelIncrement);
                 levelDown.setVisible(true);
