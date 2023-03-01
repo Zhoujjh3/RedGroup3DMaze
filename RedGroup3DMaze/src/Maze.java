@@ -207,19 +207,20 @@ public class Maze {
 		 */
 		int aimMinMoves;
 		if (difficulty == 1) {
-			aimMinMoves = (int)(Math.random()*2) + 15;
+			aimMinMoves = (int)(Math.random()*2) + 15 - 3;
 		} else if (difficulty == 2) {
-			aimMinMoves = (int)(Math.random()*2) + 18;
+			aimMinMoves = (int)(Math.random()*2) + 18 - 3;
 			System.out.println(aimMinMoves);
 		} else {
-			aimMinMoves = (int)(Math.random()*2) + 22;
+			aimMinMoves = (int)(Math.random()*2) + 22 - 4;
 			System.out.println(baseMaze.length);
 		}
 	
 		int movesPerLevel = aimMinMoves/baseMaze.length;
 		System.out.println(movesPerLevel);
 	
-		int[] endC = this.createLevelPath(baseMaze[0], movesPerLevel, 1, 1);
+		int[] endC = this.createLevelPath(baseMaze[0], movesPerLevel, 1, 1, "first");
+		aimMinMoves -= movesPerLevel;
 		int endx = endC[0];
 		int endy = endC[1];
 	//	endC = this.createLevelPath(baseMaze[1], movesPerLevel, 1, 1);
@@ -228,7 +229,13 @@ public class Maze {
 		
 		
 		for(int i = 1; i< baseMaze.length;i++) {
-			endC = this.createLevelPath(baseMaze[i], movesPerLevel, endC[1], endC[2]);
+			if(i < baseMaze.length-1) {
+				endC = this.createLevelPath(baseMaze[i], movesPerLevel, endC[1], endC[2], "middle");
+				aimMinMoves -= movesPerLevel;
+			}
+			else
+				endC = this.createLevelPath(baseMaze[i], aimMinMoves, endC[1], endC[2], "end");
+
 	//		System.out.println(i);
 	//		for(int k = 0; k<baseMaze[1].length;k++) {
 	//			for(int j = 0; j<baseMaze[1].length;j++) {
@@ -241,7 +248,7 @@ public class Maze {
 		return baseMaze;
 	}
 
-	private int[] createLevelPath(char[][] level, int givenMoves, int startX, int startY){
+	private int[] createLevelPath(char[][] level, int givenMoves, int startX, int startY, String levelType){
 	//	System.out.println("starting: " + startX + " " + startY);	
 		char[][] levelCopy = new char[level.length][level.length];
 		
@@ -282,7 +289,15 @@ public class Maze {
 //					System.out.println(endx + " " + endy);
 				}
 			}
-			
+			if(levelType.equals("end")) {
+				level[startX][startY] = 'U';
+			} if(levelType.equals("middle")) {
+				level[startX][startY] = 'U';
+				level[xTrace.get(xTrace.size()-1)][yTrace.get(yTrace.size()-1)] = 'D';
+			} if(levelType.equals("first")) {
+				level[xTrace.get(xTrace.size()-1)][yTrace.get(yTrace.size()-1)] = 'D';
+			}
+						
 			if(!failure) {
 				int[] startC = {0, startX, startY};
 				int[] endC = {0, endx, endy};
@@ -297,6 +312,7 @@ public class Maze {
 	//			System.out.println();
 	//		}
 	//		System.out.println("------------------------------");
+			
 			yTrace.clear();
 			xTrace.clear();
 		}
@@ -309,6 +325,7 @@ public class Maze {
 		}
 		System.out.println(xTrace.size());
 		System.out.println("---------------------");
+		
 		return endCC;
 	}
 	
@@ -327,28 +344,28 @@ public class Maze {
 			switch(dir) {
 				case 'N':
 					if(meetsConditions(endx, endy, level, 'N', xTrace, yTrace)) {
-						level[endx][endy-1] = 'X';
+						level[endx][endy-1] = 'T';
 						endy -= 2;
 						works = true;
 						break;
 					}
 				case 'S':
 					if(meetsConditions(endx, endy, level, 'S', xTrace, yTrace)) {
-						level[endx][endy+1] = 'X';
+						level[endx][endy+1] = 'T';
 						endy += 2;
 						works = true;
 						break;
 					}
 				case 'E':
 					if(meetsConditions(endx, endy, level, 'E', xTrace, yTrace)) {
-						level[endx-1][endy] = 'X';
+						level[endx-1][endy] = 'T';
 						endx -= 2;
 						works = true;
 						break;
 					}
 				case 'W':
 					if(meetsConditions(endx, endy, level, 'W', xTrace, yTrace)) {
-						level[endx+1][endy] = 'X';
+						level[endx+1][endy] = 'T';
 						endx += 2;
 						works = true;
 						break;
@@ -701,7 +718,7 @@ public class Maze {
 		
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(3);
+		Maze maze2 = new Maze(2);
 		
 //		int[] x = maze.createLevelPath(test[0], 6, 1, 1);
 //		maze.createLevelPath(test[1], 6, 1, 1);
