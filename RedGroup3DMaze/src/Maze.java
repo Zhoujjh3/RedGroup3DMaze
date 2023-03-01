@@ -339,7 +339,6 @@ public class Maze {
 			testCounter++;
 			if(testCounter ==9)
 				System.out.println("RIGHT HERE RNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
-	//		System.out.println("dir1" + dir);
 	//		System.out.println("stuff" + endx +" " + endy);
 			switch(dir) {
 				case 'N':
