@@ -11,16 +11,16 @@ public class Header {
         chamberView = true;
     }
 
-    public void display(Graphics g, int scaleFactor) {
+    public void display(Graphics g, double scaleFactor) {
         g.setColor(Color.gray);
-        g.fillRect(0,0,1000* scaleFactor,40 * scaleFactor);
+        g.fillRect(0,0,(int)(1000* scaleFactor),(int)(40 * scaleFactor));
         g.setColor(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
-        g.drawString("X: " + (player.getCoordinate('X') + 1), 20* scaleFactor, 25 * scaleFactor);
-        g.drawString("Y: " + (player.getCoordinate('Y') + 1), 60 * scaleFactor, 25 * scaleFactor);
-        g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), 250 * scaleFactor, 25 * scaleFactor);
-        g.drawString("Moves: " + player.getScore(), 510 * scaleFactor, 25 * scaleFactor);
-        g.drawString(Character.toString(player.getDirection()), 640 * scaleFactor, 25 * scaleFactor);
+        g.drawString("X: " + (player.getCoordinate('X') + 1), (int)(20* scaleFactor), (int)(25 * scaleFactor));
+        g.drawString("Y: " + (player.getCoordinate('Y') + 1), (int)(60 * scaleFactor), (int)(25 * scaleFactor));
+        g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), (int)(250 * scaleFactor), (int)(25 * scaleFactor));
+        g.drawString("Moves: " + player.getScore(), (int)(510 * scaleFactor), (int)(25 * scaleFactor));
+        g.drawString(Character.toString(player.getDirection()), (int)(640 * scaleFactor), (int)(25 * scaleFactor));
 //        g.setColor(Color.BLACK);
 //        g.drawRect(740,7,100,25);
 
