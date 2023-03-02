@@ -274,7 +274,6 @@ public class Maze {
 				}
 			}
 			
-			
 			for(int i = 0; i< givenMoves+(counter/1000); i++) {
 				int[] results = moveInDir(level, endx, endy, xTrace, yTrace);
 				if(results[0] == level.length-1 && results[1] == level.length-1) {
