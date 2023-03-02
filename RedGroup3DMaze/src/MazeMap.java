@@ -23,7 +23,12 @@ public class MazeMap {
 		
 	}
 	
-	public void display(Graphics g, int newLevel) {
+	public void display(Graphics g, int newLevel, Dimension dimension) {
+		if (dimension.height/dimension.width>=0.75) {
+			scale = dimension.width/1000;
+		} else {
+			scale = dimension.height/750;
+		}
 		width = 166.25*scale;
 		Painter painter = new Painter();
 		painter.displayGrid(g);

@@ -79,7 +79,7 @@ public class MapTester {
                 levelDown.setBackground(Color.WHITE);
             }
             if (header.getView().equals("CHAMBER")){
-                map.display(g, player.getCoordinate('Z') + levelIncrement);
+                map.display(g, player.getCoordinate('Z') + levelIncrement, this.getSize());
                 levelDown.setVisible(true);
                 levelUp.setVisible(true);
             } else {
