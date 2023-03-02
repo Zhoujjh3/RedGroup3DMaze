@@ -8,7 +8,7 @@ public class MazeMap {
 	private PlayerData player;
 	private int size;
 	private double width;
-	private double scale;
+	private double scale = 1;
 	
 	MazeMap(ManualTestMaze maze, PlayerData player) {
 		this.maze = maze;
@@ -23,7 +23,13 @@ public class MazeMap {
 		
 	}
 	
-	public void display(Graphics g, int newLevel) {
+	public void display(Graphics g, int newLevel, Dimension dimension) {
+		if (dimension.height/dimension.width>=0.75) {
+			scale = dimension.width/1000;
+		} else {
+			scale = dimension.height/750;
+		}
+		width = 166.25*scale;
 		Painter painter = new Painter();
 		painter.displayGrid(g);
 		int length = size;
@@ -151,10 +157,10 @@ public class MazeMap {
 			int[] hatchX = {180, 250, 320, 320, 250, 180, 180};
 			int[] hatchY = {70, 55, 70, 85, 70, 85, 70};
 			if (size==5) {
-				int[] tempHatchX = {(int)(180*.8), (int)(250*.8), (int)(320*.8), (int)(320*.8), (int)(250*.8), (int)(180*.8), (int)(180*.8)};
-				hatchX = tempHatchX;
-				int[] tempHatchY = {(int)(70*.8), (int)(55*.8), (int)(70*.8), (int)(85*.8), (int)(70*.8), (int)(85*.8), (int)(50*.8)};
-				hatchY = tempHatchY;
+				for (int i=0; i<7; i++) {
+					hatchX[i] = (int)(hatchX[i]*.8);
+					hatchY[i] = (int)(hatchY[i]*.8);
+				}
 			}
 			for (int i=0; i<7; i++) {
 				hatchX[i] = (int)((hatchX[i] + startX)*scale);
@@ -166,13 +172,19 @@ public class MazeMap {
 		}
 		
 		public void displayPlayerIconN(Graphics g, int[] coord) {
-			int startX = coord[0]*width;
-			int startY = coord[1]*width;
+			double startX = coord[0]*width;
+			double startY = coord[1]*width;
 			int[] playerIconX = {220, 250, 280, 265, 250, 235, 220};
 			int[] playerIconY = {140, 110, 140, 140, 125, 140, 140};
+			if (size==5) {
+				for (int i=0; i<7; i++) {
+					playerIconX[i] = (int)(playerIconX[i]*.8);
+					playerIconY[i] = (int)(playerIconY[i]*.8);
+				}
+			}
 			for (int i=0; i<7; i++) {
-				playerIconX[i] = playerIconX[i] + startX;
-				playerIconY[i] = playerIconY[i] + startY;
+				playerIconX[i] = (int)((playerIconX[i] + startX)*scale);
+				playerIconY[i] = (int)((playerIconY[i] + startY)*scale);
 			}
 			
 			g.setColor(Color.black);
@@ -182,14 +194,19 @@ public class MazeMap {
 			g.fillPolygon(playerIconX, playerIconY, 7);
 		}
 		public void displayPlayerIconE(Graphics g, int[] coord) {
-			int startX = (coord[0]+1)*width;
-			int startY = coord[1]*width;
+			double startX = (coord[0]+1)*width;
+			double startY = coord[1]*width;
 			int[] playerIconX = {140, 110, 140, 140, 125, 140, 140};
 			int[] playerIconY = {220, 250, 280, 265, 250, 235, 220};
+			if (size==5) {
+				for (int i=0; i<7; i++) {
+					playerIconX[i] = (int)(playerIconX[i]*.8);
+					playerIconY[i] = (int)(playerIconY[i]*.8);
+				}
+			}
 			for (int i=0; i<7; i++) {
-				playerIconX[i] = -playerIconX[i] + startX+165+40;
-				
-				playerIconY[i] = playerIconY[i] + startY-165+40;
+				playerIconX[i] = (int)((-playerIconX[i] + startX+165+40)*scale);
+				playerIconY[i] = (int)((playerIconY[i] + startY-165+40)*scale);
 			}
 			
 			g.setColor(Color.black);
@@ -199,14 +216,19 @@ public class MazeMap {
 			g.fillPolygon(playerIconX, playerIconY, 7);
 		}
 		public void displayPlayerIconS(Graphics g, int[] coord) {
-			int startX = (coord[0]+1)*width;
-			int startY = (coord[1]+1)*width;
+			double startX = (coord[0]+1)*width;
+			double startY = (coord[1]+1)*width;
 			int[] playerIconX = {220, 250, 280, 265, 250, 235, 220};
 			int[] playerIconY = {140, 110, 140, 140, 125, 140, 140};
+			if (size==5) {
+				for (int i=0; i<7; i++) {
+					playerIconX[i] = (int)(playerIconX[i]*.8);
+					playerIconY[i] = (int)(playerIconY[i]*.8);
+				}
+			}
 			for (int i=0; i<7; i++) {
-				playerIconX[i] = -playerIconX[i] + startX+330;
-				
-				playerIconY[i] = -playerIconY[i] + startY+80;
+				playerIconX[i] = (int)((-playerIconX[i] + startX+330)*scale);
+				playerIconY[i] = (int)((-playerIconY[i] + startY+80)*scale);
 			}
 			
 			g.setColor(Color.black);
@@ -216,14 +238,19 @@ public class MazeMap {
 			g.fillPolygon(playerIconX, playerIconY, 7);
 		}
 		public void displayPlayerIconW(Graphics g, int[] coord) {
-			int startX = coord[0]*width;
-			int startY = coord[1]*width;
+			double startX = coord[0]*width;
+			double startY = coord[1]*width;
 			int[] playerIconX = {140, 110, 140, 140, 125, 140, 140};
 			int[] playerIconY = {220, 250, 280, 265, 250, 235, 220};
+			if (size==5) {
+				for (int i=0; i<7; i++) {
+					playerIconX[i] = (int)(playerIconX[i]*.8);
+					playerIconY[i] = (int)(playerIconY[i]*.8);
+				}
+			}
 			for (int i=0; i<7; i++) {
-				playerIconX[i] = playerIconX[i] + startX-40+165;
-				
-				playerIconY[i] = playerIconY[i] + startY-165+40;
+				playerIconX[i] = (int)((-playerIconX[i] + startX-40+165)*scale);
+				playerIconY[i] = (int)((playerIconY[i] + startY-165+40)*scale);
 			}
 			
 			g.setColor(Color.black);
@@ -235,24 +262,29 @@ public class MazeMap {
 		
 		public void gray(Graphics g, int[] coord) {
 			g.setColor(Color.darkGray);
-			g.fillRect(170+coord[0]*width, 45+coord[1]*width, width-5, width-5);
+			if (size==5) {
+				g.fillRect((int)((170*.8+coord[0]*width)*scale), (int)((45*.8+coord[1]*width)*scale), (int)((width-4)*scale), (int)((width-4)*scale));
+			} else {
+				g.fillRect((int)((170+coord[0]*width)*scale), (int)((45+coord[1]*width)*scale), (int)((width-5)*scale), (int)((width-5)*scale));
+
+			}
 		}
 		
 		public void displayDoorN(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165+(int)(0.25*width)+coord[0]*width, 40+coord[1]*width, (int)(0.5*width), 5);
-		}
-		public void displayDoorW(Graphics g, int[] coord) {
-			g.setColor(Color.green);
-			g.fillRect(165+coord[0]*width, 40+(int)(0.25*width)+coord[1]*width, 5, (int)(0.5*width));
-		}
-		public void displayDoorS(Graphics g, int[] coord) {
-			g.setColor(Color.green);
-			g.fillRect(165+(int)(0.25*width)+coord[0]*width, 40+width+coord[1]*width, (int)(0.5*width), 5);
+			g.fillRect((int)((165+(0.25+coord[0])*width)*scale), (int)((40+coord[1]*width)*scale), (int)(((int)(0.5*width))*scale), (int)((5)*scale));
 		}
 		public void displayDoorE(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(165+width+coord[0]*width, 40+(int)(0.25*width)+coord[1]*width, 5, (int)(0.5*width));
+			g.fillRect((int)((165+(1+coord[0])*width)*scale), (int)((40+(0.25+coord[1])*width)*scale), (int)((5)*scale), (int)((0.5*width)*scale));
+		}
+		public void displayDoorS(Graphics g, int[] coord) {
+			g.setColor(Color.green);
+			g.fillRect((int)((165+(0.25+coord[0])*width)*scale), (int)((40+(1+coord[1])*width)*scale), (int)((0.5*width)*scale), (int)((5)*scale));
+		}
+		public void displayDoorW(Graphics g, int[] coord) {
+			g.setColor(Color.green);
+			g.fillRect((int)((165+coord[0]*width)*scale), (int)((40+(0.25+coord[1])*width)*scale), (int)((5)*scale), (int)((0.5*width)*scale));
 		}
 	}
 }

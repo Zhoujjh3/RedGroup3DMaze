@@ -55,7 +55,7 @@ public class ManualTestMaze {
 		boolean[] c_112 = {false, false, false, false, false, false}; //blank
 		boolean[] c_212 = {false, false, false, false, false, false}; //blank
 		boolean[] c_312 = {false, false, false, false, false, false}; //blank
-		boolean[] c_412 = {true, false, false, false, true, false}; //north, up
+		boolean[] c_412 = {false, false, false, false, true, false}; //up
 		
 		boolean[][] Floor2Row1 = {c_112, c_212, c_312, c_412};
 		//row 2, floor 2
@@ -88,7 +88,7 @@ public class ManualTestMaze {
 		boolean[] c_113 = {false, true, true, false, false, false}; //south, east
 		boolean[] c_213 = {false, true, false, true, false, false}; //east, west
 		boolean[] c_313 = {false, true, false, true, false, false}; //east, west
-		boolean[] c_413 = {true, false, false, true, false, true}; //west, down
+		boolean[] c_413 = {false, false, false, true, false, true}; //west, down
 		
 		boolean[][] Floor3Row1 = {c_113, c_213, c_313, c_413};
 		//row 2, floor 3

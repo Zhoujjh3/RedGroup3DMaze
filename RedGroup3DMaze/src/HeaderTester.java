@@ -13,15 +13,12 @@ public class HeaderTester {
     JButton changeView;
     public HeaderTester() {
         header = new Header(maze, player);
-        frame = new JFrame("game test");
+        frame = new JFrame("header tester");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new Panel();
         changeView = new JButton(header.getView());
         panel.setLayout(null);
-        changeView.setBounds(740
-                , 5,
-                100,
-                30 );
+        changeView.setBounds(740, 5, 100, 30);
 
         changeView.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -35,7 +32,7 @@ public class HeaderTester {
         /* Size and then display the frame. */
         frame.setSize(1000,750);
         frame.setVisible(true);
-        frame.setResizable(false);
+        frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		//comment
     }
