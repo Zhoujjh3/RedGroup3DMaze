@@ -66,19 +66,9 @@ public class Maze {
 		}
 		setBaseMazeAndWalls(baseMaze, walls);
 		createPath(baseMaze);
-//		fillBaseMaze(baseMaze, walls);
+		fillBaseMaze(baseMaze, walls);
 		minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
-//		setActiveMaze(baseMaze);
-//		for (int level=0; level<baseMaze.length; level++) {
-//			for (int x=0; x<baseMaze[0].length; x++) {
-//				for (int y=0; y<baseMaze[0][0].length; y++) {
-//					System.out.print(baseMaze[level][x][y] + " ");
-//				}
-//				System.out.println();
-//			}
-//			System.out.println("\n");
-//		}
-//		System.out.println(minMoves);
+		setActiveMaze(baseMaze);
 		return minMoves;
 	}
 
@@ -103,9 +93,7 @@ public class Maze {
 				int numOfDs;
 				if (difficulty == 1) { // numOfDs should be 3 times the intended num of Ds because each has about a 1/3 chance of working with algorithm
 					numOfDs = 3;
-				} else if (difficulty == 2) {
-					numOfDs = 6;
-				} else {
+				} else { // difficulty 2 and 3 use the same numOfDs
 					numOfDs = 6;
 				}
 				for (int i=0; i<numOfDs; i++) {
@@ -753,6 +741,7 @@ public class Maze {
 		maze = new Maze(test);
 		
 		Maze maze2 = new Maze(3);
+		System.out.println(maze2.getMinMoves());
 		
 //		int[] x = maze.createLevelPath(test[0], 6, 1, 1);
 //		maze.createLevelPath(test[1], 6, 1, 1);
