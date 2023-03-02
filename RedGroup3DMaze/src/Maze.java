@@ -69,25 +69,47 @@ public class Maze {
 		fillBaseMaze(baseMaze, walls);
 		minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
 		setActiveMaze(baseMaze);
+		for (int level=0; level<baseMaze.length; level++) {
+			for (int x=0; x<baseMaze[0].length; x++) {
+				for (int y=0; y<baseMaze[0][0].length; y++) {
+					System.out.print(baseMaze[level][x][y] + " ");
+				}
+				System.out.println();
+			}
+			System.out.println("\n");
+		}
+		System.out.println(minMoves);
 		return minMoves;
 	}
 
 	
 	private void setBaseMazeAndWalls(char[][][] baseMaze, ArrayList<int[]> walls) {
+		ArrayList<int[]> floors = new ArrayList<int[]>();
 		for (int level=0; level<baseMaze.length; level++) {
 			for (int x=0; x<baseMaze[0].length; x++) {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
 					if (x%2 == 1 && y%2 == 1) {
 						baseMaze[level][x][y] = 'Z';
-						if (level < baseMaze.length-1 && ((int)(Math.random()*100)) < 30) {
-						 	walls.add(getCoords(level, x, y));
-						}
+						floors.add(getCoords(level, x, y));
 					} else if (x > 0 && x < baseMaze[0].length-1 && y > 0 && y < baseMaze[0][0].length-1 && (x%2 == 1 || y%2 == 1)) { 
 						baseMaze[level][x][y] = 'F';
 						walls.add(getCoords(level, x, y));
 					} else {
 						baseMaze[level][x][y] = 'A';
 					}
+				}
+			}
+			if (level < baseMaze.length-1) {
+				int numOfDs;
+				if (difficulty == 1) { // numOfDs should be 3 times the intended num of Ds because each has about a 1/3 chance of working with algorithm
+					numOfDs = 3;
+				} else if (difficulty == 2) {
+					numOfDs = 6;
+				} else {
+					numOfDs = 6;
+				}
+				for (int i=0; i<numOfDs; i++) {
+					walls.add(floors.remove((int)(Math.random()*floors.size())));
 				}
 			}
 		}
@@ -717,7 +739,7 @@ public class Maze {
 		
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(2);
+		Maze maze2 = new Maze(1);
 		
 //		int[] x = maze.createLevelPath(test[0], 6, 1, 1);
 //		maze.createLevelPath(test[1], 6, 1, 1);
