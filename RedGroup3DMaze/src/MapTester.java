@@ -61,7 +61,7 @@ public class MapTester {
         });
         frame.pack();
         frame.setVisible(true);
-        frame.setResizable(false);
+        frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
     }
     //rip
