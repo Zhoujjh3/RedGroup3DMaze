@@ -192,12 +192,10 @@ public class Maze {
 			int dirMoves = minMoves;
 			for (int i=0; i<dirs.size(); i++) {
 				int[] dirCoords = dirs.get(i);
-				if (i < 4) {
-					if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && !coordsMatch(dirCoords, previousCoords)) {
+				if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && !coordsMatch(dirCoords, previousCoords)) {
+					if (i < 4) {
 						dirMoves = 1 + findRPath(floodingMaze, baseMaze, dirCoords, endCoords, startCoords, maxDepth-1);
-					}
-				} else {
-					if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && canTravelVertically(baseMaze, startCoords, dirCoords) && !coordsMatch(dirCoords, previousCoords)) {
+					} else if (canTravelVertically(baseMaze, startCoords, dirCoords)) {
 						dirMoves = 2 + findRPath(floodingMaze, baseMaze, dirCoords, endCoords, startCoords, maxDepth-1);
 					}
 				}
@@ -561,15 +559,15 @@ public class Maze {
 	private boolean[] getRoomDirections(char baseMaze[][][], int level, int x, int y){
 		boolean[] result = {false, false, false, false, false, false};
 		
-		switch (baseMaze[level][x][y]) {
-		case 'U':
+		if (baseMaze[level][x][y] == 'U') {
 			result[4] = true;
-		case 'D':
+		} else if (baseMaze[level][x][y] == 'D') {
 			result[5] = true;
-		case 'B':
+		} else if (baseMaze[level][x][y] == 'B') {
 			result[4] = true;
 			result[5] = true;
 		}
+
 		if(baseMaze[level][x-1][y] == 'T') 
 			result[3] = true;
 		if(baseMaze[level][x+1][y] == 'T')
@@ -597,12 +595,6 @@ public class Maze {
 			}
 		}
 		return true;
-	}
-	
-	private boolean movesMatchWithDifficulty(int moves) {
-		return ((difficulty == 1 && moves >= 15 && moves <= 17) 
-				|| (difficulty == 2 && moves >= 18 && moves <= 20) 
-				|| (difficulty == 3 && moves >= 22 && moves <= 24));
 	}
 	
 	private ArrayList<int[]> getDirsAroundCoords(char[][][] baseMaze, int[] coords) {
