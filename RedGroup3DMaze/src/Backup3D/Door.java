@@ -9,27 +9,35 @@ public class Door extends Shapes {
 	double  yTL, yTR, yBR, yBL;
 	public int state;
 	public int dir = 0;
+	public int h, w;
 
 	// Justin
 	
 	Door(int theState) {
+		h = DrawShapes.height;
+		w = DrawShapes.width;
 		state = theState;
 		if(theState == 0) {
-			xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-			yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+			xTL = (w/4.0) * 0.3; xTR = (w/4.0) * 0.7; xBR = (w/4.0) * 0.7; xBL = (w/4.0) * 0.3;
+			yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+			yBR = yTR + (h * (11.0/35.0)); yBL = yTL + (h * (3.0/7.0));
 		} else if(theState == 1) {
-			xTL = 450; xBL = 450; xTR = 550; xBR = 550;
-			yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+			xTL = (w/2.0) - ((w/10.0)/2.0); xBL = (w/2.0) - ((w/10.0)/2.0); 
+			xTR = (w/2.0) + ((w/10.0)/2.0); xBR = (w/2.0) + ((w/10.0)/2.0);
+			yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBL = h * (5.0/7.0); 
+			yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBR = h * (5.0/7.0);
 		} else if(theState == 2) {
-			xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-			yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+			xTL = w - ((w/4.0) * 0.7); xTR = w - ((w/4.0) * 0.3); 
+			xBR = w - ((w/4.0) * 0.3); xBL = w - ((w/4.0) * 0.7);
+			yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+			yBR = yTR + (h * (3.0/7.0)); yBL = yTL + (h * (11.0/35.0));
 		} else if(theState == 3) {
 			if(dir == 0) {
 				xTL = 0; xTR = 0; xBR = 0; xBL = 0;
-				yTL = 400; yTR = 400; yBR = 700; yBL = 700;
+				yTL = h * (4.0/7.0); yTR = h * (4.0/7.0); yBR = h; yBL = h;
 			} else if (dir == 1) {
-				xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
-				yTL = 400; yTR = 400; yBR = 700; yBL = 700;
+				xTL = w; xTR = w; xBR = w; xBL = w;
+				yTL = h * (4.0/7.0); yTR = h * (4.0/7.0); yBR = h; yBL = h;
 			}
 		}
 	}
@@ -47,11 +55,14 @@ public class Door extends Shapes {
 	}
 	
 	public void update() {
+		h = DrawShapes.height;
+		w = DrawShapes.width;
 		if(dir == 0) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+					xTL = (w/4.0) * 0.3; xTR = (w/4.0) * 0.7; xBR = (w/4.0) * 0.7; xBL = (w/4.0) * 0.3;
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (11.0/35.0)); yBL = yTL + (h * (3.0/7.0));
 				}
 				xTL += 1.25;//0.75;
 				xBL += 1.25;//0.75;
@@ -75,8 +86,10 @@ public class Door extends Shapes {
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
-					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+					xTL = (w/2.0) - ((w/10.0)/2.0); xBL = (w/2.0) - ((w/10.0)/2.0); 
+					xTR = (w/2.0) + ((w/10.0)/2.0); xBR = (w/2.0) + ((w/10.0)/2.0);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBL = h * (5.0/7.0); 
+					yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBR = h * (5.0/7.0);
 				}
 				xTR += 1.25;//0.75;
 				xBR += 1.25;//0.75;
@@ -100,8 +113,10 @@ public class Door extends Shapes {
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+					xTL = w - ((w/4.0) * 0.7); xTR = w - ((w/4.0) * 0.3); 
+					xBR = w - ((w/4.0) * 0.3); xBL = w - ((w/4.0) * 0.7);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (3.0/7.0)); yBL = yTL + (h * (11.0/35.0));
 				}
 				xTR += 2.3333;
 				xBR += 2.3333;
@@ -114,7 +129,7 @@ public class Door extends Shapes {
 			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 0; xTR = 0; xBR = 0; xBL = 0;
-					yTL = 400; yTR = 400; yBR = 700; yBL = 700;
+					yTL = h * (4.0/7.0); yTR = h * (4.0/7.0); yBR = h; yBL = h;
 				}
 				if(ShapesPanel.timeCounter > 125) {
 					xTR += 2.3333;
@@ -132,8 +147,9 @@ public class Door extends Shapes {
 		} else if (dir == 1) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+					xTL = (w/4.0) * 0.3; xTR = (w/4.0) * 0.7; xBR = (w/4.0) * 0.7; xBL = (w/4.0) * 0.3;
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (11.0/35.0)); yBL = yTL + (h * (3.0/7.0));
 				}
 				xTR -= 2.3333;
 				xBR -= 2.3333;
@@ -145,8 +161,10 @@ public class Door extends Shapes {
 				yBL += 1.866666667;
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
-					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+					xTL = (w/2.0) - ((w/10.0)/2.0); xBL = (w/2.0) - ((w/10.0)/2.0); 
+					xTR = (w/2.0) + ((w/10.0)/2.0); xBR = (w/2.0) + ((w/10.0)/2.0);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBL = h * (5.0/7.0); 
+					yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBR = h * (5.0/7.0);
 				}
 				xTL -= 1.25;//0.75;
 				xBL -= 1.25;//0.75;
@@ -170,8 +188,10 @@ public class Door extends Shapes {
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+					xTL = w - ((w/4.0) * 0.7); xTR = w - ((w/4.0) * 0.3); 
+					xBR = w - ((w/4.0) * 0.3); xBL = w - ((w/4.0) * 0.7);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (3.0/7.0)); yBL = yTL + (h * (11.0/35.0));
 				}
 				xTR -= 1.25;//0.75;
 				xBR -= 1.25;//0.75;
@@ -195,8 +215,8 @@ public class Door extends Shapes {
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
-					yTL = 400; yTR = 400; yBR = 700; yBL = 700;
+					xTL = w; xTR = w; xBR = w; xBL = w;
+					yTL = h * (4.0/7.0); yTR = h * (4.0/7.0); yBR = h; yBL = h;
 				}
 				if(ShapesPanel.timeCounter > 125) {
 					xTL -= 2.3333;
@@ -214,8 +234,9 @@ public class Door extends Shapes {
 		} else if (dir == 2) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+					xTL = (w/4.0) * 0.3; xTR = (w/4.0) * 0.7; xBR = (w/4.0) * 0.7; xBL = (w/4.0) * 0.3;
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (11.0/35.0)); yBL = yTL + (h * (3.0/7.0));
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					xTL -= 1.875;
@@ -225,13 +246,16 @@ public class Door extends Shapes {
 					yBR += 1.5;
 					yBL += 1.5;
 				} else {
-					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+					xTL = (w/4.0) * 0.3; xTR = (w/4.0) * 0.7; xBR = (w/4.0) * 0.7; xBL = (w/4.0) * 0.3;
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (11.0/35.0)); yBL = yTL + (h * (3.0/7.0));
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
-					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+					xTL = (w/2.0) - ((w/10.0)/2.0); xBL = (w/2.0) - ((w/10.0)/2.0); 
+					xTR = (w/2.0) + ((w/10.0)/2.0); xBR = (w/2.0) + ((w/10.0)/2.0);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBL = h * (5.0/7.0); 
+					yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBR = h * (5.0/7.0);
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					xTL -= 0.25; 
@@ -243,13 +267,17 @@ public class Door extends Shapes {
 					xBR += 0.25;
 					yBR += 1;
 				} else {
-					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
-					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+					xTL = (w/2.0) - ((w/10.0)/2.0); xBL = (w/2.0) - ((w/10.0)/2.0); 
+					xTR = (w/2.0) + ((w/10.0)/2.0); xBR = (w/2.0) + ((w/10.0)/2.0);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBL = h * (5.0/7.0); 
+					yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBR = h * (5.0/7.0);
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+					xTL = w - ((w/4.0) * 0.7); xTR = w - ((w/4.0) * 0.3); 
+					xBR = w - ((w/4.0) * 0.3); xBL = w - ((w/4.0) * 0.7);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (3.0/7.0)); yBL = yTL + (h * (11.0/35.0));
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					xTL += 1.875;
@@ -259,20 +287,23 @@ public class Door extends Shapes {
 					yBR += 1.5;
 					yBL += 1.5;
 				} else {
-					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+					xTL = w - ((w/4.0) * 0.7); xTR = w - ((w/4.0) * 0.3); 
+					xBR = w - ((w/4.0) * 0.3); xBL = w - ((w/4.0) * 0.7);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (3.0/7.0)); yBL = yTL + (h * (11.0/35.0));
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
-					yTL = 400; yTR = 400; yBR = 700; yBL = 700;
+					xTL = w; xTR = w; xBR = w; xBL = w;
+					yTL = h * (4.0/7.0); yTR = h * (4.0/7.0); yBR = h; yBL = h;
 				}
 			}
 		} else if (dir == 3) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+					xTL = (w/4.0) * 0.3; xTR = (w/4.0) * 0.7; xBR = (w/4.0) * 0.7; xBL = (w/4.0) * 0.3;
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (11.0/35.0)); yBL = yTL + (h * (3.0/7.0));
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR += 3.5;
@@ -280,13 +311,16 @@ public class Door extends Shapes {
 					yTL += 3.5;
 					yBL += 3.5;
 				} else {
-					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+					xTL = (w/4.0) * 0.3; xTR = (w/4.0) * 0.7; xBR = (w/4.0) * 0.7; xBL = (w/4.0) * 0.3;
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (11.0/35.0)); yBL = yTL + (h * (3.0/7.0));
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
-					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+					xTL = (w/2.0) - ((w/10.0)/2.0); xBL = (w/2.0) - ((w/10.0)/2.0); 
+					xTR = (w/2.0) + ((w/10.0)/2.0); xBR = (w/2.0) + ((w/10.0)/2.0);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBL = h * (5.0/7.0); 
+					yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBR = h * (5.0/7.0);
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR += 3.5;
@@ -294,13 +328,17 @@ public class Door extends Shapes {
 					yTL += 3.5;
 					yBL += 3.5;
 				} else {
-					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
-					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+					xTL = (w/2.0) - ((w/10.0)/2.0); xBL = (w/2.0) - ((w/10.0)/2.0); 
+					xTR = (w/2.0) + ((w/10.0)/2.0); xBR = (w/2.0) + ((w/10.0)/2.0);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBL = h * (5.0/7.0); 
+					yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBR = h * (5.0/7.0);
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+					xTL = w - ((w/4.0) * 0.7); xTR = w - ((w/4.0) * 0.3); 
+					xBR = w - ((w/4.0) * 0.3); xBL = w - ((w/4.0) * 0.7);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (3.0/7.0)); yBL = yTL + (h * (11.0/35.0));
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR += 3.5;
@@ -308,20 +346,23 @@ public class Door extends Shapes {
 					yTL += 3.5;
 					yBL += 3.5;
 				} else {
-					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+					xTL = w - ((w/4.0) * 0.7); xTR = w - ((w/4.0) * 0.3); 
+					xBR = w - ((w/4.0) * 0.3); xBL = w - ((w/4.0) * 0.7);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (3.0/7.0)); yBL = yTL + (h * (11.0/35.0));
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
-					yTL = 400; yTR = 400; yBR = 700; yBL = 700;
+					xTL = w; xTR = w; xBR = w; xBL = w;
+					yTL = h * (4.0/7.0); yTR = h * (4.0/7.0); yBR = h; yBL = h;
 				}
 			}
 		} else if (dir == 4) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+					xTL = (w/4.0) * 0.3; xTR = (w/4.0) * 0.7; xBR = (w/4.0) * 0.7; xBL = (w/4.0) * 0.3;
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (11.0/35.0)); yBL = yTL + (h * (3.0/7.0));
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR -= 3.5;
@@ -329,13 +370,16 @@ public class Door extends Shapes {
 					yTL -= 3.5;
 					yBL -= 3.5;
 				} else {
-					xTL = 75; xTR = 175; xBR = 175; xBL = 75;
-					yTL = 340; yTR = 340; yBR = 560; yBL = 640;
+					xTL = (w/4.0) * 0.3; xTR = (w/4.0) * 0.7; xBR = (w/4.0) * 0.7; xBL = (w/4.0) * 0.3;
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (11.0/35.0)); yBL = yTL + (h * (3.0/7.0));
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
-					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+					xTL = (w/2.0) - ((w/10.0)/2.0); xBL = (w/2.0) - ((w/10.0)/2.0); 
+					xTR = (w/2.0) + ((w/10.0)/2.0); xBR = (w/2.0) + ((w/10.0)/2.0);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBL = h * (5.0/7.0); 
+					yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBR = h * (5.0/7.0);
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR -= 3.5;
@@ -343,13 +387,17 @@ public class Door extends Shapes {
 					yTL -= 3.5;
 					yBL -= 3.5;
 				} else {
-					xTL = 450; xBL = 450; xTR = 550; xBR = 550;
-					yTL = 340; yBL = 500; yTR = 340; yBR = 500;
+					xTL = (w/2.0) - ((w/10.0)/2.0); xBL = (w/2.0) - ((w/10.0)/2.0); 
+					xTR = (w/2.0) + ((w/10.0)/2.0); xBR = (w/2.0) + ((w/10.0)/2.0);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBL = h * (5.0/7.0); 
+					yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); yBR = h * (5.0/7.0);
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+					xTL = w - ((w/4.0) * 0.7); xTR = w - ((w/4.0) * 0.3); 
+					xBR = w - ((w/4.0) * 0.3); xBL = w - ((w/4.0) * 0.7);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (3.0/7.0)); yBL = yTL + (h * (11.0/35.0));
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR -= 3.5;
@@ -357,13 +405,15 @@ public class Door extends Shapes {
 					yTL -= 3.5;
 					yBL -= 3.5;
 				} else {
-					xTL = 825; xTR = 925; xBR = 925; xBL = 825;
-					yTL = 340; yTR = 340; yBR = 640; yBL = 560;
+					xTL = w - ((w/4.0) * 0.7); xTR = w - ((w/4.0) * 0.3); 
+					xBR = w - ((w/4.0) * 0.3); xBL = w - ((w/4.0) * 0.7);
+					yTL = (h * (5.0/7.0)) - (h * (8.0/35.0)); yTR = (h * (5.0/7.0)) - (h * (8.0/35.0)); 
+					yBR = yTR + (h * (3.0/7.0)); yBL = yTL + (h * (11.0/35.0));
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 1000; xTR = 1000; xBR = 1000; xBL = 1000;
-					yTL = 400; yTR = 400; yBR = 700; yBL = 700;
+					xTL = w; xTR = w; xBR = w; xBL = w;
+					yTL = h * (4.0/7.0); yTR = h * (4.0/7.0); yBR = h; yBL = h;
 				}
 			}
 		}

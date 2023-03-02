@@ -7,10 +7,13 @@ public class Floor extends Shapes{
 
 	public int state = 0;
 	public int dir = 0;
+	public int h, w;
 	
 	Floor(){
-		xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-		yTL = 500; yTR = 500; yBR = 700; yBL = 700;
+		h = DrawShapes.height;
+		w = DrawShapes.width;
+		xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
+		yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
 	}
 	
 	public void paint(Graphics g) {
@@ -28,33 +31,40 @@ public class Floor extends Shapes{
 	}
 
 	public void update() {
+		h = DrawShapes.height;
+		w = DrawShapes.width;
 		if(dir == 3) {
 			if(ShapesPanel.timeCounter == 0) {
-				xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-				yTL = 500; yTR = 500; yBR = 700; yBL = 700;
+				xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
+				yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
 			}
 			if(ShapesPanel.timeCounter < 200) {
-				yBR += 3.5;
-				yTR += 3.5;
-				yBL += 3.5;
-				yTL += 3.5;
+				yBR += h/200.0;
+				yTR += h/200.0;
+				yBL += h/200.0;
+				yTL += h/200.0;
 			} else {
-				xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-				yTL = 500; yTR = 500; yBR = 700; yBL = 700;
+				xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
+				yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
 			}
 		} else if(dir == 4) {
 			if(ShapesPanel.timeCounter == 0) {
-				xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-				yTL = 500; yTR = 500; yBR = 700; yBL = 700;
+				xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
+				yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
 			}
 			if(ShapesPanel.timeCounter < 200) {
-				yBR -= 3.5;
-				yTR -= 3.5;
-				yBL -= 3.5;
-				yTL -= 3.5;
+				yBR -= h/200.0;
+				yTR -= h/200.0;
+				yBL -= h/200.0;
+				yTL -= h/200.0;
 			} else {
-				xTL = 250; xTR = 750; xBR = 1000; xBL = 0;
-				yTL = 500; yTR = 500; yBR = 700; yBL = 700;
+				xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
+				yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
+			}
+		} else {
+			if(ShapesPanel.timeCounter == 0) {
+				xTL = 0; xTR = w; xBR = w * (3.0/4.0); xBL = w/4.0;
+				yTL = 0; yTR = 0; yBR = h * (2.0/7.0); yBL = h * (2.0/7.0);
 			}
 		}
 		
