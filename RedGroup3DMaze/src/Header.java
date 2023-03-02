@@ -12,7 +12,6 @@ public class Header {
     }
 
     public void display(Graphics g, int scaleFactor) {
-        System.out.println("wow!");
         g.setColor(Color.gray);
         g.fillRect(0,0,1000* scaleFactor,40 * scaleFactor);
         g.setColor(Color.white);
