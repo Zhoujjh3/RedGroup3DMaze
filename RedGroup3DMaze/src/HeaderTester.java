@@ -43,7 +43,7 @@ public class HeaderTester {
     class Panel extends JPanel{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            header.display(g);
+            header.display(g ,1);
         }
     }
     public static void main(String[] args){

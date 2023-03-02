@@ -11,16 +11,17 @@ public class Header {
         chamberView = true;
     }
 
-    public void display(Graphics g) {
+    public void display(Graphics g, int scaleFactor) {
+        System.out.println("wow!");
         g.setColor(Color.gray);
-        g.fillRect(0,0,1000,40);
+        g.fillRect(0,0,1000* scaleFactor,40 * scaleFactor);
         g.setColor(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
-        g.drawString("X: " + (player.getCoordinate('X') + 1), 20, 25);
-        g.drawString("Y: " + (player.getCoordinate('Y') + 1), 60, 25);
-        g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), 250, 25);
-        g.drawString("Moves: " + player.getScore(), 510, 25);
-        g.drawString(Character.toString(player.getDirection()), 640, 25);
+        g.drawString("X: " + (player.getCoordinate('X') + 1), 20* scaleFactor, 25 * scaleFactor);
+        g.drawString("Y: " + (player.getCoordinate('Y') + 1), 60 * scaleFactor, 25 * scaleFactor);
+        g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), 250 * scaleFactor, 25 * scaleFactor);
+        g.drawString("Moves: " + player.getScore(), 510 * scaleFactor, 25 * scaleFactor);
+        g.drawString(Character.toString(player.getDirection()), 640 * scaleFactor, 25 * scaleFactor);
 //        g.setColor(Color.BLACK);
 //        g.drawRect(740,7,100,25);
 
