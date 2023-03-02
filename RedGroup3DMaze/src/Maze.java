@@ -66,19 +66,19 @@ public class Maze {
 		}
 		setBaseMazeAndWalls(baseMaze, walls);
 		createPath(baseMaze);
-		fillBaseMaze(baseMaze, walls);
+//		fillBaseMaze(baseMaze, walls);
 		minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
-		setActiveMaze(baseMaze);
-		for (int level=0; level<baseMaze.length; level++) {
-			for (int x=0; x<baseMaze[0].length; x++) {
-				for (int y=0; y<baseMaze[0][0].length; y++) {
-					System.out.print(baseMaze[level][x][y] + " ");
-				}
-				System.out.println();
-			}
-			System.out.println("\n");
-		}
-		System.out.println(minMoves);
+//		setActiveMaze(baseMaze);
+//		for (int level=0; level<baseMaze.length; level++) {
+//			for (int x=0; x<baseMaze[0].length; x++) {
+//				for (int y=0; y<baseMaze[0][0].length; y++) {
+//					System.out.print(baseMaze[level][x][y] + " ");
+//				}
+//				System.out.println();
+//			}
+//			System.out.println("\n");
+//		}
+//		System.out.println(minMoves);
 		return minMoves;
 	}
 
@@ -289,6 +289,7 @@ public class Maze {
 		xTrace.add(endx);
 		yTrace.add(endy);
 		int[] endCC = null;
+		int counter = 0;
 		while(!pathWorks) {
 			boolean failure = false;
 			for(int i = 0; i<level.length;i++) {
@@ -298,8 +299,11 @@ public class Maze {
 			}
 			
 			
-			for(int i = 0; i< givenMoves; i++) {
+			for(int i = 0; i< givenMoves+(counter/1000); i++) {
 				int[] results = moveInDir(level, endx, endy, xTrace, yTrace);
+				if(results[0] == level.length-1 && results[1] == level.length-1) {
+					break;
+				}
 				if(results[0] == -1 && results[1] == -1) {
 					failure= true;
 					break;
@@ -315,11 +319,17 @@ public class Maze {
 				level[startX][startY] = 'U';
 			} if(levelType.equals("middle")) {
 				level[startX][startY] = 'U';
-				level[xTrace.get(xTrace.size()-1)][yTrace.get(yTrace.size()-1)] = 'D';
+				level[endx][endy] = 'D';
 			} if(levelType.equals("first")) {
-				level[xTrace.get(xTrace.size()-1)][yTrace.get(yTrace.size()-1)] = 'D';
+				level[endx][endy] = 'D';
 			}
 						
+			
+			if((endx == level.length-2 && endy == level.length-2) && levelType == "middle")
+				failure = true;
+			if(!(endx == level.length-2 && endy == level.length-2) && levelType == "end")
+				failure = true;
+
 			if(!failure) {
 				int[] startC = {0, startX, startY};
 				int[] endC = {0, endx, endy};
@@ -327,16 +337,17 @@ public class Maze {
 				pathWorks = pathFind(level, startC, endC) >= 0;
 			} else
 				pathWorks = false;
-	//		for(int i = 0; i<level.length;i++) {
-	//			for(int j = 0; j<level.length;j++) {
-	//				System.out.print(level[i][j] +" ");
-	//			}
-	//			System.out.println();
-	//		}
-	//		System.out.println("------------------------------");
-			
+//			for(int i = 0; i<level.length;i++) {
+//				for(int j = 0; j<level.length;j++) {
+//					System.out.print(level[i][j] +" ");
+//				}
+//				System.out.println();
+//			}
+//			System.out.println("-----------" + levelType + "-------------------");
+////			
 			yTrace.clear();
 			xTrace.clear();
+			counter++;
 		}
 		
 		for(int i = 0; i<level.length; i++) {
@@ -397,12 +408,13 @@ public class Maze {
 			dir = generateDirection();
 		}
 		
-	//	for(int i = 0; i<level.length; i++) {
-	//		for(int j = 0; j<level.length;j++) {
-	//			System.out.print(level[i][j] +" ");
-	//		}
-	//		System.out.println();
-	//	}
+//		for(int i = 0; i<level.length; i++) {
+//			for(int j = 0; j<level.length;j++) {
+//				System.out.print(level[i][j] +" ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println("-------------------");
 		int[] results = {0, 0};
 		if(testCounter == 9) {
 			results[0] = -1;
@@ -432,6 +444,7 @@ public class Maze {
 		boolean[] backup = {true, true, true, true};
 		int failCounter = 0;
 		boolean meets = true;
+//		System.out.println("HEREEEEE");
 		switch(dir) {
 			case 'N':
 				if(currentY > 2) {
@@ -739,7 +752,7 @@ public class Maze {
 		
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(1);
+		Maze maze2 = new Maze(3);
 		
 //		int[] x = maze.createLevelPath(test[0], 6, 1, 1);
 //		maze.createLevelPath(test[1], 6, 1, 1);
