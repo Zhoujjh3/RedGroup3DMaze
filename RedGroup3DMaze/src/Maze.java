@@ -91,14 +91,15 @@ public class Maze {
 			}
 			if (level < baseMaze.length-1) {
 				int numOfDs;
-				if (difficulty == 1) { // numOfDs should be 3 times the intended num of Ds because each has about a 1/3 chance of working with algorithm
-					numOfDs = 3;
-				} else { // difficulty 2 and 3 use the same numOfDs
-					numOfDs = 6;
+				if (difficulty == 1) {
+					numOfDs = 2;
+				} else { // difficulty 2 and 3 currently use the same numOfDs
+					numOfDs = 4;
 				}
 				for (int i=0; i<numOfDs; i++) {
 					walls.add(floors.remove((int)(Math.random()*floors.size())));
 				}
+				floors.clear();
 			}
 		}
 	}
@@ -706,7 +707,7 @@ public class Maze {
 		
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(2);
+		Maze maze2 = new Maze(3);
 		System.out.println(maze2.getMinMoves());
 		
 //		int[] x = maze.createLevelPath(test[0], 6, 1, 1);
