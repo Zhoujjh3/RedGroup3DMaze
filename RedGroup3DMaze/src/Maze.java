@@ -192,10 +192,12 @@ public class Maze {
 			int dirMoves = minMoves;
 			for (int i=0; i<dirs.size(); i++) {
 				int[] dirCoords = dirs.get(i);
-				if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && !coordsMatch(dirCoords, previousCoords)) {
-					if (i < 4) {
+				if (i < 4) {
+					if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && !coordsMatch(dirCoords, previousCoords)) {
 						dirMoves = 1 + findRPath(floodingMaze, baseMaze, dirCoords, endCoords, startCoords, maxDepth-1);
-					} else if (canTravelVertically(baseMaze, startCoords, dirCoords)) {
+					}
+				} else {
+					if (floodingMaze[dirCoords[0]][dirCoords[1]][dirCoords[2]] == 'R' && canTravelVertically(baseMaze, startCoords, dirCoords) && !coordsMatch(dirCoords, previousCoords)) {
 						dirMoves = 2 + findRPath(floodingMaze, baseMaze, dirCoords, endCoords, startCoords, maxDepth-1);
 					}
 				}
@@ -261,16 +263,13 @@ public class Maze {
 		int[] endCC = null;
 		int counter = 0;
 		while(!pathWorks) {
-			if(yTrace.get(0) != startY && xTrace.get(0)!= startX) {
-				yTrace.add(startY);
-				xTrace.add(startX);
-			}
 			boolean failure = false;
 			for(int i = 0; i<level.length;i++) {
 				for(int j = 0; j<level.length;j++) {
 					level[i][j] = levelCopy[i][j];
 				}
 			}
+			
 			
 			for(int i = 0; i< givenMoves+(counter/1000); i++) {
 				int[] results = moveInDir(level, endx, endy, xTrace, yTrace);
@@ -301,18 +300,23 @@ public class Maze {
 				failure = true;
 			if(!(endx == level.length-2 && endy == level.length-2) && levelType == "end")
 				failure = true;
-
+			for(int i = 0; i<yTrace.size();i++) {
+				if(yTrace.get(i) == startY && xTrace.get(i) == startX)
+					failure = true;
+			}
+			
+			
 			if(!failure) {
 				int[] startC = {0, startX, startY};
 				int[] endC = {0, endx, endy};
 				endCC = endC;
 				pathWorks = pathFind(level, startC, endC) >= 0;
-				System.out.println("-----------------------");
-				System.out.println(startX + ",, " + startY);
-				for(int i = 0; i<xTrace.size();i++) {
-					System.out.println(xTrace.get(i) + ", " + yTrace.get(i));
-				}
-				System.out.println("-----------------------");
+//				System.out.println("-----------------------");
+//				System.out.println(startX + ",, " + startY);
+//				for(int i = 0; i<xTrace.size();i++) {
+//					System.out.println(xTrace.get(i) + ", " + yTrace.get(i));
+//				}
+//				System.out.println("-----------------------");
 
 			} else
 				pathWorks = false;
@@ -320,6 +324,7 @@ public class Maze {
 			yTrace.clear();
 			xTrace.clear();
 			counter++;
+			
 		}
 		for(int i = 0; i<level.length;i++) {
 			for(int j = 0; j<level.length;j++) {
@@ -559,15 +564,15 @@ public class Maze {
 	private boolean[] getRoomDirections(char baseMaze[][][], int level, int x, int y){
 		boolean[] result = {false, false, false, false, false, false};
 		
-		if (baseMaze[level][x][y] == 'U') {
+		switch (baseMaze[level][x][y]) {
+		case 'U':
 			result[4] = true;
-		} else if (baseMaze[level][x][y] == 'D') {
+		case 'D':
 			result[5] = true;
-		} else if (baseMaze[level][x][y] == 'B') {
+		case 'B':
 			result[4] = true;
 			result[5] = true;
 		}
-
 		if(baseMaze[level][x-1][y] == 'T') 
 			result[3] = true;
 		if(baseMaze[level][x+1][y] == 'T')
@@ -595,6 +600,12 @@ public class Maze {
 			}
 		}
 		return true;
+	}
+	
+	private boolean movesMatchWithDifficulty(int moves) {
+		return ((difficulty == 1 && moves >= 15 && moves <= 17) 
+				|| (difficulty == 2 && moves >= 18 && moves <= 20) 
+				|| (difficulty == 3 && moves >= 22 && moves <= 24));
 	}
 	
 	private ArrayList<int[]> getDirsAroundCoords(char[][][] baseMaze, int[] coords) {
@@ -695,7 +706,7 @@ public class Maze {
 		
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(3);
+		Maze maze2 = new Maze(2);
 		System.out.println(maze2.getMinMoves());
 		
 //		int[] x = maze.createLevelPath(test[0], 6, 1, 1);
