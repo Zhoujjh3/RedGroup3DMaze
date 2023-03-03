@@ -15,11 +15,12 @@ public class HeaderTester {
         header = new Header(maze, player);
         frame = new JFrame("header tester");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1000,750);
         panel = new Panel();
         changeView = new JButton(header.getView());
         panel.setLayout(null);
         changeView.setBounds(740, 5, 100, 30);
-
+       // changeView.setBounds((int)(740 * frame.getSize().width/1000), (int)(5* frame.getSize().height/750), (int)(100 * frame.getSize().width/1000), (int)(30 * frame.getSize().height/750));
         changeView.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 header.changeView();
@@ -30,7 +31,7 @@ public class HeaderTester {
         panel.add(changeView);
 
         /* Size and then display the frame. */
-        frame.setSize(1000,750);
+
         frame.setVisible(true);
         frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
@@ -40,7 +41,9 @@ public class HeaderTester {
     class Panel extends JPanel{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            header.display(g ,1);
+            header.display(g ,this.getSize());
+            changeView.setBounds((int)(740 * frame.getSize().width/1000), (int)(5* frame.getSize().height/750), (int)(100 * frame.getSize().width/1000), (int)(30 * frame.getSize().height/750));
+
         }
     }
     public static void main(String[] args){

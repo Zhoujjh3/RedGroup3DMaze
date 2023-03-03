@@ -1,4 +1,5 @@
 import java.awt.*;
+import javax.swing.*;
 //requires java.datatransfer;
 //    requires java.desktop;
 public class Header {
@@ -11,16 +12,16 @@ public class Header {
         chamberView = true;
     }
 
-    public void display(Graphics g, double scaleFactor) {
+    public void display(Graphics g, Dimension scaleFactor) {
         g.setColor(Color.gray);
-        g.fillRect(0,0,(int)(1000* scaleFactor),(int)(40 * scaleFactor));
+        g.fillRect(0,0,(int)(scaleFactor.width),(int)(40 * scaleFactor.getHeight()/750));
         g.setColor(Color.white);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 15));
-        g.drawString("X: " + (player.getCoordinate('X') + 1), (int)(20* scaleFactor), (int)(25 * scaleFactor));
-        g.drawString("Y: " + (player.getCoordinate('Y') + 1), (int)(60 * scaleFactor), (int)(25 * scaleFactor));
-        g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), (int)(250 * scaleFactor), (int)(25 * scaleFactor));
-        g.drawString("Moves: " + player.getScore(), (int)(510 * scaleFactor), (int)(25 * scaleFactor));
-        g.drawString(Character.toString(player.getDirection()), (int)(640 * scaleFactor), (int)(25 * scaleFactor));
+        g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(15* scaleFactor.width/1000)));
+        g.drawString("X: " + (player.getCoordinate('X') + 1), (int)(20* scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
+        g.drawString("Y: " + (player.getCoordinate('Y') + 1), (int)(60 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
+        g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), (int)(250 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
+        g.drawString("Moves: " + player.getScore(), (int)(510 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
+        g.drawString(Character.toString(player.getDirection()), (int)(640 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
 //        g.setColor(Color.BLACK);
 //        g.drawRect(740,7,100,25);
 
