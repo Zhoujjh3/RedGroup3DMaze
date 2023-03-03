@@ -87,7 +87,7 @@ public class MapTester {
                 levelDown.setVisible(false);
                 levelUp.setVisible(false);
             }
-            header.display(g, 1);
+            header.display(g, this.getSize());
         }
     }
 
