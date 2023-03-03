@@ -25,9 +25,9 @@ public class MazeMap {
 	
 	public void display(Graphics g, int newLevel, Dimension dimension) {
 		if (dimension.height/dimension.width>=0.75) {
-			scale = dimension.width/1000;
+			scale = (double)dimension.width/(double)1000;
 		} else {
-			scale = dimension.height/750;
+			scale = (double)dimension.height/(double)750;
 		}
 		width = 166.25*scale;
 		Painter painter = new Painter();
@@ -104,9 +104,9 @@ public class MazeMap {
 			if (size==4) {
 				//4x4 grid
 				//vertical
-				g.fillRect((int)(165*scale+width), (int)(40*scale), (int)(5*scale), 665);
-				g.fillRect((int)(165*scale+width*2), (int)(40*scale), (int)(5*scale), 665);
-				g.fillRect((int)(165*scale+width*3), (int)(40*scale), (int)(5*scale), 665);
+				g.fillRect((int)(165*scale+width), (int)(40*scale), (int)(5*scale), (int)(665*scale));
+				g.fillRect((int)(165*scale+width*2), (int)(40*scale), (int)(5*scale), (int)(665*scale));
+				g.fillRect((int)(165*scale+width*3), (int)(40*scale), (int)(5*scale), (int)(665*scale));
 				
 				//horizontal
 				g.fillRect((int)(165*scale), (int)(40*scale+width), (int)(670*scale), (int)(5*scale));
@@ -138,14 +138,14 @@ public class MazeMap {
 			int[] trapX = {180, 250, 320, 320, 250, 180, 180};
 			int[] trapY = {165, 180, 165, 180, 195, 180, 165};
 			if (size==5) {
-				int[] tempTrapX = {(int)(180*.8), (int)(250*.8), (int)(320*.8), (int)(320*.8), (int)(250*.8), (int)(180*.8), (int)(180*.8)};
-				trapX = tempTrapX;
-				int[] tempTrapY = {(int)(165*.8), (int)(180*.8), (int)(165*.8), (int)(180*.8), (int)(195*.8), (int)(180*.8), (int)(165*.8)};
-				trapY = tempTrapY;
+				for (int i=0; i<7; i++) {
+					trapX[i] = (int)(trapX[i]*.8);
+					trapY[i] = (int)(trapY[i]*.8);
+				}
 			}
 			for (int i=0; i<7; i++) {
-				trapX[i] = (int)((trapX[i] + startX)*scale);
-				trapY[i] = (int)((trapY[i] + startY)*scale);
+				trapX[i] = (int)(trapX[i]*scale + startX);
+				trapY[i] = (int)(trapY[i]*scale + startY);
 			}
 			Color trapColor = new Color(255, 128, 0);
 			g.setColor(trapColor);
@@ -163,8 +163,8 @@ public class MazeMap {
 				}
 			}
 			for (int i=0; i<7; i++) {
-				hatchX[i] = (int)((hatchX[i] + startX)*scale);
-				hatchY[i] = (int)((hatchY[i] + startY)*scale);
+				hatchX[i] = (int)(hatchX[i]*scale + startX);
+				hatchY[i] = (int)(hatchY[i]*scale + startY);
 			}
 			Color hatchColor = new Color(0, 0, 255);
 			g.setColor(hatchColor);
@@ -183,8 +183,8 @@ public class MazeMap {
 				}
 			}
 			for (int i=0; i<7; i++) {
-				playerIconX[i] = (int)((playerIconX[i] + startX)*scale);
-				playerIconY[i] = (int)((playerIconY[i] + startY)*scale);
+				playerIconX[i] = (int)(playerIconX[i]*scale + startX);
+				playerIconY[i] = (int)(playerIconY[i]*scale + startY);
 			}
 			
 			g.setColor(Color.black);
@@ -205,8 +205,8 @@ public class MazeMap {
 				}
 			}
 			for (int i=0; i<7; i++) {
-				playerIconX[i] = (int)((-playerIconX[i] + startX+165+40)*scale);
-				playerIconY[i] = (int)((playerIconY[i] + startY-165+40)*scale);
+				playerIconX[i] = (int)((-playerIconX[i] + 165 + 40)*scale + startX);
+				playerIconY[i] = (int)((playerIconY[i] - 165 + 40)*scale + startY);
 			}
 			
 			g.setColor(Color.black);
@@ -227,8 +227,8 @@ public class MazeMap {
 				}
 			}
 			for (int i=0; i<7; i++) {
-				playerIconX[i] = (int)((-playerIconX[i] + startX+330)*scale);
-				playerIconY[i] = (int)((-playerIconY[i] + startY+80)*scale);
+				playerIconX[i] = (int)((-playerIconX[i] + 330)*scale + startX);
+				playerIconY[i] = (int)((-playerIconY[i] + 80)*scale + startY);
 			}
 			
 			g.setColor(Color.black);
@@ -249,8 +249,8 @@ public class MazeMap {
 				}
 			}
 			for (int i=0; i<7; i++) {
-				playerIconX[i] = (int)((-playerIconX[i] + startX-40+165)*scale);
-				playerIconY[i] = (int)((playerIconY[i] + startY-165+40)*scale);
+				playerIconX[i] = (int)((-playerIconX[i] - 40 + 165)*scale + startX);
+				playerIconY[i] = (int)((playerIconY[i] - 165 + 40)*scale + startY);
 			}
 			
 			g.setColor(Color.black);
@@ -272,19 +272,19 @@ public class MazeMap {
 		
 		public void displayDoorN(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect((int)((165+(0.25+coord[0])*width)*scale), (int)((40+coord[1]*width)*scale), (int)(((int)(0.5*width))*scale), (int)((5)*scale));
+			g.fillRect((int)((165*scale+(0.25+coord[0])*width)), (int)(40*scale+coord[1]*width), (int)(0.5*width), (int)(5*scale));
 		}
 		public void displayDoorE(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect((int)((165+(1+coord[0])*width)*scale), (int)((40+(0.25+coord[1])*width)*scale), (int)((5)*scale), (int)((0.5*width)*scale));
+			g.fillRect((int)(165*scale+(1+coord[0])*width), (int)(40*scale+(0.25+coord[1])*width), (int)(5*scale), (int)(0.5*width));
 		}
 		public void displayDoorS(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect((int)((165+(0.25+coord[0])*width)*scale), (int)((40+(1+coord[1])*width)*scale), (int)((0.5*width)*scale), (int)((5)*scale));
+			g.fillRect((int)((165)*scale+(0.25+coord[0])*width), (int)(40*scale+(1+coord[1])*width), (int)(0.5*width), (int)(5*scale));
 		}
 		public void displayDoorW(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect((int)((165+coord[0]*width)*scale), (int)((40+(0.25+coord[1])*width)*scale), (int)((5)*scale), (int)((0.5*width)*scale));
+			g.fillRect((int)(165*scale+coord[0]*width), (int)((40)*scale+(0.25+coord[1])*width), (int)(5*scale), (int)(0.5*width));
 		}
 	}
 }
