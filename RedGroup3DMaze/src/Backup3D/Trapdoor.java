@@ -8,8 +8,11 @@ public class Trapdoor extends Shapes{
 	double  yTL, yTR, yBR, yBL;
 	public int state;
 	public int dir = 0;
+	public int h, w;
 	
 	Trapdoor(int theState) {
+		h = DrawShapes.height;
+		w = DrawShapes.width;
 		state = theState;
 		if(theState == 0) {
 			xTL = 450; xTR = 550; xBR = 575; xBL = 425;
@@ -40,18 +43,39 @@ public class Trapdoor extends Shapes{
 	}
 
 	public void update() {
+		h = DrawShapes.height;
+		w = DrawShapes.width;
 		if(dir == 0) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 450; xTR = 550; xBR = 575; xBL = 425;
 					yTL = 550; yTR = 550; yBR = 650; yBL = 650;
 				}
-				xTL += 0.5;
-				xTR += 0.125;
-				yTR += 0.5;
-				xBR -= 0.75;
-				xBL += 0.125;
-				yBL -= 0.5;
+				if(ShapesPanel.timeCounter < 100) {
+					xTL += 0.5;
+					yTL += 0.75;
+					xTR += 0.5;
+					yTR += 1.5;
+					xBR -= 0.75;
+					yBR += 1.25;
+					xBL -= 0.25;
+					yBL += 0.5;
+				} else {
+					xTL += 0.5;
+					yTL -= 0.75;
+					xTR -= 0.25;
+					yTR -= 0.5;
+					xBR -= 0.75;
+					yBR -= 1.25;
+					xBL += 0.5;
+					yBL -= 1.5;
+				}
+				//xTL += 0.5;
+				//xTR += 0.125;
+				//yTR += 0.5;
+				//xBR -= 0.75;
+				//xBL += 0.125;
+				//yBL -= 0.5;
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 550; xTR = 575; xBR = 425; xBL = 450;
@@ -214,10 +238,10 @@ public class Trapdoor extends Shapes{
 					yTL = 550; yTR = 550; yBR = 650; yBL = 650;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR += 3.5;
-					yBR += 3.5;
-					yTL += 3.5;
-					yBL += 3.5;
+					yTR += h/200.0;
+					yBR += h/200.0;
+					yTL += h/200.0;
+					yBL += h/200.0;
 				} else {
 					xTL = 450; xTR = 550; xBR = 575; xBL = 425;
 					yTL = 550; yTR = 550; yBR = 650; yBL = 650;
@@ -228,10 +252,10 @@ public class Trapdoor extends Shapes{
 					yTL = 550; yTR = 650; yBR = 650; yBL = 550;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR += 3.5;
-					yBR += 3.5;
-					yTL += 3.5;
-					yBL += 3.5;
+					yTR += h/200.0;
+					yBR += h/200.0;
+					yTL += h/200.0;
+					yBL += h/200.0;
 				} else {
 					xTL = 550; xTR = 575; xBR = 425; xBL = 450;
 					yTL = 550; yTR = 650; yBR = 650; yBL = 550;
@@ -242,10 +266,10 @@ public class Trapdoor extends Shapes{
 					yTL = 650; yTR = 650; yBR = 550; yBL = 550;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR += 3.5;
-					yBR += 3.5;
-					yTL += 3.5;
-					yBL += 3.5;
+					yTR += h/200.0;
+					yBR += h/200.0;
+					yTL += h/200.0;
+					yBL += h/200.0;
 				} else {
 					xTL = 575; xTR = 425; xBR = 450; xBL = 550;
 					yTL = 650; yTR = 650; yBR = 550; yBL = 550;
@@ -256,10 +280,10 @@ public class Trapdoor extends Shapes{
 					yTL = 650; yTR = 550; yBR = 550; yBL = 650;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR += 3.5;
-					yBR += 3.5;
-					yTL += 3.5;
-					yBL += 3.5;
+					yTR += h/200.0;
+					yBR += h/200.0;
+					yTL += h/200.0;
+					yBL += h/200.0;
 				} else {
 					xTL = 425; xTR = 450; xBR = 550; xBL = 575;
 					yTL = 650; yTR = 550; yBR = 550; yBL = 650;
@@ -273,10 +297,10 @@ public class Trapdoor extends Shapes{
 					yTL = 550; yTR = 550; yBR = 650; yBL = 650;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR -= 3.5;
-					yBR -= 3.5;
-					yTL -= 3.5;
-					yBL -= 3.5;
+					yTR -= h/200.0;
+					yBR -= h/200.0;
+					yTL -= h/200.0;
+					yBL -= h/200.0;
 				} else {
 					xTL = 450; xTR = 550; xBR = 575; xBL = 425;
 					yTL = 550; yTR = 550; yBR = 650; yBL = 650;
@@ -287,10 +311,10 @@ public class Trapdoor extends Shapes{
 					yTL = 550; yTR = 650; yBR = 650; yBL = 550;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR -= 3.5;
-					yBR -= 3.5;
-					yTL -= 3.5;
-					yBL -= 3.5;
+					yTR -= h/200.0;
+					yBR -= h/200.0;
+					yTL -= h/200.0;
+					yBL -= h/200.0;
 				} else {
 					xTL = 550; xTR = 575; xBR = 425; xBL = 450;
 					yTL = 550; yTR = 650; yBR = 650; yBL = 550;
@@ -301,10 +325,10 @@ public class Trapdoor extends Shapes{
 					yTL = 650; yTR = 650; yBR = 550; yBL = 550;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR -= 3.5;
-					yBR -= 3.5;
-					yTL -= 3.5;
-					yBL -= 3.5;
+					yTR -= h/200.0;
+					yBR -= h/200.0;
+					yTL -= h/200.0;
+					yBL -= h/200.0;
 				} else {
 					xTL = 575; xTR = 425; xBR = 450; xBL = 550;
 					yTL = 650; yTR = 650; yBR = 550; yBL = 550;
@@ -315,10 +339,10 @@ public class Trapdoor extends Shapes{
 					yTL = 650; yTR = 550; yBR = 550; yBL = 650;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR -= 3.5;
-					yBR -= 3.5;
-					yTL -= 3.5;
-					yBL -= 3.5;
+					yTR -= h/200.0;
+					yBR -= h/200.0;
+					yTL -= h/200.0;
+					yBL -= h/200.0;
 				} else {
 					xTL = 425; xTR = 450; xBR = 550; xBL = 575;
 					yTL = 650; yTR = 550; yBR = 550; yBL = 650;
