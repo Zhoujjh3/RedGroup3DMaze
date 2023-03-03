@@ -36,7 +36,7 @@ public class MazeMap {
 		for (int i=0; i<length; i++) {
 			for (int o=0; o<length; o++) {
 				Room room = maze.getRoom(newLevel, o, i);//FIX, MICHAEL CHANGED THE ORDER
-				int[] coord = {i,o};
+				int[] coord = {o,i};
 				if (room.getDirection('N')) {
 					painter.displayDoorN(g, coord);
 				}

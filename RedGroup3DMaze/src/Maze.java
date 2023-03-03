@@ -565,12 +565,11 @@ public class Maze {
 	private boolean[] getRoomDirections(char baseMaze[][][], int level, int x, int y){
 		boolean[] result = {false, false, false, false, false, false};
 		
-		switch (baseMaze[level][x][y]) {
-		case 'U':
+		if (baseMaze[level][x][y] == 'U') {
 			result[4] = true;
-		case 'D':
+		} else if (baseMaze[level][x][y] == 'D') {
 			result[5] = true;
-		case 'B':
+		} else if (baseMaze[level][x][y] == 'B') {
 			result[4] = true;
 			result[5] = true;
 		}
@@ -601,12 +600,6 @@ public class Maze {
 			}
 		}
 		return true;
-	}
-	
-	private boolean movesMatchWithDifficulty(int moves) {
-		return ((difficulty == 1 && moves >= 15 && moves <= 17) 
-				|| (difficulty == 2 && moves >= 18 && moves <= 20) 
-				|| (difficulty == 3 && moves >= 22 && moves <= 24));
 	}
 	
 	private ArrayList<int[]> getDirsAroundCoords(char[][][] baseMaze, int[] coords) {
