@@ -1,12 +1,18 @@
 import javax.swing.*; 
 import java.awt.*;
-import java.awt.event.*;  
+import java.awt.event.*;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.awt.Color;
+import java.awt.Dimension;
 
 public class Leaderboard implements ActionListener {
 	
 	JTextField[] top10 = new JTextField[10];
 	int scoresList[] = {2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647};
 	int score;
+	static int width = 1000;
+	static int height = 750;
 	PlayerData player;
 	
 	JFrame frame;
@@ -15,7 +21,7 @@ public class Leaderboard implements ActionListener {
 	JScrollPane scrollPane;
 	JTextField title, yourScore;
 	
-	Leaderboard(PlayerData thePlayer) {
+	Leaderboard (PlayerData thePlayer) {
 		score = thePlayer.getScore();
 		if (score != 0) {
 			sortScores(score);
@@ -29,15 +35,11 @@ public class Leaderboard implements ActionListener {
 	    
 	    title = new JTextField("Leaderboard");
 	    title.setEditable(false);
-	    title.setBounds(400, 75, 275, 50);
-	    title.setFont(new Font("Serif", Font.PLAIN, 40));
 	    title.setBorder(BorderFactory.createEmptyBorder());
 	    contentPane.add(title);
 	    
 	    yourScore = new JTextField("Your Score: " + Integer.toString(score));
-	    yourScore.setFont(new Font("Serif", Font.PLAIN, 25));
 	    yourScore.setEditable(false);
-	    yourScore.setBounds(165, 500, 300, 50);
 	    yourScore.setHorizontalAlignment(JTextField.CENTER);
 	    contentPane.add(yourScore);
 	    
@@ -49,31 +51,49 @@ public class Leaderboard implements ActionListener {
 	    	}
 	    	top10[i].setHorizontalAlignment(JTextField.CENTER);
 	    	top10[i].setEditable(false);
-	    	top10[i].setFont(new Font("Serif", Font.PLAIN, 25));
-	    }
-	    
-	    for (int i = 0; i < 5; i++) {
-	    	top10[i].setBounds(140, (150 + i*65), 350, 50);
-	    	top10[i + 5].setBounds(520, (150 + i*65), 350, 50);	    	
 	    	contentPane.add(top10[i]);
-	    	contentPane.add(top10[i + 5]);
 	    }
 	    
 	    restartButt = new JButton("Restart");
-	    restartButt.setFont(new Font("Serif", Font.PLAIN, 25));
-	    restartButt.setBounds(545, 500, 300, 50);
 	    restartButt.setBackground(new Color(150, 150, 148));
 	    restartButt.setActionCommand("click");
 	    restartButt.addActionListener(this);
 	    contentPane.add(restartButt);
 
+	    //dynamic
+	    Timer timer = new Timer();
+	    TimerTask task = new TimerTask() {
+	    	public void run() {
+	    		int panelWidth = contentPane.getWidth();
+	    		int panelHeight = contentPane.getHeight();
+	    		
+	    		title.setBounds((int)(panelWidth * 0.4), (int)(panelHeight * 0.08), (int)(panelWidth * 0.275), (int)(panelHeight * 0.08));
+	    		title.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+	    		
+	    		for (int i = 0; i < 5; i++) {
+	    			top10[i].setBounds((int)(panelWidth * 0.140), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
+	    			top10[i + 5].setBounds((int)(panelWidth * 0.520), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
+	    			top10[i].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+	    			top10[i + 5].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+	    		}
+	    		
+	    		yourScore.setBounds((int)(panelWidth * 0.165), (int)(panelHeight * 0.7), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
+	    		yourScore.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.025)));
+	    		
+	    		restartButt.setBounds((int)(panelWidth * 0.545), (int)(panelHeight * 0.7), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
+	    		restartButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.03)));
+	    	}
+	    };
+	    timer.schedule(task, 1, 1);
+	    
+	    contentPane.setPreferredSize(new Dimension(width, height));
 	    frame.setContentPane(contentPane);
-	    frame.setSize(1000, 750);
+	    frame.pack();
 	    frame.setVisible(true);
 	}
 	
 	public void restartGame() {
-		Selection newGame = new Selection();
+//		Selection newGame = new Selection();
 	}
 	
 	//if the new score is lower than the 10th score, the 10th score is removed
@@ -85,7 +105,7 @@ public class Leaderboard implements ActionListener {
 		}
 	}
 
-	//sorts the top 10 scores from lowest to greatest
+	//sorts the top 10 scores from lowest to greatest2
 	private void bubbleSort() {
 		int temp;
 		for (int i = 0; i < scoresList.length; i++) {
@@ -105,10 +125,10 @@ public class Leaderboard implements ActionListener {
 		}
 	}
 	
-	//testing
+	//test2ing
 	private static void runGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		Leaderboard testb = new Leaderboard(new PlayerData(1));
+		Leaderboard test2b = new Leaderboard(new PlayerData(1));
 	}
 	
 	public static void main(String[] args) {
