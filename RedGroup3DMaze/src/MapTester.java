@@ -53,7 +53,7 @@ public class MapTester {
         });
         levelUp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (player.getCoordinate('Z') + levelIncrement != 3) {
+                if (player.getCoordinate('Z') + levelIncrement != maze.getMazeSize() - 1) {
                     levelIncrement++;
                     panel.repaint();
                 }
@@ -68,7 +68,7 @@ public class MapTester {
     class Panel extends JPanel{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            if (player.getCoordinate('Z') + levelIncrement == 3) {
+            if (player.getCoordinate('Z') + levelIncrement == maze.getMazeSize() - 1) {
                 levelUp.setBackground(Color.GRAY);
             } else {
                 levelUp.setBackground(Color.WHITE);
