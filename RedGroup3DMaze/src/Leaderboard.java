@@ -21,8 +21,15 @@ public class Leaderboard implements ActionListener {
 	JScrollPane scrollPane;
 	JTextField title, yourScore;
 	
-	Leaderboard (PlayerData thePlayer) {
+	Leaderboard() {
+		display();
+	}
+	
+	public void getScore(PlayerData thePlayer) {
 		score = thePlayer.getScore();
+	}
+	
+	public void display() {
 		if (score != 0) {
 			sortScores(score);
 		}
@@ -93,7 +100,7 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	public void restartGame() {
-//		Selection newGame = new Selection();
+		Selection newGame = new Selection();
 	}
 	
 	//if the new score is lower than the 10th score, the 10th score is removed
@@ -105,7 +112,7 @@ public class Leaderboard implements ActionListener {
 		}
 	}
 
-	//sorts the top 10 scores from lowest to greatest2
+	//sorts the top 10 scores from lowest to greatest
 	private void bubbleSort() {
 		int temp;
 		for (int i = 0; i < scoresList.length; i++) {
@@ -128,14 +135,10 @@ public class Leaderboard implements ActionListener {
 	//test2ing
 	private static void runGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		Leaderboard test2b = new Leaderboard(new PlayerData(1));
+		Leaderboard test2b = new Leaderboard();
 	}
 	
 	public static void main(String[] args) {
-		/*
-		 * Methods that create and show a GUI should be
-		 * run from an event-dispatching thread
-		 */
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
 			public void run() {
 				runGUI();
