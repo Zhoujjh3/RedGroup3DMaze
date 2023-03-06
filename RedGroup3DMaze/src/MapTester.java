@@ -7,9 +7,8 @@ public class MapTester {
     JFrame frame;
     JPanel panel;
     MazeMap map;
-    Maze basicMaze = new Maze(1);
     ManualTestMaze manMaze = new ManualTestMaze();
-    Maze maze = new Maze(1);
+    Maze maze = new Maze(3);
     PlayerData player = new PlayerData(4);
     JButton changeView, levelUp, levelDown;
     Header header;
@@ -23,7 +22,7 @@ public class MapTester {
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         frame.setContentPane(panel);
 
-        header = new Header(basicMaze, player);
+        header = new Header(maze, player);
         changeView = new JButton(header.getView());
         levelDown = new JButton("Level Down");
         levelUp = new JButton("Level Up");
