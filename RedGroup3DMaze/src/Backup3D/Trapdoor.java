@@ -9,23 +9,27 @@ public class Trapdoor extends Shapes{
 	public int state;
 	public int dir = 0;
 	public int h, w;
+	public double xScale;
+	public double yScale;
 	
 	Trapdoor(int theState) {
 		h = DrawShapes.height;
 		w = DrawShapes.width;
+		xScale = w/1000.0;
+		yScale = h/700.0;
 		state = theState;
 		if(theState == 0) {
-			xTL = 450 * (w/1000.0); xTR = 550 * (w/1000.0); xBR = 575 * (w/1000.0); xBL = 425 * (w/1000.0);
-			yTL = 550 * (h/700.0); yTR = 550 * (h/700.0); yBR = 650 * (h/700.0); yBL = 650 * (h/700.0);
+			xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
+			yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 		} else if(theState == 1) {
-			xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-			yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+			xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+			yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 		} else if(theState == 2) {
-			xTL = 575 * (w/1000.0); xTR = 425 * (w/1000.0); xBR = 450 * (w/1000.0); xBL = 550 * (w/1000.0);
-			yTL = 650 * (h/700.0); yTR = 650 * (h/700.0); yBR = 550 * (h/700.0); yBL = 550 * (h/700.0);
+			xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
+			yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 		} else if(theState == 3) {
-			xTL = 425 * (w/1000.0); xTR = 450 * (w/1000.0); xBR = 550 * (w/1000.0); xBL = 575 * (w/1000.0);
-			yTL = 650 * (h/700.0); yTR = 550 * (h/700.0); yBR = 550 * (h/700.0); yBL = 650 * (h/700.0);
+			xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
+			yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 		}
 	}
 	
@@ -45,392 +49,394 @@ public class Trapdoor extends Shapes{
 	public void update() {
 		h = DrawShapes.height;
 		w = DrawShapes.width;
+		xScale = w/1000.0;
+		yScale = h/700.0;
 		if(dir == 0) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450 * (w/1000.0); xTR = 550 * (w/1000.0); xBR = 575 * (w/1000.0); xBL = 425 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 550 * (h/700.0); yBR = 650 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
+					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 100) {
-					xTL += 0.5 * (w/1000.0);
-					yTL += 0.75 * (h/700.0);
-					xTR += 0.5 * (w/1000.0);
-					yTR += 1.5 * (h/700.0);
-					xBR -= 0.75 * (w/1000.0);
-					yBR += 1.25 * (h/700.0);
-					xBL -= 0.25 * (w/1000.0);
-					yBL += 0.5 * (h/700.0);
+					xTL += 0.5 * xScale;
+					yTL += 0.75 * yScale;
+					xTR += 0.5 * xScale;
+					yTR += 1.5 * yScale;
+					xBR -= 0.75 * xScale;
+					yBR += 1.25 * yScale;
+					xBL -= 0.25 * xScale;
+					yBL += 0.5 * yScale;
 				} else {
-					xTL += 0.5 * (w/1000.0);
-					yTL -= 0.75 * (h/700.0);
-					xTR -= 0.25 * (w/1000.0);
-					yTR -= 0.5 * (h/700.0);
-					xBR -= 0.75 * (w/1000.0);
-					yBR -= 1.25 * (h/700.0);
-					xBL += 0.5 * (w/1000.0);
-					yBL -= 1.5 * (h/700.0);
+					xTL += 0.5 * xScale;
+					yTL -= 0.75 * yScale;
+					xTR -= 0.25 * xScale;
+					yTR -= 0.5 * yScale;
+					xBR -= 0.75 * xScale;
+					yBR -= 1.25 * yScale;
+					xBL += 0.5 * xScale;
+					yBL -= 1.5 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 100) {
-					xBL += 0.5 * (w/1000.0);
-					yBL += 0.75 * (h/700.0);
-					xTL += 0.5 * (w/1000.0);
-					yTL += 1.5 * (h/700.0);
-					xTR -= 0.75 * (w/1000.0);
-					yTR += 1.25 * (h/700.0);
-					xBR -= 0.25 * (w/1000.0);
-					yBR += 0.5 * (h/700.0);
+					xBL += 0.5 * xScale;
+					yBL += 0.75 * yScale;
+					xTL += 0.5 * xScale;
+					yTL += 1.5 * yScale;
+					xTR -= 0.75 * xScale;
+					yTR += 1.25 * yScale;
+					xBR -= 0.25 * xScale;
+					yBR += 0.5 * yScale;
 				} else {
-					xBL += 0.5 * (w/1000.0);
-					yBL -= 0.75 * (h/700.0);
-					xTL -= 0.25 * (w/1000.0);
-					yTL -= 0.5 * (h/700.0);
-					xTR -= 0.75 * (w/1000.0);
-					yTR -= 1.25 * (h/700.0);
-					xBR += 0.5 * (w/1000.0);
-					yBR -= 1.5 * (h/700.0);
+					xBL += 0.5 * xScale;
+					yBL -= 0.75 * yScale;
+					xTL -= 0.25 * xScale;
+					yTL -= 0.5 * yScale;
+					xTR -= 0.75 * xScale;
+					yTR -= 1.25 * yScale;
+					xBR += 0.5 * xScale;
+					yBR -= 1.5 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 575 * (w/1000.0); xTR = 425 * (w/1000.0); xBR = 450 * (w/1000.0); xBL = 550 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 650 * (h/700.0); yBR = 550 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
+					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 100) {
-					xBR += 0.5 * (w/1000.0);
-					yBR += 0.75 * (h/700.0);
-					xBL += 0.5 * (w/1000.0);
-					yBL += 1.5 * (h/700.0);
-					xTL -= 0.75 * (w/1000.0);
-					yTL += 1.25 * (h/700.0);
-					xTR -= 0.25 * (w/1000.0);
-					yTR += 0.5 * (h/700.0);
+					xBR += 0.5 * xScale;
+					yBR += 0.75 * yScale;
+					xBL += 0.5 * xScale;
+					yBL += 1.5 * yScale;
+					xTL -= 0.75 * xScale;
+					yTL += 1.25 * yScale;
+					xTR -= 0.25 * xScale;
+					yTR += 0.5 * yScale;
 				} else {
-					xBR += 0.5 * (w/1000.0);
-					yBR -= 0.75 * (h/700.0);
-					xBL -= 0.25 * (w/1000.0);
-					yBL -= 0.5 * (h/700.0);
-					xTL -= 0.75 * (w/1000.0);
-					yTL -= 1.25 * (h/700.0);
-					xTR += 0.5 * (w/1000.0);
-					yTR -= 1.5 * (h/700.0);
+					xBR += 0.5 * xScale;
+					yBR -= 0.75 * yScale;
+					xBL -= 0.25 * xScale;
+					yBL -= 0.5 * yScale;
+					xTL -= 0.75 * xScale;
+					yTL -= 1.25 * yScale;
+					xTR += 0.5 * xScale;
+					yTR -= 1.5 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 425 * (w/1000.0); xTR = 450 * (w/1000.0); xBR = 550 * (w/1000.0); xBL = 575 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 550 * (h/700.0); yBR = 550 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
+					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 100) {
-					xTR += 0.5 * (w/1000.0);
-					yTR += 0.75 * (h/700.0);
-					xBR += 0.5 * (w/1000.0);
-					yBR += 1.5 * (h/700.0);
-					xBL -= 0.75 * (w/1000.0);
-					yBL += 1.25 * (h/700.0);
-					xTL -= 0.25 * (w/1000.0);
-					yTL += 0.5 * (h/700.0);
+					xTR += 0.5 * xScale;
+					yTR += 0.75 * yScale;
+					xBR += 0.5 * xScale;
+					yBR += 1.5 * yScale;
+					xBL -= 0.75 * xScale;
+					yBL += 1.25 * yScale;
+					xTL -= 0.25 * xScale;
+					yTL += 0.5 * yScale;
 				} else {
-					xTR += 0.5 * (w/1000.0);
-					yTR -= 0.75 * (h/700.0);
-					xBR -= 0.25 * (w/1000.0);
-					yBR -= 0.5 * (h/700.0);
-					xBL -= 0.75 * (w/1000.0);
-					yBL -= 1.25 * (h/700.0);
-					xTL += 0.5 * (w/1000.0);
-					yTL -= 1.5 * (h/700.0);
+					xTR += 0.5 * xScale;
+					yTR -= 0.75 * yScale;
+					xBR -= 0.25 * xScale;
+					yBR -= 0.5 * yScale;
+					xBL -= 0.75 * xScale;
+					yBL -= 1.25 * yScale;
+					xTL += 0.5 * xScale;
+					yTL -= 1.5 * yScale;
 				}
 			}
 		} else if (dir == 1) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450 * (w/1000.0); xTR = 550 * (w/1000.0); xBR = 575 * (w/1000.0); xBL = 425 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 550 * (h/700.0); yBR = 650 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
+					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 100) {
-					xTR -= 0.5 * (w/1000.0);
-					yTR += 0.75 * (h/700.0);
-					xBR += 0.25 * (w/1000.0);
-					yBR += 0.5 * (h/700.0);
-					xBL += 0.75 * (w/1000.0);
-					yBL += 1.25 * (h/700.0);
-					xTL -= 0.5 * (w/1000.0);
-					yTL += 1.5 * (h/700.0);
+					xTR -= 0.5 * xScale;
+					yTR += 0.75 * yScale;
+					xBR += 0.25 * xScale;
+					yBR += 0.5 * yScale;
+					xBL += 0.75 * xScale;
+					yBL += 1.25 * yScale;
+					xTL -= 0.5 * xScale;
+					yTL += 1.5 * yScale;
 				} else {
-					xTR -= 0.5 * (w/1000.0);
-					yTR -= 0.75 * (h/700.0);
-					xBR -= 0.5 * (w/1000.0);
-					yBR -= 1.5 * (h/700.0);
-					xBL += 0.75 * (w/1000.0);
-					yBL -= 1.25 * (h/700.0);
-					xTL += 0.25 * (w/1000.0);
-					yTL -= 0.5 * (h/700.0);
+					xTR -= 0.5 * xScale;
+					yTR -= 0.75 * yScale;
+					xBR -= 0.5 * xScale;
+					yBR -= 1.5 * yScale;
+					xBL += 0.75 * xScale;
+					yBL -= 1.25 * yScale;
+					xTL += 0.25 * xScale;
+					yTL -= 0.5 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 100) {
-					xBR -= 0.5 * (w/1000.0);
-					yBR += 0.75 * (h/700.0);
-					xBL += 0.25 * (w/1000.0);
-					yBL += 0.5 * (h/700.0);
-					xTL += 0.75 * (w/1000.0);
-					yTL += 1.25 * (h/700.0);
-					xTR -= 0.5 * (w/1000.0);
-					yTR += 1.5 * (h/700.0);
+					xTL -= 0.5 * xScale;
+					yTL += 0.75 * yScale;
+					xTR += 0.25 * xScale;
+					yTR += 0.5 * yScale;
+					xBR += 0.75 * xScale;
+					yBR += 1.25 * yScale;
+					xBL -= 0.5 * xScale;
+					yBL += 1.5 * yScale;
 				} else {
-					xBR -= 0.5 * (w/1000.0);
-					yBR -= 0.75 * (h/700.0);
-					xBL -= 0.5 * (w/1000.0);
-					yBL -= 1.5 * (h/700.0);
-					xTL += 0.75 * (w/1000.0);
-					yTL -= 1.25 * (h/700.0);
-					xTR += 0.25 * (w/1000.0);
-					yTR -= 0.5 * (h/700.0);
+					xTL -= 0.5 * xScale;
+					yTL -= 0.75 * yScale;
+					xTR -= 0.5 * xScale;
+					yTR -= 1.5 * yScale;
+					xBR += 0.75 * xScale;
+					yBR -= 1.25 * yScale;
+					xBL += 0.25 * xScale;
+					yBL -= 0.5 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 575 * (w/1000.0); xTR = 425 * (w/1000.0); xBR = 450 * (w/1000.0); xBL = 550 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 650 * (h/700.0); yBR = 550 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
+					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 100) {
-					xBL -= 0.5 * (w/1000.0);
-					yBL += 0.75 * (h/700.0);
-					xTL += 0.25 * (w/1000.0);
-					yTL += 0.5 * (h/700.0);
-					xTR += 0.75 * (w/1000.0);
-					yTR += 1.25 * (h/700.0);
-					xBR -= 0.5 * (w/1000.0);
-					yBR += 1.5 * (h/700.0);
+					xBL -= 0.5 * xScale;
+					yBL += 0.75 * yScale;
+					xTL += 0.25 * xScale;
+					yTL += 0.5 * yScale;
+					xTR += 0.75 * xScale;
+					yTR += 1.25 * yScale;
+					xBR -= 0.5 * xScale;
+					yBR += 1.5 * yScale;
 				} else {
-					xBL -= 0.5 * (w/1000.0);
-					yBL -= 0.75 * (h/700.0);
-					xTL -= 0.5 * (w/1000.0);
-					yTL -= 1.5 * (h/700.0);
-					xTR += 0.75 * (w/1000.0);
-					yTR -= 1.25 * (h/700.0);
-					xBR += 0.25 * (w/1000.0);
-					yBR -= 0.5 * (h/700.0);
+					xBL -= 0.5 * xScale;
+					yBL -= 0.75 * yScale;
+					xTL -= 0.5 * xScale;
+					yTL -= 1.5 * yScale;
+					xTR += 0.75 * xScale;
+					yTR -= 1.25 * yScale;
+					xBR += 0.25 * xScale;
+					yBR -= 0.5 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 100) {
-					xTL -= 0.5 * (w/1000.0);
-					yTL += 0.75 * (h/700.0);
-					xTR += 0.25 * (w/1000.0);
-					yTR += 0.5 * (h/700.0);
-					xBR += 0.75 * (w/1000.0);
-					yBR += 1.25 * (h/700.0);
-					xBL -= 0.5 * (w/1000.0);
-					yBL += 1.5 * (h/700.0);
+					xTL -= 0.5 * xScale;
+					yTL += 0.75 * yScale;
+					xTR += 0.25 * xScale;
+					yTR += 0.5 * yScale;
+					xBR += 0.75 * xScale;
+					yBR += 1.25 * yScale;
+					xBL -= 0.5 * xScale;
+					yBL += 1.5 * yScale;
 				} else {
-					xTL -= 0.5 * (w/1000.0);
-					yTL -= 0.75 * (h/700.0);
-					xTR -= 0.5 * (w/1000.0);
-					yTR -= 1.5 * (h/700.0);
-					xBR += 0.75 * (w/1000.0);
-					yBR -= 1.25 * (h/700.0);
-					xBL += 0.25 * (w/1000.0);
-					yBL -= 0.5 * (h/700.0);
+					xTL -= 0.5 * xScale;
+					yTL -= 0.75 * yScale;
+					xTR -= 0.5 * xScale;
+					yTR -= 1.5 * yScale;
+					xBR += 0.75 * xScale;
+					yBR -= 1.25 * yScale;
+					xBL += 0.25 * xScale;
+					yBL -= 0.5 * yScale;
 				}
 			}
 		} else if (dir == 2) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450 * (w/1000.0); xTR = 550 * (w/1000.0); xBR = 575 * (w/1000.0); xBL = 425 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 550 * (h/700.0); yBR = 650 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
+					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					xTL -= 0.25 * (w/1000.0); 
-					xBL -= 0.25 * (w/1000.0);
-					xTR += 0.25 * (w/1000.0);
-					xBR += 0.25 * (w/1000.0);
-					yTL += 1 * (h/700.0);
-					yTR += 1 * (h/700.0);
-					yBR += 1 * (h/700.0);
-					yBL += 1 * (h/700.0);
+					xTL -= 0.25 * xScale; 
+					xBL -= 0.25 * xScale;
+					xTR += 0.25 * xScale;
+					xBR += 0.25 * xScale;
+					yTL += 1 * yScale;
+					yTR += 1 * yScale;
+					yBR += 1 * yScale;
+					yBL += 1 * yScale;
 				} else {
-					xTL = 450 * (w/1000.0); xTR = 550 * (w/1000.0); xBR = 575 * (w/1000.0); xBL = 425 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 550 * (h/700.0); yBR = 650 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
+					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					xTL += 0.25 * (w/1000.0);
-					xBL -= 0.25 * (w/1000.0);
-					xTR += 0.25 * (w/1000.0);
-					xBR -= 0.25 * (w/1000.0);
-					yTL += 1 * (h/700.0);
-					yTR += 1 * (h/700.0);
-					yBR += 1 * (h/700.0);
-					yBL += 1 * (h/700.0);
+					xTL += 0.25 * xScale;
+					xBL -= 0.25 * xScale;
+					xTR += 0.25 * xScale;
+					xBR -= 0.25 * xScale;
+					yTL += 1 * yScale;
+					yTR += 1 * yScale;
+					yBR += 1 * yScale;
+					yBL += 1 * yScale;
 				} else {
-					xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 575 * (w/1000.0); xTR = 425 * (w/1000.0); xBR = 450 * (w/1000.0); xBL = 550 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 650 * (h/700.0); yBR = 550 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
+					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					xTL += 0.25 * (w/1000.0);
-					xBL += 0.25 * (w/1000.0);
-					xTR -= 0.25 * (w/1000.0); 
-					xBR -= 0.25 * (w/1000.0);
-					yTL += 1 * (h/700.0);
-					yTR += 1 * (h/700.0);
-					yBR += 1 * (h/700.0);
-					yBL += 1 * (h/700.0);
+					xTL += 0.25 * xScale;
+					xBL += 0.25 * xScale;
+					xTR -= 0.25 * xScale; 
+					xBR -= 0.25 * xScale;
+					yTL += 1 * yScale;
+					yTR += 1 * yScale;
+					yBR += 1 * yScale;
+					yBL += 1 * yScale;
 				} else {
-					xTL = 575 * (w/1000.0); xTR = 425 * (w/1000.0); xBR = 450 * (w/1000.0); xBL = 550 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 650 * (h/700.0); yBR = 550 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
+					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 425 * (w/1000.0); xTR = 450 * (w/1000.0); xBR = 550 * (w/1000.0); xBL = 575 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 550 * (h/700.0); yBR = 550 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
+					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					xTL -= 0.25 * (w/1000.0);
-					xBL += 0.25 * (w/1000.0);
-					xTR -= 0.25 * (w/1000.0);
-					xBR += 0.25 * (w/1000.0);
-					yTL += 1 * (h/700.0);
-					yTR += 1 * (h/700.0);
-					yBR += 1 * (h/700.0);
-					yBL += 1 * (h/700.0);
+					xTL -= 0.25 * xScale;
+					xBL += 0.25 * xScale;
+					xTR -= 0.25 * xScale;
+					xBR += 0.25 * xScale;
+					yTL += 1 * yScale;
+					yTR += 1 * yScale;
+					yBR += 1 * yScale;
+					yBL += 1 * yScale;
 				} else {
-					xTL = 425 * (w/1000.0); xTR = 450 * (w/1000.0); xBR = 550 * (w/1000.0); xBL = 575 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 550 * (h/700.0); yBR = 550 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
+					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 				}
 				
 			}
 		} else if (dir == 3) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450 * (w/1000.0); xTR = 550 * (w/1000.0); xBR = 575 * (w/1000.0); xBL = 425 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 550 * (h/700.0); yBR = 650 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
+					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR += h/200.0;
-					yBR += h/200.0;
-					yTL += h/200.0;
-					yBL += h/200.0;
+					yTR += 3.5 * yScale;
+					yBR += 3.5 * yScale;
+					yTL += 3.5 * yScale;
+					yBL += 3.5 * yScale;
 				} else {
-					xTL = 450 * (w/1000.0); xTR = 550 * (w/1000.0); xBR = 575 * (w/1000.0); xBL = 425 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 550 * (h/700.0); yBR = 650 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
+					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR += h/200.0;
-					yBR += h/200.0;
-					yTL += h/200.0;
-					yBL += h/200.0;
+					yTR += 3.5 * yScale;
+					yBR += 3.5 * yScale;
+					yTL += 3.5 * yScale;
+					yBL += 3.5 * yScale;
 				} else {
-					xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 575 * (w/1000.0); xTR = 425 * (w/1000.0); xBR = 450 * (w/1000.0); xBL = 550 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 650 * (h/700.0); yBR = 550 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
+					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR += h/200.0;
-					yBR += h/200.0;
-					yTL += h/200.0;
-					yBL += h/200.0;
+					yTR += 3.5 * yScale;
+					yBR += 3.5 * yScale;
+					yTL += 3.5 * yScale;
+					yBL += 3.5 * yScale;
 				} else {
-					xTL = 575 * (w/1000.0); xTR = 425 * (w/1000.0); xBR = 450 * (w/1000.0); xBL = 550 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 650 * (h/700.0); yBR = 550 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
+					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 425 * (w/1000.0); xTR = 450 * (w/1000.0); xBR = 550 * (w/1000.0); xBL = 575 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 550 * (h/700.0); yBR = 550 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
+					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR += h/200.0;
-					yBR += h/200.0;
-					yTL += h/200.0;
-					yBL += h/200.0;
+					yTR += 3.5 * yScale;
+					yBR += 3.5 * yScale;
+					yTL += 3.5 * yScale;
+					yBL += 3.5 * yScale;
 				} else {
-					xTL = 425 * (w/1000.0); xTR = 450 * (w/1000.0); xBR = 550 * (w/1000.0); xBL = 575 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 550 * (h/700.0); yBR = 550 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
+					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 				}
 				
 			}
 		} else if (dir == 4) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 450 * (w/1000.0); xTR = 550 * (w/1000.0); xBR = 575 * (w/1000.0); xBL = 425 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 550 * (h/700.0); yBR = 650 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
+					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR -= h/200.0;
-					yBR -= h/200.0;
-					yTL -= h/200.0;
-					yBL -= h/200.0;
+					yTR -= 3.5 * yScale;
+					yBR -= 3.5 * yScale;
+					yTL -= 3.5 * yScale;
+					yBL -= 3.5 * yScale;
 				} else {
-					xTL = 450 * (w/1000.0); xTR = 550 * (w/1000.0); xBR = 575 * (w/1000.0); xBL = 425 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 550 * (h/700.0); yBR = 650 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
+					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR -= h/200.0;
-					yBR -= h/200.0;
-					yTL -= h/200.0;
-					yBL -= h/200.0;
+					yTR -= 3.5 * yScale;
+					yBR -= 3.5 * yScale;
+					yTL -= 3.5 * yScale;
+					yBL -= 3.5 * yScale;
 				} else {
-					xTL = 550 * (w/1000.0); xTR = 575 * (w/1000.0); xBR = 425 * (w/1000.0); xBL = 450 * (w/1000.0);
-					yTL = 550 * (h/700.0); yTR = 650 * (h/700.0); yBR = 650 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 575 * (w/1000.0); xTR = 425 * (w/1000.0); xBR = 450 * (w/1000.0); xBL = 550 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 650 * (h/700.0); yBR = 550 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
+					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR -= h/200.0;
-					yBR -= h/200.0;
-					yTL -= h/200.0;
-					yBL -= h/200.0;
+					yTR -= 3.5 * yScale;
+					yBR -= 3.5 * yScale;
+					yTL -= 3.5 * yScale;
+					yBL -= 3.5 * yScale;
 				} else {
-					xTL = 575 * (w/1000.0); xTR = 425 * (w/1000.0); xBR = 450 * (w/1000.0); xBL = 550 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 650 * (h/700.0); yBR = 550 * (h/700.0); yBL = 550 * (h/700.0);
+					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
+					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 425 * (w/1000.0); xTR = 450 * (w/1000.0); xBR = 550 * (w/1000.0); xBL = 575 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 550 * (h/700.0); yBR = 550 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
+					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR -= h/200.0;
-					yBR -= h/200.0;
-					yTL -= h/200.0;
-					yBL -= h/200.0;
+					yTR -= 3.5 * yScale;
+					yBR -= 3.5 * yScale;
+					yTL -= 3.5 * yScale;
+					yBL -= 3.5 * yScale;
 				} else {
-					xTL = 425 * (w/1000.0); xTR = 450 * (w/1000.0); xBR = 550 * (w/1000.0); xBL = 575 * (w/1000.0);
-					yTL = 650 * (h/700.0); yTR = 550 * (h/700.0); yBR = 550 * (h/700.0); yBL = 650 * (h/700.0);
+					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
+					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 				}
 				
 			}
