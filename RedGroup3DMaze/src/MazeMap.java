@@ -277,7 +277,7 @@ public class MazeMap {
 			g.setColor(Color.black);
 			g.drawPolygon(playerIconX, playerIconY, 7);
 			Color playerIconColor = new Color(255, 255, 0);
-			g.setColor(playerIconColor);
+			g.setColor(playerIconColor); 
 			g.fillPolygon(playerIconX, playerIconY, 7);
 		}
 		
