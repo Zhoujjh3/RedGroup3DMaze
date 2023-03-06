@@ -60,30 +60,28 @@ public class MazeMap {
 			for (int o=0; o<length; o++) {
 				Room room = maze.getRoom(newLevel, o, i);//FIX, MICHAEL CHANGED THE ORDER
 				int[] coord = {o,i};
-				if (room.getDirection('N')) {
-					painter.displayDoorN(g, coord);
-				}
-				if (room.getDirection('E')) {
-					painter.displayDoorE(g, coord);
-				}
-				if (room.getDirection('S')) {
-					painter.displayDoorS(g, coord);
-				}
-				if (room.getDirection('W')) {
-					painter.displayDoorW(g, coord);
-				}
-				if (room.getDirection('U')) {
-					painter.displayHatch(g, coord);
-				}
-				if (room.getDirection('D')) {
-					painter.displayTrap(g, coord);
-				}
-				/*if (room.hasVisited()) {
-					
+				if (room.hasVisited()) {
+					if (room.getDirection('N')) {
+						painter.displayDoorN(g, coord);
+					}
+					if (room.getDirection('E')) {
+						painter.displayDoorE(g, coord);
+					}
+					if (room.getDirection('S')) {
+						painter.displayDoorS(g, coord);
+					}
+					if (room.getDirection('W')) {
+						painter.displayDoorW(g, coord);
+					}
+					if (room.getDirection('U')) {
+						painter.displayHatch(g, coord);
+					}
+					if (room.getDirection('D')) {
+						painter.displayTrap(g, coord);
+					}
 				} else {
-					painter.gray(g);
-				}*/
-				//painter.gray(g, coord);
+					painter.gray(g, coord);
+				}
 			}
 		}
 		
@@ -162,8 +160,8 @@ public class MazeMap {
 			int[] trapY = {165, 180, 165, 180, 195, 180, 165};
 			if (size==5) {
 				for (int i=0; i<7; i++) {
-					trapX[i] = (int)(trapX[i]*.8);
-					trapY[i] = (int)(trapY[i]*.8);
+					trapX[i] = (int)((trapX[i]-165)*.8+165);
+					trapY[i] = (int)((trapY[i]-40)*.8+40);
 				}
 			}
 			for (int i=0; i<7; i++) {
@@ -181,8 +179,8 @@ public class MazeMap {
 			int[] hatchY = {70, 55, 70, 85, 70, 85, 70};
 			if (size==5) {
 				for (int i=0; i<7; i++) {
-					hatchX[i] = (int)(hatchX[i]*.8);
-					hatchY[i] = (int)(hatchY[i]*.8);
+					hatchX[i] = (int)((hatchX[i]-165)*.8+165);
+					hatchY[i] = (int)((hatchY[i]-40)*.8+40);
 				}
 			}
 			for (int i=0; i<7; i++) {
@@ -201,8 +199,8 @@ public class MazeMap {
 			int[] playerIconY = {140, 110, 140, 140, 125, 140, 140};
 			if (size==5) {
 				for (int i=0; i<7; i++) {
-					playerIconX[i] = (int)(playerIconX[i]*.8);
-					playerIconY[i] = (int)(playerIconY[i]*.8);
+					playerIconX[i] = (int)((playerIconX[i]-165)*.8+165);
+					playerIconY[i] = (int)((playerIconY[i]-40)*.8+40);
 				}
 			}
 			for (int i=0; i<7; i++) {
@@ -223,8 +221,8 @@ public class MazeMap {
 			int[] playerIconY = {220, 250, 280, 265, 250, 235, 220};
 			if (size==5) {
 				for (int i=0; i<7; i++) {
-					playerIconX[i] = (int)(playerIconX[i]*.8);
-					playerIconY[i] = (int)(playerIconY[i]*.8);
+					playerIconX[i] = (int)((playerIconX[i]-165)*.8+165);
+					playerIconY[i] = (int)((playerIconY[i]-40)*.8+40);
 				}
 			}
 			for (int i=0; i<7; i++) {
@@ -245,8 +243,8 @@ public class MazeMap {
 			int[] playerIconY = {140, 110, 140, 140, 125, 140, 140};
 			if (size==5) {
 				for (int i=0; i<7; i++) {
-					playerIconX[i] = (int)(playerIconX[i]*.8);
-					playerIconY[i] = (int)(playerIconY[i]*.8);
+					playerIconX[i] = (int)((playerIconX[i]-165)*.8+165);
+					playerIconY[i] = (int)((playerIconY[i]-40)*.8+40);
 				}
 			}
 			for (int i=0; i<7; i++) {
@@ -267,8 +265,8 @@ public class MazeMap {
 			int[] playerIconY = {220, 250, 280, 265, 250, 235, 220};
 			if (size==5) {
 				for (int i=0; i<7; i++) {
-					playerIconX[i] = (int)(playerIconX[i]*.8);
-					playerIconY[i] = (int)(playerIconY[i]*.8);
+					playerIconX[i] = (int)((playerIconX[i]-165)*.8+165);
+					playerIconY[i] = (int)((playerIconY[i]-40)*.8+40);
 				}
 			}
 			for (int i=0; i<7; i++) {
@@ -286,7 +284,7 @@ public class MazeMap {
 		public void gray(Graphics g, int[] coord) {
 			g.setColor(Color.darkGray);
 			if (size==5) {
-				g.fillRect((int)((170*.8+coord[0]*sWidth)*wScale), (int)((45*.8+coord[1]*sHeight)*hScale), (int)((sWidth-4)*wScale), (int)((sHeight-4)*hScale));
+				g.fillRect((int)(169*wScale+coord[0]*sWidth), (int)(44*hScale+coord[1]*sHeight), (int)(sWidth-4*wScale), (int)(sHeight-4*hScale));
 			} else {
 				g.fillRect((int)((170+coord[0]*sWidth)*wScale), (int)((45+coord[1]*sHeight)*hScale), (int)((sWidth-5)*wScale), (int)((sHeight-5)*hScale));
 
