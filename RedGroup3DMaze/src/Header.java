@@ -14,9 +14,9 @@ public class Header {
 
     public void display(Graphics g, Dimension scaleFactor) {
         g.setColor(Color.gray);
-        g.fillRect(0,0,(int)(scaleFactor.width),(int)(40 * scaleFactor.getHeight()/750));
+        g.fillRect(0,0,(int)(scaleFactor.width),(int)(40 * scaleFactor.height/750));
         g.setColor(Color.white);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(15* scaleFactor.width/1000)));
+        g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(15* scaleFactor.height/750)));
         g.drawString("X: " + (player.getCoordinate('X') + 1), (int)(20* scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
         g.drawString("Y: " + (player.getCoordinate('Y') + 1), (int)(60 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
         g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), (int)(250 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
