@@ -4,7 +4,8 @@ import java.awt.*;
 public class MazeMap {
 	
 	private int level;
-	private ManualTestMaze maze;
+	private ManualTestMaze manMaze;
+	private Maze maze;
 	private PlayerData player;
 	private int size;
 	private double sWidth;
@@ -13,6 +14,21 @@ public class MazeMap {
 	private double hScale;
 	
 	MazeMap(ManualTestMaze maze, PlayerData player) {
+		this.manMaze = manMaze;
+		this.player = player;
+		level = this.player.getCoordinate('Z');
+		size = this.manMaze.getMazeSize();
+		if (size==4) {
+			sWidth = 166.25;
+			sHeight = 166.25;
+		} else {
+			sWidth = 133;
+			sHeight = 133;
+		}
+		
+	}
+	
+	MazeMap(Maze maze, PlayerData player) {
 		this.maze = maze;
 		this.player = player;
 		level = this.player.getCoordinate('Z');

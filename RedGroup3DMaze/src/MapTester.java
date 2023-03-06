@@ -8,7 +8,8 @@ public class MapTester {
     JPanel panel;
     MazeMap map;
     Maze basicMaze = new Maze(1);
-    ManualTestMaze maze = new ManualTestMaze();
+    ManualTestMaze manMaze = new ManualTestMaze();
+    Maze maze = new Maze(1);
     PlayerData player = new PlayerData(4);
     JButton changeView, levelUp, levelDown;
     Header header;
