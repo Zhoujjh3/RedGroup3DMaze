@@ -14,7 +14,11 @@ public class Room {
 		for (int i=0; i<directions.length; i++) {
 			this.directions[i] = directions[i];
 		}
-		visited = false;
+		if(coordinates[1] == 0 && coordinates[2] == 0) {
+			visited = true;
+		} else {
+			visited = false;
+		}
 	}	
 	public boolean getDirection(char direction) {
 		switch(direction) {
