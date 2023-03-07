@@ -8,11 +8,11 @@ public class MapTester {
     JPanel panel;
     MazeMap map;
     ManualTestMaze manMaze = new ManualTestMaze();
-    Maze maze = new Maze(3);
+    Maze maze = new Maze(1);
     PlayerData player = new PlayerData(4);
     JButton changeView, levelUp, levelDown;
     Header header;
-    int levelIncrement = 0;
+    int mapLevelIncrement = 0;
     public MapTester() {
         map = new MazeMap(maze, player);
         frame = new JFrame("map tester");
@@ -45,16 +45,16 @@ public class MapTester {
         });
         levelDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (player.getCoordinate('Z') + levelIncrement != 0) {
-                    levelIncrement--;
+                if (player.getCoordinate('Z') + mapLevelIncrement != 0) {
+                    mapLevelIncrement--;
                     panel.repaint();
                 }
             }
         });
         levelUp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (player.getCoordinate('Z') + levelIncrement != maze.getMazeSize() - 1) {
-                    levelIncrement++;
+                if (player.getCoordinate('Z') + mapLevelIncrement != maze.getMazeSize() - 1) {
+                    mapLevelIncrement++;
                     panel.repaint();
                 }
             }
@@ -68,22 +68,22 @@ public class MapTester {
     class Panel extends JPanel{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            if (player.getCoordinate('Z') + levelIncrement == maze.getMazeSize() - 1) {
+            if (player.getCoordinate('Z') + mapLevelIncrement == maze.getMazeSize() - 1) {
                 levelUp.setBackground(Color.GRAY);
             } else {
                 levelUp.setBackground(Color.WHITE);
             }
-            if (player.getCoordinate('Z') + levelIncrement == 0) {
+            if (player.getCoordinate('Z') + mapLevelIncrement == 0) {
                 levelDown.setBackground(Color.GRAY);
             } else {
                 levelDown.setBackground(Color.WHITE);
             }
             if (header.getView().equals("CHAMBER")){
-                map.display(g, player.getCoordinate('Z') + levelIncrement, this.getSize());
+                map.display(g, player.getCoordinate('Z') + mapLevelIncrement, this.getSize());
                 levelDown.setVisible(true);
                 levelUp.setVisible(true);
             } else {
-                levelIncrement = 0;
+                mapLevelIncrement = 0;
                 levelDown.setVisible(false);
                 levelUp.setVisible(false);
             }
