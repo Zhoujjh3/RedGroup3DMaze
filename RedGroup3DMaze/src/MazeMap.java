@@ -281,6 +281,14 @@ public class MazeMap {
 			g.fillPolygon(playerIconX, playerIconY, 7);
 		}
 		
+		public void displayExit(Graphics g, int[] coord) {
+			g.setColor(Color.green);
+			g.fillRect(195, 95, 100, 50);
+			g.setColor(Color.white);
+			g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+			g.drawString("EXIT", 210, 130);
+		}
+		
 		public void gray(Graphics g, int[] coord) {
 			g.setColor(Color.darkGray);
 			if (size==5) {
