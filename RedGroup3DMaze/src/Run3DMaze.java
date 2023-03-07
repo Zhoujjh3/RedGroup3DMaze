@@ -14,6 +14,7 @@ public class Run3DMaze {
 	private Header header;
 	private Leaderboard leaderboard;
 	private mazeState state;
+	private int difficulty;
 	public enum mazeState{
 		WELCOMESCREEN,
 		CHAMBERVIEW,
@@ -39,13 +40,19 @@ public class Run3DMaze {
 	    screen.setVisible(true);
 	    screen.setResizable(false);
 		screen.setLocationRelativeTo(null);
+		
+		selectionScreen.display();
 	}
 	
 	public void runMaze() {
 		// initialize maze, map, header, and playerData
+		maze = new Maze(difficulty);
+		player = new PlayerData(maze.getMazeSize());
+		map = new MazeMap(maze, player);
+		header = new Header(maze, player);
 		
 		
-		// runChamberView();
+		runChamberView();
 	}
 	
 	public void runChamberView() {
@@ -67,6 +74,10 @@ public class Run3DMaze {
 	}
 	
 	public static void main(String[]args) {
-		new Run3DMaze().play3DMaze();
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				//new Run3DMaze().play3DMaze();
+			}
+		});
 	}
 }
