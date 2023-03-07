@@ -12,7 +12,7 @@ public class PlayerData {
         mazeSize = size;
     }
 
-    public int getCoordinate(char value) { // please work well
+    public int getCoordinate(char value) {
         if (value == 'X') {
         	return coordinates[0];
         } else if (value == 'Y') {
