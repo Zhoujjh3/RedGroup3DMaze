@@ -21,9 +21,7 @@ public class Selection implements ActionListener{
 	JLabel title, logo; 
 	JButton easyButt, mediumButt, hardButt; 
 	
-	Selection(){
-		
-		
+	public void display() {
 		frame = new JFrame("Selection");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel();
@@ -56,19 +54,14 @@ public class Selection implements ActionListener{
 	    hardButt.addActionListener(this);
 	    
 	    logo = new JLabel(new ImageIcon("Images/MazeLogo.png"));
-//	    logo.setBounds(500, 200, 400, 400);
 	    panel.add(logo);
 	    
 	    title = new JLabel("Welcome to 3D Maze");
-//	    title.setFont(new Font("Serif", Font.PLAIN, 50));
-//	    title.setBounds(250, 50, 1000, 100);
 	    panel.add(title);
-	    
-	    
 	    
 	    //w 1000
 	    //h 750
-	  //dynamic
+	    //dynamic
 	    Timer timer = new Timer();
 	    TimerTask task = new TimerTask() {
 	    	public void run() {
@@ -91,11 +84,6 @@ public class Selection implements ActionListener{
 	    };
 	    timer.schedule(task, 1, 1);
 	    
-	    
-	    
-	    
-	    
-	    
 	    panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	    frame.add(panel);
@@ -107,17 +95,10 @@ public class Selection implements ActionListener{
 		frame.setVisible(true);
 	}
 	
-	public void paintComponent() {
-		
-	}
-	
-	public void display(Graphics g) {
-		
-	}
-	
 	private static void runGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		new Selection();
+		Selection test = new Selection();
+		test.display();
 	}
 	
    public static void main(String[] args) {      
@@ -140,10 +121,7 @@ public class Selection implements ActionListener{
 		}
 		System.out.println(eventName);
 		System.out.println(diffculty);
-		
 	}
-
-
 
 }
 
