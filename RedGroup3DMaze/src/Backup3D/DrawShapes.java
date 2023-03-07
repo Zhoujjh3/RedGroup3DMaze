@@ -31,7 +31,6 @@ public class DrawShapes {
 			}
 			width = panel.getWidth();
 			height = panel.getHeight();
-			System.out.println(ShapesPanel.timeCounter);
 			for(Shapes shape : ShapesPanel.ceilingAndFloor) {
 				shape.update();
 			}
