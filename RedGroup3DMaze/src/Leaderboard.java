@@ -9,8 +9,8 @@ import java.awt.Dimension;
 public class Leaderboard implements ActionListener {
 	
 	JTextField[] top10 = new JTextField[10];
-	int scoresList[] = {2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647};
-	int score;
+	double scoresList[] = {2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647};
+	double score;
 	static int width = 1000;
 	static int height = 750;
 	PlayerData player;
@@ -21,18 +21,12 @@ public class Leaderboard implements ActionListener {
 	JScrollPane scrollPane;
 	JTextField title, yourScore;
 	
-	Leaderboard() {
-		display();
-	}
-	
-	public void getScore(PlayerData thePlayer) {
-		score = thePlayer.getScore();
+	public void getScore(double newScore) {
+		score = newScore;
 	}
 	
 	public void display() {
-		if (score != 0) {
-			sortScores(score);
-		}
+		sortScores(score);
 		
 		frame = new JFrame("Leaderboard");
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,7 +39,7 @@ public class Leaderboard implements ActionListener {
 	    title.setBorder(BorderFactory.createEmptyBorder());
 	    contentPane.add(title);
 	    
-	    yourScore = new JTextField("Your Score: " + Integer.toString(score));
+	    yourScore = new JTextField("Your Score: " + Double.toString(score));
 	    yourScore.setEditable(false);
 	    yourScore.setHorizontalAlignment(JTextField.CENTER);
 	    contentPane.add(yourScore);
@@ -54,7 +48,7 @@ public class Leaderboard implements ActionListener {
 	    	if (scoresList[i] == 2147483647) {
 	    		top10[i] = new JTextField("---");
 	    	} else {
-	    		top10[i] = new JTextField(Integer.toString(scoresList[i]));
+	    		top10[i] = new JTextField(Double.toString(scoresList[i]));
 	    	}
 	    	top10[i].setHorizontalAlignment(JTextField.CENTER);
 	    	top10[i].setEditable(false);
@@ -104,7 +98,7 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	//if the new score is lower than the 10th score, the 10th score is removed
-	public void sortScores(int newScore) {
+	public void sortScores(double newScore) {
 		bubbleSort();	
 		if (newScore < scoresList[scoresList.length - 1]) {
 			scoresList[scoresList.length - 1] = newScore;
@@ -114,7 +108,7 @@ public class Leaderboard implements ActionListener {
 
 	//sorts the top 10 scores from lowest to greatest
 	private void bubbleSort() {
-		int temp;
+		double temp;
 		for (int i = 0; i < scoresList.length; i++) {
 			for (int j = i + 1; j < scoresList.length; j++) {
 				if (scoresList[j] < scoresList[i]) {
@@ -136,6 +130,24 @@ public class Leaderboard implements ActionListener {
 	private static void runGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		Leaderboard test2b = new Leaderboard();
+		test2b.getScore(10.0);
+		test2b.display();
+		test2b.getScore(11.0);
+		test2b.display();
+		test2b.getScore(12.0);
+		test2b.display();
+		test2b.getScore(13.0);
+		test2b.display();
+		test2b.getScore(10.5);
+		test2b.display();
+		test2b.getScore(12.3);
+		test2b.display();
+		test2b.getScore(100);
+		test2b.display();
+		test2b.getScore(154);
+		test2b.display();
+		test2b.getScore(123.3);
+		test2b.display();
 	}
 	
 	public static void main(String[] args) {
