@@ -76,6 +76,7 @@ public class Run3DMaze {
 	public static void main(String[]args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
+				JFrame.setDefaultLookAndFeelDecorated(true);
 				//new Run3DMaze().play3DMaze();
 			}
 		});
