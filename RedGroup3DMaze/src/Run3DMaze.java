@@ -5,14 +5,15 @@ import javax.swing.JPanel;
 
 public class Run3DMaze {
 	
-	JFrame screen;
-	JPanel gamePanel;
-	Selection selectionScreen;
-	PlayerData player;
-	Maze maze;
-	MazeMap map;
-	Leaderboard leaderboard;
-	mazeState state;
+	private JFrame screen;
+	private JPanel gamePanel;
+	private Selection selectionScreen;
+	private PlayerData player;
+	private Maze maze;
+	private MazeMap map;
+	private Header header;
+	private Leaderboard leaderboard;
+	private mazeState state;
 	public enum mazeState{
 		WELCOMESCREEN,
 		CHAMBERVIEW,
@@ -21,10 +22,6 @@ public class Run3DMaze {
 	}
 	
 	public Run3DMaze() {
-		
-	}
-	
-	public void runWelcomeScreen() {
 		screen = new JFrame();
 		gamePanel = new GamePanel();
 		gamePanel.setPreferredSize(new Dimension(1000, 750));
@@ -32,18 +29,20 @@ public class Run3DMaze {
 		
 		state = mazeState.WELCOMESCREEN;
 		selectionScreen = new Selection();
-		// leaderboard = new Leaderboard();
+		leaderboard = new Leaderboard();
+	}
+	
+	public void play3DMaze() { // essentially a runWelcomeScreen
 		
 		screen.setContentPane(gamePanel);
 		screen.pack();
 	    screen.setVisible(true);
 	    screen.setResizable(false);
 		screen.setLocationRelativeTo(null);
-		//comment for max
 	}
 	
 	public void runMaze() {
-		// initialize maze, map, and playerData
+		// initialize maze, map, header, and playerData
 		
 		
 		// runChamberView();
@@ -68,6 +67,6 @@ public class Run3DMaze {
 	}
 	
 	public static void main(String[]args) {
-		new Run3DMaze().runWelcomeScreen();
+		new Run3DMaze().play3DMaze();
 	}
 }
