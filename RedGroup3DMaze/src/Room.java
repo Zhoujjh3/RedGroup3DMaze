@@ -2,6 +2,7 @@ public class Room {
 	private boolean[] directions = new boolean[6];
 	private int[] coordinates = new int[3];
 	private boolean visited;
+	private char artDirection;
 	
 	/*
 	 * Coordinates are stored: {Z, X, Y}
