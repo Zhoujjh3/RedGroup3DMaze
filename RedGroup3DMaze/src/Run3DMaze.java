@@ -100,10 +100,20 @@ public class Run3DMaze {
 				} 
 			} else if (state == mazeState.WELCOMESCREEN) {
 				selectionScreen.display();
+				int selecDiff = selectionScreen.diffculty;
+				if (selecDiff == 0 || selecDiff == 1 || selecDiff == 2) {
+					difficulty = selecDiff+1; // maybe change in Selection for consistency
+					selectionScreen.diffculty = -1;
+					runMaze();
+				}
 			} else if (state == mazeState.MAPVIEW) {
 				
 			} else if (state == mazeState.LEADERBOARD) {
 				leaderboard.display();
+				
+				// if (check if game is restarted) {
+				// 	play3DMaze();
+				// }
 			}
 			//switch rooms when timerCounter = 200, maybe
 		}
