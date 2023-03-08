@@ -32,7 +32,10 @@ public class Maze {
 	}
 	
 	public Room getRoom(int level, int x, int y) {
-		return activeMaze[level][x][y];
+		if (level >= 0 && level < activeMaze.length && x >= 0 && x < activeMaze[0].length && y >= 0 && y < activeMaze[0][0].length) {
+			return activeMaze[level][x][y];
+		}
+		return null;
 	}
 	
 	public int getDifficulty() {
