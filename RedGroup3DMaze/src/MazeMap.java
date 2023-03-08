@@ -283,10 +283,10 @@ public class MazeMap {
 		
 		public void displayExit(Graphics g, int[] coord) {
 			g.setColor(Color.green);
-			g.fillRect(195, 95, 100, 50);
+			g.fillRect((int)((195*wScale)+(sWidth*(size-1))), (int)((95*hScale)+(sHeight*(size-1))), (int)(100*wScale), (int)(50*hScale));
 			g.setColor(Color.white);
-			g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
-			g.drawString("EXIT", 210, 130);
+			g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(30*hScale)));
+			g.drawString("EXIT", (int)((210*wScale)+(sWidth*(size-1))), (int)((130*hScale)+(sHeight*(size-1))));
 		}
 		
 		public void gray(Graphics g, int[] coord) {
