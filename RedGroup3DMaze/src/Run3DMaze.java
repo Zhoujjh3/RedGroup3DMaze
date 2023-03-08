@@ -13,17 +13,18 @@ import Backup3D.ShapesPanel;
 public class Run3DMaze {
 	
 	private JFrame screen;
-	private JPanel gamePanel;
+	private GamePanel gamePanel;
 	private Selection selectionScreen;
 	private PlayerData player;
 	private Maze maze;
 	private MazeMap map;
 	private Header header;
 	private Leaderboard leaderboard;
+	private int difficulty;
 	
 	private mazeState state;
-	JButton changeView, levelUp, levelDown;
-	int mapLevelIncrement = 0;
+	private JButton changeView, levelUp, levelDown;
+	private int mapLevelIncrement = 0;
 	
 	//3d stuff
 	public static boolean clicked;
@@ -45,50 +46,6 @@ public class Run3DMaze {
 		state = mazeState.WELCOMESCREEN;
 		selectionScreen = new Selection();
 		leaderboard = new Leaderboard();
-		/*
-		map = new MazeMap(maze, player);
-		header = new Header(maze, player);
-		changeView = new JButton(header.getView());
-		levelDown = new JButton("Level Down");
-		levelUp = new JButton("Level Up");
-		gamePanel.setLayout(null);
-		gamePanel.add(changeView);
-		gamePanel.add(levelUp);
-		gamePanel.add(levelDown);
-		
-		levelDown.setVisible(false);
-		levelUp.setVisible(false);
-		changeView.setBounds(740, 5, 100, 30);
-		levelUp.setBounds(300, 715, 100, 30);
-		levelDown.setBounds(450, 715, 100, 30);
-		
-		
-		changeView.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				header.changeView();
-				changeView.setText(header.getView());
-				gamePanel.repaint();
-			}
-		});
-	
-		levelDown.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (player.getCoordinate('Z') + mapLevelIncrement != 0) {
-					mapLevelIncrement--;
-					gamePanel.repaint();
-				}
-			}
-		});
-
-		levelUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (player.getCoordinate('Z') + mapLevelIncrement != maze.getMazeSize() - 1) {
-					mapLevelIncrement++;
-					gamePanel.repaint();
-				}
-			}
-		});
-		*/
 	}
 	
 	//Timer for 3D animations
@@ -141,6 +98,12 @@ public class Run3DMaze {
 						}
 					}
 				} 
+			} else if (state == mazeState.WELCOMESCREEN) {
+				selectionScreen.display();
+			} else if (state == mazeState.MAPVIEW) {
+				
+			} else if (state == mazeState.LEADERBOARD) {
+				leaderboard.display();
 			}
 			//switch rooms when timerCounter = 200, maybe
 		}
@@ -154,35 +117,91 @@ public class Run3DMaze {
 		screen.setVisible(true);
 		screen.setResizable(false);
 		screen.setLocationRelativeTo(null);
+		
+		state = mazeState.WELCOMESCREEN;
 	}
 	
 	public void runMaze() {
 		// initialize maze, map, header, and playerData
+		maze = new Maze(difficulty);
+		player = new PlayerData(maze.getMazeSize());
+		/*
+		map = new MazeMap(maze, player);
+		header = new Header(maze, player);
+		changeView = new JButton(header.getView());
+		levelDown = new JButton("Level Down");
+		levelUp = new JButton("Level Up");
+		gamePanel.setLayout(null);
+		gamePanel.add(changeView);
+		gamePanel.add(levelUp);
+		gamePanel.add(levelDown);
+		
+		levelDown.setVisible(false);
+		levelUp.setVisible(false);
+		changeView.setBounds(740, 5, 100, 30);
+		levelUp.setBounds(300, 715, 100, 30);
+		levelDown.setBounds(450, 715, 100, 30);
 		
 		
-		// runChamberView();
+		changeView.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				header.changeView();
+				changeView.setText(header.getView());
+				gamePanel.repaint();
+			}
+		});
+	
+		levelDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (player.getCoordinate('Z') + mapLevelIncrement != 0) {
+					mapLevelIncrement--;
+					gamePanel.repaint();
+				}
+			}
+		});
+
+		levelUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (player.getCoordinate('Z') + mapLevelIncrement != maze.getMazeSize() - 1) {
+					mapLevelIncrement++;
+					gamePanel.repaint();
+				}
+			}
+		});
+		*/
+		
+		runChamberView();
 	}
 	
 	public void runChamberView() {
+		
+		if (header.getView().equals("MAP")) {
+			header.changeView();
+		}
 		state = mazeState.CHAMBERVIEW;
-		
-		
 	}
 	
 	public void runMapView() {
+		
+		if (header.getView().equals("CHAMBER")) {
+			header.changeView();
+		}
 		state = mazeState.MAPVIEW;
-		
-		
 	}
 	
 	public void runLeaderboard() {
+		leaderboard.getScore((double)maze.getMinMoves() / (double)player.getMoves());
+		
 		state = mazeState.LEADERBOARD;
-		
-		
 	}
 	
 	public static void main(String[]args) {
-		new Run3DMaze().play3DMaze();
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				JFrame.setDefaultLookAndFeelDecorated(true);
+				new Run3DMaze().play3DMaze();
+			}
+		});
 	}
 }
 
