@@ -47,8 +47,6 @@ public class Run3DMaze {
 		state = mazeState.WELCOMESCREEN;
 		selectionScreen = new Selection();
 		leaderboard = new Leaderboard();
-		play3DMaze();
-		ShapesTimer.start();
 	}
 	
 	//Timer for 3D animations
@@ -144,6 +142,7 @@ public class Run3DMaze {
 		screen.setResizable(false);
 		screen.setLocationRelativeTo(null);
 		state = mazeState.WELCOMESCREEN;
+		ShapesTimer.start();
 	}
 	
 	public void runMaze() {
@@ -225,8 +224,7 @@ public class Run3DMaze {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				JFrame.setDefaultLookAndFeelDecorated(true);
-				new Run3DMaze();
-				//new Run3DMaze().play3DMaze();
+				new Run3DMaze().play3DMaze();
 			}
 		});
 	}

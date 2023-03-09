@@ -34,6 +34,7 @@ public class GamePanel extends JPanel{
 	}
     
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		if(Run3DMaze.state == Run3DMaze.mazeState.WELCOMESCREEN) {
 			//do nothing, welcomeScreen draws itself
 		} else if(Run3DMaze.state == Run3DMaze.mazeState.CHAMBERVIEW) {
