@@ -112,14 +112,13 @@ public class Run3DMaze {
 				//this doesn't seem to work because checksignal only returns true
 				//after you click a button, which at that point the state switches to 
 				//chamber view
-//				if (selectionScreen.checkSignal()) {
-//					difficulty = selectionScreen.difficulty;
-//					selectionScreen.difficulty = -1;
-//					selectionScreen.resetSignal();
-//					runMaze();
-//					System.out.println(difficulty);
-//					System.out.println(state);
-//				}
+				if (selectionScreen.checkSignal()) {
+					difficulty = selectionScreen.difficulty;
+					selectionScreen.resetSignal();
+					runMaze();
+					System.out.println(difficulty);
+					System.out.println(state);
+				}
 			} else if (state == mazeState.MAPVIEW) {
 				
 			} else if (state == mazeState.LEADERBOARD) {
@@ -147,7 +146,7 @@ public class Run3DMaze {
 		state = mazeState.WELCOMESCREEN;
 	}
 	
-	public static void runMaze() {
+	public void runMaze() {
 		// initialize maze, map, header, and playerData
 		maze = new Maze(difficulty);
 		player = new PlayerData(maze.getMazeSize());
@@ -197,7 +196,7 @@ public class Run3DMaze {
 		});
 		*/
 		
-		//runChamberView();
+		runChamberView();
 	}
 	
 	public void runChamberView() {

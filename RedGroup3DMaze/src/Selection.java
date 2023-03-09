@@ -94,17 +94,12 @@ public class Selection implements ActionListener{
 		String eventName = event.getActionCommand();
 		if(eventName.equals("Easy")) {
 			difficulty = 1;
-			Run3DMaze.difficulty = 1;
 		}else if(eventName.equals("Medium")) {
 			difficulty = 2;
-			Run3DMaze.difficulty = 2;
 		}else{
 			difficulty = 3;
-			Run3DMaze.difficulty = 3;
 		}
 		signal = true;
-		Run3DMaze.runMaze();
-		Run3DMaze.state = Run3DMaze.mazeState.CHAMBERVIEW;
 		hide(frame, panel);
 	}
 	
