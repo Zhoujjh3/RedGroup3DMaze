@@ -20,6 +20,7 @@ public class Selection implements ActionListener{
 	JPanel panel;
 	JLabel title, logo; 
 	JButton easyButt, mediumButt, hardButt; 
+	private boolean signal = false;
 	
 	public void display() {
 		frame = new JFrame("Selection");
@@ -113,14 +114,23 @@ public class Selection implements ActionListener{
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
 		if(eventName.equals("Easy")) {
-			diffculty = 0;
-		}else if(eventName.equals("Medium")) {
 			diffculty = 1;
-		}else{
+		}else if(eventName.equals("Medium")) {
 			diffculty = 2;
+		}else{
+			diffculty = 3;
 		}
+		signal = true;
 		System.out.println(eventName);
 		System.out.println(diffculty);
+	}
+	
+	public boolean checkSignal() {
+		return signal;
+	}
+	
+	public void resetSignal() {
+		signal = false;
 	}
 
 }

@@ -21,6 +21,8 @@ public class Leaderboard implements ActionListener {
 	JScrollPane scrollPane;
 	JTextField title, yourScore;
 	
+	private boolean signal = false;
+	
 	public void getScore(double newScore) {
 		score = newScore;
 	}
@@ -93,10 +95,6 @@ public class Leaderboard implements ActionListener {
 	    frame.setVisible(true);
 	}
 	
-	public void restartGame() {
-		Selection newGame = new Selection();
-	}
-	
 	//if the new score is lower than the 10th score, the 10th score is removed
 	public void sortScores(double newScore) {
 		bubbleSort();	
@@ -122,8 +120,16 @@ public class Leaderboard implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "click") {
-			restartGame();
+			signal = true;
 		}
+	}
+	
+	public boolean checkSignal() {
+		return signal;
+	}
+	
+	public void resetSignal() {
+		signal = false;
 	}
 	
 	//test2ing
