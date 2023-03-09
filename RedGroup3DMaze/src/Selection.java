@@ -27,10 +27,6 @@ public class Selection implements ActionListener{
 	public void display(JFrame frame, JPanel panel) {
 		this.frame = frame;
 		this.panel = panel;
-		//frame = new JFrame("Selection");
-		//.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//panel = new JPanel();
-		//panel.setLayout(null);
 		
 	    easyButt = new JButton("Easy");
 	    easyButt.setFont(new Font("Serif", Font.PLAIN, 30));
@@ -88,16 +84,6 @@ public class Selection implements ActionListener{
 //	    	}
 //	    };
 //	    timer.schedule(task, 1, 1);
-//	    
-//	    panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-//	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//	    frame.add(panel);
-//	    frame.setVisible(true);
-//		
-//		frame.setContentPane(panel);
-//		frame.setSize(1000, 750);
-//		
-//		frame.setVisible(true);
 	}
 	
 	public void hide(JFrame frame, JPanel panel) {
@@ -107,20 +93,6 @@ public class Selection implements ActionListener{
 		panel.remove(title);
 		panel.remove(logo);
 	}
-	
-//	private static void runGUI() {
-//		JFrame.setDefaultLookAndFeelDecorated(true);
-//		Selection test = new Selection();
-//		test.display();
-//	}
-	
-//   public static void main(String[] args) {      
-//      javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//				runGUI();
-//			}
-//		});
-//   }
 
 //handles setting the difficulty of the maze
 	public void actionPerformed(ActionEvent event) {
@@ -137,10 +109,7 @@ public class Selection implements ActionListener{
 		}
 		signal = true;
 		Run3DMaze.runMaze();
-		//System.out.println(eventName);
-		//System.out.println(Run3DMaze.difficulty);
 		Run3DMaze.state = Run3DMaze.mazeState.CHAMBERVIEW;
-		//System.out.println(Run3DMaze.state);
 		hide(frame, panel);
 	}
 	
