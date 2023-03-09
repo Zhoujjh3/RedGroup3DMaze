@@ -9,8 +9,9 @@ public class Wall3D extends Shapes3D{
 	public int dir = 0;
 	double xScale = w/1000;
 	double yScale = h/700;
+	Room room;
 	
-	Wall3D(int theState) {
+	Wall3D(int theState, Room room) {
 		h = Run3DMaze.height;
 		w = Run3DMaze.width;
 		xScale = w/1000.0;
@@ -37,13 +38,17 @@ public class Wall3D extends Shapes3D{
 				yTL = 0; yTR = 0; yBR = 700; yBL = 700;
 			}
 		}
+		this.room = room;
 	}
 	
 	public void paint(Graphics g) {
 		int[] wallX = {(int) Math.rint(xTL),(int) Math.rint(xTR),(int) Math.rint(xBR),(int) Math.rint(xBL)};
 		int[] wallY = {(int) Math.rint(yTL),(int) Math.rint(yTR),(int) Math.rint(yBR),(int) Math.rint(yBL)};
 		
-		g.setColor(new Color(243,243,243));
+		Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
+				Run3DMaze.player.getCoordinate('X'), 
+				Run3DMaze.player.getCoordinate('Y'));
+		g.setColor(new Color(currentRoom.getRGBValues()[0], currentRoom.getRGBValues()[1], currentRoom.getRGBValues()[2]+25));
 		g.fillPolygon(wallX, wallY, 4);
 		g.setColor(Color.black);
 		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
@@ -100,10 +105,10 @@ public class Wall3D extends Shapes3D{
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 200) {
-//					yTL = Room.walls[previousWallIndex].getyTR();
-//					yBL = Room.walls[previousWallIndex].getyBR();
-//					xTL = Room.walls[previousWallIndex].getxTR();
-//					xBL = Room.walls[previousWallIndex].getxBR();
+					yTL = room.walls[previousWallIndex].getyTR();
+					yBL = room.walls[previousWallIndex].getyBR();
+					xTL = room.walls[previousWallIndex].getxTR();
+					xBL = room.walls[previousWallIndex].getxBR();
 				} else {
 					xTL = 0 * xScale; xTR = 0 * xScale; xBR = 0 * xScale; xBL = 0 * xScale;
 					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
@@ -115,10 +120,10 @@ public class Wall3D extends Shapes3D{
 					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 200) {
-//					yTR = Room.walls[nextWallIndex].getyTL();
-//					yBR = Room.walls[nextWallIndex].getyBL();
-//					xTR = Room.walls[nextWallIndex].getxTL();
-//					xBR = Room.walls[nextWallIndex].getxBL();		
+					yTR = room.walls[nextWallIndex].getyTL();
+					yBR = room.walls[nextWallIndex].getyBL();
+					xTR = room.walls[nextWallIndex].getxTL();
+					xBR = room.walls[nextWallIndex].getxBL();		
 				} else {
 					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
@@ -131,10 +136,10 @@ public class Wall3D extends Shapes3D{
 					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 200) {
-//					yTR = Room.walls[nextWallIndex].getyTL();
-//					yBR = Room.walls[nextWallIndex].getyBL();
-//					xTR = Room.walls[nextWallIndex].getxTL();
-//					xBR = Room.walls[nextWallIndex].getxBL();		
+					yTR = room.walls[nextWallIndex].getyTL();
+					yBR = room.walls[nextWallIndex].getyBL();
+					xTR = room.walls[nextWallIndex].getxTL();
+					xBR = room.walls[nextWallIndex].getxBL();		
 				} else {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
@@ -181,10 +186,10 @@ public class Wall3D extends Shapes3D{
 					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 200) {
-//					yTL = Room.walls[previousWallIndex].getyTR();
-//					yBL = Room.walls[previousWallIndex].getyBR();
-//					xTL = Room.walls[previousWallIndex].getxTR();
-//					xBL = Room.walls[previousWallIndex].getxBR();
+					yTL = room.walls[previousWallIndex].getyTR();
+					yBL = room.walls[previousWallIndex].getyBR();
+					xTL = room.walls[previousWallIndex].getxTR();
+					xBL = room.walls[previousWallIndex].getxBR();
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;

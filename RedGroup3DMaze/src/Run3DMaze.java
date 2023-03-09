@@ -16,10 +16,10 @@ public class Run3DMaze {
 	private GamePanel gamePanel;
 	private Selection selectionScreen;
 	private MazeMap map;
-	private Header header;
 	private Leaderboard leaderboard;
 	public static int difficulty;
 	
+	public static Header header;
 	public static Maze maze;
 	public static PlayerData player;
 	
@@ -106,7 +106,7 @@ public class Run3DMaze {
 				//System.out.println("WELCOME");
 				if(counter == 0) {	//so it doesn't draw infinite selection screens
 					selectionScreen.display(screen, gamePanel);
-					System.out.println("LOL");
+					//System.out.println("LOL");
 				}
 				
 				//this doesn't seem to work because checksignal only returns true
@@ -135,7 +135,7 @@ public class Run3DMaze {
 			counter++;
 		}
 	};
-	Timer ShapesTimer = new Timer(5, rotate);
+	Timer ShapesTimer = new Timer(10, rotate);
 	
 	public void play3DMaze() { // essentially a runWelcomeScreen
 		//selectionScreen.display(screen, gamePanel);
@@ -151,7 +151,7 @@ public class Run3DMaze {
 		// initialize maze, map, header, and playerData
 		maze = new Maze(difficulty);
 		player = new PlayerData(maze.getMazeSize());
-		
+		header = new Header(maze, player);
 		/*
 		map = new MazeMap(maze, player);
 		header = new Header(maze, player);

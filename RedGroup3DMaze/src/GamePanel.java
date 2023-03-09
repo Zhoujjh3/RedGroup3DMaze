@@ -17,7 +17,7 @@ public class GamePanel extends JPanel{
 	//JFrame frame;
     //JPanel panel;
     MazeMap map;
-    ManualTestMaze manMaze = new ManualTestMaze();
+    //ManualTestMaze manMaze = new ManualTestMaze();
     //public static Maze maze = new Maze(1);
     //PlayerData player = new PlayerData(4);
     JButton changeView, levelUp, levelDown;
@@ -38,10 +38,11 @@ public class GamePanel extends JPanel{
 			//do nothing, welcomeScreen draws itself
 		} else if(Run3DMaze.state == Run3DMaze.mazeState.CHAMBERVIEW) {
 			setChamberView(g);
+			setHeader(g);
 		} else if(Run3DMaze.state == Run3DMaze.mazeState.MAPVIEW) {
-			
+			setMapView(g);
 		} else if(Run3DMaze.state == Run3DMaze.mazeState.LEADERBOARD) {
-			
+			setLeaderboard(g);
 		}
 	}
 	
@@ -50,10 +51,11 @@ public class GamePanel extends JPanel{
 			//have it so that when the animation is done, it switches to the new room
 			//you might already be doing this since you're refreshing the doors constantly through paintcomponent
 		
-		Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), Run3DMaze.player.getCoordinate('X'), 
+		Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
+				Run3DMaze.player.getCoordinate('X'), 
 				Run3DMaze.player.getCoordinate('Y'));
 		currentRoom.populateDoors();
-		g.setColor(new Color(243,243,243));
+		g.setColor(currentRoom.getColor());
 		g.fillRect(0, 0, DrawShapes.width, DrawShapes.height);
 		
 //		for(Shapes3D shape : ceilingAndFloor) {
@@ -93,7 +95,7 @@ public class GamePanel extends JPanel{
 	}
 	
 	public void setHeader(Graphics g) {
-		header.display(g, this.getSize());
+		Run3DMaze.header.display(g, this.getSize());
 	}
 	
 	public void setLeaderboard(Graphics g) {

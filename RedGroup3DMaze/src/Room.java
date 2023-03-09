@@ -1,15 +1,18 @@
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Room {
 	private boolean[] directions = new boolean[6];
 	private int[] coordinates = new int[3];
 	private boolean visited;
+	private Color color;
+	private int[] rgbValues = new int[3];
 	
 	 public Shapes3D[] walls = {
-	    		new Wall3D(0),
-	    		new Wall3D(1),
-	    		new Wall3D(2),
-	    		new Wall3D(3)
+	    		new Wall3D(0, this),
+	    		new Wall3D(1, this),
+	    		new Wall3D(2, this),
+	    		new Wall3D(3, this)
 	 };
 	 
 	 public ArrayList<Shapes3D> doors = new ArrayList<Shapes3D>();
@@ -33,6 +36,9 @@ public class Room {
 			visited = false;
 		}
 		
+		for(int i=0; i<3; i++)
+			rgbValues[i] = 128+(int)(Math.random()*103);
+		color = new Color(rgbValues[0], rgbValues[1], rgbValues[2]);
 	}	
 	public boolean getDirection(char direction) {
 		switch(direction) {
@@ -71,6 +77,7 @@ public class Room {
 		visited = newVal;
 	}
 	
+	//called after the end of each animation sequence
 	public void populateDoors() {
 		direction = Run3DMaze.player.getDirection();
 		if(direction == 'N') {
@@ -110,5 +117,13 @@ public class Room {
 			if(getDirection('E'))
 				doors.add(new Door3D(3));
 		}
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+	
+	public int[] getRGBValues() {
+		return rgbValues;
 	}
 }
