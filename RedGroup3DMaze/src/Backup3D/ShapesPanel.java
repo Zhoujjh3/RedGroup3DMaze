@@ -20,10 +20,13 @@ public class ShapesPanel extends JPanel{
 	};
 	
 	public static Shapes[] doors = {
-			new Door(0),
-			new Door(1),
-			new Door(2),
+			//new Door(0),
+			//new Door(1),
+			//new Door(2),
 			new Door(3),
+			new Art(0),
+			new Art(1),
+			new Art(2),
 			new Trapdoor(0),
 			new Hatch(0)
 	};

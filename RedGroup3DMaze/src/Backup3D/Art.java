@@ -21,20 +21,20 @@ public class Art extends Shapes {
 		state = theState;
 		if(theState == 0) {
 			xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
-			yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
+			yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 		} else if(theState == 1) {
 			xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 			yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 		} else if(theState == 2) {
 			xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
-			yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
+			yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 		} else if(theState == 3) {
 			if(dir == 0) {
 				xTL = 0; xTR = 0; xBR = 0; xBL = 0;
-				yTL = 400 * yScale; yTR = 400 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
+				yTL = 233 * yScale; yTR = 233 * yScale; yBR = 467 * yScale; yBL = 467 * yScale;
 			} else if (dir == 1) {
 				xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-				yTL = 400 * yScale; yTR = 400 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
+				yTL = 233 * yScale; yTR = 233 * yScale; yBR = 467 * yScale; yBL = 467 * yScale;
 			}
 		}
 	}
