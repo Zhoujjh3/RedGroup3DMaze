@@ -13,10 +13,10 @@ public class Engine3D {
 	private ScheduledThreadPoolExecutor timer;
 	private ScheduledFuture<?> ghostTimer;
 	private Camera c;
+	private PlayerData player;
 	private double playerSpeed;
-	private Shape tetra;
-	Checker cc;
-	private RectanglePrism room;
+	boolean running;
+	
 	private ArrayList<Shape> shapes;
 	Map<String, double[]> keyTracker = 
 			new HashMap<String, double[]>();
@@ -25,6 +25,7 @@ public class Engine3D {
 		displayFrame = new JFrame("Dodger");
 		displayFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		c = new Camera(angle,distance);
+		player = new PlayerData(4);
 		shapes = new ArrayList<Shape>();
 		Vertex v1 = new Vertex(10, 10, 10);
 		Vertex v2 = new Vertex(-10, -10, 10);
@@ -34,44 +35,17 @@ public class Engine3D {
 				new Triangle(v1,v2,v4,Color.RED),
 				new Triangle(v3,v4,v1,Color.GREEN),
 				new Triangle(v3,v4,v2,Color.BLUE)};
-		tetra = new Shape(ts, new double[] {30,30,-30});
-		v1 = new Vertex(100, 100, 100);
-		v2 = new Vertex(-100, 100, 100);
-		v3 = new Vertex(-100, 100, -100);
-		v4 = new Vertex(100, 100, -100);
-		Vertex v5 = new Vertex(100, -100, 100);
-		Vertex v6 = new Vertex(-100, -100, 100);
-		Vertex v7 = new Vertex(-100, -100, -100);
-		Vertex v8 = new Vertex(100, -100, -100);
-		room = new RectanglePrism(new Vertex[]{v1,v2,v3,v4,v5,v6,v7,v8},
-				new double[]{0,0,0}, new Color[]{Color.BLUE,Color.BLUE,
-						Color.CYAN,Color.CYAN,Color.GREEN,Color.MAGENTA});
-		shapes.add(room);
+		AffineTransform3D orient = new AffineTransform3D();
+		RoomShapes room = new RoomShapes(new int[] {0,0,0}, new boolean[]
+				{true,false, true, false, true, false});
+		RoomShapes room2 = new RoomShapes(new int[] {1,0,0}, new boolean[]
+				{true,false, true, false, true, false});
+		shapes = room.walls;
+		shapes.addAll(room2.walls);
 		displayPane = new World();
-		RotateCamera r = new RotateCamera();
-		displayPane.addMouseMotionListener(r);
-		displayPane.addMouseListener(r);
-		cc = new Checker();
-		displayPane.addMouseListener(cc);
-//		displayPane.addMouseMotionListener(new MouseMotionListener() {
-//            @Override
-//            public void mouseDragged(MouseEvent e) {
-//                double yi = 180.0 / displayPane.getHeight();
-//                double xi = 180.0 / displayPane.getWidth();
-//                x[0] = (int) (e.getX() * xi);
-//                y[0] = -(int) (e.getY() * yi);
-//                displayPane.repaint();
-//            }
-//
-//            @Override
-//            public void mouseMoved(MouseEvent e) {
-//
-//            }
-//        });
 		createActions();
 		displayFrame.add(displayPane);
 		displayFrame.setSize(600, 600);
-		displayFrame.setResizable(false);
 		displayFrame.setVisible(true);
 	}
 	public void createActions() {
@@ -79,15 +53,23 @@ public class Engine3D {
 		addMove("DOWN",0,0,playerSpeed);
 		addMove("X",0,playerSpeed,0);
 		addMove("Z",0,-playerSpeed,0);
-		addMove("LEFT",-playerSpeed,0,0);
-		addMove("RIGHT",playerSpeed,0,0);
+		Action newAction = new CameraRotateHori("LEFT");
+		KeyStroke key = KeyStroke.getKeyStroke("LEFT");
+		displayPane.getInputMap().put(key, "LEFT");
+		displayPane.getActionMap().put("LEFT", newAction);
+		newAction = new CameraRotateHori("RIGHT");
+		key = KeyStroke.getKeyStroke("RIGHT");
+		displayPane.getInputMap().put(key, "RIGHT");
+		displayPane.getActionMap().put("RIGHT", newAction);
+		newAction = new MoveCameraForward("SPACE");
+		key = KeyStroke.getKeyStroke("SPACE");
+		displayPane.getInputMap().put(key, "SPACE");
+		displayPane.getActionMap().put("SPACE", newAction);
 		addActions();
 		addMove("released UP",0,0,0);
 		addMove("released DOWN",0,0,0);
 		addMove("released X",0,0,0);
 		addMove("released Z",0,0,0);
-		addMove("released LEFT",0,0,0);
-		addMove("released RIGHT",0,0,0);
 		timer = new ScheduledThreadPoolExecutor(2);
 		timer.scheduleAtFixedRate(new Refresh(), 0, 5, TimeUnit.MILLISECONDS);
 	}
@@ -132,14 +114,81 @@ public class Engine3D {
 			}
 		}
 	}
+
+	class MoveCameraForward extends AbstractAction{
+		private String name;
+		MoveCameraForward(String name){
+			super(name);
+			this.name = name;
+		}
+		public void actionPerformed(ActionEvent e) {
+			Timer t = new Timer(10, null);
+			ActionListener rotate = new ActionListener() {
+				int i=0;
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					c.localToWorld().relativeTranslate(0, 0, -10);
+					i++;
+					displayPane.repaint();
+					if (i==20) {
+						t.stop();
+						running = false;
+					}
+				}
+			};
+			t.addActionListener(rotate);
+			t.setRepeats(true);
+			if(!running)
+			t.start();
+		}
+	}
+	class CameraRotateHori extends AbstractAction{
+		private String name;
+		private double rotation;
+		CameraRotateHori(String name){
+			super(name);
+			if (name == "LEFT")
+				rotation = -Math.PI/40;
+			else
+				rotation = Math.PI/40;
+		}
+		public void actionPerformed(ActionEvent e) {
+			Timer t = new Timer(10, null);
+			ActionListener rotate = new ActionListener() {
+				int i=0;
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					running = true;
+					player.rotateHori(name);
+					AffineTransform3D movement = new AffineTransform3D();
+//					c.localToWorld().translate(0, 0, 30);
+					movement = movement.rotateY(rotation);
+					c.setLocalToWorld(movement.concatenate(c.localToWorld()));
+//					c.localToWorld().print();
+//					c.localToWorld().translate(0, 0, -30);
+//					System.out.println(i);
+					i++;
+					displayPane.repaint();
+					if (i==20) {
+						t.stop();
+						running = false;
+					}
+				}
+			};
+			t.addActionListener(rotate);
+			t.setRepeats(true);
+			if(!running)
+			t.start();
+		}
+	}
 	class World extends JPanel {
 		public void paintComponent(Graphics g) {
 			Graphics2D g2 = (Graphics2D) g;
 			BufferedImage img = new BufferedImage(getWidth(), getHeight(),
 					BufferedImage.TYPE_INT_ARGB);
-			BufferedImage ig = new BufferedImage(getWidth(), getHeight(),
-					BufferedImage.TYPE_INT_ARGB);
-			Graphics gg = ig.createGraphics();
+//			BufferedImage ig = new BufferedImage(getWidth(), getHeight(),
+//					BufferedImage.TYPE_INT_ARGB);
+//			Graphics gg = ig.createGraphics();
 			g2.setColor(Color.BLACK);
 			g2.fillRect(0, 0, getWidth(), getHeight());
 			double[][] zBuffer = new double[img.getWidth()][img.getHeight()];
@@ -149,12 +198,20 @@ public class Engine3D {
 				}
 			}
 			for (Shape shape:shapes) {
-				Shape tris = shape.changeCoords(tetra.localToWorld());
+				Shape tris = shape.changeCoords(shape.localToWorld());
 				tris = tris.changeCoords(c.worldToLocal());
 				for (int i=0;i<tris.getTriangles().length;i++) {
 					Triangle tri = tris.getTriangles()[i];
-					cc.setT(i, tri,c);
-					Triangle tempTri = c.worldToRaster(tri,getWidth(),getHeight());
+					Triangle[] t = {tri};
+					if (!c.isVisible(tri,c.screenDistance)&&!c.isInvisible(tri, c.screenDistance)) {
+						for (Vertex v:tri.v) {
+						}
+						t = tri.clipTriangle(c.screenDistance);
+					}
+					cc.setT(0, tri,c,getWidth(),getHeight());
+					if(!c.isInvisible(tri, c.screenDistance))
+					for (Triangle tempTri:t) {
+					tempTri = c.worldToRaster(tempTri,getWidth(),getHeight());
 					int minX = (int) Math.max(0, Math.ceil(tempTri.getByX(0).x()));
 					int maxX = (int) Math.min(img.getWidth() - 1,tempTri.getByX(2).x());
 					int minY = (int) Math.max(0, Math.ceil(tempTri.getByY(0).y()));
@@ -172,7 +229,7 @@ public class Engine3D {
 								bary2/=triArea;
 								bary3/=triArea;
 								double depth = 1/(bary1/tempTri.v1.z()+bary2/tempTri.v2.z()+bary3/tempTri.v3.z());
-								if (zBuffer[x][y] > depth&&(depth>c.getDistance())) {
+								if (zBuffer[x][y] > depth&&(depth>c.screenDistance)) {
 									img.setRGB((int)x, (int)y, tri.color.getRGB());
 									zBuffer[x][y] = depth;
 								}else if (zBuffer[x][y] == depth&&!(tempTri.getByZ(2).z()< depth)) {
@@ -180,13 +237,16 @@ public class Engine3D {
 							}
 						}
 					}
-	                gg = img.getGraphics();
-	                gg.setColor(tri.color);
-	                gg.drawRect(minX, minY, maxX-minX, maxY-minY);
+//	                gg = img.getGraphics();
+//	                gg.drawRect(minX, minY, maxX-minX, maxY-minY);
+//	                gg.drawLine((int)tempTri.getByX(0).x(), (int)tempTri.getByX(0).y(), (int)tempTri.getByX(1).x(), (int)tempTri.getByX(1).y());
+//	                gg.drawLine((int)tempTri.getByX(1).x(), (int)tempTri.getByX(1).y(), (int)tempTri.getByX(2).x(), (int)tempTri.getByX(2).y());
+//	                gg.drawLine((int)tempTri.getByX(2).x(), (int)tempTri.getByX(2).y(), (int)tempTri.getByX(0).x(), (int)tempTri.getByX(0).y());
+				}
 				}
 			}
 			g2.drawImage(img, 0, 0, null);
-			g2.drawImage(ig, 0, 0, null);
+//			g2.drawImage(ig, 0, 0, null);
 		}
 	}
 	static double inTriangle(Vertex v1, Vertex v2, Vertex P){
@@ -196,57 +256,10 @@ public class Engine3D {
 		
 		public void run() {
 			for(double[] d:keyTracker.values()) {
-				c.localToWorld().translate(d[0], d[1], d[2]);
+				c.localToWorld().relativeTranslate(d[0], d[1], d[2]);
 			}
 			displayPane.repaint();
 		}
-	}
-	class RotateCamera implements MouseMotionListener,MouseListener{
-		double xStart;
-		double yStart;
-	    int xCoord;
-	    int yCoord;
-		Robot robot;
-		public void mouseDragged(MouseEvent e) {
-			double XZ = Math.toRadians((xCoord-e.getX())/5);
-			double YZ = Math.toRadians((yCoord-e.getY())/5);
-			AffineTransform3D v = new AffineTransform3D();
-			v.rotateX(YZ);
-			v.rotateY(XZ);
-			c.setLocalToWorld(v.concatenate(c.localToWorld()));
-			try {
-			    // These coordinates are screen coordinates
-
-			    // Move the cursor
-			    robot = new Robot();
-			    robot.mouseMove(xCoord, yCoord);
-			} catch (AWTException a) {
-			}
-			displayPane.repaint();
-		}
-		public void mouseMoved(MouseEvent e) {
-		}
-		public void mouseClicked(MouseEvent e) {
-		}
-		public void mousePressed(MouseEvent e) {
-			xStart=e.getX();
-			yStart=e.getY();
-			xCoord = 500;
-		    yCoord = 500;
-		}
-		public void mouseReleased(MouseEvent e) {
-			
-			
-		}
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 	}
 	class Refresh implements Runnable{
 		public void run() {

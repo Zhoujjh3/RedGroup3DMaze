@@ -6,13 +6,10 @@ public class Ceiling extends Shapes{
 	
 	public int state = 0;
 	public int dir = 0;
-	public int h, w;
 	
 	Ceiling() {
-		h = DrawShapes.height;
-		w = DrawShapes.width;
-		xTL = 0; xTR = w; xBR = w * (3.0/4.0); xBL = w/4.0;
-		yTL = 0; yTR = 0; yBR = h * (2.0/7.0); yBL = h * (2.0/7.0);
+		xTL = 0; xTR = 250; xBR = 250; xBL = 0;
+		yTL = 0; yTR = 200; yBR = 500; yBL = 700;
 	}
 	
 	public void paint(Graphics g) {
@@ -29,44 +26,37 @@ public class Ceiling extends Shapes{
 	}
 
 	public void update() {
-		h = DrawShapes.height;
-		w = DrawShapes.width;
 		if (dir == 3) {
 			if(ShapesPanel.timeCounter <= 200) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 0; xTR = w; xBR = w * (3.0/4.0); xBL = w/4.0;
-					yTL = 0; yTR = 0; yBR = h * (2.0/7.0); yBL = h * (2.0/7.0);
+					xTL = 0; xTR = 1000; xBR = 750; xBL = 250;
+					yTL = 0; yTR = 0; yBR = 200; yBL = 200;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR += h/200.0;
-					yBR += h/200.0;
-					yTL += h/200.0;
-					yBL += h/200.0;
+					yTR += 3.5;
+					yBR += 3.5;
+					yTL += 3.5;
+					yBL += 3.5;
 				} else {
-					xTL = 0; xTR = w; xBR = w * (3.0/4.0); xBL = w/4.0;
-					yTL = 0; yTR = 0; yBR = h * (2.0/7.0); yBL = h * (2.0/7.0);
+					xTL = 0; xTR = 1000; xBR = 750; xBL = 250;
+					yTL = 0; yTR = 0; yBR = 200; yBL = 200;
 				}
 			}
 		} else if (dir == 4) {
 			if(ShapesPanel.timeCounter <= 200) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 0; xTR = w; xBR = w * (3.0/4.0); xBL = w/4.0;
-					yTL = 0; yTR = 0; yBR = h * (2.0/7.0); yBL = h * (2.0/7.0);
+					xTL = 0; xTR = 1000; xBR = 750; xBL = 250;
+					yTL = 0; yTR = 0; yBR = 200; yBL = 200;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					yTR -= h/200.0;
-					yBR -= h/200.0;
-					yTL -= h/200.0;
-					yBL -= h/200.0;
+					yTR -= 3.5;
+					yBR -= 3.5;
+					yTL -= 3.5;
+					yBL -= 3.5;
 				} else {
-					xTL = 0; xTR = w; xBR = w * (3.0/4.0); xBL = w/4.0;
-					yTL = 0; yTR = 0; yBR = h * (2.0/7.0); yBL = h * (2.0/7.0);
+					xTL = 0; xTR = 1000; xBR = 750; xBL = 250;
+					yTL = 0; yTR = 0; yBR = 200; yBL = 200;
 				}
-			}
-		} else {
-			if(ShapesPanel.timeCounter == 0) {
-				xTL = 0; xTR = w; xBR = w * (3.0/4.0); xBL = w/4.0;
-				yTL = 0; yTR = 0; yBR = h * (2.0/7.0); yBL = h * (2.0/7.0);
 			}
 		}
 		
