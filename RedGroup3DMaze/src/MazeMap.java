@@ -83,6 +83,9 @@ public class MazeMap {
 					painter.gray(g, coord);
 				}
 			}
+			if (newLevel==(size-1)) {
+				painter.displayExit(g);
+			}
 		}
 		
 		if (newLevel==level) {
@@ -281,22 +284,24 @@ public class MazeMap {
 			g.fillPolygon(playerIconX, playerIconY, 7);
 		}
 		
-		public void displayExit(Graphics g, int[] coord) {
+		public void displayExit(Graphics g) {
 			g.setColor(Color.green);
-			g.fillRect((int)((195*wScale)+(sWidth*(size-1))), (int)((95*hScale)+(sHeight*(size-1))), (int)(100*wScale), (int)(50*hScale));
-			g.setColor(Color.white);
-			g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(30*hScale)));
-			g.drawString("EXIT", (int)((210*wScale)+(sWidth*(size-1))), (int)((130*hScale)+(sHeight*(size-1))));
+			if (size==5) {
+				g.fillRect((int)((193*wScale)+(sWidth*(size-1))), (int)((90*hScale)+(sHeight*(size-1))), (int)(80*wScale), (int)(40*hScale));
+				g.setColor(Color.white);
+				g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(22.5*hScale)));
+				g.drawString("EXIT", (int)((206*wScale)+(sWidth*(size-1))), (int)((118*hScale)+(sHeight*(size-1))));
+			} else {
+				g.fillRect((int)((201*wScale)+(sWidth*(size-1))), (int)((101*hScale)+(sHeight*(size-1))), (int)(100*wScale), (int)(50*hScale));
+				g.setColor(Color.white);
+				g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(30*hScale)));
+				g.drawString("EXIT", (int)((216*wScale)+(sWidth*(size-1))), (int)((136*hScale)+(sHeight*(size-1))));
+			}
 		}
 		
 		public void gray(Graphics g, int[] coord) {
 			g.setColor(Color.darkGray);
-			if (size==5) {
-				g.fillRect((int)(169*wScale+coord[0]*sWidth), (int)(44*hScale+coord[1]*sHeight), (int)(sWidth-4*wScale), (int)(sHeight-4*hScale));
-			} else {
-				g.fillRect((int)((170+coord[0]*sWidth)*wScale), (int)((45+coord[1]*sHeight)*hScale), (int)((sWidth-5)*wScale), (int)((sHeight-5)*hScale));
-
-			}
+			g.fillRect((int)(169*wScale+coord[0]*sWidth), (int)(44*hScale+coord[1]*sHeight), (int)(sWidth-4*wScale), (int)(sHeight-4*hScale));
 		}
 		
 		public void displayDoorN(Graphics g, int[] coord) {
