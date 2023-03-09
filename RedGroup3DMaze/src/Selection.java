@@ -32,8 +32,6 @@ public class Selection implements ActionListener{
 	    easyButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    easyButt.setBackground(Color.green);
 	    easyButt.setOpaque(true);
-	    //easyButt.setBorderPainted(false);
-	    panel.add(easyButt);
 	    easyButt.setActionCommand("Easy");
 	    easyButt.addActionListener(this);
 	    
@@ -41,28 +39,20 @@ public class Selection implements ActionListener{
 	    mediumButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    mediumButt.setBackground(Color.yellow);
 	    mediumButt.setOpaque(true);
-	    panel.add(mediumButt);
 	    mediumButt.setActionCommand("Medium");
 	    mediumButt.addActionListener(this);
 	    
 	    hardButt = new JButton("Hard");
-	    hardButt.setBounds(70,500,400,100);
 	    hardButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    hardButt.setBackground(Color.red);
 	    hardButt.setOpaque(true);
-	    panel.add(hardButt);
 	    hardButt.setActionCommand("Hard");
 	    hardButt.addActionListener(this);
 	    
 	    logo = new JLabel(new ImageIcon("Images/MazeLogo.png"));
-	    panel.add(logo);
 	    
 	    title = new JLabel("Welcome to 3D Maze");
-	    panel.add(title);
-	    
-	    //w 1000
-	    //h 750
-	    //dynamic
+
 //	    Timer timer = new Timer();
 //	    TimerTask task = new TimerTask() {
 //	    	public void run() {
@@ -80,7 +70,12 @@ public class Selection implements ActionListener{
 	    	    title.setBounds((int)(panelWidth*0.25), (int)(panelHeight*.06), (int)(panelWidth*1), (int)(panelHeight*.13));
 	    	    
 	    	    logo.setBounds((int)(panelWidth*0.5), (int)(panelHeight*.267), (int)(panelWidth*.4), (int)(panelHeight*.53));
-	    		
+	    		  	    
+	    	    panel.add(easyButt);
+	    	    panel.add(mediumButt);
+	    	    panel.add(hardButt);
+	    	    panel.add(logo);
+	    	    panel.add(title);
 //	    	}
 //	    };
 //	    timer.schedule(task, 1, 1);

@@ -90,9 +90,11 @@ public class Leaderboard implements ActionListener {
 	    timer.schedule(task, 1, 1);
 	    
 	    contentPane.setPreferredSize(new Dimension(width, height));
-	    frame.setContentPane(contentPane);
-	    frame.pack();
-	    frame.setVisible(true);
+//	    frame.setContentPane(contentPane);
+//	    frame.pack();
+//	    frame.setVisible(true);
+	    
+	    
 	}
 	
 	//if the new score is lower than the 10th score, the 10th score is removed
@@ -136,24 +138,6 @@ public class Leaderboard implements ActionListener {
 	private static void runGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		Leaderboard test2b = new Leaderboard();
-		test2b.getScore(10.0);
-		test2b.display();
-		test2b.getScore(11.0);
-		test2b.display();
-		test2b.getScore(12.0);
-		test2b.display();
-		test2b.getScore(13.0);
-		test2b.display();
-		test2b.getScore(10.5);
-		test2b.display();
-		test2b.getScore(12.3);
-		test2b.display();
-		test2b.getScore(100);
-		test2b.display();
-		test2b.getScore(154);
-		test2b.display();
-		test2b.getScore(123.3);
-		test2b.display();
 	}
 	
 	public static void main(String[] args) {
