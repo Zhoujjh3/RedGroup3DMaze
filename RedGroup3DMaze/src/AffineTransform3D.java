@@ -36,32 +36,46 @@ public class AffineTransform3D {
 		matrix[1][3] += y;
 		matrix[2][3] += z;
 	}
+	public void relativeTranslate(double x,double y,double z) {
+		AffineTransform3D m = new AffineTransform3D();
+		m.translate(x, y, z);
+		this.matrix=this.concatenate(m).matrix;
+	}
+	public AffineTransform3D getRotation() {
+		return new AffineTransform3D(new double[][] {{matrix[0][0],matrix[0][1],matrix[0][2],0},
+			{matrix[1][0],matrix[1][1],matrix[1][2],0},
+			{matrix[2][0],matrix[2][1],matrix[2][2],0},
+			{0,0,0,1}});
+	}
+	public double[] getTranslation() {
+		return new double[] {matrix[0][3],matrix[1][3],matrix[2][3]};
+	}
 	public void rotate(double xRad,double yRad, double zRad) {
 		rotateX(xRad);
 		rotateY(yRad);
 		rotateY(zRad);
 	}
-	public void rotateX(double xRad) {
+	public AffineTransform3D rotateX(double xRad) {
 		double[][] matrix = {{1,0,0,0},
-				{0,Math.cos(xRad),Math.sin(xRad),0},
+				{1,Math.cos(xRad),Math.sin(xRad),0},
 				{0,-Math.sin(xRad),Math.cos(xRad),0},
 				{0,0,0,1}};
-		this.matrix=this.concatenate(new AffineTransform3D(matrix)).matrix;
+		return new AffineTransform3D(this.concatenate(new AffineTransform3D(matrix)).matrix);
 	}
-	public void rotateY(double yRad) {
+	public AffineTransform3D rotateY(double yRad) {
 		double[][] matrix = {
 				{Math.cos(yRad),0,-Math.sin(yRad),0},
 				{0,1,0,0},
 				{Math.sin(yRad),0,Math.cos(yRad),0},
 				{0,0,0,1}};
-		this.matrix=this.concatenate(new AffineTransform3D(matrix)).matrix;
+		return new AffineTransform3D(this.concatenate(new AffineTransform3D(matrix)).matrix);
 	}
-	public void rotateZ(double zRad) {
+	public AffineTransform3D rotateZ(double zRad) {
 		double[][] matrix = {
 				{Math.cos(zRad),-Math.sin(zRad),0,0},
 				{Math.sin(zRad),Math.cos(zRad),0,0},
 				{0,0,1,0},{0,0,0,1}};
-		this.matrix=this.concatenate(new AffineTransform3D(matrix)).matrix;
+		return new AffineTransform3D(this.concatenate(new AffineTransform3D(matrix)).matrix);
 		
 	}
 	public AffineTransform3D invert() {

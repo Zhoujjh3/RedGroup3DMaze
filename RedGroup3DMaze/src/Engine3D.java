@@ -159,7 +159,7 @@ public class Engine3D {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					running = true;
-					player.rotateHori(name);
+//					player.rotateHori(name);
 					AffineTransform3D movement = new AffineTransform3D();
 //					c.localToWorld().translate(0, 0, 30);
 					movement = movement.rotateY(rotation);
@@ -208,7 +208,6 @@ public class Engine3D {
 						}
 						t = tri.clipTriangle(c.screenDistance);
 					}
-					cc.setT(0, tri,c,getWidth(),getHeight());
 					if(!c.isInvisible(tri, c.screenDistance))
 					for (Triangle tempTri:t) {
 					tempTri = c.worldToRaster(tempTri,getWidth(),getHeight());
