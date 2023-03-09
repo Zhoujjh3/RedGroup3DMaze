@@ -7,6 +7,7 @@ public class Room {
 	private boolean visited;
 	private Color color;
 	private int[] rgbValues = new int[3];
+	private char artDirection;
 	
 	 public Shapes3D[] walls = {
 	    		new Wall3D(0, this),
@@ -35,6 +36,16 @@ public class Room {
 		} else {
 			visited = false;
 		}
+		int counter = 0;
+		for(int i = 0; i<directions.length-2;i++) {
+			if(!directions[i]) {
+				artDirection = correspondingDir(i);
+				counter++;
+			}
+		}
+		if(counter <1)
+			artDirection = 'Z';
+			
 		
 		for(int i=0; i<3; i++)
 			rgbValues[i] = 128+(int)(Math.random()*103);
@@ -123,7 +134,16 @@ public class Room {
 		return color;
 	}
 	
+	public char getArtWall() {
+		return artDirection;
+	}
+	
 	public int[] getRGBValues() {
 		return rgbValues;
+	}
+	
+	private char correspondingDir(int i) {
+		char[] dirs = {'N', 'E', 'S', 'W'};
+		return dirs[i];
 	}
 }
