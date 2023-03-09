@@ -15,14 +15,15 @@ public class Run3DMaze {
 	private JFrame screen;
 	private GamePanel gamePanel;
 	private Selection selectionScreen;
-	private PlayerData player;
-	private Maze maze;
 	private MazeMap map;
 	private Header header;
 	private Leaderboard leaderboard;
-	private int difficulty;
+	public static int difficulty;
 	
-	private mazeState state;
+	public static Maze maze;
+	public static PlayerData player;
+	
+	public static mazeState state;
 	private JButton changeView, levelUp, levelDown;
 	private int mapLevelIncrement = 0;
 	
@@ -46,9 +47,12 @@ public class Run3DMaze {
 		state = mazeState.WELCOMESCREEN;
 		selectionScreen = new Selection();
 		leaderboard = new Leaderboard();
+		play3DMaze();
+		ShapesTimer.start();
 	}
 	
 	//Timer for 3D animations
+	int counter = 0;
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if(state == mazeState.CHAMBERVIEW) {
@@ -66,7 +70,7 @@ public class Run3DMaze {
 				for(Shapes shape : ShapesPanel.doors) {
 					shape.update();
 				}
-				gamePanel.repaint();
+				//gamePanel.repaint();		//should be run no matter what state
 				ShapesPanel.timeCounter++;
 				
 				//updates 3d states after animation is finished
@@ -99,13 +103,23 @@ public class Run3DMaze {
 					}
 				} 
 			} else if (state == mazeState.WELCOMESCREEN) {
-				selectionScreen.display();
-				if (selectionScreen.checkSignal()) {
-					difficulty = selectionScreen.diffculty;
-					selectionScreen.diffculty = -1;
-					selectionScreen.resetSignal();
-					runMaze();
+				//System.out.println("WELCOME");
+				if(counter == 0) {	//so it doesn't draw infinite selection screens
+					selectionScreen.display(screen, gamePanel);
+					System.out.println("LOL");
 				}
+				
+				//this doesn't seem to work because checksignal only returns true
+				//after you click a button, which at that point the state switches to 
+				//chamber view
+//				if (selectionScreen.checkSignal()) {
+//					difficulty = selectionScreen.difficulty;
+//					selectionScreen.difficulty = -1;
+//					selectionScreen.resetSignal();
+//					runMaze();
+//					System.out.println(difficulty);
+//					System.out.println(state);
+//				}
 			} else if (state == mazeState.MAPVIEW) {
 				
 			} else if (state == mazeState.LEADERBOARD) {
@@ -117,25 +131,27 @@ public class Run3DMaze {
 				}
 			}
 			//switch rooms when timerCounter = 200, maybe
+			gamePanel.repaint();
+			counter++;
 		}
 	};
 	Timer ShapesTimer = new Timer(5, rotate);
 	
 	public void play3DMaze() { // essentially a runWelcomeScreen
-		
+		//selectionScreen.display(screen, gamePanel);
 		screen.setContentPane(gamePanel);
 		screen.pack();
 		screen.setVisible(true);
 		screen.setResizable(false);
 		screen.setLocationRelativeTo(null);
-		
 		state = mazeState.WELCOMESCREEN;
 	}
 	
-	public void runMaze() {
+	public static void runMaze() {
 		// initialize maze, map, header, and playerData
 		maze = new Maze(difficulty);
 		player = new PlayerData(maze.getMazeSize());
+		
 		/*
 		map = new MazeMap(maze, player);
 		header = new Header(maze, player);
@@ -181,7 +197,7 @@ public class Run3DMaze {
 		});
 		*/
 		
-		runChamberView();
+		//runChamberView();
 	}
 	
 	public void runChamberView() {
@@ -210,7 +226,8 @@ public class Run3DMaze {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				JFrame.setDefaultLookAndFeelDecorated(true);
-				new Run3DMaze().play3DMaze();
+				new Run3DMaze();
+				//new Run3DMaze().play3DMaze();
 			}
 		});
 	}

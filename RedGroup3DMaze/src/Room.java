@@ -1,8 +1,20 @@
+import java.util.ArrayList;
+
 public class Room {
 	private boolean[] directions = new boolean[6];
 	private int[] coordinates = new int[3];
 	private boolean visited;
-	private char artDirection;
+	
+	 public Shapes3D[] walls = {
+	    		new Wall3D(0),
+	    		new Wall3D(1),
+	    		new Wall3D(2),
+	    		new Wall3D(3)
+	 };
+	 
+	 public ArrayList<Shapes3D> doors = new ArrayList<Shapes3D>();
+	 public ArrayList<Shapes3D> ceilingAndFloor = new ArrayList<Shapes3D>();
+	 char direction; 
 	
 	/*
 	 * Coordinates are stored: {Z, X, Y}
@@ -20,6 +32,7 @@ public class Room {
 		} else {
 			visited = false;
 		}
+		
 	}	
 	public boolean getDirection(char direction) {
 		switch(direction) {
@@ -56,5 +69,46 @@ public class Room {
 	}
 	public void setVisited(boolean newVal) {
 		visited = newVal;
+	}
+	
+	public void populateDoors() {
+		direction = Run3DMaze.player.getDirection();
+		if(direction == 'N') {
+			if(getDirection('W'))
+				doors.add(new Door3D(0));
+			if(getDirection('N'))
+				doors.add(new Door3D(1));
+			if(getDirection('E'))
+				doors.add(new Door3D(2));
+			if(getDirection('S'))
+				doors.add(new Door3D(3));
+		} else if(direction == 'E') {
+			if(getDirection('N'))
+				doors.add(new Door3D(0));
+			if(getDirection('E'))
+				doors.add(new Door3D(1));
+			if(getDirection('S'))
+				doors.add(new Door3D(2));
+			if(getDirection('W'))
+				doors.add(new Door3D(3));
+		} else if(direction == 'S') {
+			if(getDirection('E'))
+				doors.add(new Door3D(0));
+			if(getDirection('S'))
+				doors.add(new Door3D(1));
+			if(getDirection('W'))
+				doors.add(new Door3D(2));
+			if(getDirection('N'))
+				doors.add(new Door3D(3));
+		} else if(direction == 'W') {
+			if(getDirection('S'))
+				doors.add(new Door3D(0));
+			if(getDirection('W'))
+				doors.add(new Door3D(1));
+			if(getDirection('N'))
+				doors.add(new Door3D(2));
+			if(getDirection('E'))
+				doors.add(new Door3D(3));
+		}
 	}
 }

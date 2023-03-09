@@ -14,19 +14,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+//import Run3DMaze.mazeState;
+
 public class Selection implements ActionListener{
-	int diffculty; 
+	int difficulty; 
 	JFrame frame; 
 	JPanel panel;
 	JLabel title, logo; 
 	JButton easyButt, mediumButt, hardButt; 
 	private boolean signal = false;
 	
-	public void display() {
-		frame = new JFrame("Selection");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panel = new JPanel();
-		panel.setLayout(null);
+	public void display(JFrame frame, JPanel panel) {
+		this.frame = frame;
+		this.panel = panel;
+		//frame = new JFrame("Selection");
+		//.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//panel = new JPanel();
+		//panel.setLayout(null);
 		
 	    easyButt = new JButton("Easy");
 	    easyButt.setFont(new Font("Serif", Font.PLAIN, 30));
@@ -63,11 +67,11 @@ public class Selection implements ActionListener{
 	    //w 1000
 	    //h 750
 	    //dynamic
-	    Timer timer = new Timer();
-	    TimerTask task = new TimerTask() {
-	    	public void run() {
-	    		int panelWidth = panel.getWidth();
-	    		int panelHeight = panel.getHeight();
+//	    Timer timer = new Timer();
+//	    TimerTask task = new TimerTask() {
+//	    	public void run() {
+	    		int panelWidth = Run3DMaze.width;
+	    		int panelHeight = Run3DMaze.height;
 	    		
 	    		easyButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.267),(int)(panelWidth*.4),(int)(panelHeight*.1));
 	    		easyButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
@@ -81,48 +85,63 @@ public class Selection implements ActionListener{
 	    	    
 	    	    logo.setBounds((int)(panelWidth*0.5), (int)(panelHeight*.267), (int)(panelWidth*.4), (int)(panelHeight*.53));
 	    		
-	    	}
-	    };
-	    timer.schedule(task, 1, 1);
-	    
-	    panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	    frame.add(panel);
-	    frame.setVisible(true);
-		
-		frame.setContentPane(panel);
-		frame.setSize(1000, 750);
-		
-		frame.setVisible(true);
+//	    	}
+//	    };
+//	    timer.schedule(task, 1, 1);
+//	    
+//	    panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+//	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//	    frame.add(panel);
+//	    frame.setVisible(true);
+//		
+//		frame.setContentPane(panel);
+//		frame.setSize(1000, 750);
+//		
+//		frame.setVisible(true);
 	}
 	
-	private static void runGUI() {
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		Selection test = new Selection();
-		test.display();
+	public void hide(JFrame frame, JPanel panel) {
+		panel.remove(easyButt);
+		panel.remove(mediumButt);
+		panel.remove(hardButt);
+		panel.remove(title);
+		panel.remove(logo);
 	}
 	
-   public static void main(String[] args) {      
-      javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				runGUI();
-			}
-		});
-   }
+//	private static void runGUI() {
+//		JFrame.setDefaultLookAndFeelDecorated(true);
+//		Selection test = new Selection();
+//		test.display();
+//	}
+	
+//   public static void main(String[] args) {      
+//      javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				runGUI();
+//			}
+//		});
+//   }
 
-
+//handles setting the difficulty of the maze
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
 		if(eventName.equals("Easy")) {
-			diffculty = 1;
+			difficulty = 1;
+			Run3DMaze.difficulty = 1;
 		}else if(eventName.equals("Medium")) {
-			diffculty = 2;
+			difficulty = 2;
+			Run3DMaze.difficulty = 2;
 		}else{
-			diffculty = 3;
+			difficulty = 3;
+			Run3DMaze.difficulty = 3;
 		}
 		signal = true;
-		System.out.println(eventName);
-		System.out.println(diffculty);
+		Run3DMaze.runMaze();
+		//System.out.println(eventName);
+		//System.out.println(Run3DMaze.difficulty);
+		Run3DMaze.state = Run3DMaze.mazeState.CHAMBERVIEW;
+		//System.out.println(Run3DMaze.state);
+		hide(frame, panel);
 	}
 	
 	public boolean checkSignal() {
