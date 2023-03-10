@@ -15,7 +15,7 @@ public class Run3DMaze {
 	private JFrame screen;
 	private GamePanel gamePanel;
 	private Selection selectionScreen;
-	private MazeMap map;
+	public static MazeMap map;
 	private Leaderboard leaderboard;
 	public static int difficulty;
 	
@@ -24,8 +24,8 @@ public class Run3DMaze {
 	public static PlayerData player;
 	
 	public static mazeState state;
-	private JButton changeView, levelUp, levelDown;
-	private int mapLevelIncrement = 0;
+	public static JButton changeView, levelUp, levelDown;
+	public static int mapLevelIncrement = 0;
 	
 	//3d stuff
 	public static boolean clicked;
@@ -152,7 +152,7 @@ public class Run3DMaze {
 		maze = new Maze(difficulty);
 		player = new PlayerData(maze.getMazeSize());
 		header = new Header(maze, player);
-		/*
+		
 		map = new MazeMap(maze, player);
 		header = new Header(maze, player);
 		changeView = new JButton(header.getView());
@@ -166,14 +166,19 @@ public class Run3DMaze {
 		levelDown.setVisible(false);
 		levelUp.setVisible(false);
 		changeView.setBounds(740, 5, 100, 30);
-		levelUp.setBounds(300, 715, 100, 30);
-		levelDown.setBounds(450, 715, 100, 30);
+		levelUp.setBounds(300, 665, 100, 30);
+		levelDown.setBounds(450, 665, 100, 30);
 		
 		
 		changeView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				header.changeView();
 				changeView.setText(header.getView());
+				if (state == mazeState.CHAMBERVIEW) {
+					runMapView();
+				} else if (state == mazeState.MAPVIEW) {
+					runChamberView();
+				}
 				gamePanel.repaint();
 			}
 		});
@@ -195,14 +200,14 @@ public class Run3DMaze {
 				}
 			}
 		});
-		*/
+		
 		
 		runChamberView();
 	}
 	
 	public void runChamberView() {
 		
-		if (header.getView().equals("MAP")) {
+		if (header.getView().equals("CHAMBER")) {
 			header.changeView();
 		}
 		state = mazeState.CHAMBERVIEW;
@@ -210,7 +215,7 @@ public class Run3DMaze {
 	
 	public void runMapView() {
 		
-		if (header.getView().equals("CHAMBER")) {
+		if (header.getView().equals("MAP")) {
 			header.changeView();
 		}
 		state = mazeState.MAPVIEW;

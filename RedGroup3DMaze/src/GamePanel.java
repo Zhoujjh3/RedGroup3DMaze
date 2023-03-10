@@ -48,10 +48,14 @@ public class GamePanel extends JPanel{
 	}
 	
 	public void setChamberView(Graphics g) {
+		// resetting map
+		Run3DMaze.mapLevelIncrement = 0;
+        Run3DMaze.levelDown.setVisible(false);
+        Run3DMaze.levelUp.setVisible(false);
 			//when setting the doors, door[1] is the door in the direction you start out facing
 			//have it so that when the animation is done, it switches to the new room
 			//you might already be doing this since you're refreshing the doors constantly through paintcomponent
-		
+        
 		Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 				Run3DMaze.player.getCoordinate('X'), 
 				Run3DMaze.player.getCoordinate('Y'));
@@ -71,28 +75,19 @@ public class GamePanel extends JPanel{
 	}
 	
 	public void setMapView(Graphics g) {
-		if (Run3DMaze.player.getCoordinate('Z') + mapLevelIncrement == Run3DMaze.maze.getMazeSize() - 1) {
-            levelUp.setBackground(Color.GRAY);
+		if (Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement == Run3DMaze.maze.getMazeSize() - 1) {
+			Run3DMaze.levelUp.setBackground(Color.GRAY);
         } else {
-            levelUp.setBackground(Color.WHITE);
+        	Run3DMaze.levelUp.setBackground(Color.WHITE);
         }
-        if (Run3DMaze.player.getCoordinate('Z') + mapLevelIncrement == 0) {
-            levelDown.setBackground(Color.GRAY);
+        if (Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement == 0) {
+        	Run3DMaze.levelDown.setBackground(Color.GRAY);
         } else {
-            levelDown.setBackground(Color.WHITE);
+        	Run3DMaze.levelDown.setBackground(Color.WHITE);
         }
-        map.display(g, Run3DMaze.player.getCoordinate('Z') + mapLevelIncrement, this.getSize());
-        levelDown.setVisible(true);
-        levelUp.setVisible(true);
-        /*if (header.getView().equals("CHAMBER")){
-            map.display(g, player.getCoordinate('Z') + mapLevelIncrement, this.getSize());
-            levelDown.setVisible(true);
-            levelUp.setVisible(true);
-        } else {
-            mapLevelIncrement = 0;
-            levelDown.setVisible(false);
-            levelUp.setVisible(false);
-        }*/
+		Run3DMaze.map.display(g, Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement, this.getSize());
+		Run3DMaze.levelDown.setVisible(true);
+		Run3DMaze.levelUp.setVisible(true);
 	}
 	
 	public void setHeader(Graphics g) {
