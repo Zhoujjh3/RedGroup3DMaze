@@ -188,6 +188,8 @@ public class Art extends Shapes {
 					xBL -= 1.875 * xScale;
 					xTR -= 1.875 * xScale;
 					xBR -= 1.875 * xScale;
+					yTR -= 1.5 * yScale;
+					yTL -= 1.5 * yScale;
 					yBR += 1.5 * yScale;
 					yBL += 1.5 * yScale;
 				}

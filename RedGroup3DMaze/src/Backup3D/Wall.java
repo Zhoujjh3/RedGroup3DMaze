@@ -21,20 +21,20 @@ public class Wall extends Shapes{
 		nextWallIndex = nextWallIndex(index);
 		if(theState == 0) {
 			xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
-			yTL = 0; yTR = 200; yBR = 500; yBL = 700;
+			yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 		} else if(theState == 1) {
 			xTL = 250 * xScale; xBL = 250 * xScale; xTR = 750 * xScale; xBR = 750 * xScale;
-			yTL = 200; yBL = 500; yTR = 200; yBR = 500;
+			yTL = 200 * yScale; yBL = 500 * yScale; yTR = 200 * yScale; yBR = 500 * yScale;
 		} else if(theState == 2) {
 			xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-			yTL = 200; yBL = 500; yTR = 0; yBR = 700;
+			yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 		} else if(theState == 3) {
 			if(dir == 0) {
-				xTL = 0; xTR = 0; xBR = 0; xBL = 0;
-				yTL = 0; yTR = 0; yBR = 700; yBL = 700;
+				xTL = 0 * xScale; xTR = 0 * xScale; xBR = 0 * xScale; xBL = 0 * xScale;
+				yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			} else if (dir == 1){
 				xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-				yTL = 0; yTR = 0; yBR = 700; yBL = 700;
+				yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			}
 		}
 	}
@@ -60,7 +60,7 @@ public class Wall extends Shapes{
 		if(dir == 0) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
@@ -92,12 +92,12 @@ public class Wall extends Shapes{
 					}
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTL = ShapesPanel.walls[previousWallIndex].getyTR();
@@ -106,13 +106,13 @@ public class Wall extends Shapes{
 					xBL = ShapesPanel.walls[previousWallIndex].getxBR();
 				} else {
 					xTL = 0 * xScale; xTR = 0 * xScale; xBR = 0 * xScale; xBL = 0 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 				
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 0; xTR = 0; xBR = 0; xBL = 0;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 0 * xScale; xBR = 0 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR = ShapesPanel.walls[nextWallIndex].getyTL();
@@ -121,14 +121,14 @@ public class Wall extends Shapes{
 					xBR = ShapesPanel.walls[nextWallIndex].getxBL();		
 				} else {
 					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}		
 			}
 		} else if (dir == 1) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR = ShapesPanel.walls[nextWallIndex].getyTL();
@@ -137,7 +137,7 @@ public class Wall extends Shapes{
 					xBR = ShapesPanel.walls[nextWallIndex].getxBL();		
 				} else {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}	
 			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
@@ -154,13 +154,13 @@ public class Wall extends Shapes{
 						yBL += 2 * yScale;
 					}	
 				} else {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					xTL -= 2.5 * xScale;
@@ -178,7 +178,7 @@ public class Wall extends Shapes{
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTL = ShapesPanel.walls[previousWallIndex].getyTR();
@@ -187,14 +187,14 @@ public class Wall extends Shapes{
 					xBL = ShapesPanel.walls[previousWallIndex].getxBR();
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 			}
 		} else if (dir == 2) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR -= 1 * yScale;
@@ -202,8 +202,8 @@ public class Wall extends Shapes{
 					xTR -= 1.25 * xScale;
 					xBR -= 1.25 * xScale;
 				} else {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
@@ -226,7 +226,7 @@ public class Wall extends Shapes{
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTL -= 1 * yScale;
@@ -235,19 +235,19 @@ public class Wall extends Shapes{
 					xBL += 1.25 * xScale;
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 			}
 		} else if (dir == 3) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR += 3.5 * yScale;
@@ -255,8 +255,8 @@ public class Wall extends Shapes{
 					yTL += 3.5 * yScale;
 					yBL += 3.5 * yScale;
 				} else {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
@@ -275,7 +275,7 @@ public class Wall extends Shapes{
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR += 3.5 * yScale;
@@ -284,18 +284,18 @@ public class Wall extends Shapes{
 					yBL += 3.5 * yScale;
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 			}
 		} else if (dir == 4) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
+					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * yScale;
 					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
@@ -324,7 +324,7 @@ public class Wall extends Shapes{
 			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
 					yTR -= 3.5 * yScale;
@@ -333,12 +333,12 @@ public class Wall extends Shapes{
 					yBL -= 3.5 * yScale;
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 			}
 		}
