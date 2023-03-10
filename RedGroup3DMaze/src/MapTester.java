@@ -13,6 +13,8 @@ public class MapTester {
     JButton changeView, levelUp, levelDown;
     Header header;
     int mapLevelIncrement = 0;
+    private double wScale;
+	private double hScale;
     public MapTester() {
         map = new MazeMap(maze, player);
         frame = new JFrame("map tester");
@@ -80,6 +82,11 @@ public class MapTester {
             }
             if (header.getView().equals("CHAMBER")){
                 map.display(g, player.getCoordinate('Z') + mapLevelIncrement, this.getSize());
+                wScale = (double)getSize().width/(double)1000;
+                hScale = (double)getSize().height/(double)750;
+                changeView.setBounds((int)(740*wScale), (int)(5*hScale), (int)(100*wScale), (int)(30*hScale));
+                levelDown.setBounds((int)(300*wScale), (int)(715*hScale), (int)(100*wScale), (int)(30*hScale));
+                levelUp.setBounds((int)(450*wScale), (int)(715*hScale), (int)(100*wScale), (int)(30*hScale));
                 levelDown.setVisible(true);
                 levelUp.setVisible(true);
             } else {
