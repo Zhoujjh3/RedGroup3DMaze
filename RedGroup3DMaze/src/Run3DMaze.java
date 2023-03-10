@@ -43,7 +43,6 @@ public class Run3DMaze {
 		screen = new JFrame();
 		gamePanel = new GamePanel(width, height);
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		state = mazeState.WELCOMESCREEN;
 		selectionScreen = new Selection();
 		leaderboard = new Leaderboard();
@@ -120,7 +119,9 @@ public class Run3DMaze {
 			} else if (state == mazeState.MAPVIEW) {
 				
 			} else if (state == mazeState.LEADERBOARD) {
-				leaderboard.display();
+				if (counter == 0) {
+					leaderboard.display();
+				}
 				
 				if (leaderboard.checkSignal()) {
 					leaderboard.resetSignal();
@@ -141,6 +142,7 @@ public class Run3DMaze {
 		screen.setVisible(true);
 		screen.setResizable(false);
 		screen.setLocationRelativeTo(null);
+		counter = 0;
 		state = mazeState.WELCOMESCREEN;
 		ShapesTimer.start();
 	}
@@ -216,7 +218,7 @@ public class Run3DMaze {
 	
 	public void runLeaderboard() {
 		leaderboard.getScore((double)maze.getMinMoves() / (double)player.getMoves());
-		
+		counter = 0;
 		state = mazeState.LEADERBOARD;
 	}
 	
