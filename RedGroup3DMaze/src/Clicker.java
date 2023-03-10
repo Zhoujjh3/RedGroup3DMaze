@@ -56,8 +56,8 @@ public class Clicker implements MouseListener{
 				Run3DMaze.player.setDirection(getRightDirection(Run3DMaze.player.getDirection()));
 				System.out.println(Run3DMaze.player.getDirection());
 				
-			} else if (e.getX() > (Run3DMaze.width * (0.4)) && e.getX() < (Run3DMaze.width * (0.6)) 
-			&& e.getY() > (Run3DMaze.height * (2.0/7.0)) && e.getY() < (Run3DMaze.height * (5.0/7.0))) {
+			} else if(e.getX() > (450) && e.getX() < (550) 
+					&& e.getY() > (515)) { 
 				
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
 					i.setDir(1);

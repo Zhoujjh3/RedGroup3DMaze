@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,6 +25,7 @@ public class GamePanel extends JPanel{
     JButton changeView, levelUp, levelDown;
     Header header;
     int mapLevelIncrement = 0;
+    Image up, down, left, right, forward;
     
     //char[] directions = {'W','S','E','N','U','D'};
    
@@ -69,6 +72,25 @@ public class GamePanel extends JPanel{
 		for(Shapes3D shape : currentRoom.doors) {
 			shape.paint(g);
 		}
+		
+		up = new ImageIcon("Images\\up arrow.png").getImage();
+		down = new ImageIcon("Images\\down arrow.png").getImage();
+		left = new ImageIcon("Images\\rotate left arrow.png").getImage();
+		right = new ImageIcon("Images\\rotate right arrow.png").getImage();
+		forward = new ImageIcon("Images\\forward arrow.png").getImage();
+		
+		if(GamePanel.timeCounter > 200) {
+			g.drawImage(left, 120, 450, 150, 90, null);
+			g.drawImage(right, 730, 450, 150, 90, null);
+			char currentDirection = Run3DMaze.player.getDirection();
+			if(currentRoom.getDirection(currentDirection) == true) {
+				g.drawImage(forward, 450, 515, 100, 60, null);
+			}
+		}
+		
+		
+										//50, 30
+		
 	}
 	
 	public void setMapView(Graphics g) {

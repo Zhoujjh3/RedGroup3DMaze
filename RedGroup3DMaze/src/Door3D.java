@@ -54,7 +54,7 @@ public class Door3D extends Shapes3D {
 	}
 	
 	public void update() {
-		System.out.println(state);
+		//System.out.println(state);
 		h = Run3DMaze.height;
 		w = Run3DMaze.width;
 		xScale = w/1000.0;
