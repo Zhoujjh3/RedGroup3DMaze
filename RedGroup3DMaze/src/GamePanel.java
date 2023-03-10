@@ -26,6 +26,7 @@ public class GamePanel extends JPanel{
     Header header;
     int mapLevelIncrement = 0;
     Image up, down, left, right, forward;
+    Image upMac, downMac, leftMac, rightMac, forwardMac;
     
     //char[] directions = {'W','S','E','N','U','D'};
    
@@ -74,18 +75,26 @@ public class GamePanel extends JPanel{
 			shape.paint(g);
 		}
 		
-		up = new ImageIcon("Images/up arrow.png").getImage();
-		down = new ImageIcon("Images/down arrow.png").getImage();
-		left = new ImageIcon("Images/rotate left arrow.png").getImage();
-		right = new ImageIcon("Images/rotate right arrow.png").getImage();
-		forward = new ImageIcon("Images/forward arrow.png").getImage();
+		up = new ImageIcon("Images\\up arrow.png").getImage();
+		down = new ImageIcon("Images\\down arrow.png").getImage();
+		left = new ImageIcon("Images\\rotate left arrow.png").getImage();
+		right = new ImageIcon("Images\\rotate right arrow.png").getImage();
+		forward = new ImageIcon("Images\\forward arrow.png").getImage();
+		upMac = new ImageIcon("Images/up arrow.png").getImage();
+		downMac = new ImageIcon("Images/down arrow.png").getImage();
+		leftMac = new ImageIcon("Images/rotate left arrow.png").getImage();
+		rightMac = new ImageIcon("Images/rotate right arrow.png").getImage();
+		forwardMac = new ImageIcon("Images/forward arrow.png").getImage();
 		
 		if(GamePanel.timeCounter > 200) {
 			g.drawImage(left, 120, 450, 150, 90, null);
+			g.drawImage(leftMac, 120, 450, 150, 90, null);
 			g.drawImage(right, 730, 450, 150, 90, null);
+			g.drawImage(rightMac, 730, 450, 150, 90, null);
 			char currentDirection = Run3DMaze.player.getDirection();
 			if(currentRoom.getDirection(currentDirection) == true) {
 				g.drawImage(forward, 450, 515, 100, 60, null);
+				g.drawImage(forwardMac, 450, 515, 100, 60, null);
 			}
 		}
 		
