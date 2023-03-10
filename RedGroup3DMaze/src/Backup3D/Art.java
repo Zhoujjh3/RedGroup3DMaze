@@ -7,6 +7,9 @@ public class Art extends Shapes {
 
 	double xTL, xTR, xBR, xBL;
 	double  yTL, yTR, yBR, yBL;
+	int xCenter, yCenter, xMidLeft, yMidLeft,
+	xMidRight, yMidRight, xMidTop, yMidTop,
+	xMidBot, yMidBot;
 	public int state;
 	public int dir = 0;
 	public int h, w;
@@ -42,13 +45,43 @@ public class Art extends Shapes {
 	public void paint(Graphics g) {
 		int[] artFrameX = {(int) Math.rint(xTL),(int) Math.rint(xTR),(int) Math.rint(xBR),(int) Math.rint(xBL)};
 		int[] artFrameY = {(int) Math.rint(yTL),(int) Math.rint(yTR),(int) Math.rint(yBR),(int) Math.rint(yBL)};
+		xCenter = (int) Math.rint((xTL + xTR)/2.0);
+		yCenter = (int) Math.rint((((yTL + yBL)/2.0) + ((yTR + yBR)/2.0))/2.0);
+		xMidLeft = (int) Math.rint((xTL + xBL)/2.0);
+		yMidLeft = (int) Math.rint((yTL + yBL)/2.0);
+		xMidRight = (int) Math.rint((xTR + xBR)/2.0);
+		yMidRight = (int) Math.rint((yTR + yBR)/2.0);
+		xMidTop = (int) Math.rint((xTL + xTR)/2.0);
+		yMidTop = (int) Math.rint((yTL + yTR)/2.0);
+		xMidBot = (int) Math.rint((xBL + xBR)/2.0);
+		yMidBot = (int) Math.rint((yBL + yBR)/2.0);
+		int[] art1X = {(int) Math.rint(xTL), xMidTop, xCenter, xMidLeft};
+		int[] art1Y = {(int) Math.rint(yTL), yMidTop, yCenter, yMidLeft};
+		int[] art2X = {xMidTop, (int) Math.rint(xTR), xMidRight, xCenter};
+		int[] art2Y = {yMidTop, (int) Math.rint(yTR), yMidRight, yCenter};
+		int[] art3X = {xMidLeft, xCenter, xMidBot, (int) Math.rint(xBL)};
+		int[] art3Y = {yMidLeft, yCenter, yMidBot, (int) Math.rint(yBL)};
+		int[] art4X = {xCenter, xMidRight, (int) Math.rint(xBR), xMidBot};
+		int[] art4Y = {yCenter, yMidRight, (int) Math.rint(yBR), yMidBot};
 		g.setColor(new Color(243,243,243));
 		g.fillPolygon(artFrameX, artFrameY, 4);
+		g.setColor(new Color(24,24,24));
+		g.fillPolygon(art1X, art1Y, 4);
+		g.setColor(new Color(43,43,43));
+		g.fillPolygon(art2X, art2Y, 4);
+		g.setColor(new Color(143,143,143));
+		g.fillPolygon(art3X, art3Y, 4);
+		g.setColor(new Color(173,173,173));
+		g.fillPolygon(art4X, art4Y, 4);
 		g.setColor(Color.black);
 		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
 		g.drawLine((int) Math.rint(xTR),(int) Math.rint(yTR),(int) Math.rint(xBR),(int) Math.rint(yBR));
 		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xTR),(int) Math.rint(yTR));
 		g.drawLine((int) Math.rint(xBL),(int) Math.rint(yBL),(int) Math.rint(xBR),(int) Math.rint(yBR));
+		g.drawLine((int) Math.rint((xTL + xBL)/2.0),(int) Math.rint((yTL + yBL)/2.0),(int) 
+		Math.rint((xTR + xBR)/2.0),(int) Math.rint((yTR + yBR)/2.0));
+		g.drawLine((int) Math.rint((xTL + xTR)/2.0),(int) Math.rint((yTL + yTR)/2.0),(int) 
+		Math.rint((xBL + xBR)/2.0),(int) Math.rint((yBL + yBR)/2.0));
 	}
 	
 	public void update() {
@@ -192,8 +225,7 @@ public class Art extends Shapes {
 					yTL -= 1.5 * yScale;
 					yBR += 1.5 * yScale;
 					yBL += 1.5 * yScale;
-				}
-				if(ShapesPanel.timeCounter == 199) {
+				} else {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
@@ -211,8 +243,7 @@ public class Art extends Shapes {
 					yTR -= (2.0/30.0) * yScale;
 					xBR += 0.25 * xScale;
 					yBR += 1 * yScale;
-				} 
-				if(ShapesPanel.timeCounter == 199) {
+				} else {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
@@ -228,8 +259,7 @@ public class Art extends Shapes {
 					xBR += 1.875 * xScale;
 					yBR += 1.5 * yScale;
 					yBL += 1.5 * yScale;
-				} 
-				if(ShapesPanel.timeCounter == 199) {
+				} else {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
