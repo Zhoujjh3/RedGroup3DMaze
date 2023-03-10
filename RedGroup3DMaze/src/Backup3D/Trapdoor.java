@@ -13,11 +13,11 @@ public class Trapdoor extends Shapes{
 	public double yScale;
 	
 	Trapdoor(int theState) {
-		state = theState;
 		h = DrawShapes.height;
 		w = DrawShapes.width;
 		xScale = w/1000.0;
 		yScale = h/700.0;
+		state = theState;
 		if(theState == 0) {
 			xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
 			yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
@@ -57,45 +57,97 @@ public class Trapdoor extends Shapes{
 					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
 					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
-				xTL += 0.5 * xScale;
-				xTR += 0.125 * xScale;
-				yTR += 0.5 * yScale;
-				xBR -= 0.75 * xScale;
-				xBL += 0.125 * xScale;
-				yBL -= 0.5 * yScale;
+				if(ShapesPanel.timeCounter < 100) {
+					xTL += 0.5 * xScale;
+					yTL += 0.75 * yScale;
+					xTR += 0.5 * xScale;
+					yTR += 1.5 * yScale;
+					xBR -= 0.75 * xScale;
+					yBR += 1.25 * yScale;
+					xBL -= 0.25 * xScale;
+					yBL += 0.5 * yScale;
+				} else {
+					xTL += 0.5 * xScale;
+					yTL -= 0.75 * yScale;
+					xTR -= 0.25 * xScale;
+					yTR -= 0.5 * yScale;
+					xBR -= 0.75 * xScale;
+					yBR -= 1.25 * yScale;
+					xBL += 0.5 * xScale;
+					yBL -= 1.5 * yScale;
+				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
 					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
-				xTL += 0.125 * xScale;
-				yTL += 0.5 * yScale;
-				xTR -= 0.75 * xScale;
-				xBR += 0.125 * xScale;
-				yBR -= 0.5 * yScale;
-				xBL += 0.5 * xScale;
+				if(ShapesPanel.timeCounter < 100) {
+					xBL += 0.5 * xScale;
+					yBL += 0.75 * yScale;
+					xTL += 0.5 * xScale;
+					yTL += 1.5 * yScale;
+					xTR -= 0.75 * xScale;
+					yTR += 1.25 * yScale;
+					xBR -= 0.25 * xScale;
+					yBR += 0.5 * yScale;
+				} else {
+					xBL += 0.5 * xScale;
+					yBL -= 0.75 * yScale;
+					xTL -= 0.25 * xScale;
+					yTL -= 0.5 * yScale;
+					xTR -= 0.75 * xScale;
+					yTR -= 1.25 * yScale;
+					xBR += 0.5 * xScale;
+					yBR -= 1.5 * yScale;
+				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
 					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
-				xTL -= 0.75 * xScale;
-				xTR += 0.125 * xScale;
-				yTR -= 0.5 * yScale;
-				xBR += 0.5 * xScale;
-				xBL += 0.125 * xScale;
-				yBL += 0.5 * yScale;
+				if(ShapesPanel.timeCounter < 100) {
+					xBR += 0.5 * xScale;
+					yBR += 0.75 * yScale;
+					xBL += 0.5 * xScale;
+					yBL += 1.5 * yScale;
+					xTL -= 0.75 * xScale;
+					yTL += 1.25 * yScale;
+					xTR -= 0.25 * xScale;
+					yTR += 0.5 * yScale;
+				} else {
+					xBR += 0.5 * xScale;
+					yBR -= 0.75 * yScale;
+					xBL -= 0.25 * xScale;
+					yBL -= 0.5 * yScale;
+					xTL -= 0.75 * xScale;
+					yTL -= 1.25 * yScale;
+					xTR += 0.5 * xScale;
+					yTR -= 1.5 * yScale;
+				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
 					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 				}
-				xTL += 0.125 * xScale;
-				yTL -= 0.5 * yScale;
-				xTR += 0.5 * xScale;
-				xBR += 0.125 * xScale;
-				yBR += 0.5 * yScale;
-				xBL -= 0.75 * xScale;
+				if(ShapesPanel.timeCounter < 100) {
+					xTR += 0.5 * xScale;
+					yTR += 0.75 * yScale;
+					xBR += 0.5 * xScale;
+					yBR += 1.5 * yScale;
+					xBL -= 0.75 * xScale;
+					yBL += 1.25 * yScale;
+					xTL -= 0.25 * xScale;
+					yTL += 0.5 * yScale;
+				} else {
+					xTR += 0.5 * xScale;
+					yTR -= 0.75 * yScale;
+					xBR -= 0.25 * xScale;
+					yBR -= 0.5 * yScale;
+					xBL -= 0.75 * xScale;
+					yBL -= 1.25 * yScale;
+					xTL += 0.5 * xScale;
+					yTL -= 1.5 * yScale;
+				}
 			}
 		} else if (dir == 1) {
 			if(ShapesPanel.timeCounter < 200 && state == 0) {
@@ -103,45 +155,97 @@ public class Trapdoor extends Shapes{
 					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
 					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
-				xTL -= 0.125 * xScale;
-				yTL += 0.5 * yScale;
-				xTR -= 0.5 * xScale;
-				xBR -= 0.125 * xScale;
-				yBR -= 0.5 * yScale;
-				xBL += 0.75 * xScale;
+				if(ShapesPanel.timeCounter < 100) {
+					xTR -= 0.5 * xScale;
+					yTR += 0.75 * yScale;
+					xBR += 0.25 * xScale;
+					yBR += 0.5 * yScale;
+					xBL += 0.75 * xScale;
+					yBL += 1.25 * yScale;
+					xTL -= 0.5 * xScale;
+					yTL += 1.5 * yScale;
+				} else {
+					xTR -= 0.5 * xScale;
+					yTR -= 0.75 * yScale;
+					xBR -= 0.5 * xScale;
+					yBR -= 1.5 * yScale;
+					xBL += 0.75 * xScale;
+					yBL -= 1.25 * yScale;
+					xTL += 0.25 * xScale;
+					yTL -= 0.5 * yScale;
+				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 1){
 				if(ShapesPanel.timeCounter == 0) {
-					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
-					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
+					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
+					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
-				xTR -= 0.125 * xScale;
-				yTR += 0.5 * yScale;
-				xTL += 0.75 * xScale;
-				xBL -= 0.125 * xScale;
-				yBL -= 0.5 * yScale;
-				xBR -= 0.5 * xScale;
+				if(ShapesPanel.timeCounter < 100) {
+					xTL -= 0.5 * xScale;
+					yTL += 0.75 * yScale;
+					xTR += 0.25 * xScale;
+					yTR += 0.5 * yScale;
+					xBR += 0.75 * xScale;
+					yBR += 1.25 * yScale;
+					xBL -= 0.5 * xScale;
+					yBL += 1.5 * yScale;
+				} else {
+					xTL -= 0.5 * xScale;
+					yTL -= 0.75 * yScale;
+					xTR -= 0.5 * xScale;
+					yTR -= 1.5 * yScale;
+					xBR += 0.75 * xScale;
+					yBR -= 1.25 * yScale;
+					xBL += 0.25 * xScale;
+					yBL -= 0.5 * yScale;
+				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 2){
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
 					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
-				xTR += 0.75 * xScale;
-				xTL -= 0.125 * xScale;
-				yTL -= 0.5 * yScale;
-				xBL -= 0.5 * xScale;
-				xBR -= 0.125 * xScale;
-				yBR += 0.5 * yScale;
+				if(ShapesPanel.timeCounter < 100) {
+					xBL -= 0.5 * xScale;
+					yBL += 0.75 * yScale;
+					xTL += 0.25 * xScale;
+					yTL += 0.5 * yScale;
+					xTR += 0.75 * xScale;
+					yTR += 1.25 * yScale;
+					xBR -= 0.5 * xScale;
+					yBR += 1.5 * yScale;
+				} else {
+					xBL -= 0.5 * xScale;
+					yBL -= 0.75 * yScale;
+					xTL -= 0.5 * xScale;
+					yTL -= 1.5 * yScale;
+					xTR += 0.75 * xScale;
+					yTR -= 1.25 * yScale;
+					xBR += 0.25 * xScale;
+					yBR -= 0.5 * yScale;
+				}
 			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
 				if(ShapesPanel.timeCounter == 0) {
 					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
 					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
-				xTR -= 0.125 * xScale;
-				yTR -= 0.5 * yScale;
-				xTL -= 0.5 * xScale;
-				xBL -= 0.125 * xScale;
-				yBL += 0.5 * yScale;
-				xBR += 0.75 * xScale;
+				if(ShapesPanel.timeCounter < 100) {
+					xTL -= 0.5 * xScale;
+					yTL += 0.75 * yScale;
+					xTR += 0.25 * xScale;
+					yTR += 0.5 * yScale;
+					xBR += 0.75 * xScale;
+					yBR += 1.25 * yScale;
+					xBL -= 0.5 * xScale;
+					yBL += 1.5 * yScale;
+				} else {
+					xTL -= 0.5 * xScale;
+					yTL -= 0.75 * yScale;
+					xTR -= 0.5 * xScale;
+					yTR -= 1.5 * yScale;
+					xBR += 0.75 * xScale;
+					yBR -= 1.25 * yScale;
+					xBL += 0.25 * xScale;
+					yBL -= 0.5 * yScale;
+				}
 			}
 		} else if (dir == 2) {
 			if(ShapesPanel.timeCounter <= 200 && state == 0) {
@@ -150,7 +254,7 @@ public class Trapdoor extends Shapes{
 					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
 				if(ShapesPanel.timeCounter < 200) {
-					xTL -= 0.25 * xScale;
+					xTL -= 0.25 * xScale; 
 					xBL -= 0.25 * xScale;
 					xTR += 0.25 * xScale;
 					xBR += 0.25 * xScale;
@@ -188,7 +292,7 @@ public class Trapdoor extends Shapes{
 				if(ShapesPanel.timeCounter < 200) {
 					xTL += 0.25 * xScale;
 					xBL += 0.25 * xScale;
-					xTR -= 0.25 * xScale;
+					xTR -= 0.25 * xScale; 
 					xBR -= 0.25 * xScale;
 					yTL += 1 * yScale;
 					yTR += 1 * yScale;
