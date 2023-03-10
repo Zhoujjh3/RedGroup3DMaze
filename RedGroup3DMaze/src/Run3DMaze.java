@@ -152,7 +152,7 @@ public class Run3DMaze {
 			counter++;
 		}
 	};
-	Timer ShapesTimer = new Timer(10, rotate);
+	Timer ShapesTimer = new Timer(5, rotate);
 	
 	public void play3DMaze() { // essentially a runWelcomeScreen
 		//selectionScreen.display(screen, gamePanel);

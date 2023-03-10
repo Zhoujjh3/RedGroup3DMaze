@@ -7,14 +7,14 @@ public class Art extends Shapes {
 
 	double xTL, xTR, xBR, xBL;
 	double  yTL, yTR, yBR, yBL;
-	int xCenter, yCenter, xMidLeft, yMidLeft,
-	xMidRight, yMidRight, xMidTop, yMidTop,
-	xMidBot, yMidBot;
+	int xCenter, yCenter, xMidLeft, yMidLeft;
+	int xMidRight, yMidRight, xMidTop, yMidTop;
+	int xMidBot, yMidBot;
 	public int state;
 	public int dir = 0;
 	public int h, w;
-	double xScale = w/1000;
-	double yScale = h/700;
+	double xScale;
+	double yScale;
 
 	Art(int theState) {
 		h = DrawShapes.height;
