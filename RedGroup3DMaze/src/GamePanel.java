@@ -52,14 +52,11 @@ public class GamePanel extends JPanel{
 		Run3DMaze.mapLevelIncrement = 0;
         Run3DMaze.levelDown.setVisible(false);
         Run3DMaze.levelUp.setVisible(false);
-			//when setting the doors, door[1] is the door in the direction you start out facing
-			//have it so that when the animation is done, it switches to the new room
-			//you might already be doing this since you're refreshing the doors constantly through paintcomponent
         
 		Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 				Run3DMaze.player.getCoordinate('X'), 
 				Run3DMaze.player.getCoordinate('Y'));
-		currentRoom.populateDoors();
+//		currentRoom.populateDoors();
 		g.setColor(currentRoom.getColor());
 		g.fillRect(0, 0, DrawShapes.width, DrawShapes.height);
 		

@@ -92,44 +92,115 @@ public class Room {
 	public void populateDoors() {
 		direction = Run3DMaze.player.getDirection();
 		if(direction == 'N') {
-			if(getDirection('W'))
+			if(getDirection('W')) {
 				doors.add(new Door3D(0));
-			if(getDirection('N'))
+				System.out.println("W0");
+			}
+			if(getDirection('N')) {
 				doors.add(new Door3D(1));
-			if(getDirection('E'))
+				System.out.println("N1");
+			}
+			if(getDirection('E')) {
 				doors.add(new Door3D(2));
-			if(getDirection('S'))
+				System.out.println("E2");
+			}
+			if(getDirection('S')) {
 				doors.add(new Door3D(3));
+				System.out.println("S3");
+			}
 		} else if(direction == 'E') {
-			if(getDirection('N'))
+			if(getDirection('N')) {
 				doors.add(new Door3D(0));
-			if(getDirection('E'))
+				System.out.println("N0");
+			}
+			if(getDirection('E')) {
 				doors.add(new Door3D(1));
-			if(getDirection('S'))
+				System.out.println("E1");
+			}
+			if(getDirection('S')) {
 				doors.add(new Door3D(2));
-			if(getDirection('W'))
+				System.out.println("S2");
+			}
+			if(getDirection('W')) {
 				doors.add(new Door3D(3));
+				System.out.println("W3");
+			}
 		} else if(direction == 'S') {
-			if(getDirection('E'))
+			if(getDirection('E')) {
 				doors.add(new Door3D(0));
-			if(getDirection('S'))
+				System.out.println("E0");
+			}
+			if(getDirection('S')) {
 				doors.add(new Door3D(1));
-			if(getDirection('W'))
+				System.out.println("S1");
+			}
+			if(getDirection('W')) {
 				doors.add(new Door3D(2));
-			if(getDirection('N'))
+				System.out.println("W2");
+			}
+			if(getDirection('N')) {
 				doors.add(new Door3D(3));
+				System.out.println("N3");
+			}
 		} else if(direction == 'W') {
-			if(getDirection('S'))
+			if(getDirection('S')) {
 				doors.add(new Door3D(0));
-			if(getDirection('W'))
+				System.out.println("S0");
+			}
+			if(getDirection('W')) {
 				doors.add(new Door3D(1));
-			if(getDirection('N'))
+				System.out.println("W1");
+			}
+			if(getDirection('N')) {
 				doors.add(new Door3D(2));
-			if(getDirection('E'))
+				System.out.println("N2");
+			}
+			if(getDirection('E')) {
 				doors.add(new Door3D(3));
+				System.out.println("E3");
+			}
 		}
+//		if(direction == 'N') {
+//			if(getDirection('W')) 
+//				doors.add(new Door3D(0));
+//			if(getDirection('N'))
+//				doors.add(new Door3D(1));
+//			if(getDirection('E'))
+//				doors.add(new Door3D(2));
+//			if(getDirection('S'))
+//				doors.add(new Door3D(3));
+//		} else if(direction == 'E') {
+//			if(getDirection('N'))
+//				doors.add(new Door3D(0));
+//			if(getDirection('E'))
+//				doors.add(new Door3D(1));
+//			if(getDirection('S'))
+//				doors.add(new Door3D(2));
+//			if(getDirection('W'))
+//				doors.add(new Door3D(3));
+//		} else if(direction == 'S') {
+//			if(getDirection('E'))
+//				doors.add(new Door3D(0));
+//			if(getDirection('S'))
+//				doors.add(new Door3D(1));
+//			if(getDirection('W'))
+//				doors.add(new Door3D(2));
+//			if(getDirection('N'))
+//				doors.add(new Door3D(3));
+//		} else if(direction == 'W') {
+//			if(getDirection('S'))
+//				doors.add(new Door3D(0));
+//			if(getDirection('W'))
+//				doors.add(new Door3D(1));
+//			if(getDirection('N'))
+//				doors.add(new Door3D(2));
+//			if(getDirection('E'))
+//				doors.add(new Door3D(3));
+//		}
 	}
 	
+	
+
 	public Color getColor() {
 		return color;
 	}
@@ -145,5 +216,12 @@ public class Room {
 	private char correspondingDir(int i) {
 		char[] dirs = {'N', 'E', 'S', 'W'};
 		return dirs[i];
+	}
+	
+	public void printDoors() {
+		System.out.println("PRINTING DOORS");
+		for(Shapes3D i : doors) {
+			System.out.println(i);
+		}
 	}
 }

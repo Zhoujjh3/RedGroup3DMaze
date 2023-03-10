@@ -18,6 +18,7 @@ public class Run3DMaze {
 	public static MazeMap map;
 	private Leaderboard leaderboard;
 	public static int difficulty;
+	public static boolean nextRoom = false;
 	
 	public static Header header;
 	public static Maze maze;
@@ -42,6 +43,7 @@ public class Run3DMaze {
 	public Run3DMaze() {
 		screen = new JFrame();
 		gamePanel = new GamePanel(width, height);
+		gamePanel.addMouseListener(new Clicker());
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		state = mazeState.WELCOMESCREEN;
 		selectionScreen = new Selection();
@@ -53,49 +55,65 @@ public class Run3DMaze {
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if(state == mazeState.CHAMBERVIEW) {
+				Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
+						Run3DMaze.player.getCoordinate('X'), 
+						Run3DMaze.player.getCoordinate('Y'));
+				
 				if(width != gamePanel.getWidth() || height != gamePanel.getHeight()) {
-					ShapesPanel.timeCounter = 0;
+					GamePanel.timeCounter = 0;
 				}
 				width = gamePanel.getWidth();
 				height = gamePanel.getHeight();
-				for(Shapes shape : ShapesPanel.ceilingAndFloor) {
+				for(Shapes3D shape : currentRoom.ceilingAndFloor) {
 					shape.update();
 				}
-				for(Shapes shape : ShapesPanel.walls) {
+				for(Shapes3D shape : currentRoom.walls) {
 					shape.update();
 				}
-				for(Shapes shape : ShapesPanel.doors) {
+				for(Shapes3D shape : currentRoom.doors) {
 					shape.update();
 				}
 				//gamePanel.repaint();		//should be run no matter what state
-				ShapesPanel.timeCounter++;
+				GamePanel.timeCounter++;
 				
 				//updates 3d states after animation is finished
-				if(ShapesPanel.timeCounter >= 200 && clicked) {
-					for(Shapes i : ShapesPanel.walls) {
-						if(ShapesClicker.dir == 0) {
-							i.setState(i.getState() + 1);
-							i.setState(i.getState() % 4);
-							clicked = false;
-						} else if (ShapesClicker.dir == 1) {
-							i.setState(i.getState() - 1);
-							if(i.getState() == -1) {
-								i.setState(3);
+				if(GamePanel.timeCounter >= 200 && clicked) {
+					if(nextRoom) {
+						Run3DMaze.player.movePlayer(Run3DMaze.player.getDirection());
+						currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
+								Run3DMaze.player.getCoordinate('X'), 
+								Run3DMaze.player.getCoordinate('Y'));
+						currentRoom.setVisited(true);
+						currentRoom.populateDoors();
+						currentRoom.printDoors();
+						nextRoom = false;
+						clicked = false;
+					} else {
+						for(Shapes3D i : currentRoom.walls) {
+							if(Clicker.dir == 0) {
+								i.setState(i.getState() + 1);
+								i.setState(i.getState() % 4);
+								clicked = false;
+							} else if (Clicker.dir == 1) {
+								i.setState(i.getState() - 1);
+								if(i.getState() == -1) {
+									i.setState(3);
+								}
+								clicked = false;
 							}
-							clicked = false;
 						}
-					}
-					for(Shapes i : ShapesPanel.doors) {
-						if(ShapesClicker.dir == 0) {
-							i.setState(i.getState() + 1);
-							i.setState(i.getState() % 4);
-							clicked = false;
-						} else if (ShapesClicker.dir == 1) {
-							i.setState(i.getState() - 1);
-							if(i.getState() == -1) {
-								i.setState(3);
+						for(Shapes3D i : currentRoom.doors) {
+							if(Clicker.dir == 0) {
+								i.setState(i.getState() + 1);
+								i.setState(i.getState() % 4);
+								clicked = false;
+							} else if (Clicker.dir == 1) {
+								i.setState(i.getState() - 1);
+								if(i.getState() == -1) {
+									i.setState(3);
+								}
+								clicked = false;
 							}
-							clicked = false;
 						}
 					}
 				} 
@@ -152,6 +170,10 @@ public class Run3DMaze {
 		maze = new Maze(difficulty);
 		player = new PlayerData(maze.getMazeSize());
 		header = new Header(maze, player);
+		Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
+				Run3DMaze.player.getCoordinate('X'), 
+				Run3DMaze.player.getCoordinate('Y'));
+		currentRoom.populateDoors();
 		
 		map = new MazeMap(maze, player);
 		header = new Header(maze, player);
