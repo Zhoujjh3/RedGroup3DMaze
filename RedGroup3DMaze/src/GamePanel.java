@@ -45,6 +45,7 @@ public class GamePanel extends JPanel{
 			setHeader(g);
 		} else if(Run3DMaze.state == Run3DMaze.mazeState.MAPVIEW) {
 			setMapView(g);
+			setHeader(g);
 		} else if(Run3DMaze.state == Run3DMaze.mazeState.LEADERBOARD) {
 			setLeaderboard(g);
 		}
@@ -73,11 +74,11 @@ public class GamePanel extends JPanel{
 			shape.paint(g);
 		}
 		
-		up = new ImageIcon("Images\\up arrow.png").getImage();
-		down = new ImageIcon("Images\\down arrow.png").getImage();
-		left = new ImageIcon("Images\\rotate left arrow.png").getImage();
-		right = new ImageIcon("Images\\rotate right arrow.png").getImage();
-		forward = new ImageIcon("Images\\forward arrow.png").getImage();
+		up = new ImageIcon("Images/up arrow.png").getImage();
+		down = new ImageIcon("Images/down arrow.png").getImage();
+		left = new ImageIcon("Images/rotate left arrow.png").getImage();
+		right = new ImageIcon("Images/rotate right arrow.png").getImage();
+		forward = new ImageIcon("Images/forward arrow.png").getImage();
 		
 		if(GamePanel.timeCounter > 200) {
 			g.drawImage(left, 120, 450, 150, 90, null);
