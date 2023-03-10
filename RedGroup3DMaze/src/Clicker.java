@@ -21,13 +21,16 @@ public class Clicker implements MouseListener{
 			//do nothing ig
 			break;
 		case CHAMBERVIEW: 
-			GamePanel.timeCounter = 0;
 			Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 					Run3DMaze.player.getCoordinate('X'), 
 					Run3DMaze.player.getCoordinate('Y'));
 			System.out.println("pressed");
 			//System.out.println("dir: "+ dir);
-			if(e.getX() < (Run3DMaze.width * (0.4)) ) {		//left
+			System.out.println("x" + e.getX());
+			System.out.println("y" + e.getY());
+			//120, 450, 150, 90
+			if(e.getX() >= 120 && e.getX() <= 270 && e.getY() >= 450 && e.getY() <= 540) { //left
+				GamePanel.timeCounter = 0;
 				dir = 0;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
 					i.setDir(0);
@@ -41,8 +44,11 @@ public class Clicker implements MouseListener{
 				Run3DMaze.player.setDirection(getLeftDirection(Run3DMaze.player.getDirection()));
 				currentRoom.printDoors();
 				System.out.println(Run3DMaze.player.getDirection());
-				
-			} else if (e.getX() > (Run3DMaze.width * (0.6))) {					//right
+				GamePanel.timeCounter = 0;
+				Run3DMaze.clicked = true;
+				//730, 450, 150, 90,
+			} else if (e.getX() >= 730 && e.getX() <= 880 && e.getY() >= 450 && e.getY() <= 540) {					//right
+				GamePanel.timeCounter = 0;
 				dir = 1;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
 					i.setDir(1);
@@ -55,12 +61,13 @@ public class Clicker implements MouseListener{
 				}
 				Run3DMaze.player.setDirection(getRightDirection(Run3DMaze.player.getDirection()));
 				System.out.println(Run3DMaze.player.getDirection());
-				
-			} else if(e.getX() > (450) && e.getX() < (550) 
-					&& e.getY() > (515)) { 
-				
+				GamePanel.timeCounter = 0;
+				Run3DMaze.clicked = true;
+				//450, 515, 100, 60
+			} else if(e.getX() >= 450 && e.getX() <= 550 && e.getY() >= 515 && e.getY() <= 575) { 
+				GamePanel.timeCounter = 0;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
-					i.setDir(1);
+					i.setDir(2);
 				}
 				for(Shapes3D i : currentRoom.walls) {
 					i.setDir(2);
@@ -71,9 +78,12 @@ public class Clicker implements MouseListener{
 				Run3DMaze.nextRoom = true;
 				System.out.println(Run3DMaze.player.getDirection());
 				//Run3DMaze.player.movePlayer(Run3DMaze.player.getDirection());
+				GamePanel.timeCounter = 0;
+				Run3DMaze.clicked = true;
 				
 			} else if(e.getX() > (Run3DMaze.width * (0.4)) && e.getX() < (Run3DMaze.width * (0.6)) 
 			&& e.getY() < (Run3DMaze.height * (2.0/7.0))) {
+				GamePanel.timeCounter = 0;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
 					i.setDir(3);
 				}
@@ -84,9 +94,12 @@ public class Clicker implements MouseListener{
 					i.setDir(3);
 				}
 				System.out.println(Run3DMaze.player.getDirection());
+				GamePanel.timeCounter = 0;
+				Run3DMaze.clicked = true;
 				
 			} else if(e.getX() > (Run3DMaze.width * (0.4)) && e.getX() < (Run3DMaze.width * (0.6)) 
 			&& e.getY() > (Run3DMaze.height * (5.0/7.0))) {
+				GamePanel.timeCounter = 0;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
 					i.setDir(4);
 				}
@@ -97,14 +110,13 @@ public class Clicker implements MouseListener{
 					i.setDir(4);
 				}
 				System.out.println(Run3DMaze.player.getDirection());
+				GamePanel.timeCounter = 0;
+				Run3DMaze.clicked = true;
 			}
 			
 			//check coordinates of click
 			//call move direction method of maze class
 			//trigger animation by setting timer counter back to 0
-			
-			GamePanel.timeCounter = 0;
-			Run3DMaze.clicked = true;
 			break;
 		case MAPVIEW: 
 			
