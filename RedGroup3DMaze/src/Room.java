@@ -88,6 +88,12 @@ public class Room {
 		visited = newVal;
 	}
 	
+	public void populateTrapDoorsAndHatch() {
+		if(getDirection('D')) {
+			ceilingAndFloor.add(new Trapdoor3D(0));
+		}
+	}
+	
 	//called after the end of each animation sequence
 	public void populateDoors() {
 		direction = Run3DMaze.player.getDirection();

@@ -60,9 +60,9 @@ public class GamePanel extends JPanel{
 		g.setColor(currentRoom.getColor());
 		g.fillRect(0, 0, DrawShapes.width, DrawShapes.height);
 		
-//		for(Shapes3D shape : ceilingAndFloor) {
-//			shape.paint(g);
-//		}
+		for(Shapes3D shape : currentRoom.ceilingAndFloor) {
+			shape.paint(g);
+		}
 		for(Shapes3D shape : currentRoom.walls) {
 			shape.paint(g);
 		}

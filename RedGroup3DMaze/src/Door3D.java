@@ -237,10 +237,10 @@ public class Door3D extends Shapes3D {
 					yBR += 1.5 * yScale;
 					yBL += 1.5 * yScale;
 				} 
-//				else {
-//					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
-//					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
-//				}
+				else {
+					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
+					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
+				}
 			} else if (GamePanel.timeCounter <= 200 && state == 1){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
@@ -256,10 +256,10 @@ public class Door3D extends Shapes3D {
 					xBR += 0.25 * xScale;
 					yBR += 1 * yScale;
 				} 
-//				else {
-//					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
-//					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
-//				}
+				else {
+					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
+					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
+				}
 			} else if (GamePanel.timeCounter <= 200 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
@@ -273,10 +273,10 @@ public class Door3D extends Shapes3D {
 					yBR += 1.5 * yScale;
 					yBL += 1.5 * yScale;
 				} 
-//				else {
-//					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
-//					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
-//				}
+				else {
+					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
+					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
+				}
 			} else if (GamePanel.timeCounter <= 200 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;

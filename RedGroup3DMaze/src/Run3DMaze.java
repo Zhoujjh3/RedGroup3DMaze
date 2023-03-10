@@ -86,6 +86,7 @@ public class Run3DMaze {
 						currentRoom.setVisited(true);
 						currentRoom.populateDoors();
 						currentRoom.printDoors();
+						currentRoom.populateTrapDoorsAndHatch();
 						nextRoom = false;
 						clicked = false;
 					} else {
@@ -178,8 +179,8 @@ public class Run3DMaze {
 		map = new MazeMap(maze, player);
 		header = new Header(maze, player);
 		changeView = new JButton(header.getView());
-		levelDown = new JButton("Level Down");
-		levelUp = new JButton("Level Up");
+		levelDown = new JButton("Level Up");
+		levelUp = new JButton("Level Down");
 		gamePanel.setLayout(null);
 		gamePanel.add(changeView);
 		gamePanel.add(levelUp);
