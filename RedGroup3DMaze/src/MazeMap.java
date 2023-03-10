@@ -224,8 +224,8 @@ public class MazeMap {
 			int[] playerIconY = {220, 250, 280, 265, 250, 235, 220};
 			if (size==5) {
 				for (int i=0; i<7; i++) {
-					playerIconX[i] = (int)((playerIconX[i]-165)*.8+165);
-					playerIconY[i] = (int)((playerIconY[i]-40)*.8+40);
+					playerIconX[i] = (int)((playerIconX[i]-40)*.8+40);
+					playerIconY[i] = (int)((playerIconY[i]-165)*.8+165);
 				}
 			}
 			for (int i=0; i<7; i++) {
@@ -268,12 +268,12 @@ public class MazeMap {
 			int[] playerIconY = {220, 250, 280, 265, 250, 235, 220};
 			if (size==5) {
 				for (int i=0; i<7; i++) {
-					playerIconX[i] = (int)((playerIconX[i]-165)*.8+165);
-					playerIconY[i] = (int)((playerIconY[i]-40)*.8+40);
+					playerIconX[i] = (int)((playerIconX[i]-40)*.8+40);
+					playerIconY[i] = (int)((playerIconY[i]-165)*.8+165);
 				}
 			}
 			for (int i=0; i<7; i++) {
-				playerIconX[i] = (int)((-playerIconX[i] - 40 + 165)*wScale + startX);
+				playerIconX[i] = (int)((playerIconX[i] - 40 + 165)*wScale + startX);
 				playerIconY[i] = (int)((playerIconY[i] - 165 + 40)*hScale + startY);
 			}
 			
