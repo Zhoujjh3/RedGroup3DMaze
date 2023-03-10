@@ -25,8 +25,8 @@ public class ShapesPanel extends JPanel{
 			//new Door(2),
 			new Door(3),
 			new Art(0),
-			new Art(1),
-			new Art(2),
+			//new Art(1),
+			//new Art(2),
 			new Trapdoor(0),
 			new Hatch(0)
 	};

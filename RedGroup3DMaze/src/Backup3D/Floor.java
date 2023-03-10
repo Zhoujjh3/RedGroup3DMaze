@@ -5,15 +5,19 @@ import java.awt.Graphics;
 
 public class Floor extends Shapes{
 
+	double xTL, xTR, xBR, xBL;
+	double  yTL, yTR, yBR, yBL;
 	public int state = 0;
 	public int dir = 0;
 	public int h, w;
+	double xScale = w/1000;
+	double yScale = h/700;
 	
 	Floor(){
 		h = DrawShapes.height;
 		w = DrawShapes.width;
-		xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
-		yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
+		xTL = 250 * xScale; xTR = 750 * xScale; xBR = 1000 * xScale; xBL = 0 * xScale;
+		yTL = 500 * yScale; yTR = 500 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 	}
 	
 	public void paint(Graphics g) {
@@ -33,38 +37,40 @@ public class Floor extends Shapes{
 	public void update() {
 		h = DrawShapes.height;
 		w = DrawShapes.width;
+		xScale = w/1000.0;
+		yScale = h/700.0;
 		if(dir == 3) {
 			if(ShapesPanel.timeCounter == 0) {
-				xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
-				yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
+				xTL = 250 * xScale; xTR = 750 * xScale; xBR = 1000 * xScale; xBL = 0 * xScale;
+				yTL = 500 * yScale; yTR = 500 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			}
 			if(ShapesPanel.timeCounter < 200) {
-				yBR += h/200.0;
-				yTR += h/200.0;
-				yBL += h/200.0;
-				yTL += h/200.0;
+				yBR += 3.5 * yScale;
+				yTR += 3.5 * yScale;
+				yBL += 3.5 * yScale;
+				yTL += 3.5 * yScale;
 			} else {
-				xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
-				yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
+				xTL = 250 * xScale; xTR = 750 * xScale; xBR = 1000 * xScale; xBL = 0 * xScale;
+				yTL = 500 * yScale; yTR = 500 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			}
 		} else if(dir == 4) {
 			if(ShapesPanel.timeCounter == 0) {
-				xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
-				yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
+				xTL = 250 * xScale; xTR = 750 * xScale; xBR = 1000 * xScale; xBL = 0 * xScale;
+				yTL = 500 * yScale; yTR = 500 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			}
 			if(ShapesPanel.timeCounter < 200) {
-				yBR -= h/200.0;
-				yTR -= h/200.0;
-				yBL -= h/200.0;
-				yTL -= h/200.0;
+				yBR -= 3.5 * yScale;
+				yTR -= 3.5 * yScale;
+				yBL -= 3.5 * yScale;
+				yTL -= 3.5 * yScale;
 			} else {
-				xTL = w/4.0; xTR = w * (3.0/4.0); xBR = w; xBL = 0;
-				yTL = h * (5.0/7.0); yTR = h * (5.0/7.0); yBR = h; yBL = h;
+				xTL = 250 * xScale; xTR = 750 * xScale; xBR = 1000 * xScale; xBL = 0 * xScale;
+				yTL = 500 * yScale; yTR = 500 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			}
 		} else {
 			if(ShapesPanel.timeCounter == 0) {
-				xTL = 0; xTR = w; xBR = w * (3.0/4.0); xBL = w/4.0;
-				yTL = 0; yTR = 0; yBR = h * (2.0/7.0); yBL = h * (2.0/7.0);
+				xTL = 250 * xScale; xTR = 750 * xScale; xBR = 1000 * xScale; xBL = 0 * xScale;
+				yTL = 500 * yScale; yTR = 500 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			}
 		}
 		
