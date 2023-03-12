@@ -44,13 +44,13 @@ public class Room {
 			}
 		}
 		if(counter <1)
-			artDirection = 'Z';
-			
+			artDirection = 'Z';	
 		
 		for(int i=0; i<3; i++)
 			rgbValues[i] = 128+(int)(Math.random()*103);
 		color = new Color(rgbValues[0], rgbValues[1], rgbValues[2]);
 	}	
+	
 	public boolean getDirection(char direction) {
 		switch(direction) {
 		case 'N':
@@ -92,9 +92,19 @@ public class Room {
 		if(getDirection('D')) {
 			ceilingAndFloor.add(new Trapdoor3D(0));
 		}
+		if(getDirection('U')) {
+			ceilingAndFloor.add(new Hatch3D(0));
+		}
 	}
 	
 	//called after the end of each animation sequence
+	public void resetDoors() {
+		doors = new ArrayList<Shapes3D>();
+	}
+	public void resetCeilingandFloor() {
+		ceilingAndFloor = new ArrayList<Shapes3D>();
+	}
+	
 	public void populateDoors() {
 		direction = Run3DMaze.player.getDirection();
 		if(direction == 'N') {

@@ -93,8 +93,16 @@ public class GamePanel extends JPanel{
 			g.drawImage(rightMac, 730, 450, 150, 90, null);
 			char currentDirection = Run3DMaze.player.getDirection();
 			if(currentRoom.getDirection(currentDirection) == true) {
-				g.drawImage(forward, 450, 515, 100, 60, null);
-				g.drawImage(forwardMac, 450, 515, 100, 60, null);
+				g.drawImage(forward, 450, 430, 100, 60, null);
+				g.drawImage(forwardMac, 450, 430, 100, 60, null);
+			} 
+			if(currentRoom.getDirection('D')) {
+				g.drawImage(down, 465, 530, 70, 100, null);
+				g.drawImage(downMac, 465, 530, 70, 100, null);
+			}
+			if(currentRoom.getDirection('U')) {
+				g.drawImage(up, 465, 130, 70, 100, null);
+				g.drawImage(upMac, 465, 130, 70, 100, null);
 			}
 		}
 		

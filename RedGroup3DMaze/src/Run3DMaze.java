@@ -18,7 +18,7 @@ public class Run3DMaze {
 	public static MazeMap map;
 	private Leaderboard leaderboard;
 	public static int difficulty;
-	public static boolean nextRoom = false;
+	public static boolean nextRoom = false, down = false, up = false;
 	
 	public static Header header;
 	public static Maze maze;
@@ -79,15 +79,26 @@ public class Run3DMaze {
 				//updates 3d states after animation is finished
 				if(GamePanel.timeCounter >= 200 && clicked) {
 					if(nextRoom) {
-						Run3DMaze.player.movePlayer(Run3DMaze.player.getDirection());
+						//handles moving the player in the backend
+						if(down) {
+							System.out.println("moving down");
+							Run3DMaze.player.movePlayer('D');
+						} else if(up) {
+							Run3DMaze.player.movePlayer('U');
+						} else {
+							Run3DMaze.player.movePlayer(Run3DMaze.player.getDirection());
+						}
 						currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 								Run3DMaze.player.getCoordinate('X'), 
 								Run3DMaze.player.getCoordinate('Y'));
-						currentRoom.setVisited(true);
+						currentRoom.resetDoors();	
 						currentRoom.populateDoors();
+						currentRoom.setVisited(true);
 						currentRoom.printDoors();
 						currentRoom.populateTrapDoorsAndHatch();
 						nextRoom = false;
+						down = false;
+						up = false;
 						clicked = false;
 					} else {
 						for(Shapes3D i : currentRoom.walls) {
