@@ -44,6 +44,7 @@ public class MazeMap {
 	}
 	
 	public void display(Graphics g, int newLevel, Dimension dimension) {
+		level = this.player.getCoordinate('Z');
 		wScale = (double)dimension.width/(double)1000;
 		hScale = (double)dimension.height/(double)750;
 		if (size==4) {
@@ -87,7 +88,6 @@ public class MazeMap {
 				painter.displayExit(g);
 			}
 		}
-		
 		if (newLevel==level) {
 			int[] coord = {player.getCoordinate('X'), player.getCoordinate('Y')};
 			if (player.getDirection()=='N') {

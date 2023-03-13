@@ -552,6 +552,8 @@ public class Maze {
 	
 	private void setActiveMaze(char[][][] baseMaze) {
 		activeMaze = new Room[baseMaze.length][(baseMaze[0].length-1)/2][(baseMaze[0][0].length-1)/2];
+		// setting the exit door
+		baseMaze[baseMaze.length-1][baseMaze[0].length-1][baseMaze[0][0].length-2] = 'T';
 		for(int level = 0; level<activeMaze.length; level++) {
 			for(int x = 0; x<activeMaze[0].length; x++) {
 				for(int y = 0; y < activeMaze[0][0].length; y++) {
