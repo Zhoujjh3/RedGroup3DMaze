@@ -170,7 +170,7 @@ public class Run3DMaze {
 		screen.setContentPane(gamePanel);
 		screen.pack();
 		screen.setVisible(true);
-		screen.setResizable(false);
+		screen.setResizable(true);
 		screen.setLocationRelativeTo(null);
 		counter = 0;
 		state = mazeState.WELCOMESCREEN;
