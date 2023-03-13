@@ -14,6 +14,7 @@ public class Clicker implements MouseListener{
     
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if(GamePanel.timeCounter > 200) {
 		state = Run3DMaze.state;
 		
 		switch(state) {
@@ -129,6 +130,7 @@ public class Clicker implements MouseListener{
 		case LEADERBOARD: 
 			
 			break;
+		}
 		}
 		
 	}
