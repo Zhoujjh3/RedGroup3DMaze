@@ -1,9 +1,7 @@
-package Backup3D;
-
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Art extends Shapes {
+public class Art3D extends Shapes3D {
 
 	double xTL, xTR, xBR, xBL;
 	double  yTL, yTR, yBR, yBL;
@@ -16,9 +14,9 @@ public class Art extends Shapes {
 	double xScale;
 	double yScale;
 
-	Art(int theState) {
-		h = DrawShapes.height;
-		w = DrawShapes.width;
+	Art3D(int theState) {
+		h = Run3DMaze.height;
+		w = Run3DMaze.width;
 		xScale = w/1000.0;
 		yScale = h/700.0;
 		state = theState;
@@ -85,13 +83,13 @@ public class Art extends Shapes {
 	}
 	
 	public void update() {
-		h = DrawShapes.height;
-		w = DrawShapes.width;
+		h = Run3DMaze.height;
+		w = Run3DMaze.width;
 		xScale = w/1000.0;
 		yScale = h/700.0;
 		if(dir == 0) {
-			if(ShapesPanel.timeCounter < 200 && state == 0) {
-				if(ShapesPanel.timeCounter == 0) {
+			if(GamePanel.timeCounter < 200 && state == 0) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
@@ -103,8 +101,8 @@ public class Art extends Shapes {
 				yBR -= 0.1 * yScale;
 				xBL += 1.875 * xScale;
 				yBL -= 0.235 * yScale;
-			} else if (ShapesPanel.timeCounter < 200 && state == 1){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter < 200 && state == 1){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
@@ -116,8 +114,8 @@ public class Art extends Shapes {
 				yTR -= 0.235 * yScale;
 				xBR += 1.875 * xScale;
 				yBR += 0.235 * yScale;
-			} else if (ShapesPanel.timeCounter < 200 && state == 2){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter < 200 && state == 2){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
@@ -129,20 +127,20 @@ public class Art extends Shapes {
 				yTR -= 0.1 * yScale;
 				yBR += 0.1 * yScale;
 				yBL += 0.235 * yScale;
-			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter < 200 && state == 3) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 0; xTR = 0; xBR = 0; xBL = 0;
 					yTL = 233 * yScale; yTR = 233 * yScale; yBR = 467 * yScale; yBL = 467 * yScale;
 				}
-				if(ShapesPanel.timeCounter > 125) {
+				if(GamePanel.timeCounter > 125) {
 					xTR += 2.3333 * xScale;
 					xBR += 2.3333 * xScale;
 				}
-				if(ShapesPanel.timeCounter > 167) {
+				if(GamePanel.timeCounter > 167) {
 					xTL += 2.272727 * xScale;
 					xBL += 2.272727 * xScale;
 				}
-				if(ShapesPanel.timeCounter > 99) {
+				if(GamePanel.timeCounter > 99) {
 					yTL += 0.1 * 2.0 * yScale;
 					yTR += 0.235 * 2.0 * yScale;
 					yBR -= 0.235 * 2.0 * yScale;
@@ -151,8 +149,8 @@ public class Art extends Shapes {
 				
 			}
 		} else if (dir == 1) {
-			if(ShapesPanel.timeCounter < 200 && state == 0) {
-				if(ShapesPanel.timeCounter == 0) {
+			if(GamePanel.timeCounter < 200 && state == 0) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
@@ -160,14 +158,14 @@ public class Art extends Shapes {
 				xBR -= 2.3333 * xScale;
 				xTL -= 2.3333 * xScale;
 				xBL -= 2.3333 * xScale;
-				if(ShapesPanel.timeCounter < 100) {
+				if(GamePanel.timeCounter < 100) {
 					yTL -= 0.1 * 2.0 * yScale;
 					yTR -= 0.235 * 2.0 * yScale;
 					yBR += 0.235 * 2.0 * yScale;
 					yBL += 0.1 * 2.0 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter < 200 && state == 1){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter < 200 && state == 1){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
@@ -179,8 +177,8 @@ public class Art extends Shapes {
 				yBR += 0.1 * yScale;
 				xBL -= 1.875 * xScale;
 				yBL += 0.235 * yScale;
-			} else if (ShapesPanel.timeCounter < 200 && state == 2){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter < 200 && state == 2){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
@@ -192,16 +190,16 @@ public class Art extends Shapes {
 				yTR += 0.235 * yScale;
 				xBR -= 1.875 * xScale;
 				yBR -= 0.235 * yScale;
-			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter < 200 && state == 3) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 233 * yScale; yTR = 233 * yScale; yBR = 467 * yScale; yBL = 467 * yScale;
 				}
-				if(ShapesPanel.timeCounter > 125) {
+				if(GamePanel.timeCounter > 125) {
 					xTL -= 2.3333 * xScale;
 					xBL -= 2.3333 * xScale;
 				}
-				if(ShapesPanel.timeCounter > 167) {
+				if(GamePanel.timeCounter > 167) {
 					xTR -= 2.272727 * xScale;
 					xBR -= 2.272727 * xScale;
 				}
@@ -211,12 +209,12 @@ public class Art extends Shapes {
 				yBL -= 0.235 * yScale;
 			}
 		} else if (dir == 2) {
-			if(ShapesPanel.timeCounter < 200 && state == 0) {
-				if(ShapesPanel.timeCounter == 0) {
+			if(GamePanel.timeCounter < 200 && state == 0) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
-				if(ShapesPanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200) {
 					xTL -= 1.875 * xScale;
 					xBL -= 1.875 * xScale;
 					xTR -= 1.875 * xScale;
@@ -229,12 +227,12 @@ public class Art extends Shapes {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter < 200 && state == 1){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter < 200 && state == 1){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
-				if(ShapesPanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200) {
 					xTL -= 0.2 * xScale; 
 					yTL -= 0.2 * xScale;
 					xBL -= 0.2 * xScale;
@@ -247,12 +245,12 @@ public class Art extends Shapes {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter < 200 && state == 2){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter < 200 && state == 2){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
-				if(ShapesPanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200) {
 					xTL += 1.875 * xScale;
 					xBL += 1.875 * xScale;
 					xTR += 1.875 * xScale;
@@ -265,19 +263,19 @@ public class Art extends Shapes {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter < 200 && state == 3) {
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter < 200 && state == 3) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 233 * yScale; yTR = 233 * yScale; yBR = 467 * yScale; yBL = 467 * yScale;
 				}
 			}
 		} else if (dir == 3) {
-			if(ShapesPanel.timeCounter <= 200 && state == 0) {
-				if(ShapesPanel.timeCounter == 0) {
+			if(GamePanel.timeCounter <= 200 && state == 0) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
-				if(ShapesPanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200) {
 					yTR += 3.5 * yScale;
 					yBR += 3.5 * yScale;
 					yTL += 3.5 * yScale;
@@ -286,12 +284,12 @@ public class Art extends Shapes {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter <= 200 && state == 1){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
-				if(ShapesPanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200) {
 					yTR += 3.5 * yScale;
 					yBR += 3.5 * yScale;
 					yTL += 3.5 * yScale;
@@ -300,12 +298,12 @@ public class Art extends Shapes {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter <= 200 && state == 2){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
-				if(ShapesPanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200) {
 					yTR += 3.5 * yScale;
 					yBR += 3.5 * yScale;
 					yTL += 3.5 * yScale;
@@ -314,19 +312,19 @@ public class Art extends Shapes {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter <= 200 && state == 3) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 233 * yScale; yTR = 233 * yScale; yBR = 467 * yScale; yBL = 467 * yScale;
 				}
 			}
 		} else if (dir == 4) {
-			if(ShapesPanel.timeCounter <= 200 && state == 0) {
-				if(ShapesPanel.timeCounter == 0) {
+			if(GamePanel.timeCounter <= 200 && state == 0) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
-				if(ShapesPanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200) {
 					yTR -= 3.5 * yScale;
 					yBR -= 3.5 * yScale;
 					yTL -= 3.5 * yScale;
@@ -335,12 +333,12 @@ public class Art extends Shapes {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter <= 200 && state == 1){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter <= 200 && state == 1){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
-				if(ShapesPanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200) {
 					yTR -= 3.5 * yScale;
 					yBR -= 3.5 * yScale;
 					yTL -= 3.5 * yScale;
@@ -349,12 +347,12 @@ public class Art extends Shapes {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter <= 200 && state == 2){
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter <= 200 && state == 2){
+				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 			yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
-				if(ShapesPanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200) {
 					yTR -= 3.5 * yScale;
 					yBR -= 3.5 * yScale;
 					yTL -= 3.5 * yScale;
@@ -363,8 +361,8 @@ public class Art extends Shapes {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
-			} else if (ShapesPanel.timeCounter <= 200 && state == 3) {
-				if(ShapesPanel.timeCounter == 0) {
+			} else if (GamePanel.timeCounter <= 200 && state == 3) {
+				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 233 * yScale; yTR = 233 * yScale; yBR = 467 * yScale; yBL = 467 * yScale;
 				}
