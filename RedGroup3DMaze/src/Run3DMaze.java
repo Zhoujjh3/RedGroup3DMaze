@@ -44,6 +44,7 @@ public class Run3DMaze {
 		screen = new JFrame();
 		gamePanel = new GamePanel(width, height);
 		gamePanel.addMouseListener(new Clicker());
+		gamePanel.addKeyListener(new Clicker());
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		state = mazeState.WELCOMESCREEN;
 		selectionScreen = new Selection();

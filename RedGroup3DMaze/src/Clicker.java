@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -5,7 +7,7 @@ import java.util.ArrayList;
 import Backup3D.Shapes;
 import Backup3D.ShapesPanel;
 
-public class Clicker implements MouseListener{
+public class Clicker implements MouseListener, KeyListener{
 
 	Run3DMaze.mazeState state;
 	char[] directions = {'N','E','S','W'};
@@ -180,6 +182,29 @@ public class Clicker implements MouseListener{
 		} else {
 			return directions[0];
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		System.out.println("here");
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		System.out.println("here");
+		// TODO Auto-generated method stub
+        final char aChar = e.getKeyChar();
+        System.out.println(aChar);
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		System.out.println("here");
+		// TODO Auto-generated method stub
+		
 	}
 
 }
