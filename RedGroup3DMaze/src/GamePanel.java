@@ -41,7 +41,6 @@ public class GamePanel extends JPanel{
 	}
     
 	public void paintComponent(Graphics g) {
-		System.out.println(getWidth()/1000);
 		super.paintComponent(g);
 		wScale = (double)getSize().width/(double)1000;
 		hScale = (double)getSize().height/(double)750;

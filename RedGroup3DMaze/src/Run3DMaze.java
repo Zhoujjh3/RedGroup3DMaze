@@ -33,6 +33,9 @@ public class Run3DMaze {
 	public static int width = 1000;
 	public static int height = 700;
 	
+	private boolean showWelcomeScreen = false;
+	private boolean showLeaderboard = false;
+	
 	public enum mazeState{
 		WELCOMESCREEN,
 		CHAMBERVIEW,
@@ -87,7 +90,14 @@ public class Run3DMaze {
 						} else if(up) {
 							Run3DMaze.player.movePlayer('U');
 						} else {
+							boolean endGame = false;
+							if (player.getCoordinate('X') == maze.getMazeSize()-1 && player.getCoordinate('Y') == maze.getMazeSize()-1 && player.getCoordinate('Z') == maze.getMazeSize()-1 && player.getDirection() == 'E') {
+								endGame = true;
+							}
 							Run3DMaze.player.movePlayer(Run3DMaze.player.getDirection());
+							if (endGame) {
+								runLeaderboard();
+							}
 						}
 						currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 								Run3DMaze.player.getCoordinate('X'), 
@@ -132,8 +142,9 @@ public class Run3DMaze {
 				} 
 			} else if (state == mazeState.WELCOMESCREEN) {
 				//System.out.println("WELCOME");
-				if(counter == 0) {	//so it doesn't draw infinite selection screens
+				if(showWelcomeScreen) {	//so it doesn't draw infinite selection screens
 					selectionScreen.display(screen, gamePanel);
+					showWelcomeScreen = false;
 					//System.out.println("LOL");
 				}
 				
@@ -150,8 +161,10 @@ public class Run3DMaze {
 			} else if (state == mazeState.MAPVIEW) {
 				
 			} else if (state == mazeState.LEADERBOARD) {
-				if (counter == 0) {
-					leaderboard.display();
+				if (showLeaderboard) {
+					leaderboard.display(screen, gamePanel);
+					showLeaderboard = false;
+					System.out.println("leaderBord");
 				}
 				
 				if (leaderboard.checkSignal()) {
@@ -161,7 +174,6 @@ public class Run3DMaze {
 			}
 			//switch rooms when timerCounter = 200, maybe
 			gamePanel.repaint();
-			counter++;
 		}
 	};
 	Timer ShapesTimer = new Timer(5, rotate);
@@ -173,8 +185,8 @@ public class Run3DMaze {
 		screen.setVisible(true);
 		screen.setResizable(true);
 		screen.setLocationRelativeTo(null);
-		counter = 0;
 		state = mazeState.WELCOMESCREEN;
+		showWelcomeScreen = true;
 		ShapesTimer.start();
 	}
 	
@@ -213,6 +225,7 @@ public class Run3DMaze {
 					runMapView();
 				} else if (state == mazeState.MAPVIEW) {
 					runChamberView();
+					gamePanel.requestFocus();
 				}
 				gamePanel.repaint();
 			}
@@ -258,8 +271,8 @@ public class Run3DMaze {
 	
 	public void runLeaderboard() {
 		leaderboard.getScore((double)maze.getMinMoves() / (double)player.getMoves());
-		counter = 0;
 		state = mazeState.LEADERBOARD;
+		showLeaderboard = true;
 	}
 	
 	public static void main(String[]args) {

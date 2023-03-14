@@ -27,13 +27,11 @@ public class Leaderboard implements ActionListener {
 		score = newScore;
 	}
 	
-	public void display() {
+	public void display(Frame frame, GamePanel contentPane) {
 		sortScores(score);
 		
 		frame = new JFrame("Leaderboard");
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
-	    contentPane = new JPanel();
 	    contentPane.setLayout(null);
 	    
 	    title = new JTextField("Leaderboard");
