@@ -40,7 +40,6 @@ public class GamePanel extends JPanel{
 	}
     
 	public void paintComponent(Graphics g) {
-		System.out.println(getWidth()/1000);
 		super.paintComponent(g);
 		if(Run3DMaze.state == Run3DMaze.mazeState.WELCOMESCREEN) {
 			//do nothing, welcomeScreen draws itself
