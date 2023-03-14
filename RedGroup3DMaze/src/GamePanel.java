@@ -27,6 +27,8 @@ public class GamePanel extends JPanel{
     int mapLevelIncrement = 0;
     Image up, down, left, right, forward;
     Image upMac, downMac, leftMac, rightMac, forwardMac;
+    int width;
+    int height;
     
     //char[] directions = {'W','S','E','N','U','D'};
    
@@ -38,6 +40,9 @@ public class GamePanel extends JPanel{
 	}
     
 	public void paintComponent(Graphics g) {
+		height = getHeight()/700;
+		width = getWidth()/1000;
+		System.out.println(getWidth()/1000);
 		super.paintComponent(g);
 		if(Run3DMaze.state == Run3DMaze.mazeState.WELCOMESCREEN) {
 			//do nothing, welcomeScreen draws itself
@@ -85,24 +90,23 @@ public class GamePanel extends JPanel{
 		leftMac = new ImageIcon("Images/rotate left arrow.png").getImage();
 		rightMac = new ImageIcon("Images/rotate right arrow.png").getImage();
 		forwardMac = new ImageIcon("Images/forward arrow.png").getImage();
-		
 		if(GamePanel.timeCounter > 200) {
-			g.drawImage(left, 120, 450, 150, 90, null);
-			g.drawImage(leftMac, 120, 450, 150, 90, null);
-			g.drawImage(right, 730, 450, 150, 90, null);
-			g.drawImage(rightMac, 730, 450, 150, 90, null);
+			g.drawImage(left, 120*width, 450, 150*width, 90, null);
+			g.drawImage(leftMac, 120*width, 450, 150*width, 90, null);
+			g.drawImage(right, 730*width, 450, 150*width, 90, null);
+			g.drawImage(rightMac, 730*width, 450, 150*width, 90, null);
 			char currentDirection = Run3DMaze.player.getDirection();
 			if(currentRoom.getDirection(currentDirection) == true) {
-				g.drawImage(forward, 450, 430, 100, 60, null);
-				g.drawImage(forwardMac, 450, 430, 100, 60, null);
+				g.drawImage(forward, 450*width, 430, 100*width, 60, null);
+				g.drawImage(forwardMac, 450*width, 430, 100*width, 60, null);
 			} 
 			if(currentRoom.getDirection('D')) {
-				g.drawImage(down, 465, 530, 70, 100, null);
-				g.drawImage(downMac, 465, 530, 70, 100, null);
+				g.drawImage(down, 465*width, 530, 70*width, 100, null);
+				g.drawImage(downMac, 465*width, 530, 70*width, 100, null);
 			}
 			if(currentRoom.getDirection('U')) {
-				g.drawImage(up, 465, 130, 70, 100, null);
-				g.drawImage(upMac, 465, 130, 70, 100, null);
+				g.drawImage(up, 465*width, 130, 70*width, 100, null);
+				g.drawImage(upMac, 465*width, 130, 70*width, 100, null);
 			}
 		}
 		
