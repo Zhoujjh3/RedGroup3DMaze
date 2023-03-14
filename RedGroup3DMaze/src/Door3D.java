@@ -9,8 +9,8 @@ public class Door3D extends Shapes3D {
 	public int state;
 	public int dir = 0;
 	public int h, w;
-	double xScale = w/1000;
-	double yScale = h/700;
+	double xScale = w/1000.0;
+	double yScale = h/700.0;
 
 	// Justin
 	

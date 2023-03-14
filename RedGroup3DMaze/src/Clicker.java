@@ -13,6 +13,10 @@ public class Clicker implements MouseListener, KeyListener{
 	char[] directions = {'N','E','S','W'};
     Room currentRoom;    
     public static int dir;
+    public int h;
+    public int w;
+	double xScale = w/1000.0;
+	double yScale = h/700.0;
     
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -31,8 +35,13 @@ public class Clicker implements MouseListener, KeyListener{
 			//System.out.println("dir: "+ dir);
 			System.out.println("x" + e.getX());
 			System.out.println("y" + e.getY());
+			h = Run3DMaze.height;
+		   	w = Run3DMaze.width;
+		   	xScale = w/1000.0;
+			yScale = h/700.0;
 			//120, 450, 150, 90
-			if(e.getX() >= 120 && e.getX() <= 270 && e.getY() >= 450 && e.getY() <= 540) { //left
+			if(e.getX() >= (int) (120*xScale) && e.getX() <= (int) (270*xScale) 
+				&& e.getY() >= (int) (450*yScale) && e.getY() <= (int) (540*yScale)) {
 				GamePanel.timeCounter = 0;
 				dir = 0;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
@@ -50,7 +59,8 @@ public class Clicker implements MouseListener, KeyListener{
 				GamePanel.timeCounter = 0;
 				Run3DMaze.clicked = true;
 				//730, 450, 150, 90,
-			} else if (e.getX() >= 730 && e.getX() <= 880 && e.getY() >= 450 && e.getY() <= 540) {		//right			//right
+			} else if (e.getX() >= (int) (730*xScale) && e.getX() <= (int) (880*xScale) 
+				&& e.getY() >= (int) (450*yScale) && e.getY() <= (int) (540*yScale)) {
 				GamePanel.timeCounter = 0;
 				dir = 1;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
@@ -67,8 +77,9 @@ public class Clicker implements MouseListener, KeyListener{
 				GamePanel.timeCounter = 0;
 				Run3DMaze.clicked = true;
 				//450, 515, 100, 60
-			} else if(e.getX() >= 450 && e.getX() <= 550 && e.getY() >= 430 && e.getY() <= 490	//forward
-					&& currentRoom.getDirection(Run3DMaze.player.getDirection())) { 
+			} else if(e.getX() >= (int) (450*xScale) && e.getX() <= (int) (550*xScale) 
+				&& e.getY() >= (int) (430*yScale) && e.getY() <= (int) (490*yScale)
+				&& currentRoom.getDirection(Run3DMaze.player.getDirection())) { 
 				GamePanel.timeCounter = 0;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
 					i.setDir(2);
@@ -85,8 +96,9 @@ public class Clicker implements MouseListener, KeyListener{
 				GamePanel.timeCounter = 0;
 				Run3DMaze.clicked = true;
 				
-			} else if(e.getX() >= 465 && e.getX() <= 535 	//up
-			&& e.getY() >= 130 && e.getY() <= 230 && currentRoom.getDirection('U')) {
+			} else if(e.getX() >= (int) (465*xScale) && e.getX() <= (int) (535*xScale)
+				&& e.getY() >= (int) (130*yScale) && e.getY() <= (int) (230*yScale) 
+				&& currentRoom.getDirection('U')) {
 				GamePanel.timeCounter = 0;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
 					i.setDir(3);
@@ -103,8 +115,9 @@ public class Clicker implements MouseListener, KeyListener{
 				GamePanel.timeCounter = 0;
 				Run3DMaze.clicked = true;
 				
-			} else if(e.getX() >= 465 && e.getX() < 535 	//down
-					&& e.getY() > 530 && e.getY() < 630 && currentRoom.getDirection('D')) {
+			} else if(e.getX() >= (465*xScale) && e.getX() < (int) (535*xScale)
+				&& e.getY() > (int) (530*yScale) && e.getY() < (int) (630*yScale) 
+				&& currentRoom.getDirection('D')) {
 				GamePanel.timeCounter = 0;
 				for(Shapes3D i : currentRoom.ceilingAndFloor) {
 					i.setDir(4);
