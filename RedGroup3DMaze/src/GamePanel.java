@@ -22,13 +22,14 @@ public class GamePanel extends JPanel{
     //ManualTestMaze manMaze = new ManualTestMaze();
     //public static Maze maze = new Maze(1);
     //PlayerData player = new PlayerData(4);
-    JButton changeView, levelUp, levelDown;
     Header header;
     int mapLevelIncrement = 0;
     Image up, down, left, right, forward;
     Image upMac, downMac, leftMac, rightMac, forwardMac;
     double xScale;
     double yScale;
+	double wScale;
+	double hScale;
     
     //char[] directions = {'W','S','E','N','U','D'};
    
@@ -42,6 +43,8 @@ public class GamePanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		System.out.println(getWidth()/1000);
 		super.paintComponent(g);
+		wScale = (double)getSize().width/(double)1000;
+		hScale = (double)getSize().height/(double)750;
 		if(Run3DMaze.state == Run3DMaze.mazeState.WELCOMESCREEN) {
 			//do nothing, welcomeScreen draws itself
 		} else if(Run3DMaze.state == Run3DMaze.mazeState.CHAMBERVIEW) {
@@ -57,6 +60,8 @@ public class GamePanel extends JPanel{
 	
 	public void setChamberView(Graphics g) {
 		// resetting map
+		Run3DMaze.changeView = new JButton("MAP");
+	//	Run3DMaze.changeView.setBounds((int)(740*wScale), (int)(5*hScale), (int)(100*wScale), (int)(30*hScale));
 		Run3DMaze.mapLevelIncrement = 0;
         Run3DMaze.levelDown.setVisible(false);
         Run3DMaze.levelUp.setVisible(false);
@@ -123,12 +128,21 @@ public class GamePanel extends JPanel{
         	Run3DMaze.levelDown.setBackground(Color.WHITE);
         }
 		Run3DMaze.map.display(g, Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement, this.getSize());
+		wScale = (double)getSize().width/(double)1000;
+		hScale = (double)getSize().height/(double)750;
+		Run3DMaze.changeView.setBounds((int)(740*wScale), (int)(5*hScale), (int)(100*wScale), (int)(30*hScale));
+		Run3DMaze.levelDown.setBounds((int)(300*wScale), (int)(715*hScale), (int)(100*wScale), (int)(30*hScale));
+		Run3DMaze.levelUp.setBounds((int)(450*wScale), (int)(715*hScale), (int)(100*wScale), (int)(30*hScale));
 		Run3DMaze.levelDown.setVisible(true);
 		Run3DMaze.levelUp.setVisible(true);
 	}
 	
 	public void setHeader(Graphics g) {
 		Run3DMaze.header.display(g, this.getSize());
+		wScale = (double)getSize().width/(double)1000;
+		hScale = (double)getSize().height/(double)750;
+		Run3DMaze.changeView.setBounds((int)(740*wScale), (int)(5*hScale), (int)(100*wScale), (int)(30*hScale));
+
 	}
 	
 	public void setLeaderboard(Graphics g) {
