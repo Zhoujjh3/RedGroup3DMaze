@@ -86,7 +86,9 @@ public class Maze {
 						floors.add(getCoords(level, x, y));
 					} else if (x > 0 && x < baseMaze[0].length-1 && y > 0 && y < baseMaze[0][0].length-1 && (x%2 == 1 || y%2 == 1)) { 
 						baseMaze[level][x][y] = 'F';
-						walls.add(getCoords(level, x, y));
+						if (level < baseMaze.length-1 || x < baseMaze[0].length-2 || y < baseMaze[0][0].length-2) { // stopping alternate paths from exit
+							walls.add(getCoords(level, x, y));
+						}
 					} else {
 						baseMaze[level][x][y] = 'A';
 					}
