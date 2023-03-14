@@ -51,7 +51,6 @@ public class Run3DMaze {
 		leaderboard = new Leaderboard();
 	}
 	
-	
 	//Timer for 3D animations
 	int counter = 0;
 	ActionListener rotate = new ActionListener() {
