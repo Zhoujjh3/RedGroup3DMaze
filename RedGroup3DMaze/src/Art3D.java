@@ -69,13 +69,13 @@ public class Art3D extends Shapes3D {
 		int roomBlue = currentRoom.getRGBValues()[2];
 		g.setColor(new Color(243,243,243));
 		g.fillPolygon(artFrameX, artFrameY, 4);
-		g.setColor(new Color(roomRed - 50, roomGreen - 50, roomBlue - 50));
+		g.setColor(new Color(255 -(roomRed - 50), 255 - (roomGreen - 50), 255 - (roomBlue - 50)));
 		g.fillPolygon(art1X, art1Y, 4);
-		g.setColor(new Color(roomRed - 20, roomGreen - 20, roomBlue - 20));		
+		g.setColor(new Color(255 - (roomRed - 20), 255 - (roomGreen - 20), 255 - (roomBlue - 20)));		
 		g.fillPolygon(art2X, art2Y, 4);
-		g.setColor(new Color(roomRed, roomGreen, roomBlue));
+		g.setColor(new Color(255 - roomRed, 255 - roomGreen, 255 - roomBlue));
 		g.fillPolygon(art3X, art3Y, 4);
-		g.setColor(new Color(roomRed + 20, roomGreen + 20, roomBlue + 20));
+		g.setColor(new Color(255 - (roomRed + 20), 255 - (roomGreen + 20), 255 - (roomBlue + 20)));
 		g.fillPolygon(art4X, art4Y, 4);
 		g.setColor(Color.black);
 		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
