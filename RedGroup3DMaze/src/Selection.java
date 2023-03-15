@@ -23,35 +23,42 @@ public class Selection implements ActionListener{
 	JLabel title, logo; 
 	JButton easyButt, mediumButt, hardButt; 
 	private boolean signal = false;
-	
-	public void display(JFrame frame, JPanel panel) {
+	public Selection(JFrame frame, JPanel panel) {
 		this.frame = frame;
 		this.panel = panel;
-		
-	    easyButt = new JButton("Easy");
+		panel.setLayout(null);
+		easyButt = new JButton("Easy");
+		mediumButt = new JButton("Medium");
+		hardButt = new JButton("Hard");
+		logo = new JLabel(new ImageIcon("Images/MazeLogo.png"));
+		title = new JLabel("Welcome to 3D Maze");
+
+	}
+	public void display() {
+	    //easyButt = new JButton("Easy");
 	    easyButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    easyButt.setBackground(Color.green);
 	    easyButt.setOpaque(true);
 	    easyButt.setActionCommand("Easy");
 	    easyButt.addActionListener(this);
 	    
-	    mediumButt = new JButton("Medium");
+	 //   mediumButt = new JButton("Medium");
 	    mediumButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    mediumButt.setBackground(Color.yellow);
 	    mediumButt.setOpaque(true);
 	    mediumButt.setActionCommand("Medium");
 	    mediumButt.addActionListener(this);
 	    
-	    hardButt = new JButton("Hard");
+	//    hardButt = new JButton("Hard");
 	    hardButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    hardButt.setBackground(Color.red);
 	    hardButt.setOpaque(true);
 	    hardButt.setActionCommand("Hard");
 	    hardButt.addActionListener(this);
 	    
-	    logo = new JLabel(new ImageIcon("Images/MazeLogo.png"));
+	    //logo = new JLabel(new ImageIcon("Images/MazeLogo.png"));
 	    
-	    title = new JLabel("Welcome to 3D Maze");
+	    //title = new JLabel("Welcome to 3D Maze");
 
 //	    Timer timer = new Timer();
 //	    TimerTask task = new TimerTask() {
@@ -92,6 +99,7 @@ public class Selection implements ActionListener{
 //handles setting the difficulty of the maze
 	public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
+		display();
 		if(eventName.equals("Easy")) {
 			difficulty = 1;
 		}else if(eventName.equals("Medium")) {

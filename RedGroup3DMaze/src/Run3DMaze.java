@@ -50,7 +50,7 @@ public class Run3DMaze {
 		gamePanel.addKeyListener(new Clicker());
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		state = mazeState.WELCOMESCREEN;
-		selectionScreen = new Selection();
+		selectionScreen = new Selection(screen, gamePanel);
 		leaderboard = new Leaderboard();
 	}
 	
@@ -144,11 +144,11 @@ public class Run3DMaze {
 			} else if (state == mazeState.WELCOMESCREEN) {
 				//System.out.println("WELCOME");
 				if(showWelcomeScreen) {	//so it doesn't draw infinite selection screens
-					selectionScreen.display(screen, gamePanel);
+					selectionScreen.display();
 					showWelcomeScreen = false;
 					//System.out.println("LOL");
 				}
-				
+
 				//this doesn't seem to work because checksignal only returns true
 				//after you click a button, which at that point the state switches to 
 				//chamber view
@@ -271,7 +271,7 @@ public class Run3DMaze {
 	}
 	
 	public void runLeaderboard() {
-		leaderboard.getScore((Math.round((maze.getMinMoves() / ((double)player.getMoves()-1) * 1000)/1000)));
+		leaderboard.getScore((double)(Math.round(1000.0 * ((double)maze.getMinMoves() / (double)player.getMoves()-1)))/1000.0);
 		state = mazeState.LEADERBOARD;
 		showLeaderboard = true;
 	}
