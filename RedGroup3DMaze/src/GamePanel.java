@@ -53,7 +53,7 @@ public class GamePanel extends JPanel{
 			setMapView(g);
 			setHeader(g);
 		} else if(Run3DMaze.state == Run3DMaze.mazeState.LEADERBOARD) {
-			setLeaderboard(g);
+			Run3DMaze.changeView.setVisible(false);
 		}
 	}
 	
@@ -62,6 +62,7 @@ public class GamePanel extends JPanel{
 		//Run3DMaze.changeView = new JButton("MAP");
 	//	Run3DMaze.changeView.setBounds((int)(740*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
 		Run3DMaze.mapLevelIncrement = 0;
+		Run3DMaze.changeView.setVisible(true);
         Run3DMaze.levelDown.setVisible(false);
         Run3DMaze.levelUp.setVisible(false);
         
@@ -142,6 +143,7 @@ public class GamePanel extends JPanel{
 		Run3DMaze.changeView.setBounds((int)(740*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
 		Run3DMaze.levelDown.setBounds((int)(300*xScale), (int)(715*yScale), (int)(100*xScale), (int)(30*yScale));
 		Run3DMaze.levelUp.setBounds((int)(450*xScale), (int)(715*yScale), (int)(100*xScale), (int)(30*yScale));
+		Run3DMaze.changeView.setVisible(true);
 		Run3DMaze.levelDown.setVisible(true);
 		Run3DMaze.levelUp.setVisible(true);
 	}
@@ -152,14 +154,6 @@ public class GamePanel extends JPanel{
 		yScale = getHeight()/750.0;
 		Run3DMaze.changeView.setBounds((int)(740*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
 
-	}
-	
-	public void setLeaderboard(Graphics g) {
-		
-	}
-	
-	public void setSelectionScreen(Graphics g) {
-		
 	}
 	
 	public PlayerData getPlayerData() {
