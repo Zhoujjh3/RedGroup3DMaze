@@ -110,72 +110,89 @@ public class Room {
 		if(direction == 'N') {
 			if(getDirection('W')) {
 				doors.add(new Door3D(0));
-				System.out.println("W0");
+			} else if(getArtWall() == 'W') {
+				doors.add(new Art3D(0));
 			}
 			if(getDirection('N')) {
 				doors.add(new Door3D(1));
-				System.out.println("N1");
+			} else if(getArtWall() == 'N') {
+				doors.add(new Art3D(1));
 			}
 			if(getDirection('E')) {
 				doors.add(new Door3D(2));
-				System.out.println("E2");
+			} else if(getArtWall() == 'E') {
+				doors.add(new Art3D(2));
 			}
 			if(getDirection('S')) {
 				doors.add(new Door3D(3));
-				System.out.println("S3");
+			} else if(getArtWall() == 'S') {
+				doors.add(new Art3D(3));
 			}
 		} else if(direction == 'E') {
 			if(getDirection('N')) {
 				doors.add(new Door3D(0));
-				System.out.println("N0");
+			} else if(getArtWall() == 'N') {
+				doors.add(new Art3D(0));
 			}
 			if(getDirection('E')) {
 				doors.add(new Door3D(1));
-				System.out.println("E1");
+			} else if(getArtWall() == 'E') {
+				doors.add(new Art3D(1));
 			}
 			if(getDirection('S')) {
 				doors.add(new Door3D(2));
-				System.out.println("S2");
+			} else if(getArtWall() == 'S') {
+				doors.add(new Art3D(2));
 			}
 			if(getDirection('W')) {
 				doors.add(new Door3D(3));
-				System.out.println("W3");
+			} else if(getArtWall() == 'W') {
+				doors.add(new Art3D(3));
 			}
 		} else if(direction == 'S') {
 			if(getDirection('E')) {
 				doors.add(new Door3D(0));
-				System.out.println("E0");
+			} else if(getArtWall() == 'E') {
+				doors.add(new Art3D(0));
 			}
 			if(getDirection('S')) {
 				doors.add(new Door3D(1));
-				System.out.println("S1");
+			} else if(getArtWall() == 'S') {
+				doors.add(new Art3D(1));
 			}
 			if(getDirection('W')) {
 				doors.add(new Door3D(2));
-				System.out.println("W2");
+			} else if(getArtWall() == 'W') {
+				doors.add(new Art3D(2));
 			}
 			if(getDirection('N')) {
 				doors.add(new Door3D(3));
-				System.out.println("N3");
+			} else if(getArtWall() == 'N') {
+				doors.add(new Art3D(3));
 			}
 		} else if(direction == 'W') {
 			if(getDirection('S')) {
 				doors.add(new Door3D(0));
-				System.out.println("S0");
+			} else if(getArtWall() == 'S') {
+				doors.add(new Art3D(0));
 			}
 			if(getDirection('W')) {
 				doors.add(new Door3D(1));
-				System.out.println("W1");
+			} else if(getArtWall() == 'W') {
+				doors.add(new Art3D(1));
 			}
 			if(getDirection('N')) {
 				doors.add(new Door3D(2));
-				System.out.println("N2");
+			} else if(getArtWall() == 'N') {
+				doors.add(new Art3D(2));
 			}
 			if(getDirection('E')) {
 				doors.add(new Door3D(3));
-				System.out.println("E3");
+			} else if(getArtWall() == 'E') {
+				doors.add(new Art3D(3));
 			}
 		}
+		
 //		if(direction == 'N') {
 //			if(getDirection('W')) 
 //				doors.add(new Door3D(0));
