@@ -52,281 +52,276 @@ public class Door3D extends Shapes3D {
 		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xTR),(int) Math.rint(yTR));
 		g.drawLine((int) Math.rint(xBL),(int) Math.rint(yBL),(int) Math.rint(xBR),(int) Math.rint(yBR));
 	}
-	
 	public void update() {
-		//System.out.println(state);
 		h = Run3DMaze.height;
 		w = Run3DMaze.width;
 		xScale = w/1000.0;
 		yScale = h/700.0;
 		if(dir == 0) {
-			if(GamePanel.timeCounter < 200 && state == 0) {
+			if(GamePanel.timeCounter < 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-				xTL += 1.25 * xScale;//0.75;
-				xBL += 1.25 * xScale;//0.75;
-				xTR += 1.75 * xScale;
-				xBR += 1.75 * xScale;
+				xTL += 1.25 * xScale * 5;//0.75;
+				xBL += 1.25 * xScale * 5;//0.75;
+				xTR += 1.75 * xScale * 5;
+				xBR += 1.75 * xScale * 5;
 				
-				yBL -= 0.2  * yScale;  //this used to not exist
-				if(GamePanel.timeCounter > 99) {
-					xTL += 1.25 * xScale;//2.25;
-					xTR += 0.25 * xScale;
-					xBL += 1.25 * xScale;//2.25;
-					xBR += 0.25 * xScale;
+				yBL -= 0.18 * yScale * 5;  //this used to not exist
+				if(GamePanel.timeCounter > 19) {
+					xTL += 1.25 * xScale * 5;//2.25;
+					xTR += 0.25 * xScale * 5;
+					xBL += 1.25 * xScale * 5;//2.25;
+					xBR += 0.25 * xScale * 5;
 				}
-				if(GamePanel.timeCounter > 99 && GamePanel.timeCounter < 150) {
-					yBL -= 1.05 * yScale;//1.55
-					yBR -= 0.5 * yScale;
+				if(GamePanel.timeCounter > 19 && GamePanel.timeCounter < 30) {
+					yBL -= 0.9 * yScale * 5;//1.55
+					yBR -= 0.4 * yScale * 5;
 				}
-				if(GamePanel.timeCounter > 149) {
-					yBL -= 0.95 * yScale;//1.25
-					yBR -= 0.7 * yScale;
+				if(GamePanel.timeCounter > 29) {
+					yBL -= 1.18 * yScale * 5;//1.25
+					yBR -= 0.8 * yScale * 5;
 				}
-			} else if (GamePanel.timeCounter < 200 && state == 1){
+			} else if (GamePanel.timeCounter < 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-				xTR += 1.25 * xScale;//0.75;
-				xBR += 1.25 * xScale;//0.75;
-				xTL += 1.75 * xScale;
-				xBL += 1.75 * xScale;
+				xTR += 1.25 * xScale * 5;//0.75;
+				xBR += 1.25 * xScale * 5;//0.75;
+				xTL += 1.75 * xScale * 5;
+				xBL += 1.75 * xScale * 5;
 				
-				yBR += 0.2 * yScale;	//this used to not exist
-				if(GamePanel.timeCounter < 100) {
-					xTR += 1.25 * xScale;//2.25;
-					xTL += 0.25 * xScale;
-					xBR += 1.25 * xScale;//2.25;
-					xBL += 0.25 * xScale;
+				yBR += 0.2 * yScale * 5;	//this used to not exist
+				if(GamePanel.timeCounter < 20) {
+					xTR += 1.25 * xScale * 5;//2.25;
+					xTL += 0.25 * xScale * 5;
+					xBR += 1.25 * xScale * 5;//2.25;
+					xBL += 0.25 * xScale * 5;
 				}
-				if(GamePanel.timeCounter < 100 && GamePanel.timeCounter > 49) {
-					yBR += 1.05 * yScale;//+= 1.55;
-					yBL += 0.5 * yScale;
+				if(GamePanel.timeCounter < 20 && GamePanel.timeCounter > 9) {
+					yBR += 1.05 * yScale * 5;//+= 1.55;
+					yBL += 0.5 * yScale * 5;
 				}
-				if(GamePanel.timeCounter < 50) {
-					yBR += 0.95 * yScale;//1.25;
-					yBL += 0.7 * yScale;
+				if(GamePanel.timeCounter < 10) {
+					yBR += 0.95 * yScale * 5;//1.25;
+					yBL += 0.7 * yScale * 5;
 				}
-			} else if (GamePanel.timeCounter < 200 && state == 2){
+			} else if (GamePanel.timeCounter < 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-				xTR += 2.3333 * xScale;
-				xBR += 2.3333 * xScale;
-				xTL += 2.3333 * xScale;
-				xBL += 2.3333 * xScale;
-				yTL += 0.8 * yScale;
-				yTR += 0.8 * yScale;
-				yBR += 1.818181 * yScale;
-				yBL += 1.866666667 * yScale;
-			} else if (GamePanel.timeCounter < 200 && state == 3) {
+				xTR += 2.3333 * xScale * 5;
+				xBR += 2.3333 * xScale * 5;
+				xTL += 2.3333 * xScale * 5;
+				xBL += 2.3333 * xScale * 5;
+				yTL += 0.8 * yScale * 5;
+				yTR += 0.8 * yScale * 5;
+				yBR += 1.818181 * yScale * 5;
+				yBL += 1.866666667 * yScale * 5;
+			} else if (GamePanel.timeCounter < 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 0 * xScale; xTR = 0 * xScale; xBR = 0 * xScale; xBL = 0 * xScale;
 					yTL = 400 * yScale; yTR = 400 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter > 125) {
-					xTR += 2.3333 * xScale;
-					xBR += 2.3333 * xScale;
-					yTR -= 0.8 * yScale;
-					yTL -= 0.8 * yScale;
-					yBR -= 1.866666667 * yScale;
+				if(GamePanel.timeCounter > 25) {
+					xTR += 2.3333 * xScale * 5;
+					xBR += 2.3333 * xScale * 5;
+					yTR -= 0.8 * yScale * 5;
+					yTL -= 0.8 * yScale * 5;
+					yBR -= 1.866666667 * yScale * 5;
 				}
-				if(GamePanel.timeCounter > 167) {
-					xTL += 2.272727 * xScale;
-					xBL += 2.272727 * xScale;
-					yBL -= 1.818181 * yScale;
+				if(GamePanel.timeCounter > 33) {
+					xTL += 2.272727 * xScale * 5;
+					xBL += 2.272727 * xScale * 5;
+					yBL -= 1.818181 * yScale * 5;
 				}
 			}
 		} else if (dir == 1) {
-			if(GamePanel.timeCounter < 200 && state == 0) {
+			if(GamePanel.timeCounter < 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-				xTR -= 2.3333 * xScale;
-				xBR -= 2.3333 * xScale;
-				xTL -= 2.3333 * xScale;
-				xBL -= 2.3333 * xScale;
-				yTL += 0.8 * yScale;
-				yTR += 0.8 * yScale;
-				yBR += 1.818181 * yScale;
-				yBL += 1.866666667 * yScale;
-			} else if (GamePanel.timeCounter < 200 && state == 1){
+				xTR -= 2.3333 * xScale * 5;
+				xBR -= 2.3333 * xScale * 5;
+				xTL -= 2.3333 * xScale * 5;
+				xBL -= 2.3333 * xScale * 5;
+				yTL += 0.8 * yScale * 5;
+				yTR += 0.8 * yScale * 5;
+				yBR += 1.818181 * yScale * 5;
+				yBL += 1.866666667 * yScale * 5;
+			} else if (GamePanel.timeCounter < 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-				xTL -= 1.25 * xScale;//0.75;
-				xBL -= 1.25 * xScale;//0.75;
-				xTR -= 1.75 * xScale;
-				xBR -= 1.75 * xScale;
+				xTL -= 1.25 * xScale * 5;//0.75;
+				xBL -= 1.25 * xScale * 5;//0.75;
+				xTR -= 1.75 * xScale * 5;
+				xBR -= 1.75 * xScale * 5;
 				
-				yBL += 0.2 * yScale;  //this used to not exist
-				if(GamePanel.timeCounter < 100) {
-					xTL -= 1.25 * xScale;//2.25;
-					xTR -= 0.25 * xScale;
-					xBL -= 1.25 * xScale;//2.25;
-					xBR -= 0.25 * xScale;
+				yBL += 0.18 * yScale * 5;  //this used to not exist
+				if(GamePanel.timeCounter < 20) {
+					xTL -= 1.25 * xScale * 5;//2.25;
+					xTR -= 0.25 * xScale * 5;
+					xBL -= 1.25 * xScale * 5;//2.25;
+					xBR -= 0.25 * xScale * 5;
 				}
-				if(GamePanel.timeCounter < 100 && GamePanel.timeCounter > 49) {
-					yBL += 1.05 * yScale;//1.55;
-					yBR += 0.5 * yScale;
+				if(GamePanel.timeCounter < 20 && GamePanel.timeCounter > 9) {
+					yBL += 0.9 * yScale * 5;//1.55;
+					yBR += 0.4 * yScale * 5;
 				}
-				if(GamePanel.timeCounter < 50) {
-					yBL += 0.95 * yScale;//1.25;
-					yBR += 0.7 * yScale;
+				if(GamePanel.timeCounter < 10) {
+					yBL += 1.18 * yScale * 5;//1.25;
+					yBR += 0.8 * yScale * 5;
 				}
-			} else if (GamePanel.timeCounter < 200 && state == 2){
+			} else if (GamePanel.timeCounter < 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-				xTR -= 1.25 * xScale;//0.75;
-				xBR -= 1.25 * xScale;//0.75;
-				xTL -= 1.75 * xScale;
-				xBL -= 1.75 * xScale;
+				xTR -= 1.25 * xScale * 5;//0.75;
+				xBR -= 1.25 * xScale * 5;//0.75;
+				xTL -= 1.75 * xScale * 5;
+				xBL -= 1.75 * xScale * 5;
 				
-				yBR -= 0.2 * yScale;  //this used to not exist
-				if(GamePanel.timeCounter > 99) {
-					xTR -= 1.25 * xScale;//2.25;
-					xTL -= 0.25 * xScale;
-					xBR -= 1.25 * xScale;//2.25;
-					xBL -= 0.25 * xScale;
+				yBR -= 0.18 * yScale * 5;  //this used to not exist
+				if(GamePanel.timeCounter > 19) {
+					xTR -= 1.25 * xScale * 5;//2.25;
+					xTL -= 0.25 * xScale * 5;
+					xBR -= 1.25 * xScale * 5;//2.25;
+					xBL -= 0.25 * xScale * 5;
 				}
-				if(GamePanel.timeCounter > 99 && GamePanel.timeCounter < 150) {
-					yBR -= 1.05 * yScale;//1.55;
-					yBL -= 0.5 * yScale;
+				if(GamePanel.timeCounter > 19 && GamePanel.timeCounter < 30) {
+					yBR -= 0.9 * yScale * 5;//1.55;
+					yBL -= 0.4 * yScale * 5;
 				}
-				if(GamePanel.timeCounter > 149) {
-					yBR -= 0.95 * yScale;//1.25;
-					yBL -= 0.7 * yScale;
+				if(GamePanel.timeCounter > 29) {
+					yBR -= 1.18 * yScale * 5;//1.25;
+					yBL -= 0.8 * yScale * 5;
 				}
-			} else if (GamePanel.timeCounter < 200 && state == 3) {
+			} else if (GamePanel.timeCounter < 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 400 * yScale; yTR = 400 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter > 125) {
-					xTL -= 2.3333 * xScale;
-					xBL -= 2.3333 * xScale;
-					yTL -= 0.8 * yScale;
-					yTR -= 0.8 * yScale;
-					yBL -= 1.866666667 * yScale;
+				if(GamePanel.timeCounter > 25) {
+					xTL -= 2.3333 * xScale * 5;
+					xBL -= 2.3333 * xScale * 5;
+					yTL -= 0.8 * yScale * 5;
+					yTR -= 0.8 * yScale * 5;
+					yBL -= 1.866666667 * yScale * 5;
 				}
-				if(GamePanel.timeCounter > 167) {
-					xTR -= 2.272727 * xScale;
-					xBR -= 2.272727 * xScale;
-					yBR -= 1.818181 * yScale;
+				if(GamePanel.timeCounter > 33) {
+					xTR -= 2.272727 * xScale * 5;
+					xBR -= 2.272727 * xScale * 5;
+					yBR -= 1.818181 * yScale * 5;
 				}
 			}
 		} else if (dir == 2) {
-			if(GamePanel.timeCounter <= 200 && state == 0) {
+			if(GamePanel.timeCounter <= 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
-					xTL -= 1.875 * xScale;
-					xBL -= 1.875 * xScale;
-					xTR -= 1.875 * xScale;
-					xBR -= 1.875 * xScale;
-					yBR += 1.5 * yScale;
-					yBL += 1.5 * yScale;
-				} 
-				else {
+				if(GamePanel.timeCounter < 40) {
+					xTL -= 1.875 * xScale * 5;
+					xBL -= 1.875 * xScale * 5;
+					xTR -= 1.875 * xScale * 5;
+					xBR -= 1.875 * xScale * 5;
+					yBR += 1.5 * yScale * 5;
+					yBL += 1.5 * yScale * 5;
+				} else {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 200 && state == 1){
+			} else if (GamePanel.timeCounter <= 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
-					xTL -= 0.25 * xScale; 
-					yTL -= (2.0/30.0) * yScale;
-					xBL -= 0.25 * xScale;
-					yBL += 1 * yScale; 
-					xTR += 0.25 * xScale; 
-					yTR -= (2.0/30.0) * yScale;
-					xBR += 0.25 * xScale;
-					yBR += 1 * yScale;
-				} 
-				else {
+				if(GamePanel.timeCounter < 40) {
+					xTL -= 0.25 * xScale * 5; 
+					yTL -= (2.0/30.0) * yScale * 5;
+					xBL -= 0.25 * xScale * 5;
+					yBL += 1 * yScale * 5; 
+					xTR += 0.25 * xScale * 5; 
+					yTR -= (2.0/30.0) * yScale * 5;
+					xBR += 0.25 * xScale * 5;
+					yBR += 1 * yScale * 5;
+				} else {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 200 && state == 2){
+			} else if (GamePanel.timeCounter <= 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
-					xTL += 1.875 * xScale;
-					xBL += 1.875 * xScale;
-					xTR += 1.875 * xScale;
-					xBR += 1.875 * xScale;
-					yBR += 1.5 * yScale;
-					yBL += 1.5 * yScale;
-				} 
-				else {
+				if(GamePanel.timeCounter < 40) {
+					xTL += 1.875 * xScale * 5;
+					xBL += 1.875 * xScale * 5;
+					xTR += 1.875 * xScale * 5;
+					xBR += 1.875 * xScale * 5;
+					yBR += 1.5 * yScale * 5;
+					yBL += 1.5 * yScale * 5;
+				} else {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 200 && state == 3) {
+			} else if (GamePanel.timeCounter <= 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 400 * yScale; yTR = 400 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 			}
 		} else if (dir == 3) {
-			if(GamePanel.timeCounter <= 200 && state == 0) {
+			if(GamePanel.timeCounter <= 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
-					yTR += 3.5 * yScale;
-					yBR += 3.5 * yScale;
-					yTL += 3.5 * yScale;
-					yBL += 3.5 * yScale;
+				if(GamePanel.timeCounter < 40) {
+					yTR += 3.5 * yScale * 5;
+					yBR += 3.5 * yScale * 5;
+					yTL += 3.5 * yScale * 5;
+					yBL += 3.5 * yScale * 5;
 				} else {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 200 && state == 1){
+			} else if (GamePanel.timeCounter <= 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
-					yTR += 3.5 * yScale;
-					yBR += 3.5 * yScale;
-					yTL += 3.5 * yScale;
-					yBL += 3.5 * yScale;
+				if(GamePanel.timeCounter < 40) {
+					yTR += 3.5 * yScale * 5;
+					yBR += 3.5 * yScale * 5;
+					yTL += 3.5 * yScale * 5;
+					yBL += 3.5 * yScale * 5;
 				} else {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 200 && state == 2){
+			} else if (GamePanel.timeCounter <= 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
-					yTR += 3.5 * yScale;
-					yBR += 3.5 * yScale;
-					yTL += 3.5 * yScale;
-					yBL += 3.5 * yScale;
+				if(GamePanel.timeCounter < 40) {
+					yTR += 3.5 * yScale * 5;
+					yBR += 3.5 * yScale * 5;
+					yTL += 3.5 * yScale * 5;
+					yBL += 3.5 * yScale * 5;
 				} else {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 200 && state == 3) {
+			} else if (GamePanel.timeCounter <= 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 400 * yScale; yTR = 400 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
@@ -338,44 +333,44 @@ public class Door3D extends Shapes3D {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
-					yTR -= 3.5 * yScale;
-					yBR -= 3.5 * yScale;
-					yTL -= 3.5 * yScale;
-					yBL -= 3.5 * yScale;
+				if(GamePanel.timeCounter < 40) {
+					yTR -= 3.5 * yScale * 5;
+					yBR -= 3.5 * yScale * 5;
+					yTL -= 3.5 * yScale * 5;
+					yBL -= 3.5 * yScale * 5;
 				} else {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 200 && state == 1){
+			} else if (GamePanel.timeCounter <= 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
-					yTR -= 3.5 * yScale;
-					yBR -= 3.5 * yScale;
-					yTL -= 3.5 * yScale;
-					yBL -= 3.5 * yScale;
+				if(GamePanel.timeCounter < 40) {
+					yTR -= 3.5 * yScale * 5;
+					yBR -= 3.5 * yScale * 5;
+					yTL -= 3.5 * yScale * 5;
+					yBL -= 3.5 * yScale * 5;
 				} else {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 200 && state == 2){
+			} else if (GamePanel.timeCounter <= 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
-					yTR -= 3.5 * yScale;
-					yBR -= 3.5 * yScale;
-					yTL -= 3.5 * yScale;
-					yBL -= 3.5 * yScale;
+				if(GamePanel.timeCounter < 40) {
+					yTR -= 3.5 * yScale * 5;
+					yBR -= 3.5 * yScale * 5;
+					yTL -= 3.5 * yScale * 5;
+					yBL -= 3.5 * yScale * 5;
 				} else {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 200 && state == 3) {
+			} else if (GamePanel.timeCounter <= 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 400 * yScale; yTR = 400 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;

@@ -92,7 +92,7 @@ public class GamePanel extends JPanel{
 		leftMac = new ImageIcon("Images/rotate left arrow.png").getImage();
 		rightMac = new ImageIcon("Images/rotate right arrow.png").getImage();
 		forwardMac = new ImageIcon("Images/forward arrow.png").getImage();
-		if(GamePanel.timeCounter > 200) {
+		if(GamePanel.timeCounter > 40) {
 			buttonYScale = getHeight()/700.0;
 			buttonXScale = getWidth()/1000.0;
 			g.drawImage(left, (int) (120*buttonXScale), (int) (450*buttonYScale), 

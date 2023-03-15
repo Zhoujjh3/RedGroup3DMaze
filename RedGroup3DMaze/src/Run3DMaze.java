@@ -81,7 +81,7 @@ public class Run3DMaze {
 				GamePanel.timeCounter++;
 				
 				//updates 3d states after animation is finished
-				if(GamePanel.timeCounter >= 200 && clicked) {
+				if(GamePanel.timeCounter >= 40 && clicked) {
 					if(nextRoom) {
 						//handles moving the player in the backend
 						if(down) {
@@ -107,6 +107,7 @@ public class Run3DMaze {
 						currentRoom.setVisited(true);
 						currentRoom.printDoors();
 						currentRoom.populateTrapDoorsAndHatch();
+						currentRoom.resetWalls();
 						nextRoom = false;
 						down = false;
 						up = false;

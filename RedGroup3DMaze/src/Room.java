@@ -105,6 +105,16 @@ public class Room {
 		ceilingAndFloor = new ArrayList<Shapes3D>();
 	}
 	
+	public void resetWalls() {
+		Shapes3D[] temp = {
+	    		new Wall3D(0, this),
+	    		new Wall3D(1, this),
+	    		new Wall3D(2, this),
+	    		new Wall3D(3, this)
+		};
+		walls = temp;
+	}
+	
 	public void populateDoors() {
 		direction = Run3DMaze.player.getDirection();
 		if(direction == 'N') {
