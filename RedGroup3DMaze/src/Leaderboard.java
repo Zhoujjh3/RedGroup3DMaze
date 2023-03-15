@@ -27,11 +27,12 @@ public class Leaderboard implements ActionListener {
 		score = newScore;
 	}
 	
-	public void display(Frame frame, GamePanel contentPane) {
+	public void display(JFrame frame, GamePanel contentPane) {
 		sortScores(score);
 		
-		frame = new JFrame("Leaderboard");
-	    
+		this.frame = frame;//new JFrame("Leaderboard");
+	    this.contentPane = contentPane;
+		
 	    contentPane.setLayout(null);
 	    
 	    title = new JTextField("Leaderboard");
@@ -95,6 +96,15 @@ public class Leaderboard implements ActionListener {
 	    
 	}
 	
+	public void hide(JFrame frame, JPanel panel) {
+		panel.remove(title);
+		panel.remove(yourScore);
+		panel.remove(restartButt);
+		for (int i = 0; i < top10.length; i++) {
+			panel.remove(top10[i]);
+		}
+	}
+	
 	//if the new score is lower than the 10th score, the 10th score is removed
 	public void sortScores(double newScore) {
 		bubbleSort();	
@@ -121,6 +131,7 @@ public class Leaderboard implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "click") {
 			signal = true;
+			hide(frame, contentPane);
 		}
 	}
 	

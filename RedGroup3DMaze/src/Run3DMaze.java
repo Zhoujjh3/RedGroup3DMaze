@@ -105,7 +105,7 @@ public class Run3DMaze {
 						currentRoom.resetDoors();	
 						currentRoom.populateDoors();
 						currentRoom.setVisited(true);
-						currentRoom.printDoors();
+						//currentRoom.printDoors();
 						currentRoom.populateTrapDoorsAndHatch();
 						currentRoom.resetWalls();
 						nextRoom = false;
