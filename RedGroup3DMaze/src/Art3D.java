@@ -13,6 +13,9 @@ public class Art3D extends Shapes3D {
 	public int h, w;
 	double xScale;
 	double yScale;
+	Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
+	Run3DMaze.player.getCoordinate('X'), 
+	Run3DMaze.player.getCoordinate('Y'));
 
 	Art3D(int theState) {
 		h = Run3DMaze.height;
@@ -61,18 +64,18 @@ public class Art3D extends Shapes3D {
 		int[] art3Y = {yMidLeft, yCenter, yMidBot, (int) Math.rint(yBL)};
 		int[] art4X = {xCenter, xMidRight, (int) Math.rint(xBR), xMidBot};
 		int[] art4Y = {yCenter, yMidRight, (int) Math.rint(yBR), yMidBot};
-		double x = Run3DMaze.player.getCoordinate('X'); 
-		double y = Run3DMaze.player.getCoordinate('Y'); 
-		double z = Run3DMaze.player.getCoordinate('Z'); 
+		int roomRed = currentRoom.getRGBValues()[0];
+		int roomGreen = currentRoom.getRGBValues()[1];
+		int roomBlue = currentRoom.getRGBValues()[2];
 		g.setColor(new Color(243,243,243));
 		g.fillPolygon(artFrameX, artFrameY, 4);
-		g.setColor(new Color((int) (24*(x/5.0)), (int) (24*(y/5.0)), (int) (24*(z/5.0))));
+		g.setColor(new Color(roomRed - 50, roomGreen - 50, roomBlue - 50));
 		g.fillPolygon(art1X, art1Y, 4);
-		g.setColor(new Color((int) (43*(x/5.0)), (int) (43*(y/5.0)), (int) (43*(z/5.0))));
+		g.setColor(new Color(roomRed - 20, roomGreen - 20, roomBlue - 20));		
 		g.fillPolygon(art2X, art2Y, 4);
-		g.setColor(new Color((int) (143*(x/5.0)), (int) (143*(y/5.0)), (int) (143*(z/5.0))));
+		g.setColor(new Color(roomRed, roomGreen, roomBlue));
 		g.fillPolygon(art3X, art3Y, 4);
-		g.setColor(new Color((int) (173*(x/5.0)), (int) (173*(y/5.0)), (int) (173*(z/5.0))));
+		g.setColor(new Color(roomRed + 20, roomGreen + 20, roomBlue + 20));
 		g.fillPolygon(art4X, art4Y, 4);
 		g.setColor(Color.black);
 		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
