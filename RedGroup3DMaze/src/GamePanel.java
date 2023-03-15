@@ -28,8 +28,8 @@ public class GamePanel extends JPanel{
     Image upMac, downMac, leftMac, rightMac, forwardMac;
     double xScale;
     double yScale;
-	double wScale;
-	double hScale;
+    double buttonXScale;
+    double buttonYScale;
     
     //char[] directions = {'W','S','E','N','U','D'};
    
@@ -42,8 +42,8 @@ public class GamePanel extends JPanel{
     
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		wScale = (double)getSize().width/(double)1000;
-		hScale = (double)getSize().height/(double)750;
+		xScale = getWidth()/1000.0;
+		yScale = getHeight()/750.0;
 		if(Run3DMaze.state == Run3DMaze.mazeState.WELCOMESCREEN) {
 			//do nothing, welcomeScreen draws itself
 		} else if(Run3DMaze.state == Run3DMaze.mazeState.CHAMBERVIEW) {
@@ -59,8 +59,8 @@ public class GamePanel extends JPanel{
 	
 	public void setChamberView(Graphics g) {
 		// resetting map
-		Run3DMaze.changeView = new JButton("MAP");
-	//	Run3DMaze.changeView.setBounds((int)(740*wScale), (int)(5*hScale), (int)(100*wScale), (int)(30*hScale));
+		//Run3DMaze.changeView = new JButton("MAP");
+	//	Run3DMaze.changeView.setBounds((int)(740*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
 		Run3DMaze.mapLevelIncrement = 0;
         Run3DMaze.levelDown.setVisible(false);
         Run3DMaze.levelUp.setVisible(false);
@@ -93,24 +93,34 @@ public class GamePanel extends JPanel{
 		rightMac = new ImageIcon("Images/rotate right arrow.png").getImage();
 		forwardMac = new ImageIcon("Images/forward arrow.png").getImage();
 		if(GamePanel.timeCounter > 200) {
-			yScale = getHeight()/700.0;
-			xScale = getWidth()/1000.0;
-			g.drawImage(left, (int) (120*xScale), (int) (450*yScale), (int) (150*xScale), (int) (90*yScale), null);
-			g.drawImage(leftMac, (int) (120*xScale), (int) (450*yScale), (int) (150*xScale), (int) (90*yScale), null);
-			g.drawImage(right, (int) (730*xScale), (int) (450*yScale), (int) (150*xScale), (int) (90*yScale), null);
-			g.drawImage(rightMac, (int) (730*xScale), (int) (450*yScale), (int) (150*xScale), (int) (90*yScale), null);
+			buttonYScale = getHeight()/700.0;
+			buttonXScale = getWidth()/1000.0;
+			g.drawImage(left, (int) (120*buttonXScale), (int) (450*buttonYScale), 
+			(int) (150*buttonXScale), (int) (90*buttonYScale), null);
+			g.drawImage(leftMac, (int) (120*buttonXScale), (int) (450*buttonYScale), 
+			(int) (150*buttonXScale), (int) (90*buttonYScale), null);
+			g.drawImage(right, (int) (730*buttonXScale), (int) (450*buttonYScale), 
+			(int) (150*buttonXScale), (int) (90*buttonYScale), null);
+			g.drawImage(rightMac, (int) (730*buttonXScale), (int) (450*buttonYScale), 
+			(int) (150*buttonXScale), (int) (90*buttonYScale), null);
 			char currentDirection = Run3DMaze.player.getDirection();
 			if(currentRoom.getDirection(currentDirection) == true) {
-				g.drawImage(forward, (int) (450*xScale), (int) (430*yScale), (int) (100*xScale), (int) (60*yScale), null);
-				g.drawImage(forwardMac, (int) (450*xScale), (int) (430*yScale), (int) (100*xScale), (int) (60*yScale), null);
+				g.drawImage(forward, (int) (450*buttonXScale), (int) (430*buttonYScale), 
+				(int) (100*buttonXScale), (int) (60*buttonYScale), null);
+				g.drawImage(forwardMac, (int) (450*buttonXScale), (int) (430*buttonYScale), 
+				(int) (100*buttonXScale), (int) (60*buttonYScale), null);
 			} 
 			if(currentRoom.getDirection('D')) {
-				g.drawImage(down, (int) (465*xScale), (int) (530*yScale), (int) (70*xScale), (int) (100*yScale), null);
-				g.drawImage(downMac, (int) (465*xScale), (int) (530*yScale), (int) (70*xScale), (int) (100*yScale), null);
+				g.drawImage(down, (int) (465*buttonXScale), (int) (530*buttonYScale), 
+				(int) (70*buttonXScale), (int) (100*buttonYScale), null);
+				g.drawImage(downMac, (int) (465*buttonXScale), (int) (530*buttonYScale), 
+				(int) (70*buttonXScale), (int) (100*buttonYScale), null);
 			}
 			if(currentRoom.getDirection('U')) {
-				g.drawImage(up, (int) (465*xScale), (int) (130*yScale), (int) (70*xScale), (int) (100*yScale), null);
-				g.drawImage(upMac, (int) (465*xScale),(int) (130*yScale), (int) (70*xScale), (int) (100*yScale), null);
+				g.drawImage(up, (int) (465*buttonXScale), (int) (130*buttonYScale), 
+				(int) (70*buttonXScale), (int) (100*buttonYScale), null);
+				g.drawImage(upMac, (int) (465*buttonXScale),(int) (130*buttonYScale), 
+				(int) (70*buttonXScale), (int) (100*buttonYScale), null);
 			}
 		}		
 	}
@@ -127,20 +137,20 @@ public class GamePanel extends JPanel{
         	Run3DMaze.levelDown.setBackground(Color.WHITE);
         }
 		Run3DMaze.map.display(g, Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement, this.getSize());
-		wScale = (double)getSize().width/(double)1000;
-		hScale = (double)getSize().height/(double)750;
-		Run3DMaze.changeView.setBounds((int)(740*wScale), (int)(5*hScale), (int)(100*wScale), (int)(30*hScale));
-		Run3DMaze.levelDown.setBounds((int)(300*wScale), (int)(715*hScale), (int)(100*wScale), (int)(30*hScale));
-		Run3DMaze.levelUp.setBounds((int)(450*wScale), (int)(715*hScale), (int)(100*wScale), (int)(30*hScale));
+		xScale = getWidth()/1000.0;
+		yScale = getHeight()/750.0;
+		Run3DMaze.changeView.setBounds((int)(740*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
+		Run3DMaze.levelDown.setBounds((int)(300*xScale), (int)(715*yScale), (int)(100*xScale), (int)(30*yScale));
+		Run3DMaze.levelUp.setBounds((int)(450*xScale), (int)(715*yScale), (int)(100*xScale), (int)(30*yScale));
 		Run3DMaze.levelDown.setVisible(true);
 		Run3DMaze.levelUp.setVisible(true);
 	}
 	
 	public void setHeader(Graphics g) {
 		Run3DMaze.header.display(g, this.getSize());
-		wScale = (double)getSize().width/(double)1000;
-		hScale = (double)getSize().height/(double)750;
-		Run3DMaze.changeView.setBounds((int)(740*wScale), (int)(5*hScale), (int)(100*wScale), (int)(30*hScale));
+		xScale = getWidth()/1000.0;
+		yScale = getHeight()/750.0;
+		Run3DMaze.changeView.setBounds((int)(740*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
 
 	}
 	
