@@ -271,7 +271,7 @@ public class Run3DMaze {
 	}
 	
 	public void runLeaderboard() {
-		leaderboard.getScore((double)(Math.round(1000.0 * ((double)maze.getMinMoves() / (double)player.getMoves()-1)))/1000.0);
+		leaderboard.getScore((double)(Math.round(1000.0 * ((double)maze.getMinMoves() / ((double)player.getMoves()-1))))/1000.0);
 		state = mazeState.LEADERBOARD;
 		showLeaderboard = true;
 	}
