@@ -175,7 +175,7 @@ public class Run3DMaze {
 			}
 			//switch rooms when timerCounter = 200, maybe
 			gamePanel.repaint();
-			System.out.println(GamePanel.timeCounter);
+//			System.out.println(GamePanel.timeCounter);
 		}
 	};
 	Timer ShapesTimer = new Timer(5, rotate);
@@ -255,7 +255,7 @@ public class Run3DMaze {
 		runChamberView();
 	}
 	
-	public void runChamberView() {
+	public static void runChamberView() {
 		
 		if (header.getView().equals("CHAMBER")) {
 			header.changeView();
@@ -263,7 +263,7 @@ public class Run3DMaze {
 		state = mazeState.CHAMBERVIEW;
 	}
 	
-	public void runMapView() {
+	public static void runMapView() {
 		
 		if (header.getView().equals("MAP")) {
 			header.changeView();

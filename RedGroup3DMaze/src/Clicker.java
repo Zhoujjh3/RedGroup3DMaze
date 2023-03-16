@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import Backup3D.Shapes;
 import Backup3D.ShapesPanel;
+import Run3DMaze.mazeState;
 
 public class Clicker implements MouseListener, KeyListener{
 
@@ -331,6 +332,13 @@ public class Clicker implements MouseListener, KeyListener{
     				//D
         		}
         		break;
+        	case 77:
+        		if(state == Run3DMaze.mazeState.MAPVIEW)
+//        			Run3DMaze.runChamberView();
+        			System.out.println("here");
+        		if(state == Run3DMaze.mazeState.CHAMBERVIEW)
+        			Run3DMaze.runMapView();
+//        			System.out.println("here");
         }
 	}
 	}
