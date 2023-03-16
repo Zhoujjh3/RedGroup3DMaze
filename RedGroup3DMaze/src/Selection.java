@@ -100,6 +100,7 @@ public class Selection implements ActionListener{
 			difficulty = 3;
 		}
 		signal = true;
+		panel.requestFocus();
 		hide(frame, panel);
 	}
 	
