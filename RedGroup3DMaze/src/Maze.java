@@ -83,10 +83,12 @@ public class Maze {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
 					if (x%2 == 1 && y%2 == 1) {
 						baseMaze[level][x][y] = 'Z';
-						floors.add(getCoords(level, x, y));
+						if (level < baseMaze.length-2 || x < baseMaze[0].length-2 || y < baseMaze[0][0].length-2) {
+							floors.add(getCoords(level, x, y));
+						}
 					} else if (x > 0 && x < baseMaze[0].length-1 && y > 0 && y < baseMaze[0][0].length-1 && (x%2 == 1 || y%2 == 1)) { 
 						baseMaze[level][x][y] = 'F';
-						if (level < baseMaze.length-1 || x < baseMaze[0].length-2 || y < baseMaze[0][0].length-2) { // stopping alternate paths from exit
+						if (level < baseMaze.length-1 || x < baseMaze[0].length-3 || y < baseMaze[0][0].length-3) { // stopping alternate paths from exit
 							walls.add(getCoords(level, x, y));
 						}
 					} else {
@@ -707,7 +709,7 @@ public class Maze {
 		
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(3);
+		Maze maze2 = new Maze(1);
 		System.out.println(maze2.getMinMoves());
 		
 //		int[] x = maze.createLevelPath(test[0], 6, 1, 1);
