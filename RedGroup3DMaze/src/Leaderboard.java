@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.awt.Color;
-import java.awt.Dimension;
 
 public class Leaderboard implements ActionListener {
 	
@@ -37,6 +35,9 @@ public class Leaderboard implements ActionListener {
 	    
 	    title = new JTextField("Leaderboard");
 	    title.setEditable(false);
+	    title.setAlignmentY(Component.CENTER_ALIGNMENT);
+	    title.setAlignmentX(Component.CENTER_ALIGNMENT);
+	    title.setHorizontalAlignment(JTextField.CENTER);
 	    title.setBorder(BorderFactory.createEmptyBorder());
 	    contentPane.add(title);
 	    
