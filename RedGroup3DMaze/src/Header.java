@@ -19,9 +19,9 @@ public class Header {
         g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(15* scaleFactor.height/750)));
         g.drawString("X: " + (player.getCoordinate('X') + 1), (int)(20* scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
         g.drawString("Y: " + (player.getCoordinate('Y') + 1), (int)(60 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
-        g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), (int)(250 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
-        g.drawString("Moves: " + player.getMoves(), (int)(510 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
-        g.drawString(Character.toString(player.getDirection()), (int)(640 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
+        g.drawString("Player Level: " + (player.getCoordinate('Z') + 1), (int)(200 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
+        g.drawString("Moves: " + player.getMoves(), (int)(400 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
+        g.drawString("Direction: " + Character.toString(player.getDirection()), (int)(550 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
 //        g.setColor(Color.BLACK);
 //        g.drawRect(740,7,100,25);
 
