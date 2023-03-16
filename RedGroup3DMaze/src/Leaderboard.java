@@ -9,7 +9,7 @@ import java.awt.Dimension;
 public class Leaderboard implements ActionListener {
 	
 	JTextField[] top10 = new JTextField[10];
-	double scoresList[] = {2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647, 2147483647};
+	double scoresList[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	double score;
 	static int width = 1000;
 	static int height = 750;
@@ -46,7 +46,7 @@ public class Leaderboard implements ActionListener {
 	    contentPane.add(yourScore);
 	    
 	    for (int i = 0; i < top10.length; i++) {
-	    	if (scoresList[i] == 2147483647) {
+	    	if (scoresList[i] == 0) {
 	    		top10[i] = new JTextField("---");
 	    	} else {
 	    		top10[i] = new JTextField(Double.toString(scoresList[i]));
@@ -108,7 +108,7 @@ public class Leaderboard implements ActionListener {
 	//if the new score is lower than the 10th score, the 10th score is removed
 	public void sortScores(double newScore) {
 		bubbleSort();	
-		if (newScore < scoresList[scoresList.length - 1]) {
+		if (newScore > scoresList[scoresList.length - 1]) {
 			scoresList[scoresList.length - 1] = newScore;
 			bubbleSort();
 		}
@@ -119,7 +119,7 @@ public class Leaderboard implements ActionListener {
 		double temp;
 		for (int i = 0; i < scoresList.length; i++) {
 			for (int j = i + 1; j < scoresList.length; j++) {
-				if (scoresList[j] < scoresList[i]) {
+				if (scoresList[j] > scoresList[i]) {
 					temp = scoresList[i];
 					scoresList[i] = scoresList[j];
 					scoresList[j] = temp;
