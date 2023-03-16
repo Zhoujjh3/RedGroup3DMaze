@@ -119,5 +119,4 @@ public class Selection implements ActionListener{
 	public void resetSignal() {
 		signal = false;
 	}
-
 }

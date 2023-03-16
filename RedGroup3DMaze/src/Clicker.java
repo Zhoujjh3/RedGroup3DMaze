@@ -335,4 +335,3 @@ public class Clicker implements MouseListener, KeyListener{
 	}
 	}
 }
-
