@@ -99,54 +99,62 @@ public class Art3D extends Shapes3D {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 253 * yScale; yTR = 280 * yScale; yBR = 420 * yScale; yBL = 447 * yScale;
 				}
-				xTL += 1.875 * xScale * 5;
-				yTL += 0.235 * yScale * 5;
-				xTR += 1.875 * xScale * 5;
-				yTR += 0.1 * yScale * 5;
-				xBR += 1.875 * xScale * 5;
-				yBR -= 0.1 * yScale * 5;
-				xBL += 1.875 * xScale * 5;
-				yBL -= 0.235 * yScale * 5;
+				if(Run3DMaze.clicked) {
+					xTL += 1.875 * xScale * 5;
+					yTL += 0.235 * yScale * 5;
+					xTR += 1.875 * xScale * 5;
+					yTR += 0.1 * yScale * 5;
+					xBR += 1.875 * xScale * 5;
+					yBR -= 0.1 * yScale * 5;
+					xBL += 1.875 * xScale * 5;
+					yBL -= 0.235 * yScale * 5;
+				}
 			} else if (GamePanel.timeCounter < 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 300 * yScale; yBL = 400 * yScale; yTR = 300 * yScale; yBR = 400 * yScale;
 				}
-				xTL += 1.875 * xScale * 5;
-				yTL -= 0.1 * yScale * 5;
-				xBL += 1.875 * xScale * 5;
-				yBL += 0.1 * yScale * 5;
-				xTR += 1.875 * xScale * 5;
-				yTR -= 0.235 * yScale * 5;
-				xBR += 1.875 * xScale * 5;
-				yBR += 0.235 * yScale * 5;
+				if(Run3DMaze.clicked) {
+					xTL += 1.875 * xScale * 5;
+					yTL -= 0.1 * yScale * 5;
+					xBL += 1.875 * xScale * 5;
+					yBL += 0.1 * yScale * 5;
+					xTR += 1.875 * xScale * 5;
+					yTR -= 0.235 * yScale * 5;
+					xBR += 1.875 * xScale * 5;
+					yBR += 0.235 * yScale * 5;
+				}
+				
 			} else if (GamePanel.timeCounter < 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 280 * yScale; yTR = 253 * yScale; yBR = 447 * yScale; yBL = 420 * yScale;
 				}
-				xTR += 2.3333 * xScale * 5;
-				xBR += 2.3333 * xScale * 5;
-				xTL += 2.3333 * xScale * 5;
-				xBL += 2.3333 * xScale * 5;
-				yTL -= 0.235 * yScale * 5;
-				yTR -= 0.1 * yScale * 5;
-				yBR += 0.1 * yScale * 5;
-				yBL += 0.235 * yScale * 5;
+				if(Run3DMaze.clicked) {
+					xTR += 2.3333 * xScale * 5;
+					xBR += 2.3333 * xScale * 5;
+					xTL += 2.3333 * xScale * 5;
+					xBL += 2.3333 * xScale * 5;
+					yTL -= 0.235 * yScale * 5;
+					yTR -= 0.1 * yScale * 5;
+					yBR += 0.1 * yScale * 5;
+					yBL += 0.235 * yScale * 5;
+				}
+				
 			} else if (GamePanel.timeCounter < 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 0; xTR = 0; xBR = 0; xBL = 0;
 					yTL = 233 * yScale; yTR = 233 * yScale; yBR = 467 * yScale; yBL = 467 * yScale;
 				}
-				if(GamePanel.timeCounter > 25) {
+				if(GamePanel.timeCounter > 25 && Run3DMaze.clicked) {
 					xTR += 2.3333 * xScale * 5;
 					xBR += 2.3333 * xScale * 5;
 				}
-				if(GamePanel.timeCounter > 33) {
+				if(GamePanel.timeCounter > 33 && Run3DMaze.clicked) {
 					xTL += 2.272727 * xScale * 5;
 					xBL += 2.272727 * xScale * 5;
 				}
-				if(GamePanel.timeCounter > 19) {
+				if(GamePanel.timeCounter > 19 && Run3DMaze.clicked) {
 					yTL += 0.1 * 2.0 * yScale * 5;
 					yTR += 0.235 * 2.0 * yScale * 5;
 					yBR -= 0.235 * 2.0 * yScale * 5;

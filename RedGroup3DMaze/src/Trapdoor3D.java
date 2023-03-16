@@ -57,7 +57,7 @@ public class Trapdoor3D extends Shapes3D{
 					xTL = 450 * xScale; xTR = 550 * xScale; xBR = 575 * xScale; xBL = 425 * xScale;
 					yTL = 550 * yScale; yTR = 550 * yScale; yBR = 650 * yScale; yBL = 650 * yScale;
 				}
-				if(GamePanel.timeCounter < 20) {
+				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
 					xTL += 0.5 * xScale * 5;
 					yTL += 0.75 * yScale * 5;
 					xTR += 0.5 * xScale * 5;
@@ -66,7 +66,7 @@ public class Trapdoor3D extends Shapes3D{
 					yBR += 1.25 * yScale * 5;
 					xBL -= 0.25 * xScale * 5;
 					yBL += 0.5 * yScale * 5;
-				} else {
+				} else if(GamePanel.timeCounter > 19 && Run3DMaze.clicked){
 					xTL += 0.5 * xScale * 5;
 					yTL -= 0.75 * yScale * 5;
 					xTR -= 0.25 * xScale * 5;
@@ -81,7 +81,7 @@ public class Trapdoor3D extends Shapes3D{
 					xTL = 550 * xScale; xTR = 575 * xScale; xBR = 425 * xScale; xBL = 450 * xScale;
 					yTL = 550 * yScale; yTR = 650 * yScale; yBR = 650 * yScale; yBL = 550 * yScale;
 				}
-				if(GamePanel.timeCounter < 20) {
+				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
 					xBL += 0.5 * xScale * 5;
 					yBL += 0.75 * yScale * 5;
 					xTL += 0.5 * xScale * 5;
@@ -90,7 +90,7 @@ public class Trapdoor3D extends Shapes3D{
 					yTR += 1.25 * yScale * 5;
 					xBR -= 0.25 * xScale * 5;
 					yBR += 0.5 * yScale * 5;
-				} else {
+				} else if(GamePanel.timeCounter > 19 && Run3DMaze.clicked) {
 					xBL += 0.5 * xScale * 5;
 					yBL -= 0.75 * yScale * 5;
 					xTL -= 0.25 * xScale * 5;
@@ -105,7 +105,7 @@ public class Trapdoor3D extends Shapes3D{
 					xTL = 575 * xScale; xTR = 425 * xScale; xBR = 450 * xScale; xBL = 550 * xScale;
 					yTL = 650 * yScale; yTR = 650 * yScale; yBR = 550 * yScale; yBL = 550 * yScale;
 				}
-				if(GamePanel.timeCounter < 20) {
+				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
 					xBR += 0.5 * xScale * 5;
 					yBR += 0.75 * yScale * 5;
 					xBL += 0.5 * xScale * 5;
@@ -114,7 +114,7 @@ public class Trapdoor3D extends Shapes3D{
 					yTL += 1.25 * yScale * 5;
 					xTR -= 0.25 * xScale * 5;
 					yTR += 0.5 * yScale * 5;
-				} else {
+				} else  if(GamePanel.timeCounter > 19 && Run3DMaze.clicked){
 					xBR += 0.5 * xScale * 5;
 					yBR -= 0.75 * yScale * 5;
 					xBL -= 0.25 * xScale * 5;
@@ -129,7 +129,7 @@ public class Trapdoor3D extends Shapes3D{
 					xTL = 425 * xScale; xTR = 450 * xScale; xBR = 550 * xScale; xBL = 575 * xScale;
 					yTL = 650 * yScale; yTR = 550 * yScale; yBR = 550 * yScale; yBL = 650 * yScale;
 				}
-				if(GamePanel.timeCounter < 20) {
+				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
 					xTR += 0.5 * xScale * 5;
 					yTR += 0.75 * yScale * 5;
 					xBR += 0.5 * xScale * 5;
@@ -138,7 +138,7 @@ public class Trapdoor3D extends Shapes3D{
 					yBL += 1.25 * yScale * 5;
 					xTL -= 0.25 * xScale * 5;
 					yTL += 0.5 * yScale * 5;
-				} else {
+				} else  if(GamePanel.timeCounter > 19 && Run3DMaze.clicked){
 					xTR += 0.5 * xScale * 5;
 					yTR -= 0.75 * yScale * 5;
 					xBR -= 0.25 * xScale * 5;

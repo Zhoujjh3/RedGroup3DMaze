@@ -63,12 +63,13 @@ public class Wall3D extends Shapes3D{
 		xScale = w/1000.0;
 		yScale = h/700.0;
 		if(dir == 0) {
+			//System.out.println(Run3DMaze.clicked);
 			if(GamePanel.timeCounter <= 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
 					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTR += 2.5 * xScale * 5;
 					xBR += 2.5 * xScale * 5;
 					if(GamePanel.timeCounter > 20) {
@@ -86,7 +87,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 250 * xScale; xBL = 250 * xScale; xTR = 750 * xScale; xBR = 750 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 200 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL += 2.5 * xScale * 5;
 					xBL += 2.5 * xScale * 5;
 					if(GamePanel.timeCounter < 20) {
@@ -104,7 +105,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTL = room.walls[previousWallIndex].getyTR();
 					yBL = room.walls[previousWallIndex].getyBR();
 					xTL = room.walls[previousWallIndex].getxTR();
@@ -119,7 +120,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 0; xTR = 0; xBR = 0; xBL = 0;
 					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR = room.walls[nextWallIndex].getyTL();
 					yBR = room.walls[nextWallIndex].getyBL();
 					xTR = room.walls[nextWallIndex].getxTL();

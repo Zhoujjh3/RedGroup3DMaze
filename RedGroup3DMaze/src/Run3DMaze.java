@@ -175,6 +175,7 @@ public class Run3DMaze {
 			}
 			//switch rooms when timerCounter = 200, maybe
 			gamePanel.repaint();
+			System.out.println(GamePanel.timeCounter);
 		}
 	};
 	Timer ShapesTimer = new Timer(5, rotate);
