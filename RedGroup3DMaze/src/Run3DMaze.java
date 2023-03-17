@@ -59,7 +59,7 @@ public class Run3DMaze {
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if(state == mazeState.CHAMBERVIEW) {
-				selectionScreen.hide(screen, gamePanel);
+				selectionScreen.hide(screen, gamePanel); 
 				Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 						Run3DMaze.player.getCoordinate('X'), 
 						Run3DMaze.player.getCoordinate('Y'));
