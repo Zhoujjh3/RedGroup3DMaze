@@ -72,7 +72,6 @@ public class Selection implements ActionListener{
 	    	    mediumButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
 	    	    hardButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.667), (int)(panelWidth*.4),(int)(panelHeight*.1));
 	    	    hardButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
-	    	    System.out.println(panelWidth);
 	    	    
 	    	    title.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.05)));
 	    	    title.setBounds((int)(panelWidth*0.25), (int)(panelHeight*.06), (int)(panelWidth*1), (int)(panelHeight*.13));
