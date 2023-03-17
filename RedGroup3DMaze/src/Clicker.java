@@ -346,10 +346,7 @@ public class Clicker implements MouseListener, KeyListener {
 				if (state == Run3DMaze.mazeState.CHAMBERVIEW) {
 					Run3DMaze.runMapView();
 					Run3DMaze.changeView.setText(Run3DMaze.header.getView());
-				}
-				break;
-			case 67:
-				if (state == Run3DMaze.mazeState.MAPVIEW) {
+				} else if (state == Run3DMaze.mazeState.MAPVIEW) {
 					Run3DMaze.runChamberView();
 					Run3DMaze.changeView.setText(Run3DMaze.header.getView());
 				}
