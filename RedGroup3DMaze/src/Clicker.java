@@ -215,7 +215,7 @@ public class Clicker implements MouseListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		state = Run3DMaze.state;
-		if (GamePanel.timeCounter > 40 && state == Run3DMaze.mazeState.CHAMBERVIEW) {
+		if (GamePanel.timeCounter > 40) {
 			Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'),
 					Run3DMaze.player.getCoordinate('X'), Run3DMaze.player.getCoordinate('Y'));
 			// System.out.println("pressed");
@@ -333,13 +333,17 @@ public class Clicker implements MouseListener, KeyListener {
 				}
 				break;
 			case 77:
-				if (state == Run3DMaze.mazeState.MAPVIEW)
-//        			Run3DMaze.runChamberView();
-					System.out.println("here");
-				if (state == Run3DMaze.mazeState.CHAMBERVIEW)
+				if (state == Run3DMaze.mazeState.CHAMBERVIEW) {
 					Run3DMaze.runMapView();
 					Run3DMaze.changeView.setText(Run3DMaze.header.getView());
-//        			System.out.println("here");
+				}
+				break;
+			case 67:
+				if (state == Run3DMaze.mazeState.MAPVIEW) {
+					Run3DMaze.runChamberView();
+					Run3DMaze.changeView.setText(Run3DMaze.header.getView());
+				}
+				break;
 			}
 		}
 	}
