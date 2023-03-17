@@ -233,61 +233,69 @@ public class Clicker implements MouseListener, KeyListener {
 			switch (code) {
 			case 37:
 			case 65:
-				GamePanel.timeCounter = 0;
-				dir = 0;
-				for (Shapes3D i : currentRoom.ceilingAndFloor) {
-					i.setDir(0);
+				if (state == Run3DMaze.mazeState.CHAMBERVIEW) {
+					GamePanel.timeCounter = 0;
+					dir = 0;
+					for (Shapes3D i : currentRoom.ceilingAndFloor) {
+						i.setDir(0);
+					}
+					for (Shapes3D i : currentRoom.walls) {
+						i.setDir(0);
+					}
+					for (Shapes3D i : currentRoom.doors) {
+						i.setDir(0);
+					}
+					Run3DMaze.player.setDirection(getLeftDirection(Run3DMaze.player.getDirection()));
+					currentRoom.printDoors();
+					// System.out.println(Run3DMaze.player.getDirection());
+					GamePanel.timeCounter = 0;
+					Run3DMaze.clicked = true;
 				}
-				for (Shapes3D i : currentRoom.walls) {
-					i.setDir(0);
-				}
-				for (Shapes3D i : currentRoom.doors) {
-					i.setDir(0);
-				}
-				Run3DMaze.player.setDirection(getLeftDirection(Run3DMaze.player.getDirection()));
-				currentRoom.printDoors();
-				// System.out.println(Run3DMaze.player.getDirection());
-				GamePanel.timeCounter = 0;
-				Run3DMaze.clicked = true;
 				break;
 			case 39:
 			case 68:
-				GamePanel.timeCounter = 0;
-				dir = 1;
-				for (Shapes3D i : currentRoom.ceilingAndFloor) {
-					i.setDir(1);
+				if (state == Run3DMaze.mazeState.CHAMBERVIEW) {
+					if (state == Run3DMaze.mazeState.CHAMBERVIEW) {
+						GamePanel.timeCounter = 0;
+						dir = 1;
+						for (Shapes3D i : currentRoom.ceilingAndFloor) {
+							i.setDir(1);
+						}
+						for (Shapes3D i : currentRoom.walls) {
+							i.setDir(1);
+						}
+						for (Shapes3D i : currentRoom.doors) {
+							i.setDir(1);
+						}
+						Run3DMaze.player.setDirection(getRightDirection(Run3DMaze.player.getDirection()));
+						// System.out.println(Run3DMaze.player.getDirection());
+						GamePanel.timeCounter = 0;
+						Run3DMaze.clicked = true;
+						// 450, 515, 100, 60
+						// R
+					}
 				}
-				for (Shapes3D i : currentRoom.walls) {
-					i.setDir(1);
-				}
-				for (Shapes3D i : currentRoom.doors) {
-					i.setDir(1);
-				}
-				Run3DMaze.player.setDirection(getRightDirection(Run3DMaze.player.getDirection()));
-				// System.out.println(Run3DMaze.player.getDirection());
-				GamePanel.timeCounter = 0;
-				Run3DMaze.clicked = true;
-				// 450, 515, 100, 60
-				// R
 				break;
 			case 32:
-				if (currentRoom.getDirection(Run3DMaze.player.getDirection())) {
-					GamePanel.timeCounter = 0;
-					for (Shapes3D i : currentRoom.ceilingAndFloor) {
-						i.setDir(2);
+				if (state == Run3DMaze.mazeState.CHAMBERVIEW) {
+					if (currentRoom.getDirection(Run3DMaze.player.getDirection())) {
+						GamePanel.timeCounter = 0;
+						for (Shapes3D i : currentRoom.ceilingAndFloor) {
+							i.setDir(2);
+						}
+						for (Shapes3D i : currentRoom.walls) {
+							i.setDir(2);
+						}
+						for (Shapes3D i : currentRoom.doors) {
+							i.setDir(2);
+						}
+						Run3DMaze.nextRoom = true;
+						// System.out.println(Run3DMaze.player.getDirection());
+						// Run3DMaze.player.movePlayer(Run3DMaze.player.getDirection());
+						GamePanel.timeCounter = 0;
+						Run3DMaze.clicked = true;
+						// F
 					}
-					for (Shapes3D i : currentRoom.walls) {
-						i.setDir(2);
-					}
-					for (Shapes3D i : currentRoom.doors) {
-						i.setDir(2);
-					}
-					Run3DMaze.nextRoom = true;
-					// System.out.println(Run3DMaze.player.getDirection());
-					// Run3DMaze.player.movePlayer(Run3DMaze.player.getDirection());
-					GamePanel.timeCounter = 0;
-					Run3DMaze.clicked = true;
-					// F
 				}
 				break;
 			case 38:
@@ -313,23 +321,25 @@ public class Clicker implements MouseListener, KeyListener {
 				break;
 			case 40:
 			case 83:
-				if (currentRoom.getDirection('D')) {
-					GamePanel.timeCounter = 0;
-					for (Shapes3D i : currentRoom.ceilingAndFloor) {
-						i.setDir(4);
+				if (state == Run3DMaze.mazeState.CHAMBERVIEW) {
+					if (currentRoom.getDirection('D')) {
+						GamePanel.timeCounter = 0;
+						for (Shapes3D i : currentRoom.ceilingAndFloor) {
+							i.setDir(4);
+						}
+						for (Shapes3D i : currentRoom.walls) {
+							i.setDir(4);
+						}
+						for (Shapes3D i : currentRoom.doors) {
+							i.setDir(4);
+						}
+						Run3DMaze.nextRoom = true;
+						Run3DMaze.down = true;
+						// System.out.println(Run3DMaze.player.getDirection());
+						GamePanel.timeCounter = 0;
+						Run3DMaze.clicked = true;
+						// D
 					}
-					for (Shapes3D i : currentRoom.walls) {
-						i.setDir(4);
-					}
-					for (Shapes3D i : currentRoom.doors) {
-						i.setDir(4);
-					}
-					Run3DMaze.nextRoom = true;
-					Run3DMaze.down = true;
-					// System.out.println(Run3DMaze.player.getDirection());
-					GamePanel.timeCounter = 0;
-					Run3DMaze.clicked = true;
-					// D
 				}
 				break;
 			case 77:
