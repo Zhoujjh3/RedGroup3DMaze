@@ -59,6 +59,7 @@ public class Run3DMaze {
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if(state == mazeState.CHAMBERVIEW) {
+				selectionScreen.hide(screen, gamePanel);
 				Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 						Run3DMaze.player.getCoordinate('X'), 
 						Run3DMaze.player.getCoordinate('Y'));
@@ -143,7 +144,9 @@ public class Run3DMaze {
 				} 
 			} else if (state == mazeState.WELCOMESCREEN) {
 				//System.out.println("WELCOME");
+				
 				selectionScreen.display();
+				
 
 				//this doesn't seem to work because checksignal only returns true
 				//after you click a button, which at that point the state switches to 
