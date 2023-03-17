@@ -8,6 +8,7 @@ public class Room {
 	private Color color;
 	private int[] rgbValues = new int[3];
 	private char artDirection;
+	private Color finalDoorColor = Color.green;//new Color(255, 0, 238);
 	
 	 public Shapes3D[] walls = {
 	    		new Wall3D(0, this),
@@ -116,6 +117,7 @@ public class Room {
 	}
 	
 	public void populateDoors() {
+		System.out.println(getCoordinate('X') + ", " + getCoordinate('Y') + ", " + getCoordinate('Z'));
 		direction = Run3DMaze.player.getDirection();
 		if(direction == 'N') {
 			if(getDirection('W')) {
@@ -129,7 +131,13 @@ public class Room {
 				doors.add(new Art3D(1));
 			}
 			if(getDirection('E')) {
-				doors.add(new Door3D(2));
+				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 && getCoordinate('Z') == 4) {
+					doors.add(new Door3D(2, finalDoorColor));
+				} else if(getCoordinate('X') == 3 && getCoordinate('Y') == 3 && getCoordinate('Z') == 3) {
+					doors.add(new Door3D(2, finalDoorColor));
+				} else {
+					doors.add(new Door3D(2));
+				}
 			} else if(getArtWall() == 'E') {
 				doors.add(new Art3D(2));
 			}
@@ -145,7 +153,13 @@ public class Room {
 				doors.add(new Art3D(0));
 			}
 			if(getDirection('E')) {
-				doors.add(new Door3D(1));
+				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 && getCoordinate('Z') == 4) {
+					doors.add(new Door3D(1, finalDoorColor));
+				} else if(getCoordinate('X') == 3 && getCoordinate('Y') == 3 && getCoordinate('Z') == 3) {
+					doors.add(new Door3D(1, finalDoorColor));
+				} else {
+					doors.add(new Door3D(1));
+				}
 			} else if(getArtWall() == 'E') {
 				doors.add(new Art3D(1));
 			}
@@ -161,7 +175,13 @@ public class Room {
 			}
 		} else if(direction == 'S') {
 			if(getDirection('E')) {
-				doors.add(new Door3D(0));
+				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 && getCoordinate('Z') == 4) {
+					doors.add(new Door3D(0, finalDoorColor));
+				} else if(getCoordinate('X') == 3 && getCoordinate('Y') == 3 && getCoordinate('Z') == 3) {
+					doors.add(new Door3D(0, finalDoorColor));
+				} else {
+					doors.add(new Door3D(0));
+				}
 			} else if(getArtWall() == 'E') {
 				doors.add(new Art3D(0));
 			}
@@ -197,10 +217,20 @@ public class Room {
 				doors.add(new Art3D(2));
 			}
 			if(getDirection('E')) {
-				doors.add(new Door3D(3));
+				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 && getCoordinate('Z') == 4) {
+					doors.add(new Door3D(3, finalDoorColor));
+				} else if(getCoordinate('X') == 3 && getCoordinate('Y') == 3 && getCoordinate('Z') == 3) {
+					doors.add(new Door3D(3, finalDoorColor));
+				} else {
+					doors.add(new Door3D(3));
+				}
 			} else if(getArtWall() == 'E') {
 				doors.add(new Art3D(3));
 			}
+		}
+		
+		if(getCoordinate('X') == 5 && getCoordinate('Y') == 5 && getCoordinate('Z') == 5) {
+			
 		}
 		
 //		if(direction == 'N') {

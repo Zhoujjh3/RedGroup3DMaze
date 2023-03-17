@@ -11,6 +11,7 @@ public class Door3D extends Shapes3D {
 	public int h, w;
 	double xScale = w/1000.0;
 	double yScale = h/700.0;
+	Color color = new Color(243, 243, 243);
 
 	// Justin
 	
@@ -41,10 +42,16 @@ public class Door3D extends Shapes3D {
 		}
 	}
 	
+	Door3D(int theState, Color color){
+		this(theState);
+		this.color = color;
+	}
+	
 	public void paint(Graphics g) {
 		int[] doorX = {(int) Math.rint(xTL),(int) Math.rint(xTR),(int) Math.rint(xBR),(int) Math.rint(xBL)};
 		int[] doorY = {(int) Math.rint(yTL),(int) Math.rint(yTR),(int) Math.rint(yBR),(int) Math.rint(yBL)};
-		g.setColor(new Color(243,243,243));
+		//color = new Color(243, 243, 243);
+		g.setColor(color);
 		g.fillPolygon(doorX, doorY, 4);
 		g.setColor(Color.black);
 		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
@@ -403,5 +410,9 @@ public class Door3D extends Shapes3D {
 	public void setDir(int theDir) {
 		dir = theDir;
 	}
+//	
+//	public void setColor() {
+//		color = Color.black;
+//	}
 	
 }
