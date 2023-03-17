@@ -143,11 +143,7 @@ public class Run3DMaze {
 				} 
 			} else if (state == mazeState.WELCOMESCREEN) {
 				//System.out.println("WELCOME");
-				if(showWelcomeScreen) {	//so it doesn't draw infinite selection screens
-					selectionScreen.display();
-					showWelcomeScreen = false;
-					//System.out.println("LOL");
-				}
+				selectionScreen.display();
 
 				//this doesn't seem to work because checksignal only returns true
 				//after you click a button, which at that point the state switches to 
