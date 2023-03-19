@@ -2,10 +2,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
-
-import Backup3D.Shapes;
-import Backup3D.ShapesPanel;
 
 public class Clicker implements MouseListener, KeyListener {
 
@@ -265,22 +261,28 @@ public class Clicker implements MouseListener, KeyListener {
 				break;
 			case 38:
 			case 87:
-				if (currentRoom.getDirection('U')) {
-					GamePanel.timeCounter = 0;
-					for (Shapes3D i : currentRoom.ceilingAndFloor) {
-						i.setDir(3);
+				if (state == Run3DMaze.mazeState.CHAMBERVIEW) {
+					if (currentRoom.getDirection('U')) {
+						GamePanel.timeCounter = 0;
+						for (Shapes3D i : currentRoom.ceilingAndFloor) {
+							i.setDir(3);
+						}
+						for (Shapes3D i : currentRoom.walls) {
+							i.setDir(3);
+						}
+						for (Shapes3D i : currentRoom.doors) {
+							i.setDir(3);
+						}
+						Run3DMaze.nextRoom = true;
+						Run3DMaze.up = true;
+						GamePanel.timeCounter = 0;
+						Run3DMaze.clicked = true;
+						// U
 					}
-					for (Shapes3D i : currentRoom.walls) {
-						i.setDir(3);
+				} else if (state == Run3DMaze.mazeState.MAPVIEW) {
+					if (Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement != 0) {
+						Run3DMaze.mapLevelIncrement--;
 					}
-					for (Shapes3D i : currentRoom.doors) {
-						i.setDir(3);
-					}
-					Run3DMaze.nextRoom = true;
-					Run3DMaze.up = true;
-					GamePanel.timeCounter = 0;
-					Run3DMaze.clicked = true;
-					// U
 				}
 				break;
 			case 40:
@@ -302,6 +304,11 @@ public class Clicker implements MouseListener, KeyListener {
 						GamePanel.timeCounter = 0;
 						Run3DMaze.clicked = true;
 						// D
+					}
+				} else if (state == Run3DMaze.mazeState.MAPVIEW) {
+					if (Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement 
+					!= Run3DMaze.maze.getMazeSize() - 1) {
+						Run3DMaze.mapLevelIncrement++;
 					}
 				}
 				break;
