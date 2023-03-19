@@ -70,7 +70,7 @@ public class Leaderboard implements ActionListener {
 	    		int panelWidth = contentPane.getWidth();
 	    		int panelHeight = contentPane.getHeight();
 	    		
-	    		title.setBounds((int)(panelWidth * 0.4), (int)(panelHeight * 0.08), (int)(panelWidth * 0.275), (int)(panelHeight * 0.08));
+	    		title.setBounds((int)(panelWidth * 0.375), (int)(panelHeight * 0.08), (int)(panelWidth * 0.275), (int)(panelHeight * 0.08));
 	    		title.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
 	    		
 	    		for (int i = 0; i < 5; i++) {
