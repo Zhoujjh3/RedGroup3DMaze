@@ -52,6 +52,7 @@ public class Run3DMaze {
 		state = mazeState.WELCOMESCREEN;
 		selectionScreen = new Selection(screen, gamePanel);
 		leaderboard = new Leaderboard();
+		System.out.println("for max");
 	}
 	
 	//Timer for 3D animations
