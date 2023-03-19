@@ -1,4 +1,5 @@
 import java.awt.*;
+
 public class Header {
     private boolean chamberView;
     private PlayerData player;

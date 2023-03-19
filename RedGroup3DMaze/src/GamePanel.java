@@ -2,18 +2,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import Backup3D.DrawShapes;
-import Backup3D.Shapes;
-import Backup3D.Wall;
 
 public class GamePanel extends JPanel{
     MazeMap map;
