@@ -13,9 +13,6 @@ public class Door3D extends Shapes3D {
 	double yScale = h/700.0;
 	Color color = new Color(243, 243, 243);
 
-	// Justin
-	
-
 	Door3D(int theState) {
 		h = Run3DMaze.height;
 		w = Run3DMaze.width;
@@ -33,7 +30,7 @@ public class Door3D extends Shapes3D {
 			yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 		} else if(theState == 3) {
 			if(dir == 0) {
-				xTL = 0; xTR = 0; xBR = 0; xBL = 0;
+				xTL = 0 * xScale; xTR = 0 * xScale; xBR = 0 * xScale; xBL = 0 * xScale;
 				yTL = 400 * yScale; yTR = 400 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			} else if (dir == 1) {
 				xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
@@ -410,9 +407,5 @@ public class Door3D extends Shapes3D {
 	public void setDir(int theDir) {
 		dir = theDir;
 	}
-//	
-//	public void setColor() {
-//		color = Color.black;
-//	}
 	
 }
