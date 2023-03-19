@@ -1,3 +1,4 @@
+package Unused3D;
 public abstract class Entity {
 	private AffineTransform3D l2w;
 	public AffineTransform3D localToWorld() {

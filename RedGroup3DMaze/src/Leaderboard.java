@@ -28,7 +28,7 @@ public class Leaderboard implements ActionListener {
 	public void display(JFrame frame, GamePanel contentPane) {
 		sortScores(score);
 		
-		this.frame = frame;//new JFrame("Leaderboard");
+		this.frame = frame;
 	    this.contentPane = contentPane;
 		
 	    contentPane.setLayout(null);
@@ -89,12 +89,7 @@ public class Leaderboard implements ActionListener {
 	    };
 	    timer.schedule(task, 1, 1);
 	    
-	    contentPane.setPreferredSize(new Dimension(width, height));
-//	    frame.setContentPane(contentPane);
-//	    frame.pack();
-//	    frame.setVisible(true);
-	    
-	    
+	    contentPane.setPreferredSize(new Dimension(width, height));     
 	}
 	
 	public void hide(JFrame frame, JPanel panel) {

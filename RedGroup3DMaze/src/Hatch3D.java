@@ -155,7 +155,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 425 * xScale; xTR = 575 * xScale; xBR = 550 * xScale; xBL = 450 * xScale;
 					yTL = 50 * yScale; yTR = 50 * yScale; yBR = 150 * yScale; yBL = 150 * yScale;
 				}
-				if(GamePanel.timeCounter < 20) {
+				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
 					xTL += 0.75 * xScale * 5;
 					yTL -= 1.25 * yScale * 5;
 					xTR += 0.25 * xScale * 5;
@@ -164,7 +164,7 @@ public class Hatch3D extends Shapes3D{
 					yBR -= 0.75 * yScale * 5;
 					xBL -= 0.5 * xScale * 5;
 					yBL -= 1.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked){
 					xTL += 0.75 * xScale * 5;
 					yTL += 1.25 * yScale * 5;
 					xTR -= 0.5 * xScale * 5;
@@ -179,7 +179,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 575 * xScale; xTR = 550 * xScale; xBR = 450 * xScale; xBL = 425 * xScale;
 					yTL = 50 * yScale; yTR = 150 * yScale; yBR = 150 * yScale; yBL = 50 * yScale;
 				}
-				if(GamePanel.timeCounter < 20) {
+				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
 					xBL += 0.75 * xScale * 5;
 					yBL -= 1.25 * yScale * 5;
 					xTL += 0.25 * xScale * 5;
@@ -188,7 +188,7 @@ public class Hatch3D extends Shapes3D{
 					yTR -= 0.75 * yScale * 5;
 					xBR -= 0.5 * xScale * 5;
 					yBR -= 1.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked){
 					xBL += 0.75 * xScale * 5;
 					yBL += 1.25 * yScale * 5;
 					xTL -= 0.5 * xScale * 5;
@@ -203,7 +203,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 550 * xScale; xTR = 450 * xScale; xBR = 425 * xScale; xBL = 575 * xScale;
 					yTL = 150 * yScale; yTR = 150 * yScale; yBR = 50 * yScale; yBL = 50 * yScale;
 				}
-				if(GamePanel.timeCounter < 20) {
+				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
 					xBR += 0.75 * xScale * 5;
 					yBR -= 1.25 * yScale * 5;
 					xBL += 0.25 * xScale * 5;
@@ -212,7 +212,7 @@ public class Hatch3D extends Shapes3D{
 					yTL -= 0.75 * yScale * 5;
 					xTR -= 0.5 * xScale * 5;
 					yTR -= 1.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked){
 					xBR += 0.75 * xScale * 5;
 					yBR += 1.25 * yScale * 5;
 					xBL -= 0.5 * xScale * 5;
@@ -227,7 +227,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 450 * xScale; xTR = 425 * xScale; xBR = 575 * xScale; xBL = 550 * xScale;
 					yTL = 150 * yScale; yTR = 50 * yScale; yBR = 50 * yScale; yBL = 150 * yScale;
 				}
-				if(GamePanel.timeCounter < 20) {
+				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
 					xTR += 0.75 * xScale * 5;
 					yTR -= 1.25 * yScale * 5;
 					xBR += 0.25 * xScale * 5;
@@ -236,7 +236,7 @@ public class Hatch3D extends Shapes3D{
 					yBL -= 0.75 * yScale * 5;
 					xTL -= 0.5 * xScale * 5;
 					yTL -= 1.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked){
 					xTR += 0.75 * xScale * 5;
 					yTR += 1.25 * yScale * 5;
 					xBR -= 0.5 * xScale * 5;
@@ -253,7 +253,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 425 * xScale; xTR = 575 * xScale; xBR = 550 * xScale; xBL = 450 * xScale;
 					yTL = 50 * yScale; yTR = 50 * yScale; yBR = 150 * yScale; yBL = 150 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL -= 0.25 * xScale * 5;
 					xBL -= 0.25 * xScale * 5;
 					xTR += 0.25 * xScale * 5;
@@ -271,7 +271,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 575 * xScale; xTR = 550 * xScale; xBR = 450 * xScale; xBL = 425 * xScale;
 					yTL = 50 * yScale; yTR = 150 * yScale; yBR = 150 * yScale; yBL = 50 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL += 0.25 * xScale * 5; 
 					xBL -= 0.25 * xScale * 5;
 					xTR += 0.25 * xScale * 5;
@@ -289,7 +289,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 550 * xScale; xTR = 450 * xScale; xBR = 425 * xScale; xBL = 575 * xScale;
 					yTL = 150 * yScale; yTR = 150 * yScale; yBR = 50 * yScale; yBL = 50 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL += 0.25 * xScale * 5;
 					xBL += 0.25 * xScale * 5;
 					xTR -= 0.25 * xScale * 5;
@@ -307,7 +307,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 450 * xScale; xTR = 425 * xScale; xBR = 575 * xScale; xBL = 550 * xScale;
 					yTL = 150 * yScale; yTR = 50 * yScale; yBR = 50 * yScale; yBL = 150 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL -= 0.25 * xScale * 5;
 					xBL += 0.25 * xScale * 5;
 					xTR -= 0.25 * xScale * 5;
@@ -328,7 +328,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 425 * xScale; xTR = 575 * xScale; xBR = 550 * xScale; xBL = 450 * xScale;
 					yTL = 50 * yScale; yTR = 50 * yScale; yBR = 150 * yScale; yBL = 150 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
@@ -342,7 +342,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 575 * xScale; xTR = 550 * xScale; xBR = 450 * xScale; xBL = 425 * xScale;
 					yTL = 50 * yScale; yTR = 150 * yScale; yBR = 150 * yScale; yBL = 50 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
@@ -356,7 +356,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 550 * xScale; xTR = 450 * xScale; xBR = 425 * xScale; xBL = 575 * xScale;
 					yTL = 150 * yScale; yTR = 150 * yScale; yBR = 50 * yScale; yBL = 50 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
@@ -370,7 +370,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 450 * xScale; xTR = 425 * xScale; xBR = 575 * xScale; xBL = 550 * xScale;
 					yTL = 150 * yScale; yTR = 50 * yScale; yBR = 50 * yScale; yBL = 150 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
@@ -387,7 +387,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 425 * xScale; xTR = 575 * xScale; xBR = 550 * xScale; xBL = 450 * xScale;
 					yTL = 50 * yScale; yTR = 50 * yScale; yBR = 150 * yScale; yBL = 150 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;
@@ -401,7 +401,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 575 * xScale; xTR = 550 * xScale; xBR = 450 * xScale; xBL = 425 * xScale;
 					yTL = 50 * yScale; yTR = 150 * yScale; yBR = 150 * yScale; yBL = 50 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;
@@ -415,7 +415,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 550 * xScale; xTR = 450 * xScale; xBR = 425 * xScale; xBL = 575 * xScale;
 					yTL = 150 * yScale; yTR = 150 * yScale; yBR = 50 * yScale; yBL = 50 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;
@@ -429,7 +429,7 @@ public class Hatch3D extends Shapes3D{
 					xTL = 450 * xScale; xTR = 425 * xScale; xBR = 575 * xScale; xBL = 550 * xScale;
 					yTL = 150 * yScale; yTR = 50 * yScale; yBR = 50 * yScale; yBL = 150 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;

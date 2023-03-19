@@ -68,26 +68,26 @@ public class Door3D extends Shapes3D {
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
 				if(Run3DMaze.clicked) {
-					xTL += 1.25 * xScale * 5;//0.75;
-					xBL += 1.25 * xScale * 5;//0.75;
+					xTL += 1.25 * xScale * 5;
+					xBL += 1.25 * xScale * 5;
 					xTR += 1.75 * xScale * 5;
 					xBR += 1.75 * xScale * 5;
 					
-					yBL -= 0.18 * yScale * 5;  //this used to not exist
+					yBL -= 0.18 * yScale * 5;
 				}
 				
 				if(GamePanel.timeCounter > 19 && Run3DMaze.clicked) {
-					xTL += 1.25 * xScale * 5;//2.25;
+					xTL += 1.25 * xScale * 5;
 					xTR += 0.25 * xScale * 5;
-					xBL += 1.25 * xScale * 5;//2.25;
+					xBL += 1.25 * xScale * 5;
 					xBR += 0.25 * xScale * 5;
 				}
 				if(GamePanel.timeCounter > 19 && GamePanel.timeCounter < 30 && Run3DMaze.clicked) {
-					yBL -= 0.9 * yScale * 5;//1.55
+					yBL -= 0.9 * yScale * 5;
 					yBR -= 0.4 * yScale * 5;
 				}
 				if(GamePanel.timeCounter > 29 && Run3DMaze.clicked) {
-					yBL -= 1.18 * yScale * 5;//1.25
+					yBL -= 1.18 * yScale * 5;
 					yBR -= 0.8 * yScale * 5;
 				}
 			} else if (GamePanel.timeCounter < 40 && state == 1){
@@ -96,26 +96,26 @@ public class Door3D extends Shapes3D {
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
 				if(Run3DMaze.clicked) {
-					xTR += 1.25 * xScale * 5;//0.75;
-					xBR += 1.25 * xScale * 5;//0.75;
+					xTR += 1.25 * xScale * 5;
+					xBR += 1.25 * xScale * 5;
 					xTL += 1.75 * xScale * 5;
 					xBL += 1.75 * xScale * 5;
 					
-					yBR += 0.2 * yScale * 5;	//this used to not exist
+					yBR += 0.2 * yScale * 5;
 				}
 				
 				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
-					xTR += 1.25 * xScale * 5;//2.25;
+					xTR += 1.25 * xScale * 5;
 					xTL += 0.25 * xScale * 5;
-					xBR += 1.25 * xScale * 5;//2.25;
+					xBR += 1.25 * xScale * 5;
 					xBL += 0.25 * xScale * 5;
 				}
 				if(GamePanel.timeCounter < 20 && GamePanel.timeCounter > 9 && Run3DMaze.clicked) {
-					yBR += 1.05 * yScale * 5;//+= 1.55;
+					yBR += 1.05 * yScale * 5;
 					yBL += 0.5 * yScale * 5;
 				}
 				if(GamePanel.timeCounter < 10 && Run3DMaze.clicked) {
-					yBR += 0.95 * yScale * 5;//1.25;
+					yBR += 0.95 * yScale * 5;
 					yBL += 0.7 * yScale * 5;
 				}
 			} else if (GamePanel.timeCounter < 40 && state == 2){
@@ -158,37 +158,41 @@ public class Door3D extends Shapes3D {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-				xTR -= 2.3333 * xScale * 5;
-				xBR -= 2.3333 * xScale * 5;
-				xTL -= 2.3333 * xScale * 5;
-				xBL -= 2.3333 * xScale * 5;
-				yTL += 0.8 * yScale * 5;
-				yTR += 0.8 * yScale * 5;
-				yBR += 1.818181 * yScale * 5;
-				yBL += 1.866666667 * yScale * 5;
+				if(Run3DMaze.clicked) {
+					xTR -= 2.3333 * xScale * 5;
+					xBR -= 2.3333 * xScale * 5;
+					xTL -= 2.3333 * xScale * 5;
+					xBL -= 2.3333 * xScale * 5;
+					yTL += 0.8 * yScale * 5;
+					yTR += 0.8 * yScale * 5;
+					yBR += 1.818181 * yScale * 5;
+					yBL += 1.866666667 * yScale * 5;
+				}
 			} else if (GamePanel.timeCounter < 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-				xTL -= 1.25 * xScale * 5;//0.75;
-				xBL -= 1.25 * xScale * 5;//0.75;
-				xTR -= 1.75 * xScale * 5;
-				xBR -= 1.75 * xScale * 5;
-				
-				yBL += 0.18 * yScale * 5;  //this used to not exist
-				if(GamePanel.timeCounter < 20) {
-					xTL -= 1.25 * xScale * 5;//2.25;
+				if(Run3DMaze.clicked) {
+					xTL -= 1.25 * xScale * 5;
+					xBL -= 1.25 * xScale * 5;
+					xTR -= 1.75 * xScale * 5;
+					xBR -= 1.75 * xScale * 5;
+					
+					yBL += 0.18 * yScale * 5; 
+				}
+				if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
+					xTL -= 1.25 * xScale * 5;
 					xTR -= 0.25 * xScale * 5;
-					xBL -= 1.25 * xScale * 5;//2.25;
+					xBL -= 1.25 * xScale * 5;
 					xBR -= 0.25 * xScale * 5;
 				}
-				if(GamePanel.timeCounter < 20 && GamePanel.timeCounter > 9) {
-					yBL += 0.9 * yScale * 5;//1.55;
+				if(GamePanel.timeCounter < 20 && GamePanel.timeCounter > 9 && Run3DMaze.clicked) {
+					yBL += 0.9 * yScale * 5;
 					yBR += 0.4 * yScale * 5;
 				}
-				if(GamePanel.timeCounter < 10) {
-					yBL += 1.18 * yScale * 5;//1.25;
+				if(GamePanel.timeCounter < 10 && Run3DMaze.clicked) {
+					yBL += 1.18 * yScale * 5;
 					yBR += 0.8 * yScale * 5;
 				}
 			} else if (GamePanel.timeCounter < 40 && state == 2){
@@ -196,24 +200,26 @@ public class Door3D extends Shapes3D {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-				xTR -= 1.25 * xScale * 5;//0.75;
-				xBR -= 1.25 * xScale * 5;//0.75;
-				xTL -= 1.75 * xScale * 5;
-				xBL -= 1.75 * xScale * 5;
-				
-				yBR -= 0.18 * yScale * 5;  //this used to not exist
-				if(GamePanel.timeCounter > 19) {
-					xTR -= 1.25 * xScale * 5;//2.25;
+				if(Run3DMaze.clicked) {
+					xTR -= 1.25 * xScale * 5;
+					xBR -= 1.25 * xScale * 5;
+					xTL -= 1.75 * xScale * 5;
+					xBL -= 1.75 * xScale * 5;
+					
+					yBR -= 0.18 * yScale * 5;
+				}
+				if(GamePanel.timeCounter > 19 && Run3DMaze.clicked) {
+					xTR -= 1.25 * xScale * 5;
 					xTL -= 0.25 * xScale * 5;
-					xBR -= 1.25 * xScale * 5;//2.25;
+					xBR -= 1.25 * xScale * 5;
 					xBL -= 0.25 * xScale * 5;
 				}
-				if(GamePanel.timeCounter > 19 && GamePanel.timeCounter < 30) {
-					yBR -= 0.9 * yScale * 5;//1.55;
+				if(GamePanel.timeCounter > 19 && GamePanel.timeCounter < 30 && Run3DMaze.clicked) {
+					yBR -= 0.9 * yScale * 5;
 					yBL -= 0.4 * yScale * 5;
 				}
-				if(GamePanel.timeCounter > 29) {
-					yBR -= 1.18 * yScale * 5;//1.25;
+				if(GamePanel.timeCounter > 29 && Run3DMaze.clicked) {
+					yBR -= 1.18 * yScale * 5;
 					yBL -= 0.8 * yScale * 5;
 				}
 			} else if (GamePanel.timeCounter < 40 && state == 3) {
@@ -221,14 +227,14 @@ public class Door3D extends Shapes3D {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 400 * yScale; yTR = 400 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter > 25) {
+				if(GamePanel.timeCounter > 25 && Run3DMaze.clicked) {
 					xTL -= 2.3333 * xScale * 5;
 					xBL -= 2.3333 * xScale * 5;
 					yTL -= 0.8 * yScale * 5;
 					yTR -= 0.8 * yScale * 5;
 					yBL -= 1.866666667 * yScale * 5;
 				}
-				if(GamePanel.timeCounter > 33) {
+				if(GamePanel.timeCounter > 33 && Run3DMaze.clicked) {
 					xTR -= 2.272727 * xScale * 5;
 					xBR -= 2.272727 * xScale * 5;
 					yBR -= 1.818181 * yScale * 5;
@@ -240,14 +246,14 @@ public class Door3D extends Shapes3D {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL -= 1.875 * xScale * 5;
 					xBL -= 1.875 * xScale * 5;
 					xTR -= 1.875 * xScale * 5;
 					xBR -= 1.875 * xScale * 5;
 					yBR += 1.5 * yScale * 5;
 					yBL += 1.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
@@ -256,7 +262,7 @@ public class Door3D extends Shapes3D {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL -= 0.25 * xScale * 5; 
 					yTL -= (2.0/30.0) * yScale * 5;
 					xBL -= 0.25 * xScale * 5;
@@ -265,7 +271,7 @@ public class Door3D extends Shapes3D {
 					yTR -= (2.0/30.0) * yScale * 5;
 					xBR += 0.25 * xScale * 5;
 					yBR += 1 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
@@ -274,14 +280,14 @@ public class Door3D extends Shapes3D {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL += 1.875 * xScale * 5;
 					xBL += 1.875 * xScale * 5;
 					xTR += 1.875 * xScale * 5;
 					xBR += 1.875 * xScale * 5;
 					yBR += 1.5 * yScale * 5;
 					yBL += 1.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
@@ -297,12 +303,12 @@ public class Door3D extends Shapes3D {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
 					yBL += 3.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
@@ -311,12 +317,12 @@ public class Door3D extends Shapes3D {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
 					yBL += 3.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
@@ -325,12 +331,12 @@ public class Door3D extends Shapes3D {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
 					yBL += 3.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
@@ -346,12 +352,12 @@ public class Door3D extends Shapes3D {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;
 					yBL -= 3.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked) {
 					xTL = 75 * xScale; xTR = 175 * xScale; xBR = 175 * xScale; xBL = 75 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 560 * yScale; yBL = 640 * yScale;
 				}
@@ -360,12 +366,12 @@ public class Door3D extends Shapes3D {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;
 					yBL -= 3.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked) {
 					xTL = 450 * xScale; xBL = 450 * xScale; xTR = 550 * xScale; xBR = 550 * xScale;
 					yTL = 340 * yScale; yBL = 500 * yScale; yTR = 340 * yScale; yBR = 500 * yScale;
 				}
@@ -374,12 +380,12 @@ public class Door3D extends Shapes3D {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;
 					yBL -= 3.5 * yScale * 5;
-				} else {
+				} else if(Run3DMaze.clicked) {
 					xTL = 825 * xScale; xTR = 925 * xScale; xBR = 925 * xScale; xBL = 825 * xScale;
 					yTL = 340 * yScale; yTR = 340 * yScale; yBR = 640 * yScale; yBL = 560 * yScale;
 				}

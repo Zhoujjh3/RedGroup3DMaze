@@ -1,3 +1,4 @@
+package Unused3D;
 import java.awt.Color;
 
 public class TrapHatch extends RoomDimensions {

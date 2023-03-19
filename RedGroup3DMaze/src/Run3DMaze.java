@@ -1,14 +1,8 @@
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.Timer;
-
-import Backup3D.Shapes;
-import Backup3D.ShapesClicker;
-import Backup3D.ShapesPanel;
 
 public class Run3DMaze {
 	
@@ -28,12 +22,10 @@ public class Run3DMaze {
 	public static JButton changeView, levelUp, levelDown;
 	public static int mapLevelIncrement = 0;
 	
-	//3d stuff
 	public static boolean clicked;
 	public static int width = 1000;
 	public static int height = 700;
 	
-	private boolean showWelcomeScreen = false;
 	private boolean showLeaderboard = false;
 	
 	public enum mazeState{
@@ -52,7 +44,6 @@ public class Run3DMaze {
 		state = mazeState.WELCOMESCREEN;
 		selectionScreen = new Selection(screen, gamePanel);
 		leaderboard = new Leaderboard();
-		System.out.println("for max");
 	}
 	
 	//Timer for 3D animations
@@ -79,15 +70,12 @@ public class Run3DMaze {
 				for(Shapes3D shape : currentRoom.doors) {
 					shape.update();
 				}
-				//gamePanel.repaint();		//should be run no matter what state
 				GamePanel.timeCounter++;
 				
 				//updates 3d states after animation is finished
 				if(GamePanel.timeCounter >= 40 && clicked) {
 					if(nextRoom) {
-						//handles moving the player in the backend
 						if(down) {
-							System.out.println("moving down");
 							Run3DMaze.player.movePlayer('D');
 						} else if(up) {
 							Run3DMaze.player.movePlayer('U');
@@ -107,7 +95,6 @@ public class Run3DMaze {
 						currentRoom.resetDoors();	
 						currentRoom.populateDoors();
 						currentRoom.setVisited(true);
-						//currentRoom.printDoors();
 						currentRoom.populateTrapDoorsAndHatch();
 						currentRoom.resetWalls();
 						nextRoom = false;
@@ -144,28 +131,16 @@ public class Run3DMaze {
 					}
 				} 
 			} else if (state == mazeState.WELCOMESCREEN) {
-				//System.out.println("WELCOME");
-				
 				selectionScreen.display();
-				
-
-				//this doesn't seem to work because checksignal only returns true
-				//after you click a button, which at that point the state switches to 
-				//chamber view
 				if (selectionScreen.checkSignal()) {
 					difficulty = selectionScreen.difficulty;
 					selectionScreen.resetSignal();
 					runMaze();
-					System.out.println(difficulty);
-					System.out.println(state);
 				}
-			} else if (state == mazeState.MAPVIEW) {
-				
 			} else if (state == mazeState.LEADERBOARD) {
 				if (showLeaderboard) {
 					leaderboard.display(screen, gamePanel);
 					showLeaderboard = false;
-					System.out.println("leaderBord");
 				}
 				
 				if (leaderboard.checkSignal()) {
@@ -173,22 +148,19 @@ public class Run3DMaze {
 					play3DMaze();
 				}
 			}
-			//switch rooms when timerCounter = 200, maybe
 			gamePanel.repaint();
-//			System.out.println(GamePanel.timeCounter);
 		}
 	};
 	Timer ShapesTimer = new Timer(5, rotate);
 	
-	public void play3DMaze() { // essentially a runWelcomeScreen
-		//selectionScreen.display(screen, gamePanel);
+	public void play3DMaze() { 
+		// essentially a runWelcomeScreen
 		screen.setContentPane(gamePanel);
 		screen.pack();
 		screen.setVisible(true);
 		screen.setResizable(true);
 		screen.setLocationRelativeTo(null);
 		state = mazeState.WELCOMESCREEN;
-		showWelcomeScreen = true;
 		ShapesTimer.start();
 	}
 	
@@ -218,7 +190,6 @@ public class Run3DMaze {
 		changeView.setBounds(740, 5, 100, 30);
 		levelUp.setBounds(300, 665, 100, 30);
 		levelDown.setBounds(450, 665, 100, 30);
-		
 		
 		changeView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -251,8 +222,6 @@ public class Run3DMaze {
 				}
 			}
 		});
-		
-		
 		runChamberView();
 	}
 	

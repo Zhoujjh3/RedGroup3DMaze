@@ -136,7 +136,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR = room.walls[nextWallIndex].getyTL();
 					yBR = room.walls[nextWallIndex].getyBL();
 					xTR = room.walls[nextWallIndex].getxTL();
@@ -150,10 +150,10 @@ public class Wall3D extends Shapes3D{
 					xTL = 250 * xScale; xBL = 250 * xScale; xTR = 750 * xScale; xBR = 750 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 200 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTR -= 2.5 * xScale * 5;
 					xBR -= 2.5 * xScale * 5;
-					if(GamePanel.timeCounter < 20) {
+					if(GamePanel.timeCounter < 20 && Run3DMaze.clicked) {
 						xTL -= 2.5 * xScale * 5;
 						xBL -= 2.5 * xScale * 5;
 						yTL -= 2 * yScale * 5;
@@ -168,10 +168,10 @@ public class Wall3D extends Shapes3D{
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL -= 2.5 * xScale * 5;
 					xBL -= 2.5 * xScale * 5;
-					if(GamePanel.timeCounter > 20) {
+					if(GamePanel.timeCounter > 20 && Run3DMaze.clicked) {
 						xTR -= 2.5 * xScale * 5;
 						xBR -= 2.5 * xScale * 5;
 						yTR += 2 * yScale * 5;
@@ -186,7 +186,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
 					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTL = room.walls[previousWallIndex].getyTR();
 					yBL = room.walls[previousWallIndex].getyBR();
 					xTL = room.walls[previousWallIndex].getxTR();
@@ -202,7 +202,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 1 * yScale * 5;
 					yBR += 1 * yScale * 5;
 					xTR -= 1.25 * xScale * 5;
@@ -216,7 +216,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 250 * xScale; xBL = 250 * xScale; xTR = 750 * xScale; xBR = 750 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 200 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					xTL -= 1.25 * xScale * 5; 
 					yTL -= 1 * yScale * 5;
 					xBL -= 1.25 * xScale * 5;
@@ -234,7 +234,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTL -= 1 * yScale * 5;
 					yBL += 1 * yScale * 5;
 					xTL += 1.25 * xScale * 5;
@@ -255,7 +255,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
@@ -269,7 +269,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 250 * xScale; xBL = 250 * xScale; xTR = 750 * xScale; xBR = 750 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 200 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
@@ -283,7 +283,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR += 3.5 * yScale * 5;
 					yBR += 3.5 * yScale * 5;
 					yTL += 3.5 * yScale * 5;
@@ -304,7 +304,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 200) {
+				if(GamePanel.timeCounter < 200 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;
@@ -313,12 +313,12 @@ public class Wall3D extends Shapes3D{
 					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * yScale;
 					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
-			} else if (GamePanel.timeCounter <= 40 && state == 1){
+			} else if(GamePanel.timeCounter <= 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 250 * xScale; xBL = 250 * xScale; xTR = 750 * xScale; xBR = 750 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 200 * yScale; yBR = 500 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;
@@ -332,7 +332,7 @@ public class Wall3D extends Shapes3D{
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
 					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
-				if(GamePanel.timeCounter < 40) {
+				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR -= 3.5 * yScale * 5;
 					yBR -= 3.5 * yScale * 5;
 					yTL -= 3.5 * yScale * 5;

@@ -16,12 +16,7 @@ import Backup3D.Shapes;
 import Backup3D.Wall;
 
 public class GamePanel extends JPanel{
-	//JFrame frame;
-    //JPanel panel;
     MazeMap map;
-    //ManualTestMaze manMaze = new ManualTestMaze();
-    //public static Maze maze = new Maze(1);
-    //PlayerData player = new PlayerData(4);
     Header header;
     int mapLevelIncrement = 0;
     Image up, down, left, right, forward;
@@ -37,7 +32,6 @@ public class GamePanel extends JPanel{
     
     public GamePanel(int width, int height) {
 		setPreferredSize(new Dimension(width, height));
-		//player = new PlayerData(4);
 	}
     
 	public void paintComponent(Graphics g) {
@@ -58,9 +52,6 @@ public class GamePanel extends JPanel{
 	}
 	
 	public void setChamberView(Graphics g) {
-		// resetting map
-		//Run3DMaze.changeView = new JButton("MAP");
-	//	Run3DMaze.changeView.setBounds((int)(740*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
 		Run3DMaze.mapLevelIncrement = 0;
 		Run3DMaze.changeView.setVisible(true);
         Run3DMaze.levelDown.setVisible(false);
@@ -69,7 +60,6 @@ public class GamePanel extends JPanel{
 		Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 				Run3DMaze.player.getCoordinate('X'), 
 				Run3DMaze.player.getCoordinate('Y'));
-//		currentRoom.populateDoors();
 		g.setColor(currentRoom.getColor());
 		g.fillRect(0, 0, getWidth(), getHeight());
 		

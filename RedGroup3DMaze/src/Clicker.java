@@ -25,20 +25,16 @@ public class Clicker implements MouseListener, KeyListener {
 
 			switch (state) {
 			case WELCOMESCREEN:
-				// do nothing ig
+				// do nothing 
 				break;
 			case CHAMBERVIEW:
 				Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'),
 						Run3DMaze.player.getCoordinate('X'), Run3DMaze.player.getCoordinate('Y'));
-				// System.out.println("pressed");
-				// System.out.println("dir: "+ dir);
-				// System.out.println("x" + e.getX());
-				// System.out.println("y" + e.getY());
 				h = Run3DMaze.height;
 				w = Run3DMaze.width;
 				xScale = w / 1000.0;
 				yScale = h / 700.0;
-				// 120, 450, 150, 90
+				//Left
 				if (e.getX() >= (int) (120 * xScale) && e.getX() <= (int) (270 * xScale)
 						&& e.getY() >= (int) (450 * yScale) && e.getY() <= (int) (540 * yScale)) {
 					GamePanel.timeCounter = 0;
@@ -53,12 +49,9 @@ public class Clicker implements MouseListener, KeyListener {
 						i.setDir(0);
 					}
 					Run3DMaze.player.setDirection(getLeftDirection(Run3DMaze.player.getDirection()));
-					currentRoom.printDoors();
-					// System.out.println(Run3DMaze.player.getDirection());
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
-					// 730, 450, 150, 90,
-					// L
+				//Right
 				} else if (e.getX() >= (int) (730 * xScale) && e.getX() <= (int) (880 * xScale)
 						&& e.getY() >= (int) (450 * yScale) && e.getY() <= (int) (540 * yScale)) {
 					GamePanel.timeCounter = 0;
@@ -73,11 +66,9 @@ public class Clicker implements MouseListener, KeyListener {
 						i.setDir(1);
 					}
 					Run3DMaze.player.setDirection(getRightDirection(Run3DMaze.player.getDirection()));
-					// System.out.println(Run3DMaze.player.getDirection());
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
-					// 450, 515, 100, 60
-					// R
+				//Forward
 				} else if (e.getX() >= (int) (450 * xScale) && e.getX() <= (int) (550 * xScale)
 						&& e.getY() >= (int) (430 * yScale) && e.getY() <= (int) (490 * yScale)
 						&& currentRoom.getDirection(Run3DMaze.player.getDirection())) {
@@ -92,12 +83,9 @@ public class Clicker implements MouseListener, KeyListener {
 						i.setDir(2);
 					}
 					Run3DMaze.nextRoom = true;
-					// System.out.println(Run3DMaze.player.getDirection());
-					// Run3DMaze.player.movePlayer(Run3DMaze.player.getDirection());
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
-					// F
-
+				//Up
 				} else if (e.getX() >= (int) (465 * xScale) && e.getX() <= (int) (535 * xScale)
 						&& e.getY() >= (int) (130 * yScale) && e.getY() <= (int) (230 * yScale)
 						&& currentRoom.getDirection('U')) {
@@ -113,11 +101,9 @@ public class Clicker implements MouseListener, KeyListener {
 					}
 					Run3DMaze.nextRoom = true;
 					Run3DMaze.up = true;
-					// System.out.println(Run3DMaze.player.getDirection());
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
-					// U
-
+				//Down
 				} else if (e.getX() >= (465 * xScale) && e.getX() < (int) (535 * xScale)
 						&& e.getY() > (int) (530 * yScale) && e.getY() < (int) (630 * yScale)
 						&& currentRoom.getDirection('D')) {
@@ -133,21 +119,15 @@ public class Clicker implements MouseListener, KeyListener {
 					}
 					Run3DMaze.nextRoom = true;
 					Run3DMaze.down = true;
-					// System.out.println(Run3DMaze.player.getDirection());
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
-					// D
 				}
-
-				// check coordinates of click
-				// call move direction method of maze class
-				// trigger animation by setting timer counter back to 0
 				break;
 			case MAPVIEW:
-
+				//do nothing
 				break;
 			case LEADERBOARD:
-
+				//do nothing
 				break;
 			}
 		}
@@ -204,32 +184,23 @@ public class Clicker implements MouseListener, KeyListener {
 		}
 	}
 
-	@Override
 	public void keyTyped(KeyEvent e) {
 	}
 
-	@Override
 	public void keyPressed(KeyEvent e) {
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
 		state = Run3DMaze.state;
 		if (GamePanel.timeCounter > 40) {
 			Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'),
 					Run3DMaze.player.getCoordinate('X'), Run3DMaze.player.getCoordinate('Y'));
-			// System.out.println("pressed");
-			// System.out.println("dir: "+ dir);
-			// System.out.println("x" + e.getX());
-			// System.out.println("y" + e.getY());
 			h = Run3DMaze.height;
 			w = Run3DMaze.width;
 			xScale = w / 1000.0;
 			yScale = h / 700.0;
 
-			System.out.println(e.getKeyCode());
 			int code = e.getKeyCode();
-			// TODO Auto-generated method stub
 			switch (code) {
 			case 37:
 			case 65:
@@ -246,8 +217,6 @@ public class Clicker implements MouseListener, KeyListener {
 						i.setDir(0);
 					}
 					Run3DMaze.player.setDirection(getLeftDirection(Run3DMaze.player.getDirection()));
-					currentRoom.printDoors();
-					// System.out.println(Run3DMaze.player.getDirection());
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
 				}
@@ -268,10 +237,8 @@ public class Clicker implements MouseListener, KeyListener {
 							i.setDir(1);
 						}
 						Run3DMaze.player.setDirection(getRightDirection(Run3DMaze.player.getDirection()));
-						// System.out.println(Run3DMaze.player.getDirection());
 						GamePanel.timeCounter = 0;
 						Run3DMaze.clicked = true;
-						// 450, 515, 100, 60
 						// R
 					}
 				}
@@ -290,8 +257,6 @@ public class Clicker implements MouseListener, KeyListener {
 							i.setDir(2);
 						}
 						Run3DMaze.nextRoom = true;
-						// System.out.println(Run3DMaze.player.getDirection());
-						// Run3DMaze.player.movePlayer(Run3DMaze.player.getDirection());
 						GamePanel.timeCounter = 0;
 						Run3DMaze.clicked = true;
 						// F
@@ -313,7 +278,6 @@ public class Clicker implements MouseListener, KeyListener {
 					}
 					Run3DMaze.nextRoom = true;
 					Run3DMaze.up = true;
-					// System.out.println(Run3DMaze.player.getDirection());
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
 					// U
@@ -335,7 +299,6 @@ public class Clicker implements MouseListener, KeyListener {
 						}
 						Run3DMaze.nextRoom = true;
 						Run3DMaze.down = true;
-						// System.out.println(Run3DMaze.player.getDirection());
 						GamePanel.timeCounter = 0;
 						Run3DMaze.clicked = true;
 						// D

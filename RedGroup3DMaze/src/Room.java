@@ -8,7 +8,7 @@ public class Room {
 	private Color color;
 	private int[] rgbValues = new int[3];
 	private char artDirection;
-	private Color finalDoorColor = Color.green;//new Color(255, 0, 238);
+	private Color finalDoorColor = Color.green;
 	
 	 public Shapes3D[] walls = {
 	    		new Wall3D(0, this),
@@ -117,7 +117,6 @@ public class Room {
 	}
 	
 	public void populateDoors() {
-		System.out.println(getCoordinate('X') + ", " + getCoordinate('Y') + ", " + getCoordinate('Z'));
 		direction = Run3DMaze.player.getDirection();
 		if(direction == 'N') {
 			if(getDirection('W')) {
@@ -228,48 +227,6 @@ public class Room {
 				doors.add(new Art3D(3));
 			}
 		}
-		
-		if(getCoordinate('X') == 5 && getCoordinate('Y') == 5 && getCoordinate('Z') == 5) {
-			
-		}
-		
-//		if(direction == 'N') {
-//			if(getDirection('W')) 
-//				doors.add(new Door3D(0));
-//			if(getDirection('N'))
-//				doors.add(new Door3D(1));
-//			if(getDirection('E'))
-//				doors.add(new Door3D(2));
-//			if(getDirection('S'))
-//				doors.add(new Door3D(3));
-//		} else if(direction == 'E') {
-//			if(getDirection('N'))
-//				doors.add(new Door3D(0));
-//			if(getDirection('E'))
-//				doors.add(new Door3D(1));
-//			if(getDirection('S'))
-//				doors.add(new Door3D(2));
-//			if(getDirection('W'))
-//				doors.add(new Door3D(3));
-//		} else if(direction == 'S') {
-//			if(getDirection('E'))
-//				doors.add(new Door3D(0));
-//			if(getDirection('S'))
-//				doors.add(new Door3D(1));
-//			if(getDirection('W'))
-//				doors.add(new Door3D(2));
-//			if(getDirection('N'))
-//				doors.add(new Door3D(3));
-//		} else if(direction == 'W') {
-//			if(getDirection('S'))
-//				doors.add(new Door3D(0));
-//			if(getDirection('W'))
-//				doors.add(new Door3D(1));
-//			if(getDirection('N'))
-//				doors.add(new Door3D(2));
-//			if(getDirection('E'))
-//				doors.add(new Door3D(3));
-//		}
 	}
 	
 	
@@ -291,10 +248,4 @@ public class Room {
 		return dirs[i];
 	}
 	
-	public void printDoors() {
-		System.out.println("PRINTING DOORS");
-		for(Shapes3D i : doors) {
-			System.out.println(i);
-		}
-	}
 }

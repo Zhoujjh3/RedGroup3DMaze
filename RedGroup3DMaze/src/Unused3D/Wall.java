@@ -1,3 +1,4 @@
+package Unused3D;
 import java.awt.*;
 
 public class Wall extends RoomDimensions {

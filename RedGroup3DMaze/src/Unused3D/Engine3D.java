@@ -1,3 +1,4 @@
+package Unused3D;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
@@ -13,7 +14,7 @@ public class Engine3D {
 	private ScheduledThreadPoolExecutor timer;
 	private ScheduledFuture<?> ghostTimer;
 	private Camera c;
-	private PlayerData player;
+	//private PlayerData player;
 	private double playerSpeed;
 	boolean running;
 	
@@ -25,7 +26,7 @@ public class Engine3D {
 		displayFrame = new JFrame("Dodger");
 		displayFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		c = new Camera(angle,distance);
-		player = new PlayerData(4);
+		//player = new PlayerData(4);
 		shapes = new ArrayList<Shape>();
 		Vertex v1 = new Vertex(10, 10, 10);
 		Vertex v2 = new Vertex(-10, -10, 10);

@@ -334,13 +334,13 @@ public class Maze {
 			counter++;
 			
 		}
-		for(int i = 0; i<level.length;i++) {
-			for(int j = 0; j<level.length;j++) {
-				System.out.print(level[i][j] + " ");
-			}
-			System.out.println();
-		}
-		System.out.println("-----------------------");
+//		for(int i = 0; i<level.length;i++) {
+//			for(int j = 0; j<level.length;j++) {
+//				System.out.print(level[i][j] + " ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println("-----------------------");
 		return endCC;
 	}
 	
