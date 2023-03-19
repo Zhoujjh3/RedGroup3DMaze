@@ -22,20 +22,20 @@ public class Wall3D extends Shapes3D{
 		nextWallIndex = nextWallIndex(index);
 		if(theState == 0) {
 			xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
-			yTL = 0; yTR = 200; yBR = 500; yBL = 700;
+			yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 		} else if(theState == 1) {
 			xTL = 250 * xScale; xBL = 250 * xScale; xTR = 750 * xScale; xBR = 750 * xScale;
-			yTL = 200; yBL = 500; yTR = 200; yBR = 500;
+			yTL = 200 * yScale; yBL = 500 * yScale; yTR = 200 * yScale; yBR = 500 * yScale;
 		} else if(theState == 2) {
 			xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-			yTL = 200; yBL = 500; yTR = 0; yBR = 700;
+			yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 		} else if(theState == 3) {
 			if(dir == 0) {
-				xTL = 0; xTR = 0; xBR = 0; xBL = 0;
-				yTL = 0; yTR = 0; yBR = 700; yBL = 700;
+				xTL = 0 * xScale; xTR = 0 * xScale; xBR = 0 * xScale; xBL = 0 * xScale;
+				yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			} else if (dir == 1){
 				xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-				yTL = 0; yTR = 0; yBR = 700; yBL = 700;
+				yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 			}
 		}
 		this.room = room;
@@ -66,7 +66,7 @@ public class Wall3D extends Shapes3D{
 			//System.out.println(Run3DMaze.clicked);
 			if(GamePanel.timeCounter <= 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
-					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
@@ -98,12 +98,12 @@ public class Wall3D extends Shapes3D{
 					}
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 			} else if (GamePanel.timeCounter <= 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTL = room.walls[previousWallIndex].getyTR();
@@ -112,13 +112,13 @@ public class Wall3D extends Shapes3D{
 					xBL = room.walls[previousWallIndex].getxBR();
 				} else {
 					xTL = 0 * xScale; xTR = 0 * xScale; xBR = 0 * xScale; xBL = 0 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 				
 			} else if (GamePanel.timeCounter <= 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
-					xTL = 0; xTR = 0; xBR = 0; xBL = 0;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 0 * xScale; xBR = 0 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40 && Run3DMaze.clicked) {
 					yTR = room.walls[nextWallIndex].getyTL();
@@ -127,14 +127,14 @@ public class Wall3D extends Shapes3D{
 					xBR = room.walls[nextWallIndex].getxBL();		
 				} else {
 					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}		
 			}
 		} else if (dir == 1) {
 			if(GamePanel.timeCounter <= 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
-					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40) {
 					yTR = room.walls[nextWallIndex].getyTL();
@@ -143,7 +143,7 @@ public class Wall3D extends Shapes3D{
 					xBR = room.walls[nextWallIndex].getxBL();		
 				} else {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}	
 			} else if (GamePanel.timeCounter <= 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
@@ -160,13 +160,13 @@ public class Wall3D extends Shapes3D{
 						yBL += 2 * yScale * 5;
 					}	
 				} else {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 			} else if (GamePanel.timeCounter <= 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40) {
 					xTL -= 2.5 * xScale * 5;
@@ -184,7 +184,7 @@ public class Wall3D extends Shapes3D{
 			} else if (GamePanel.timeCounter <= 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40) {
 					yTL = room.walls[previousWallIndex].getyTR();
@@ -193,14 +193,14 @@ public class Wall3D extends Shapes3D{
 					xBL = room.walls[previousWallIndex].getxBR();
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 			}
 		} else if (dir == 2) {
 			if(GamePanel.timeCounter <= 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40) {
 					yTR -= 1 * yScale * 5;
@@ -208,8 +208,8 @@ public class Wall3D extends Shapes3D{
 					xTR -= 1.25 * xScale * 5;
 					xBR -= 1.25 * xScale * 5;
 				} else {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 			} else if (GamePanel.timeCounter <= 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
@@ -232,7 +232,7 @@ public class Wall3D extends Shapes3D{
 			} else if (GamePanel.timeCounter <= 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40) {
 					yTL -= 1 * yScale * 5;
@@ -241,18 +241,18 @@ public class Wall3D extends Shapes3D{
 					xBL += 1.25 * xScale * 5;
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 			} else if (GamePanel.timeCounter <= 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 			}
 		} else if (dir == 3) {
 			if(GamePanel.timeCounter <= 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
+					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40) {
@@ -261,7 +261,7 @@ public class Wall3D extends Shapes3D{
 					yTL += 3.5 * yScale * 5;
 					yBL += 3.5 * yScale * 5;
 				} else {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
+					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 			} else if (GamePanel.timeCounter <= 40 && state == 1){
@@ -281,7 +281,7 @@ public class Wall3D extends Shapes3D{
 			} else if (GamePanel.timeCounter <= 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40) {
 					yTR += 3.5 * yScale * 5;
@@ -290,18 +290,18 @@ public class Wall3D extends Shapes3D{
 					yBL += 3.5 * yScale * 5;
 				} else {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 			} else if (GamePanel.timeCounter <= 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 			}
 		} else if (dir == 4) {
 			if(GamePanel.timeCounter <= 40 && state == 0) {
 				if(GamePanel.timeCounter == 0) {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
+					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * xScale;
 					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 200) {
@@ -310,8 +310,8 @@ public class Wall3D extends Shapes3D{
 					yTL -= 3.5 * yScale * 5;
 					yBL -= 3.5 * yScale * 5;
 				} else {
-					xTL = 0; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0;
-					yTL = 0; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
+					xTL = 0 * xScale; xTR = 250 * xScale; xBR = 250 * xScale; xBL = 0 * yScale;
+					yTL = 0 * yScale; yTR = 200 * yScale; yBR = 500 * yScale; yBL = 700 * yScale;
 				}
 			} else if (GamePanel.timeCounter <= 40 && state == 1){
 				if(GamePanel.timeCounter == 0) {
@@ -330,7 +330,7 @@ public class Wall3D extends Shapes3D{
 			} else if (GamePanel.timeCounter <= 40 && state == 2){
 				if(GamePanel.timeCounter == 0) {
 					xTL = 750 * xScale; xBL = 750 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale;
-					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0; yBR = 700 * yScale;
+					yTL = 200 * yScale; yBL = 500 * yScale; yTR = 0 * yScale; yBR = 700 * yScale;
 				}
 				if(GamePanel.timeCounter < 40) {
 					yTR -= 3.5 * yScale * 5;
@@ -344,7 +344,7 @@ public class Wall3D extends Shapes3D{
 			} else if (GamePanel.timeCounter <= 40 && state == 3) {
 				if(GamePanel.timeCounter == 0) {
 					xTL = 1000 * xScale; xTR = 1000 * xScale; xBR = 1000 * xScale; xBL = 1000 * xScale;
-					yTL = 0; yTR = 0; yBR = 700 * yScale; yBL = 700 * yScale;
+					yTL = 0 * yScale; yTR = 0 * yScale; yBR = 700 * yScale; yBL = 700 * yScale;
 				}
 			}
 		}
