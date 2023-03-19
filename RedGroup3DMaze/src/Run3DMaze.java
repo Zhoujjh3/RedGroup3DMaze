@@ -201,6 +201,7 @@ public class Run3DMaze {
 				Run3DMaze.player.getCoordinate('X'), 
 				Run3DMaze.player.getCoordinate('Y'));
 		currentRoom.populateDoors();
+		currentRoom.populateTrapDoorsAndHatch();
 		
 		map = new MazeMap(maze, player);
 		header = new Header(maze, player);
