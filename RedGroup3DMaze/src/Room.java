@@ -19,7 +19,6 @@ public class Room {
 	 
 	 public ArrayList<Shapes3D> doors = new ArrayList<Shapes3D>();
 	 public ArrayList<Shapes3D> ceilingAndFloor = new ArrayList<Shapes3D>();
-	 char direction; 
 	
 	/*
 	 * Coordinates are stored: {Z, X, Y}
@@ -117,7 +116,7 @@ public class Room {
 	}
 	
 	public void populateDoors() {
-		direction = Run3DMaze.player.getDirection();
+		char direction = Run3DMaze.player.getDirection();
 		if(direction == 'N') {
 			if(getDirection('W')) {
 				doors.add(new Door3D(0));
