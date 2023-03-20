@@ -10,7 +10,7 @@ public class GamePanel extends JPanel{
     Header header;
     int mapLevelIncrement = 0;
     Image up, down, left, right, forward;
-    Image upMac, downMac, leftMac, rightMac, forwardMac;
+    //Image upMac, downMac, leftMac, rightMac, forwardMac;
     double xScale;
     double yScale;
     double buttonXScale;
@@ -63,44 +63,30 @@ public class GamePanel extends JPanel{
 			shape.paint(g);
 		}
 		
-		up = new ImageIcon("Images\\up arrow.png").getImage();
-		down = new ImageIcon("Images\\down arrow.png").getImage();
-		left = new ImageIcon("Images\\rotate left arrow.png").getImage();
-		right = new ImageIcon("Images\\rotate right arrow.png").getImage();
-		forward = new ImageIcon("Images\\forward arrow.png").getImage();
-		upMac = new ImageIcon("Images/up arrow.png").getImage();
-		downMac = new ImageIcon("Images/down arrow.png").getImage();
-		leftMac = new ImageIcon("Images/rotate left arrow.png").getImage();
-		rightMac = new ImageIcon("Images/rotate right arrow.png").getImage();
-		forwardMac = new ImageIcon("Images/forward arrow.png").getImage();
+		up = new ImageIcon(getClass().getClassLoader().getResource("up arrow.png")).getImage();
+		down = new ImageIcon(getClass().getClassLoader().getResource("down arrow.png")).getImage();
+		left = new ImageIcon(getClass().getClassLoader().getResource("rotate left arrow.png")).getImage();
+		right = new ImageIcon(getClass().getClassLoader().getResource("rotate right arrow.png")).getImage();
+		forward = new ImageIcon(getClass().getClassLoader().getResource("forward arrow.png")).getImage();
+		
 		if(GamePanel.timeCounter > 40) {
 			buttonYScale = getHeight()/700.0;
 			buttonXScale = getWidth()/1000.0;
 			g.drawImage(left, (int) (120*buttonXScale), (int) (450*buttonYScale), 
 			(int) (150*buttonXScale), (int) (90*buttonYScale), null);
-			g.drawImage(leftMac, (int) (120*buttonXScale), (int) (450*buttonYScale), 
-			(int) (150*buttonXScale), (int) (90*buttonYScale), null);
 			g.drawImage(right, (int) (730*buttonXScale), (int) (450*buttonYScale), 
-			(int) (150*buttonXScale), (int) (90*buttonYScale), null);
-			g.drawImage(rightMac, (int) (730*buttonXScale), (int) (450*buttonYScale), 
 			(int) (150*buttonXScale), (int) (90*buttonYScale), null);
 			char currentDirection = Run3DMaze.player.getDirection();
 			if(currentRoom.getDirection(currentDirection) == true) {
 				g.drawImage(forward, (int) (450*buttonXScale), (int) (430*buttonYScale), 
 				(int) (100*buttonXScale), (int) (60*buttonYScale), null);
-				g.drawImage(forwardMac, (int) (450*buttonXScale), (int) (430*buttonYScale), 
-				(int) (100*buttonXScale), (int) (60*buttonYScale), null);
 			} 
 			if(currentRoom.getDirection('D')) {
 				g.drawImage(down, (int) (465*buttonXScale), (int) (530*buttonYScale), 
 				(int) (70*buttonXScale), (int) (100*buttonYScale), null);
-				g.drawImage(downMac, (int) (465*buttonXScale), (int) (530*buttonYScale), 
-				(int) (70*buttonXScale), (int) (100*buttonYScale), null);
 			}
 			if(currentRoom.getDirection('U')) {
 				g.drawImage(up, (int) (465*buttonXScale), (int) (130*buttonYScale), 
-				(int) (70*buttonXScale), (int) (100*buttonYScale), null);
-				g.drawImage(upMac, (int) (465*buttonXScale),(int) (130*buttonYScale), 
 				(int) (70*buttonXScale), (int) (100*buttonYScale), null);
 			}
 		}		

@@ -23,7 +23,7 @@ public class Selection implements ActionListener{
 		easyButt = new JButton("Easy");
 		mediumButt = new JButton("Medium");
 		hardButt = new JButton("Hard");
-		logo = new JLabel(new ImageIcon("Images/MazeLogo.png"));
+		logo = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("MazeLogo.png")));
 		title = new JLabel("Welcome to 3D Maze");
 
 	}
