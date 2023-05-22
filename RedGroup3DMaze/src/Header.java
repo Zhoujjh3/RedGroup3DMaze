@@ -9,7 +9,7 @@ public class Header {
     }
 
     public void display(Graphics g, Dimension scaleFactor) {
-        g.setColor(Color.gray);
+        g.setColor(Color.black);
         g.fillRect(0,0,(int)(scaleFactor.width),(int)(40 * scaleFactor.height/750));
         g.setColor(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(15* scaleFactor.height/750)));

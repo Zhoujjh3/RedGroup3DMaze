@@ -16,7 +16,14 @@ public class HeaderTester {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000,750);
         panel = new Panel();
-        changeView = new JButton(header.getView());
+        //changeView = new JButton(header.getView());
+        changeView = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("Map button.png")).getImage().
+				getScaledInstance(80, 24, 
+						java.awt.Image.SCALE_SMOOTH)));
+        changeView.setOpaque(false);
+        changeView.setContentAreaFilled(false);
+        changeView.setBorderPainted(false);
         panel.setLayout(null);
         changeView.setBounds(740, 5, 100, 30);
        // changeView.setBounds((int)(740 * frame.getSize().width/1000), (int)(5* frame.getSize().height/750), (int)(100 * frame.getSize().width/1000), (int)(30 * frame.getSize().height/750));
