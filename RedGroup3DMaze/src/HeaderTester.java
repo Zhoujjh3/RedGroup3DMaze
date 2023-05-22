@@ -15,7 +15,7 @@ public class HeaderTester {
         frame = new JFrame("header tester");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000,750);
-        panel = new Panel();
+        panel = new Panel(); 
         //changeView = new JButton(header.getView());
         changeView = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("Map button.png")).getImage().
