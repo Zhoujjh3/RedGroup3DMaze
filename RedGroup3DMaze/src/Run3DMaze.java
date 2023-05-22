@@ -7,7 +7,7 @@ import javax.swing.Timer;
 public class Run3DMaze {
 	
 	private JFrame screen;
-	private GamePanel gamePanel;
+	private static GamePanel gamePanel;
 	private Selection selectionScreen;
 	public static MazeMap map;
 	private Leaderboard leaderboard;
@@ -238,6 +238,7 @@ public class Run3DMaze {
 		if (header.getView().equals("MAP")) {
 			header.changeView();
 		}
+		gamePanel.requestFocusInWindow();
 		state = mazeState.MAPVIEW;
 	}
 	
