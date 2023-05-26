@@ -71,6 +71,17 @@ public class Maze {
 		fillBaseMaze(baseMaze, walls);
 		minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
 		setActiveMaze(baseMaze);
+		
+		for (int level=0; level<baseMaze.length; level++) {
+			for (int x=0; x<baseMaze[0].length; x++) {
+				for (int y=0; y<baseMaze[0][0].length; y++) {
+					System.out.print(baseMaze[level][x][y] + " ");
+				}
+				System.out.println();
+			}
+			System.out.println("\n");
+		}
+		
 		return minMoves;
 	}
 
@@ -103,7 +114,7 @@ public class Maze {
 					numOfDs = 4;
 				}
 				for (int i=0; i<numOfDs; i++) {
-					walls.add(floors.remove((int)(Math.random()*floors.size())));
+					walls.add(0, floors.remove((int)(Math.random()*floors.size())));
 				}
 				floors.clear();
 			}
@@ -498,12 +509,47 @@ public class Maze {
 	
 	
 	private void fillBaseMaze(char[][][] baseMaze, ArrayList<int[]> walls) {
+		int[] wallCoords = new int[3];
+		int[] startCoords = new int[3];
+		int[] endCoords = new int[3];
+		char charAtCoord = 'A';
+		
+		if (walls.size()>0) {
+			wallCoords = walls.get(0);
+			charAtCoord = baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]];
+		}
+		while(walls.size() > 0 && (charAtCoord == 'Z' || charAtCoord == 'U' || charAtCoord == 'D')) {
+			walls.remove(0);
+			startCoords[0] = wallCoords[0];
+			endCoords[0] = wallCoords[0]+1;
+			startCoords[1] = wallCoords[1];
+			endCoords[1] = wallCoords[1];
+			startCoords[2] = wallCoords[2];
+			endCoords[2] = wallCoords[2];
+			if (pathFind(baseMaze, startCoords, endCoords) < 0) {
+				if (charAtCoord == 'U') {
+					baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'B';
+				} else {
+					baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'D';
+				}
+				char charUnderCoord = baseMaze[endCoords[0]][endCoords[1]][endCoords[2]];
+				if (charUnderCoord == 'D') {
+					baseMaze[endCoords[0]][endCoords[1]][endCoords[2]] = 'B';
+				} else {
+					baseMaze[endCoords[0]][endCoords[1]][endCoords[2]] = 'U';
+				}
+			}
+			
+			if (walls.size()>0) {
+				wallCoords = walls.get(0);
+				charAtCoord = baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]];
+			}
+		}
+		
 		int wallsSize = walls.size();
 		for (int i=0; i<wallsSize; i++) {
-			int[] wallCoords = walls.remove((int)(Math.random()*walls.size()));
-			int[] startCoords = new int[3];
-			int[] endCoords = new int[3];
-			char charAtCoord = baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]];
+			wallCoords = walls.remove((int)(Math.random()*walls.size()));
+			charAtCoord = baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]];
 			
 			if (charAtCoord == 'F') {
 				startCoords[0] = wallCoords[0];
@@ -521,26 +567,6 @@ public class Maze {
 				}
 				if (pathFind(baseMaze, startCoords, endCoords) < 0) {
 					baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
-				}
-			} else if (charAtCoord == 'Z' || charAtCoord == 'U' || charAtCoord == 'D') {
-				startCoords[0] = wallCoords[0];
-				endCoords[0] = wallCoords[0]+1;
-				startCoords[1] = wallCoords[1];
-				endCoords[1] = wallCoords[1];
-				startCoords[2] = wallCoords[2];
-				endCoords[2] = wallCoords[2];
-				if (pathFind(baseMaze, startCoords, endCoords) < 0) {
-					if (charAtCoord == 'U') {
-						baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'B';
-					} else {
-						baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'D';
-					}
-					char charUnderCoord = baseMaze[endCoords[0]][endCoords[1]][endCoords[2]];
-					if (charUnderCoord == 'D') {
-						baseMaze[endCoords[0]][endCoords[1]][endCoords[2]] = 'B';
-					} else {
-						baseMaze[endCoords[0]][endCoords[1]][endCoords[2]] = 'U';
-					}
 				}
 			}
 		}
@@ -684,7 +710,7 @@ public class Maze {
 			};
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(1);
+		Maze maze2 = new Maze(2);
 		System.out.println(maze2.getMinMoves());
 	}
 }
