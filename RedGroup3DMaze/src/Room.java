@@ -121,12 +121,12 @@ public class Room {
 			if(getDirection('W')) {
 				doors.add(new Door3D(0));
 			} else if(getArtWall() == 'W') {
-				doors.add(new Art3D(0));
+				doors.add(new ArtV1(0));
 			}
 			if(getDirection('N')) {
 				doors.add(new Door3D(1));
 			} else if(getArtWall() == 'N') {
-				doors.add(new Art3D(1));
+				doors.add(new ArtV1(1));
 			}
 			if(getDirection('E')) {
 				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 
@@ -139,18 +139,18 @@ public class Room {
 					doors.add(new Door3D(2));
 				}
 			} else if(getArtWall() == 'E') {
-				doors.add(new Art3D(2));
+				doors.add(new ArtV1(2));
 			}
 			if(getDirection('S')) {
 				doors.add(new Door3D(3));
 			} else if(getArtWall() == 'S') {
-				doors.add(new Art3D(3));
+				doors.add(new ArtV1(3));
 			}
 		} else if(direction == 'E') {
 			if(getDirection('N')) {
 				doors.add(new Door3D(0));
 			} else if(getArtWall() == 'N') {
-				doors.add(new Art3D(0));
+				doors.add(new ArtV1(0));
 			}
 			if(getDirection('E')) {
 				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 
@@ -163,17 +163,17 @@ public class Room {
 					doors.add(new Door3D(1));
 				}
 			} else if(getArtWall() == 'E') {
-				doors.add(new Art3D(1));
+				doors.add(new ArtV1(1));
 			}
 			if(getDirection('S')) {
 				doors.add(new Door3D(2));
 			} else if(getArtWall() == 'S') {
-				doors.add(new Art3D(2));
+				doors.add(new ArtV1(2));
 			}
 			if(getDirection('W')) {
 				doors.add(new Door3D(3));
 			} else if(getArtWall() == 'W') {
-				doors.add(new Art3D(3));
+				doors.add(new ArtV1(3));
 			}
 		} else if(direction == 'S') {
 			if(getDirection('E')) {
@@ -187,38 +187,38 @@ public class Room {
 					doors.add(new Door3D(0));
 				}
 			} else if(getArtWall() == 'E') {
-				doors.add(new Art3D(0));
+				doors.add(new ArtV1(0));
 			}
 			if(getDirection('S')) {
 				doors.add(new Door3D(1));
 			} else if(getArtWall() == 'S') {
-				doors.add(new Art3D(1));
+				doors.add(new ArtV1(1));
 			}
 			if(getDirection('W')) {
 				doors.add(new Door3D(2));
 			} else if(getArtWall() == 'W') {
-				doors.add(new Art3D(2));
+				doors.add(new ArtV1(2));
 			}
 			if(getDirection('N')) {
 				doors.add(new Door3D(3));
 			} else if(getArtWall() == 'N') {
-				doors.add(new Art3D(3));
+				doors.add(new ArtV1(3));
 			}
 		} else if(direction == 'W') {
 			if(getDirection('S')) {
 				doors.add(new Door3D(0));
 			} else if(getArtWall() == 'S') {
-				doors.add(new Art3D(0));
+				doors.add(new ArtV1(0));
 			}
 			if(getDirection('W')) {
 				doors.add(new Door3D(1));
 			} else if(getArtWall() == 'W') {
-				doors.add(new Art3D(1));
+				doors.add(new ArtV1(1));
 			}
 			if(getDirection('N')) {
 				doors.add(new Door3D(2));
 			} else if(getArtWall() == 'N') {
-				doors.add(new Art3D(2));
+				doors.add(new ArtV1(2));
 			}
 			if(getDirection('E')) {
 				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 
@@ -231,7 +231,7 @@ public class Room {
 					doors.add(new Door3D(3));
 				}
 			} else if(getArtWall() == 'E') {
-				doors.add(new Art3D(3));
+				doors.add(new ArtV1(3));
 			}
 		}
 	}

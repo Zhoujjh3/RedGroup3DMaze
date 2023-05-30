@@ -18,7 +18,7 @@ public class HeaderTester {
         panel = new Panel(); 
         //changeView = new JButton(header.getView());
         changeView = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
-				getResource("Map button.png")).getImage().
+				getResource("Map Button.png")).getImage().
 				getScaledInstance(80, 24, 
 						java.awt.Image.SCALE_SMOOTH)));
         changeView.setOpaque(false);
