@@ -18,7 +18,7 @@ public class HeaderTester {
         panel = new Panel(); 
         //changeView = new JButton(header.getView());
         changeView = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
-				getResource("Map Button.png")).getImage().
+				getResource("MAP Button.png")).getImage().
 				getScaledInstance(80, 24, 
 						java.awt.Image.SCALE_SMOOTH)));
         changeView.setOpaque(false);
@@ -30,7 +30,10 @@ public class HeaderTester {
         changeView.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 header.changeView();
-                changeView.setText(header.getView());
+                changeView.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+        				getResource(header.getView()+" Button.png")).getImage().
+        				getScaledInstance(80, 24, 
+        						java.awt.Image.SCALE_SMOOTH)));
             }
         });
         frame.setContentPane(panel);
