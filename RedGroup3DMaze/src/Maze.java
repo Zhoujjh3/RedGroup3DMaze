@@ -80,19 +80,30 @@ public class Maze {
 		minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
 		setActiveMaze(baseMaze);
 		
+		boolean theresAProblem = false;
 		for (int level=0; level<baseMaze.length; level++) {
 			for (int x=0; x<baseMaze[0].length; x++) {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
 					System.out.print(baseMaze[level][x][y] + " ");
+					int[] coords = getCoords(level, x, y);
+					char c = baseMaze[level][x][y];
+					if (c == 'Z' || c == 'U' || c == 'D' || c == 'B') {
+						int count = countDoorsAroundRoom(baseMaze, coords);
+						if ((count == 0 && c == 'Z') || (count == 4 && difficulty == 1)) {
+							theresAProblem = true;
+						}
+					}
 				}
 				System.out.println();
 			}
 			System.out.println("\n");
 		}
+		if (theresAProblem) {
+			System.out.println("THERE'S A PROBLEM THAT MICHAEL NEEDS TO FIX");
+		}
 		
 		return minMoves;
 	}
-
 	
 	private void setBaseMazeAndWalls(char[][][] baseMaze, ArrayList<int[]> walls) {
 		ArrayList<int[]> floors = new ArrayList<int[]>();
@@ -705,7 +716,7 @@ public class Maze {
 					endCoords[1] = wallCoords[1]+1;
 					endCoords[2] = wallCoords[2];
 				}
-				if (pathFind(baseMaze, startCoords, endCoords) < 0) {
+				if (pathFind(baseMaze, startCoords, endCoords) < 0 && !(difficulty == 1 && manyDoorsAroundAdjacentRooms(baseMaze, wallCoords))) {
 					baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
 				}
 			}
@@ -796,6 +807,51 @@ public class Maze {
 			return true;
 		}
 		return false;
+	}
+	
+	// Coords must be at baseMaze[z][x][y] == 'F'
+	private boolean manyDoorsAroundAdjacentRooms(char[][][] baseMaze, int[] coords) {
+		int[] room1Coords = new int[3];
+		int[] room2Coords = new int[3];
+		room1Coords[0] = coords[0];
+		room2Coords[0] = coords[0];
+		if (baseMaze[coords[0]][coords[1]-1][coords[2]] == 'A') {
+			room1Coords[1] = coords[1];
+			room1Coords[2] = coords[2]-1;
+			room2Coords[1] = coords[1];
+			room2Coords[2] = coords[2]+1;
+		} else {
+			room1Coords[1] = coords[1]-1;
+			room1Coords[2] = coords[2];
+			room2Coords[1] = coords[1]+1;
+			room2Coords[2] = coords[2];
+		}
+		if (countDoorsAroundRoom(baseMaze, room1Coords) > 2 || countDoorsAroundRoom(baseMaze, room2Coords) > 2) {
+			return true;
+		} else  {
+			return false;
+		}
+	}
+	
+	// Coords must be at baseMaze[z][x][y] == 'Z' or == 'U', 'D', 'B'
+	private int countDoorsAroundRoom(char[][][] baseMaze, int[] coords) {
+		int count = 0;
+		int level = coords[0];
+		int x = coords[1];
+		int y = coords[2];
+		if (baseMaze[level][x-1][y] == 'T') {
+			count++;
+		}
+		if (baseMaze[level][x+1][y] == 'T') {
+			count++;
+		}
+		if (baseMaze[level][x][y-1] == 'T') {
+			count++;
+		}
+		if (baseMaze[level][x][y+1] == 'T') {
+			count++;
+		}
+		return count;
 	}
 	
 	public static void main(String[] args) {
