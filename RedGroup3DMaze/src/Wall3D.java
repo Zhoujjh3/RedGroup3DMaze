@@ -1,6 +1,8 @@
 
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Wall3D extends Shapes3D{
 	
@@ -42,19 +44,28 @@ public class Wall3D extends Shapes3D{
 	}
 	
 	public void paint(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		
 		int[] wallX = {(int) Math.rint(xTL),(int) Math.rint(xTR),(int) Math.rint(xBR),(int) Math.rint(xBL)};
 		int[] wallY = {(int) Math.rint(yTL),(int) Math.rint(yTR),(int) Math.rint(yBR),(int) Math.rint(yBL)};
 		
 		Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 				Run3DMaze.player.getCoordinate('X'), 
 				Run3DMaze.player.getCoordinate('Y'));
-		g.setColor(new Color(currentRoom.getRGBValues()[0], currentRoom.getRGBValues()[1], currentRoom.getRGBValues()[2]+25));
-		g.fillPolygon(wallX, wallY, 4);
-		g.setColor(Color.black);
-		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
-		g.drawLine((int) Math.rint(xTR),(int) Math.rint(yTR),(int) Math.rint(xBR),(int) Math.rint(yBR));
-		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xTR),(int) Math.rint(yTR));
-		g.drawLine((int) Math.rint(xBL),(int) Math.rint(yBL),(int) Math.rint(xBR),(int) Math.rint(yBR));
+		
+		Color roomColorStart = new Color(currentRoom.getRGBValues()[0], currentRoom.getRGBValues()[1], currentRoom.getRGBValues()[2]+25);
+		Color roomColorEnd = new Color(currentRoom.getRGBValues()[0]-50, currentRoom.getRGBValues()[1]-50, currentRoom.getRGBValues()[2]-25);
+		
+		GradientPaint gradient = new GradientPaint(wallX[0], wallY[0], roomColorStart, wallX[2], wallY[2], roomColorEnd);
+		//GradientPaint gradient = new GradientPaint(0, 0, roomColorStart, 500, 350, roomColorEnd);
+		g2.setPaint(gradient);
+		
+		g2.fillPolygon(wallX, wallY, 4);
+		g2.setColor(Color.black);
+		g2.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
+		g2.drawLine((int) Math.rint(xTR),(int) Math.rint(yTR),(int) Math.rint(xBR),(int) Math.rint(yBR));
+		g2.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xTR),(int) Math.rint(yTR));
+		g2.drawLine((int) Math.rint(xBL),(int) Math.rint(yBL),(int) Math.rint(xBR),(int) Math.rint(yBR));
 	}
 
 	public void update() {

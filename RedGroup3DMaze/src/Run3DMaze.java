@@ -50,7 +50,7 @@ public class Run3DMaze {
 	int counter = 0;
 	ActionListener rotate = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			if(state == mazeState.CHAMBERVIEW) {
+			if(state == mazeState.CHAMBERVIEW) {				
 				selectionScreen.hide(screen, gamePanel); 
 				Room currentRoom = Run3DMaze.maze.getRoom(Run3DMaze.player.getCoordinate('Z'), 
 						Run3DMaze.player.getCoordinate('X'), 
@@ -74,6 +74,7 @@ public class Run3DMaze {
 				
 				//updates 3d states after animation is finished
 				if(GamePanel.timeCounter >= 40 && clicked) {
+					
 					if(nextRoom) {
 						if(down) {
 							Run3DMaze.player.movePlayer('D');

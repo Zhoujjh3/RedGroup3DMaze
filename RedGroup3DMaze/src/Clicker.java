@@ -47,6 +47,7 @@ public class Clicker implements MouseListener, KeyListener {
 					Run3DMaze.player.setDirection(getLeftDirection(Run3DMaze.player.getDirection()));
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
+					
 				//Right
 				} else if (e.getX() >= (int) (730 * xScale) && e.getX() <= (int) (880 * xScale)
 						&& e.getY() >= (int) (450 * yScale) && e.getY() <= (int) (540 * yScale)) {
@@ -81,6 +82,7 @@ public class Clicker implements MouseListener, KeyListener {
 					Run3DMaze.nextRoom = true;
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
+					
 				//Up
 				} else if (e.getX() >= (int) (465 * xScale) && e.getX() <= (int) (535 * xScale)
 						&& e.getY() >= (int) (130 * yScale) && e.getY() <= (int) (230 * yScale)
@@ -99,6 +101,7 @@ public class Clicker implements MouseListener, KeyListener {
 					Run3DMaze.up = true;
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
+					
 				//Down
 				} else if (e.getX() >= (465 * xScale) && e.getX() < (int) (535 * xScale)
 						&& e.getY() > (int) (530 * yScale) && e.getY() < (int) (630 * yScale)
@@ -117,6 +120,7 @@ public class Clicker implements MouseListener, KeyListener {
 					Run3DMaze.down = true;
 					GamePanel.timeCounter = 0;
 					Run3DMaze.clicked = true;
+					
 				}
 				break;
 			case MAPVIEW:
