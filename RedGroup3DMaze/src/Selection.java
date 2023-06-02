@@ -7,42 +7,48 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import java.awt.*;
 
 public class Selection implements ActionListener{
 	int difficulty; 
 	JFrame frame; 
 	JPanel panel;
-	JLabel title, logo; 
+	JLabel title, logo, background; 
 	JButton easyButt, mediumButt, hardButt; 
 	private boolean signal = false;
+	
+	
 	public Selection(JFrame frame, JPanel panel) {
 		this.frame = frame;
 		this.panel = panel;
 		panel.setLayout(null);
+		background = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("selBackground.png")));	
 		easyButt = new JButton("Easy");
 		mediumButt = new JButton("Medium");
 		hardButt = new JButton("Hard");
 		logo = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("MazeLogo.png")));
-		title = new JLabel("Welcome to 3D Maze");
-
+		title = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("Welcome.png")));	
 	}
+	
 	public void display() {
+//	    background.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+//	    background.setOpaque(true);
+	    
 	    easyButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    easyButt.setBackground(Color.green);
-	    easyButt.setOpaque(true);
+//	    easyButt.setOpaque(true);
 	    easyButt.setActionCommand("Easy");
 	    easyButt.addActionListener(this);
 	    
 	    mediumButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    mediumButt.setBackground(Color.yellow);
-	    mediumButt.setOpaque(true);
+//	    mediumButt.setOpaque(true);
 	    mediumButt.setActionCommand("Medium");
 	    mediumButt.addActionListener(this);
 	    
 	    hardButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    hardButt.setBackground(Color.red);
-	    hardButt.setOpaque(true);
+//	    hardButt.setOpaque(true);
 	    hardButt.setActionCommand("Hard");
 	    hardButt.addActionListener(this);
 	    
@@ -56,11 +62,11 @@ public class Selection implements ActionListener{
 	    hardButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.667), (int)(panelWidth*.4),(int)(panelHeight*.1));
 	    hardButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
 	    	    
-	    title.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.05)));
-	    title.setBounds((int)(panelWidth*0.25), (int)(panelHeight*.06), (int)(panelWidth*1), (int)(panelHeight*.13));
+	    title.setBounds((int)(panelWidth*0.01), (int)(panelHeight*.06), (int)(panelWidth*1), (int)(panelHeight*.13));
 	    	    
 	    logo.setBounds((int)(panelWidth*0.5), (int)(panelHeight*.267), (int)(panelWidth*.4), (int)(panelHeight*.53));
-	    		  	    
+	    
+//	    panel.add(background);
 	    panel.add(easyButt);
 	    panel.add(mediumButt);
 	    panel.add(hardButt);
@@ -69,6 +75,7 @@ public class Selection implements ActionListener{
 	}
 	
 	public void hide(JFrame frame, JPanel panel) {
+		panel.remove(background);
 		panel.remove(easyButt);
 		panel.remove(mediumButt);
 		panel.remove(hardButt);
