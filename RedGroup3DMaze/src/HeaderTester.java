@@ -38,6 +38,9 @@ public class HeaderTester {
         });
         frame.setContentPane(panel);
         panel.add(changeView);
+        changeView.setOpaque(false);
+        changeView.setContentAreaFilled(false);
+        changeView.setBorderPainted(false);
 
         /* Size and then display the frame. */
 
