@@ -122,16 +122,17 @@ public class Room {
 	
 	public void populateDoors() {
 		char direction = Run3DMaze.player.getDirection();
+		int randomNumber = (int) ((Math.random() * 5) + 1);
 		if(direction == 'N') {
 			if(getDirection('W')) {
 				doors.add(new Door3D(0));
 			} else if(getArtWall() == 'W') {
-				doors.add(new ArtV1(0));
+				doors.add(randomArt(randomNumber, 0));
 			}
 			if(getDirection('N')) {
 				doors.add(new Door3D(1));
 			} else if(getArtWall() == 'N') {
-				doors.add(new ArtV1(1));
+				doors.add(randomArt(randomNumber, 1));
 			}
 			if(getDirection('E')) {
 				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 
@@ -144,18 +145,18 @@ public class Room {
 					doors.add(new Door3D(2));
 				}
 			} else if(getArtWall() == 'E') {
-				doors.add(new ArtV1(2));
+				doors.add(randomArt(randomNumber, 2));
 			}
 			if(getDirection('S')) {
 				doors.add(new Door3D(3));
 			} else if(getArtWall() == 'S') {
-				doors.add(new ArtV1(3));
+				doors.add(randomArt(randomNumber, 3));
 			}
 		} else if(direction == 'E') {
 			if(getDirection('N')) {
 				doors.add(new Door3D(0));
 			} else if(getArtWall() == 'N') {
-				doors.add(new ArtV1(0));
+				doors.add(randomArt(randomNumber, 0));
 			}
 			if(getDirection('E')) {
 				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 
@@ -168,17 +169,17 @@ public class Room {
 					doors.add(new Door3D(1));
 				}
 			} else if(getArtWall() == 'E') {
-				doors.add(new ArtV1(1));
+				doors.add(randomArt(randomNumber, 1));
 			}
 			if(getDirection('S')) {
 				doors.add(new Door3D(2));
 			} else if(getArtWall() == 'S') {
-				doors.add(new ArtV1(2));
+				doors.add(randomArt(randomNumber, 2));
 			}
 			if(getDirection('W')) {
 				doors.add(new Door3D(3));
 			} else if(getArtWall() == 'W') {
-				doors.add(new ArtV1(3));
+				doors.add(randomArt(randomNumber, 3));
 			}
 		} else if(direction == 'S') {
 			if(getDirection('E')) {
@@ -192,38 +193,38 @@ public class Room {
 					doors.add(new Door3D(0));
 				}
 			} else if(getArtWall() == 'E') {
-				doors.add(new ArtV1(0));
+				doors.add(randomArt(randomNumber, 0));
 			}
 			if(getDirection('S')) {
 				doors.add(new Door3D(1));
 			} else if(getArtWall() == 'S') {
-				doors.add(new ArtV1(1));
+				doors.add(randomArt(randomNumber, 1));
 			}
 			if(getDirection('W')) {
 				doors.add(new Door3D(2));
 			} else if(getArtWall() == 'W') {
-				doors.add(new ArtV1(2));
+				doors.add(randomArt(randomNumber, 2));
 			}
 			if(getDirection('N')) {
 				doors.add(new Door3D(3));
 			} else if(getArtWall() == 'N') {
-				doors.add(new ArtV1(3));
+				doors.add(randomArt(randomNumber, 3));
 			}
 		} else if(direction == 'W') {
 			if(getDirection('S')) {
 				doors.add(new Door3D(0));
 			} else if(getArtWall() == 'S') {
-				doors.add(new ArtV1(0));
+				doors.add(randomArt(randomNumber, 0));
 			}
 			if(getDirection('W')) {
 				doors.add(new Door3D(1));
 			} else if(getArtWall() == 'W') {
-				doors.add(new ArtV1(1));
+				doors.add(randomArt(randomNumber, 1));
 			}
 			if(getDirection('N')) {
 				doors.add(new Door3D(2));
 			} else if(getArtWall() == 'N') {
-				doors.add(new ArtV1(2));
+				doors.add(randomArt(randomNumber, 2));
 			}
 			if(getDirection('E')) {
 				if(getCoordinate('X') == 4 && getCoordinate('Y') == 4 
@@ -236,12 +237,26 @@ public class Room {
 					doors.add(new Door3D(3));
 				}
 			} else if(getArtWall() == 'E') {
-				doors.add(new ArtV1(3));
+				doors.add(randomArt(randomNumber, 3));
 			}
 		}
 	}
 	
-	
+	public Art3D randomArt(int artType, int state) {
+		if(artType == 1) {
+			return new ArtV1(state);
+		} else if(artType == 2) {
+			return new ArtV2(state);
+		} else if(artType == 3) {
+			return new ArtV3(state);
+		} else if(artType == 4) {
+			return new ArtV4(state);
+		} else if(artType == 5) {
+			return new ArtV5(state);
+		} else {
+			return new ArtV1(state);
+		}
+	}
 
 	public Color getColor() {
 		return color;

@@ -35,9 +35,9 @@ public class ArtV3 extends Art3D {
 		g.fillPolygon(art2X, art2Y, 3);
 		g.setColor(new Color(255 - roomRed, 255 - roomGreen, 255 - roomBlue));
 		g.fillPolygon(art3X, art3Y, 3);
-		g.setColor(new Color(255 - (roomRed + 20), 255 - (roomGreen + 20), 255 - (roomBlue + 20)));
+		g.setColor(new Color(255 - (roomRed + 10), 255 - (roomGreen + 10), 255 - (roomBlue + 10)));
 		g.fillPolygon(art4X, art4Y, 3);
-		g.setColor(new Color(255 - (roomRed + 40), 255 - (roomGreen + 40), 255 - (roomBlue + 40)));
+		g.setColor(new Color(255 - (roomRed + 20), 255 - (roomGreen + 20), 255 - (roomBlue + 20)));
 		g.fillPolygon(art5X, art5Y, 4);
 		g.setColor(Color.black);
 		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
