@@ -73,8 +73,10 @@ public class Maze {
 		switch(randMazeVal) {
 		case 0:
 			createRandomPath(baseMaze);
+			break;
 		default:
 			createRandomPath(baseMaze);
+			break;
 		}
 		fillBaseMaze(baseMaze, walls);
 		minMoves = pathFind(baseMaze, getCoords(0, 1, 1), getCoords(baseMaze.length-1, baseMaze[0].length-2, baseMaze[0][0].length-2));
@@ -420,7 +422,7 @@ public class Maze {
 			results[0] = endx;
 			results[1] = endy;
 		}
-		
+		System.out.println("Rsults:" + results[0]);
 		return results;
 	}
 	
@@ -575,23 +577,29 @@ public class Maze {
 				}
 			}
 			
-			int dirDecider = (int)(Math.random()*100);
+			char dir = decideSpiralDir(startX, startY, level);
+			int counter2 = 0;
 			for(int i = 0; i< givenMoves+(counter/1000); i++) {
+				if(endx == level.length-2 || endy == level.length-2)
+					dir = decideSpiralDir(startX, startY, level);
+//				System.out.println(startX + " " + startY);
+//				System.out.println("given: " + givenMoves);
 //				if()
 				
-				int[] results = moveInDir(level, endx, endy, xTrace, yTrace, "spiralGen", 'A');
+				int[] results = moveInDir(level, endx, endy, xTrace, yTrace, "spiralGen", dir);
 				if(results[0] == level.length-1 && results[1] == level.length-1) {
-					break;
+					dir = decideSpiralDir(endx, endy, level);
 				}
 				if(results[0] == -1 && results[1] == -1) {
-					failure= true;
-					break;
+					dir = decideSpiralDir(endx, endy, level);
 				} else {
 					endx = results[0];
 					endy = results[1];
 					xTrace.add(endx);
 					yTrace.add(endy);
+					counter2++;
 				}
+				
 			}
 			if(levelType.equals("end")) {
 				level[startX][startY] = 'U';
@@ -641,11 +649,58 @@ public class Maze {
 		return endCC;
 	}
 	
-//	private char decideSpiralDir(int startX, int startY) {
-//		if(startX == 0 && startY == 0) {
-//			
+	private char decideSpiralDir(int startX, int startY, char[][] level) {
+		System.out.println(startX + " " + startY);
+		int mazeSize = this.getMazeSize();
+		int decider = (int)(Math.random()*100);
+		char[] dirOptions = new char[2];
+//		if(floorOne) {
+//			if(Math.random() > .5)
+//				return 'S';
+//			else
+//				return 'E';
+//		} else {
+			if(startX == 1 && startY == 1) {
+				dirOptions[0] = 'S';
+				dirOptions[1] = 'E';
+				System.out.println("case 1");
+				return getDirOfTwo(dirOptions) ;
+			}
+			if(startX == 1 && startY == level.length-2){
+				dirOptions[0] = 'S';
+				dirOptions[1] = 'W';
+				System.out.println("case 2");
+				return getDirOfTwo(dirOptions) ;
+			}
+			if(startX == level.length-2 && startY == 1){
+				dirOptions[0] = 'N';
+				dirOptions[1] = 'W';
+				System.out.println("case 3");
+				return getDirOfTwo(dirOptions) ;
+			}
+			if(startX == level.length-2 && startY == level.length-2){
+				dirOptions[0] = 'E';
+				dirOptions[1] = 'N';
+				System.out.println("case 4");
+				return getDirOfTwo(dirOptions) ;
+			}
 //		}
-//	}
+		for(int i = 0; i<level.length;i++) {
+			for(int j = 0; j<level.length;j++) {
+				System.out.print(level[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println(startX +  " " + startY + " " + (level.length-2));
+		return 'N';
+	}
+	
+	private char getDirOfTwo(char[] x) {
+		if(Math.random() > .5)
+			return x[1];
+		else
+			return x[0];
+	}
 	
 
 	private boolean alreadyBeenOn(ArrayList<Integer> xTrace, ArrayList<Integer> yTrace, int x, int y) {
