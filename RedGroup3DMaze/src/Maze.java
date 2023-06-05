@@ -130,9 +130,11 @@ public class Maze {
 			if (level < baseMaze.length-1) {
 				int numOfDs;
 				if (difficulty == 1) {
-					numOfDs = 2;
-				} else { // difficulty 2 and 3 currently use the same numOfDs
+					numOfDs = 1;
+				} else if (difficulty == 2) {
 					numOfDs = 4;
+				} else {
+					numOfDs = 5;
 				}
 				for (int i=0; i<numOfDs; i++) {
 					walls.add(0, floors.remove((int)(Math.random()*floors.size())));
@@ -906,9 +908,15 @@ public class Maze {
 		if (baseMaze[level][x][y+1] == 'T') {
 			count++;
 		}
+		char charAtCoord = baseMaze[coords[0]][coords[1]][coords[2]];
+		if (charAtCoord == 'U' || charAtCoord == 'D') {
+			count++;
+		} else if (charAtCoord == 'B') {
+			count+=2;
+		}
 		return count;
 	}
-	
+
 	public static void main(String[] args) {
 		// Basic testing
 		Maze maze;
