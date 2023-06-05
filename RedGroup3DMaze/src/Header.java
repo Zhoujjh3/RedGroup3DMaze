@@ -16,7 +16,7 @@ public class Header {
 			Y = ImageIO.read(getClass().getClassLoader().getResource("Y.png"));
 			PlayerLevel = ImageIO.read(getClass().getClassLoader().getResource("Player Level.png"));
 			Moves = ImageIO.read(getClass().getClassLoader().getResource("Moves.png"));
-			Direction = ImageIO.read(getClass().getClassLoader().getResource("Direction.png"));
+			Direction = ImageIO.read(getClass().getClassLoader().getResource("direction.png"));
 			digits = new Image[10];
 			for (int i=0; i<10; i++) {
 				digits[i] = ImageIO.read(getClass().getClassLoader().getResource(String.valueOf(i)+".png"));
