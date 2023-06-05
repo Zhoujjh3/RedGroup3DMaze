@@ -205,6 +205,9 @@ public class Run3DMaze {
         				getResource(header.getView()+" Button.png")).getImage().
         				getScaledInstance(80, 24, 
         						java.awt.Image.SCALE_SMOOTH)));
+				changeView.setOpaque(false);
+		        changeView.setContentAreaFilled(false);
+		        changeView.setBorderPainted(false);
 				if (state == mazeState.CHAMBERVIEW) {
 					runMapView();
 				} else if (state == mazeState.MAPVIEW) {

@@ -328,6 +328,9 @@ public class Clicker implements MouseListener, KeyListener {
         				getResource(Run3DMaze.header.getView()+" Button.png")).getImage().
         				getScaledInstance(80, 24, 
         						java.awt.Image.SCALE_SMOOTH)));
+				Run3DMaze.changeView.setOpaque(false);
+				Run3DMaze.changeView.setContentAreaFilled(false);
+				Run3DMaze.changeView.setBorderPainted(false);
 				break;
 			}
 		}
