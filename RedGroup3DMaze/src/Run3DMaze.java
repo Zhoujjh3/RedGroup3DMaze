@@ -182,6 +182,9 @@ public class Run3DMaze {
 				getResource("MAP Button.png")).getImage().
 				getScaledInstance(80, 24, 
 						java.awt.Image.SCALE_SMOOTH)));
+		changeView.setOpaque(false);
+        changeView.setContentAreaFilled(false);
+        changeView.setBorderPainted(false);
 		levelDown = new JButton("Level Up");
 		levelUp = new JButton("Level Down");
 		gamePanel.setLayout(null);

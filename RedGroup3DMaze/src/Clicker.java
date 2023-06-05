@@ -3,6 +3,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
+
 public class Clicker implements MouseListener, KeyListener {
 
 	Run3DMaze.mazeState state;
@@ -319,11 +321,13 @@ public class Clicker implements MouseListener, KeyListener {
 			case 77:
 				if (state == Run3DMaze.mazeState.CHAMBERVIEW) {
 					Run3DMaze.runMapView();
-					Run3DMaze.changeView.setText(Run3DMaze.header.getView());
 				} else if (state == Run3DMaze.mazeState.MAPVIEW) {
 					Run3DMaze.runChamberView();
-					Run3DMaze.changeView.setText(Run3DMaze.header.getView());
 				}
+				Run3DMaze.changeView.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+        				getResource(Run3DMaze.header.getView()+" Button.png")).getImage().
+        				getScaledInstance(80, 24, 
+        						java.awt.Image.SCALE_SMOOTH)));
 				break;
 			}
 		}

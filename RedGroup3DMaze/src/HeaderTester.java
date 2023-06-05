@@ -15,7 +15,6 @@ public class HeaderTester {
         frame = new JFrame("header tester");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000,750);
-        panel = new Panel();
         //183
         changeView = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("MAP Button.png")).getImage().
@@ -25,7 +24,6 @@ public class HeaderTester {
         changeView.setContentAreaFilled(false);
         changeView.setBorderPainted(false);
         panel.setLayout(null);
-        //191
         changeView.setBounds(820, 5, 100, 30);
         //195
         changeView.addActionListener(new ActionListener() {
