@@ -5,7 +5,8 @@ public class Room {
 	private boolean[] directions = new boolean[6];
 	private int[] coordinates = new int[3];
 	private boolean visited;
-	private Color color;
+	private Color color, colorDark;
+	private GradientPaint gradient;
 	private int[] rgbValues = new int[3];
 	private char artDirection;
 	private Color finalDoorColor = Color.green;
@@ -48,7 +49,11 @@ public class Room {
 		
 		for(int i=0; i<3; i++)
 			rgbValues[i] = 128+(int)(Math.random()*103);
+		
 		color = new Color(rgbValues[0], rgbValues[1], rgbValues[2]);
+		colorDark = new Color(rgbValues[0]-30, rgbValues[1]-30, rgbValues[2]-30);
+		
+		//gradient = new GradientPaint(100, 100, color, 100, 750, colorDark);
 	}	
 	
 	public boolean getDirection(char direction) {
@@ -240,6 +245,11 @@ public class Room {
 
 	public Color getColor() {
 		return color;
+	}
+	
+	public GradientPaint getGradient(int startX, int startY, int endX, int endY) {
+		gradient = new GradientPaint(startX, startY, colorDark, endX, endY, colorDark);
+		return gradient;
 	}
 	
 	public char getArtWall() {

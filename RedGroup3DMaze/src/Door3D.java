@@ -1,5 +1,7 @@
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Door3D extends Shapes3D {
 
@@ -10,8 +12,8 @@ public class Door3D extends Shapes3D {
 	public int h, w;
 	double xScale = w/1000.0;
 	double yScale = h/700.0;
-	Color color = new Color(243, 243, 243);
-
+	Color color = new Color(50, 50, 50);
+	
 	Door3D(int theState) {
 		h = Run3DMaze.height;
 		w = Run3DMaze.width;
@@ -44,16 +46,20 @@ public class Door3D extends Shapes3D {
 	}
 	
 	public void paint(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
 		int[] doorX = {(int) Math.rint(xTL),(int) Math.rint(xTR),(int) Math.rint(xBR),(int) Math.rint(xBL)};
 		int[] doorY = {(int) Math.rint(yTL),(int) Math.rint(yTR),(int) Math.rint(yBR),(int) Math.rint(yBL)};
-		//color = new Color(243, 243, 243);
-		g.setColor(color);
-		g.fillPolygon(doorX, doorY, 4);
-		g.setColor(Color.black);
-		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
-		g.drawLine((int) Math.rint(xTR),(int) Math.rint(yTR),(int) Math.rint(xBR),(int) Math.rint(yBR));
-		g.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xTR),(int) Math.rint(yTR));
-		g.drawLine((int) Math.rint(xBL),(int) Math.rint(yBL),(int) Math.rint(xBR),(int) Math.rint(yBR));
+		color = new Color(230, 230, 230);
+		Color brighter = new Color(150, 150, 150);
+		//GradientPaint gradient = new GradientPaint(doorX[0], doorY[0], brighter, doorX[2], doorY[2], color);
+		//g2.setPaint(gradient);
+		g2.setColor(color);
+		g2.fillPolygon(doorX, doorY, 4);
+		g2.setColor(Color.black);
+		g2.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xBL),(int) Math.rint(yBL));
+		g2.drawLine((int) Math.rint(xTR),(int) Math.rint(yTR),(int) Math.rint(xBR),(int) Math.rint(yBR));
+		g2.drawLine((int) Math.rint(xTL),(int) Math.rint(yTL),(int) Math.rint(xTR),(int) Math.rint(yTR));
+		g2.drawLine((int) Math.rint(xBL),(int) Math.rint(yBL),(int) Math.rint(xBR),(int) Math.rint(yBR));
 	}
 	public void update() {
 		h = Run3DMaze.height;

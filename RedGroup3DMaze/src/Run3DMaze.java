@@ -1,9 +1,9 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.Timer;
-
 public class Run3DMaze {
 	
 	private JFrame screen;
@@ -178,7 +178,10 @@ public class Run3DMaze {
 		
 		map = new MazeMap(maze, player);
 		header = new Header(maze, player);
-		changeView = new JButton(header.getView());
+		changeView = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("MAP Button.png")).getImage().
+				getScaledInstance(80, 24, 
+						java.awt.Image.SCALE_SMOOTH)));
 		levelDown = new JButton("Level Up");
 		levelUp = new JButton("Level Down");
 		gamePanel.setLayout(null);
@@ -188,14 +191,17 @@ public class Run3DMaze {
 		
 		levelDown.setVisible(false);
 		levelUp.setVisible(false);
-		changeView.setBounds(740, 5, 100, 30);
+		changeView.setBounds(820, 5, 100, 30);
 		levelUp.setBounds(300, 665, 100, 30);
 		levelDown.setBounds(450, 665, 100, 30);
 		
 		changeView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				header.changeView();
-				changeView.setText(header.getView());
+				changeView.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+        				getResource(header.getView()+" Button.png")).getImage().
+        				getScaledInstance(80, 24, 
+        						java.awt.Image.SCALE_SMOOTH)));
 				if (state == mazeState.CHAMBERVIEW) {
 					runMapView();
 				} else if (state == mazeState.MAPVIEW) {
@@ -214,7 +220,6 @@ public class Run3DMaze {
 				}
 			}
 		});
-
 		levelUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player.getCoordinate('Z') + mapLevelIncrement != maze.getMazeSize() - 1) {
