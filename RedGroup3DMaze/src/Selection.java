@@ -2,6 +2,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,11 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
 
-public class Selection implements ActionListener{
+public class Selection extends JPanel implements ActionListener{
 	int difficulty; 
 	JFrame frame; 
 	JPanel panel;
-	JLabel title, logo, background; 
+	JLabel title, logo, background;
 	JButton easyButt, mediumButt, hardButt; 
 	private boolean signal = false;
 	
@@ -30,10 +34,15 @@ public class Selection implements ActionListener{
 		title = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("Welcome.png")));	
 	}
 	
+//	public void paintComponent(Graphics g) {
+//		super.paintComponent(g);
+//		g.drawImage(new ImageIcon(ImageIO.read(getClass().getClassLoader().getResource("selBackground.png"))), 0, 0, );
+//	}
+	
 	public void display() {
 //	    background.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 //	    background.setOpaque(true);
-	    
+		
 	    easyButt.setFont(new Font("Serif", Font.PLAIN, 30));
 	    easyButt.setBackground(Color.green);
 //	    easyButt.setOpaque(true);
@@ -66,7 +75,13 @@ public class Selection implements ActionListener{
 	    	    
 	    logo.setBounds((int)(panelWidth*0.5), (int)(panelHeight*.267), (int)(panelWidth*.4), (int)(panelHeight*.53));
 	    
-//	    panel.add(background);
+//	    try {
+//            frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(getClass().getClassLoader().getResource("selBackground.png")))));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+	    
+	    panel.add(background);
 	    panel.add(easyButt);
 	    panel.add(mediumButt);
 	    panel.add(hardButt);
