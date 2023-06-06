@@ -755,6 +755,7 @@ public class Maze {
 		}
 		
 		int wallsSize = walls.size();
+		ArrayList<int[]> doorsIfNeeded = new ArrayList<int[]>();
 		for (int i=0; i<wallsSize; i++) {
 			wallCoords = walls.remove((int)(Math.random()*walls.size()));
 			charAtCoord = baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]];
@@ -773,9 +774,33 @@ public class Maze {
 					endCoords[1] = wallCoords[1]+1;
 					endCoords[2] = wallCoords[2];
 				}
-				if (pathFind(baseMaze, startCoords, endCoords) < 0 && !(difficulty == 1 && manyDoorsAroundAdjacentRooms(baseMaze, wallCoords))) {
+				boolean manyDoorsInEasy = (difficulty == 1 && manyDoorsAroundAdjacentRooms(baseMaze, wallCoords));
+				if (pathFind(baseMaze, startCoords, endCoords) < 0 && !manyDoorsInEasy) {
 					baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
+				} else if (manyDoorsInEasy) {
+					int[] wCoords = new int[3];
+					int[] sCoords = new int[3];
+					int[] eCoords = new int[3];
+					for (int j=0; j<3; j++) {
+						wCoords[j] = wallCoords[j];
+						sCoords[j] = startCoords[j];
+						eCoords[j] = endCoords[j];
+					}
+					doorsIfNeeded.add(wCoords);
+					doorsIfNeeded.add(sCoords);
+					doorsIfNeeded.add(eCoords);
 				}
+			}
+		}
+		
+		wallsSize = doorsIfNeeded.size()/3;
+		for (int i=0; i<wallsSize; i++) {
+			wallCoords = doorsIfNeeded.remove(0);
+			startCoords = doorsIfNeeded.remove(0);
+			endCoords = doorsIfNeeded.remove(0);
+			if (pathFind(baseMaze, startCoords, endCoords) < 0) {
+				System.out.println("Thing: " + wallCoords[0] + " " + wallCoords[1] + " " + wallCoords[2]);
+				baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
 			}
 		}
 	}
@@ -969,7 +994,7 @@ public class Maze {
 			};
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(2);
+		Maze maze2 = new Maze(1);
 		System.out.println(maze2.getMinMoves());
 	}
 }
