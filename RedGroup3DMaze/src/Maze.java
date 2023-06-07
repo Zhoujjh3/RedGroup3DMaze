@@ -69,8 +69,12 @@ public class Maze {
 			baseMaze = new char[4][9][9];
 		}
 		setBaseMazeAndWalls(baseMaze, walls);
-		int randMazeVal = (int)(Math.random()*2);
-		switch(randMazeVal) {
+		if (difficulty == 1) {
+			mazeType = 1;
+		} else {
+			mazeType = (int)(Math.random()*2);
+		}
+		switch(mazeType) {
 		case 0:
 			createSpiralPath(baseMaze);
 			break;
@@ -89,7 +93,7 @@ public class Maze {
 		for (int level=0; level<baseMaze.length; level++) {
 			for (int x=0; x<baseMaze[0].length; x++) {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
-//					System.out.print(baseMaze[level][x][y] + " ");
+					System.out.print(baseMaze[level][x][y] + " ");
 					int[] coords = getCoords(level, x, y);
 					char c = baseMaze[level][x][y];
 					if (c == 'Z' || c == 'U' || c == 'D' || c == 'B') {
@@ -103,6 +107,7 @@ public class Maze {
 			}
 			System.out.println("\n");
 		}
+		System.out.println("mazeType: " + mazeType);
 		if (theresAProblem) {
 			System.out.println("THERE'S A PROBLEM THAT MICHAEL NEEDS TO FIX");
 		}
@@ -134,8 +139,10 @@ public class Maze {
 				int numOfDs;
 				if (difficulty == 1) {
 					numOfDs = 1;
-				} else if (difficulty == 2) {
+				} else if (difficulty == 2 && mazeType == 1) {
 					numOfDs = 4;
+				} else if (difficulty == 2 /*&& mazeType == 0*/) {
+					numOfDs = 1;
 				} else {
 					numOfDs = 5;
 				}
@@ -1032,7 +1039,7 @@ public class Maze {
 			};
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(1);
+		Maze maze2 = new Maze(2);
 		System.out.println(maze2.getMinMoves());
 	}
 }
