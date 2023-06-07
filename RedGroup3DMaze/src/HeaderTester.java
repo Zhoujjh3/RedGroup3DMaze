@@ -16,7 +16,7 @@ public class HeaderTester {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000,750);
         panel = new Panel();
-        //183
+        
         changeView = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("MAP Button.png")).getImage().
 				getScaledInstance(80, 24, 
@@ -25,7 +25,6 @@ public class HeaderTester {
         changeView.setContentAreaFilled(false);
         changeView.setBorderPainted(false);
         panel.setLayout(null);
-        //191
         changeView.setBounds(820, 5, 100, 30);
         //195
         changeView.addActionListener(new ActionListener() {
@@ -53,6 +52,10 @@ public class HeaderTester {
             super.paintComponent(g);
             header.display(g ,this.getSize());
             //121, 109 GamePanel
+            changeView.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+    				getResource("MAP Button.png")).getImage().
+    				getScaledInstance((int)(80 * frame.getSize().width/1000), (int)(24* frame.getSize().height/750), 
+    						java.awt.Image.SCALE_SMOOTH)));
             changeView.setBounds((int)(820 * frame.getSize().width/1000), (int)(5* frame.getSize().height/750), (int)(100 * frame.getSize().width/1000), (int)(30 * frame.getSize().height/750));
 
         }

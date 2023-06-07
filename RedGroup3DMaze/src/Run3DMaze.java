@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 public class Run3DMaze {
 	
-	private JFrame screen;
+	public static JFrame screen;
 	private static GamePanel gamePanel;
 	private Selection selectionScreen;
 	public static MazeMap map;
@@ -179,9 +179,11 @@ public class Run3DMaze {
 		map = new MazeMap(maze, player);
 		header = new Header(maze, player);
 		changeView = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
-				getResource("MAP Button.png")).getImage().
-				getScaledInstance(80, 24, 
-						java.awt.Image.SCALE_SMOOTH)));
+				getResource("CHAMBER Button.png")).getImage().
+				getScaledInstance(80, 24, java.awt.Image.SCALE_SMOOTH)));
+		changeView.setOpaque(false);
+        changeView.setContentAreaFilled(false);
+        changeView.setBorderPainted(false);
 		levelDown = new JButton("Level Up");
 		levelUp = new JButton("Level Down");
 		gamePanel.setLayout(null);
@@ -199,9 +201,12 @@ public class Run3DMaze {
 			public void actionPerformed(ActionEvent e) {
 				header.changeView();
 				changeView.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
-        				getResource(header.getView()+" Button.png")).getImage().
-        				getScaledInstance(80, 24, 
-        						java.awt.Image.SCALE_SMOOTH)));
+	    				getResource(header.getButtonView()+" Button.png")).getImage().
+	    				getScaledInstance((int)(80 * screen.getSize().width/1000), (int)(24* screen.getSize().height/750), 
+	    						java.awt.Image.SCALE_SMOOTH)));
+				changeView.setOpaque(false);
+		        changeView.setContentAreaFilled(false);
+		        changeView.setBorderPainted(false);
 				if (state == mazeState.CHAMBERVIEW) {
 					runMapView();
 				} else if (state == mazeState.MAPVIEW) {

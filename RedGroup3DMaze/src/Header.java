@@ -2,6 +2,7 @@ import java.awt.*;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class Header {
     private boolean chamberView;
@@ -37,26 +38,34 @@ public class Header {
         g.fillRect(0,0,(int)(scaleFactor.width),(int)(40 * scaleFactor.height/750));
         g.setColor(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(15* scaleFactor.height/750)));
+        Image temp = X.getScaledInstance((int)(100*scaleFactor.width/1000), (int)(30*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)(-40*scaleFactor.width/1000), (int)(4 * scaleFactor.height/750), null);
+        temp = digits[player.getCoordinate('X') + 1].getScaledInstance((int)(13*scaleFactor.width/1000), (int)(13*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)(65*scaleFactor.width/1000), (int)(13 * scaleFactor.height/750), null);
         
-        g.drawImage(X, (int)(60*scaleFactor.width/1000-100), (int)(10 * scaleFactor.height/750 - 7), null);
-        g.drawImage(digits[player.getCoordinate('X') + 1], (int)(65*scaleFactor.width/1000), (int)(12 * scaleFactor.height/750), null);
+        temp = Y.getScaledInstance((int)(100*scaleFactor.width/1000), (int)(30*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)(20*scaleFactor.width/1000), (int)(4 * scaleFactor.height/750), null);
+        temp = digits[player.getCoordinate('Y') + 1].getScaledInstance((int)(13*scaleFactor.width/1000), (int)(13*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)(125*scaleFactor.width/1000), (int)(13 * scaleFactor.height/750), null);
         
-        g.drawImage(Y, (int)(120*scaleFactor.width/1000-100), (int)(10 * scaleFactor.height/750 - 7), null);
-        g.drawImage(digits[player.getCoordinate('Y') + 1], (int)(125*scaleFactor.width/1000), (int)(12 * scaleFactor.height/750), null);
+        temp = PlayerLevel.getScaledInstance((int)(140*scaleFactor.width/1000), (int)(30*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)(200*scaleFactor.width/1000), (int)(4 * scaleFactor.height/750), null);
+        temp = digits[player.getCoordinate('Z') + 1].getScaledInstance((int)(13*scaleFactor.width/1000), (int)(13*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)(345*scaleFactor.width/1000), (int)(13 * scaleFactor.height/750), null);
         
-        g.drawImage(PlayerLevel, (int)(340*scaleFactor.width/1000-140), (int)(10 * scaleFactor.height/750-7), null);
-        g.drawImage(digits[player.getCoordinate('Z') + 1], (int)(345*scaleFactor.width/1000), (int)(12 * scaleFactor.height/750), null);
-        
-        g.drawImage(Moves, (int)(500*scaleFactor.width/1000-140), (int)(10 * scaleFactor.height/750 - 7), null);
+        temp = Moves.getScaledInstance((int)(140*scaleFactor.width/1000), (int)(30*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)(360*scaleFactor.width/1000), (int)(4 * scaleFactor.height/750), null);
         String digit = String.valueOf(player.getMoves()).substring(0,1);
-        g.drawImage(digits[Integer.parseInt(digit)], (int)((505)*scaleFactor.width/1000), (int)(12 * scaleFactor.height/750), null);
+        temp = digits[Integer.parseInt(digit)].getScaledInstance((int)(13*scaleFactor.width/1000), (int)(13*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)((505)*scaleFactor.width/1000), (int)(13 * scaleFactor.height/750), null);
     	for (int i = 1; i<String.valueOf(player.getMoves()).length(); i++) {
     		digit = String.valueOf(player.getMoves()).substring(i, i+1);
-    		g.drawImage(digits[Integer.parseInt(digit)], (int)((505+13*i)*scaleFactor.width/1000), (int)(12 * scaleFactor.height/750), null);
+    		temp = digits[Integer.parseInt(digit)].getScaledInstance((int)(13*scaleFactor.width/1000), (int)(13*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+    		g.drawImage(temp, (int)((505+13*i)*scaleFactor.width/1000), (int)(13 * scaleFactor.height/750), null);
     	}
     	
-        //g.drawString("Direction: " + Character.toString(player.getDirection()), (int)(550 * scaleFactor.width/1000), (int)(25 * scaleFactor.height/750));
-        g.drawImage(Direction, (int)(720*scaleFactor.width/1000-140), (int)(10 * scaleFactor.height/750 - 7), null);
+    	temp = Direction.getScaledInstance((int)(140*scaleFactor.width/1000), (int)(30*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)(580*scaleFactor.width/1000), (int)(4 * scaleFactor.height/750), null);
         int num = 3;
         if (player.getDirection()=='N') {
         	num = 0;
@@ -65,7 +74,8 @@ public class Header {
         } else if (player.getDirection()=='S') {
         	num = 2;
         }
-        g.drawImage(directions[num], (int)((738)*scaleFactor.width/1000-100), (int)(10 * scaleFactor.height/750-7), null);
+        temp = directions[num].getScaledInstance((int)(100*scaleFactor.width/1000), (int)(30*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        g.drawImage(temp, (int)(638*scaleFactor.width/1000), (int)(4 * scaleFactor.height/750), null);
     }
     public void update() {
 
@@ -85,5 +95,11 @@ public class Header {
             return("CHAMBER");
         }
     }
-
+    public String getButtonView() {
+        if(chamberView) {
+            return("CHAMBER");
+        } else {
+            return("MAP");
+        }
+    }
 }

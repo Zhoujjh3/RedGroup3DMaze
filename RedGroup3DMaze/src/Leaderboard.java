@@ -6,7 +6,8 @@ import java.util.TimerTask;
 
 public class Leaderboard implements ActionListener {
 	
-	JTextField[] top10 = new JTextField[10];
+//	JTextField[] top10 = new JTextField[10];
+	JLabel[] top10 = new JLabel[10];
 	double scoresList[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	double score;
 	static int width = 1000;
@@ -25,7 +26,7 @@ public class Leaderboard implements ActionListener {
 		score = newScore;
 	}
 	
-	public void display(JFrame frame, GamePanel contentPane) {
+	public void display(JFrame frame, JPanel contentPane/*GamePanel contentPane*/) {
 		sortScores(score);
 		
 		this.frame = frame;
@@ -48,12 +49,14 @@ public class Leaderboard implements ActionListener {
 	    
 	    for (int i = 0; i < top10.length; i++) {
 	    	if (scoresList[i] == 0) {
-	    		top10[i] = new JTextField("---");
+//	    		top10[i] = new JTextField("---");
+	    		top10[i] = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("tempLeaderboardBox.png")));	
 	    	} else {
-	    		top10[i] = new JTextField(Double.toString(scoresList[i]));
+//	    		top10[i] = new JTextField(Double.toString(scoresList[i]));
+	    		top10[i] = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("")));	
 	    	}
 	    	top10[i].setHorizontalAlignment(JTextField.CENTER);
-	    	top10[i].setEditable(false);
+//	    	top10[i].setEditable(false);
 	    	contentPane.add(top10[i]);
 	    }
 	    
@@ -76,8 +79,9 @@ public class Leaderboard implements ActionListener {
 	    		for (int i = 0; i < 5; i++) {
 	    			top10[i].setBounds((int)(panelWidth * 0.140), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
 	    			top10[i + 5].setBounds((int)(panelWidth * 0.520), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
-	    			top10[i].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
-	    			top10[i + 5].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+	    			
+//	    			top10[i].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+//	    			top10[i + 5].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
 	    		}
 	    		
 	    		yourScore.setBounds((int)(panelWidth * 0.165), (int)(panelHeight * 0.7), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
@@ -143,6 +147,7 @@ public class Leaderboard implements ActionListener {
 	private static void runGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		Leaderboard test2b = new Leaderboard();
+//		test2b.display(new JFrame(), new JPanel());
 	}
 	
 	public static void main(String[] args) {
