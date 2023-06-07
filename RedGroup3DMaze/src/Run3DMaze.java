@@ -184,8 +184,18 @@ public class Run3DMaze {
 		changeView.setOpaque(false);
         changeView.setContentAreaFilled(false);
         changeView.setBorderPainted(false);
-		levelDown = new JButton("Level Up");
-		levelUp = new JButton("Level Down");
+		levelDown = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("levelup.png")).getImage().
+				getScaledInstance(100, 30, java.awt.Image.SCALE_SMOOTH)));
+		levelDown.setOpaque(false);
+		levelDown.setContentAreaFilled(false);
+        levelDown.setBorderPainted(false);
+		levelUp = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("leveldown.png")).getImage().
+				getScaledInstance(100, 30, java.awt.Image.SCALE_SMOOTH)));
+		levelUp.setOpaque(false);
+		levelUp.setContentAreaFilled(false);
+		levelUp.setBorderPainted(false);
 		gamePanel.setLayout(null);
 		gamePanel.add(changeView);
 		gamePanel.add(levelUp);
@@ -204,9 +214,6 @@ public class Run3DMaze {
 	    				getResource(header.getButtonView()+" Button.png")).getImage().
 	    				getScaledInstance((int)(80 * screen.getSize().width/1000), (int)(24* screen.getSize().height/750), 
 	    						java.awt.Image.SCALE_SMOOTH)));
-				changeView.setOpaque(false);
-		        changeView.setContentAreaFilled(false);
-		        changeView.setBorderPainted(false);
 				if (state == mazeState.CHAMBERVIEW) {
 					runMapView();
 				} else if (state == mazeState.MAPVIEW) {
