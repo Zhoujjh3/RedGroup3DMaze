@@ -10,6 +10,7 @@ public class Room {
 	private int[] rgbValues = new int[3];
 	private char artDirection;
 	private Color finalDoorColor = Color.green;
+	private int randomNumber;
 	
 	 public Shapes3D[] walls = {
 	    		new Wall3D(0, this),
@@ -52,7 +53,7 @@ public class Room {
 		
 		color = new Color(rgbValues[0], rgbValues[1], rgbValues[2]);
 		colorDark = new Color(rgbValues[0]-30, rgbValues[1]-30, rgbValues[2]-30);
-		
+		randomNumber = (int) ((Math.random() * 5) + 1);
 		//gradient = new GradientPaint(100, 100, color, 100, 750, colorDark);
 	}	
 	
@@ -122,7 +123,6 @@ public class Room {
 	
 	public void populateDoors() {
 		char direction = Run3DMaze.player.getDirection();
-		int randomNumber = (int) ((Math.random() * 5) + 1);
 		if(direction == 'N') {
 			if(getDirection('W')) {
 				doors.add(new Door3D(0));
