@@ -109,17 +109,11 @@ public class MazeMap {
 	public class Painter {
 		
 		public void displayGrid(Graphics g) {
-			
-			//Header placeholder
-	        g.setColor(Color.gray);
-	        g.fillRect(0, 0, (int)(1000*wScale), (int)(40*hScale));
-			
-	        //Footer placeholder
-	        g.setColor(Color.gray);
+			 //Footer placeholder
+	        g.setColor(Color.black);
 	        g.fillRect(0, (int)(710*hScale), (int)(1000*wScale), (int)(40*hScale));
 	        
 	        //Grid outline
-			g.setColor(Color.black);
 			g.fillRect((int)(165*wScale), (int)(40*hScale), (int)(670*wScale), (int)(5*hScale));
 			g.fillRect((int)(165*wScale), (int)(705*hScale), (int)(670*wScale), (int)(5*hScale));
 			g.fillRect((int)(165*wScale), (int)(40*hScale), (int)(5*wScale), (int)(670*hScale));
@@ -128,27 +122,27 @@ public class MazeMap {
 			if (size==4) {
 				//4x4 grid
 				//vertical
-				g.fillRect((int)(165*wScale+sWidth), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale));
-				g.fillRect((int)(165*wScale+sWidth*2), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale));
-				g.fillRect((int)(165*wScale+sWidth*3), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale));
+				g.fillRect((int)(165*wScale+sWidth), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale)+1);
+				g.fillRect((int)(165*wScale+sWidth*2), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale)+1);
+				g.fillRect((int)(165*wScale+sWidth*3), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale)+1);
 				
 				//horizontal
-				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight), (int)(670*wScale), (int)(5*hScale));
-				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*2), (int)(670*wScale), (int)(5*hScale));
-				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*3), (int)(670*wScale), (int)(5*hScale));
+				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight), (int)(670*wScale)+1, (int)(5*hScale));
+				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*2), (int)(670*wScale)+1, (int)(5*hScale));
+				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*3), (int)(670*wScale)+1, (int)(5*hScale));
 			} else {
 				//5x5 grid
 				//vertical
-				g.fillRect((int)(165*wScale+sWidth), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale));
-				g.fillRect((int)(165*wScale+sWidth*2), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale));
-				g.fillRect((int)(165*wScale+sWidth*3), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale));
-				g.fillRect((int)(165*wScale+sWidth*4), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale));
+				g.fillRect((int)(165*wScale+sWidth), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale)+1);
+				g.fillRect((int)(165*wScale+sWidth*2), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale)+1);
+				g.fillRect((int)(165*wScale+sWidth*3), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale)+1);
+				g.fillRect((int)(165*wScale+sWidth*4), (int)(40*hScale), (int)(5*wScale), (int)(665*hScale)+1);
 				
 				//horizontal
-				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight), (int)(670*wScale), (int)(5*hScale));
-				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*2), (int)(670*wScale), (int)(5*hScale));
-				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*3), (int)(670*wScale), (int)(5*hScale));
-				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*4), (int)(670*wScale), (int)(5*hScale));
+				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight), (int)(670*wScale)+1, (int)(5*hScale));
+				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*2), (int)(670*wScale)+1, (int)(5*hScale));
+				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*3), (int)(670*wScale)+1, (int)(5*hScale));
+				g.fillRect((int)(165*wScale), (int)(40*hScale+sHeight*4), (int)(670*wScale)+1, (int)(5*hScale));
 			}
 			
 			//Outside area
@@ -301,7 +295,7 @@ public class MazeMap {
 		
 		public void gray(Graphics g, int[] coord) {
 			g.setColor(Color.darkGray);
-			g.fillRect((int)(169*wScale+coord[0]*sWidth), (int)(44*hScale+coord[1]*sHeight), (int)(sWidth-4*wScale), (int)(sHeight-4*hScale));
+			g.fillRect((int)(169*wScale+coord[0]*sWidth), (int)(44*hScale+coord[1]*sHeight), (int)(sWidth-4*wScale)+1, (int)(sHeight-4*hScale)+1);
 		}
 		
 		public void displayDoorN(Graphics g, int[] coord) {

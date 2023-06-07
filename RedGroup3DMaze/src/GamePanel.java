@@ -47,6 +47,9 @@ public class GamePanel extends JPanel{
 		
 		Run3DMaze.mapLevelIncrement = 0;
 		Run3DMaze.changeView.setVisible(true);
+		Run3DMaze.changeView.setOpaque(false);
+		Run3DMaze.changeView.setContentAreaFilled(false);
+		Run3DMaze.changeView.setBorderPainted(false);
         Run3DMaze.levelDown.setVisible(false);
         Run3DMaze.levelUp.setVisible(false);
         
