@@ -12,7 +12,7 @@ public class Door3D extends Shapes3D {
 	public int h, w;
 	double xScale = w/1000.0;
 	double yScale = h/700.0;
-	Color color = new Color(50, 50, 50);
+	Color color = new Color(230, 230, 230);
 	
 	Door3D(int theState) {
 		h = Run3DMaze.height;
@@ -49,7 +49,7 @@ public class Door3D extends Shapes3D {
 		Graphics2D g2 = (Graphics2D) g;
 		int[] doorX = {(int) Math.rint(xTL),(int) Math.rint(xTR),(int) Math.rint(xBR),(int) Math.rint(xBL)};
 		int[] doorY = {(int) Math.rint(yTL),(int) Math.rint(yTR),(int) Math.rint(yBR),(int) Math.rint(yBL)};
-		color = new Color(230, 230, 230);
+		//color = new Color(230, 230, 230);
 		Color brighter = new Color(150, 150, 150);
 		//GradientPaint gradient = new GradientPaint(doorX[0], doorY[0], brighter, doorX[2], doorY[2], color);
 		//g2.setPaint(gradient);
