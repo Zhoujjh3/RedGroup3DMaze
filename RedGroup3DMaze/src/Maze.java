@@ -69,13 +69,16 @@ public class Maze {
 			baseMaze = new char[4][9][9];
 		}
 		setBaseMazeAndWalls(baseMaze, walls);
-		int randMazeVal = (int)(Math.random()*3);
+		int randMazeVal = (int)(Math.random()*2);
 		switch(randMazeVal) {
 		case 0:
+			createSpiralPath(baseMaze);
+			break;
+		case 1:
 			createRandomPath(baseMaze);
 			break;
 		default:
-			createRandomPath(baseMaze);
+			createSpiralPath(baseMaze);
 			break;
 		}
 		fillBaseMaze(baseMaze, walls);
@@ -86,7 +89,7 @@ public class Maze {
 		for (int level=0; level<baseMaze.length; level++) {
 			for (int x=0; x<baseMaze[0].length; x++) {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
-					System.out.print(baseMaze[level][x][y] + " ");
+//					System.out.print(baseMaze[level][x][y] + " ");
 					int[] coords = getCoords(level, x, y);
 					char c = baseMaze[level][x][y];
 					if (c == 'Z' || c == 'U' || c == 'D' || c == 'B') {
@@ -374,38 +377,39 @@ public class Maze {
 	
 	private int[] moveInDir(char[][] level, int endx, int endy, ArrayList<Integer> xTrace, ArrayList<Integer> yTrace, String type, char Dir) {
 		char dir;
-		if(type.equals("spiralGen"))
-			dir = Dir;
-		else
-			dir = generateDirection();
+		dir = generateDirection();
+		if(type.equals("spiralGen")) {
+			if(inCorner(endx, endy, level.length))
+				dir = decideSpiralDir(endx, endy, level);
+		}
 		boolean works = false;
 		int testCounter = 0;
 		while(!works && testCounter <10) {
 			testCounter++;
 			switch(dir) {
 				case 'N':
-					if(meetsConditions(endx, endy, level, 'N', xTrace, yTrace)) {
+					if(meetsConditions(endx, endy, level, 'N', xTrace, yTrace, type)) {
 						level[endx][endy-1] = 'T';
 						endy -= 2;
 						works = true;
 						break;
 					}
 				case 'S':
-					if(meetsConditions(endx, endy, level, 'S', xTrace, yTrace)) {
+					if(meetsConditions(endx, endy, level, 'S', xTrace, yTrace, type)) {
 						level[endx][endy+1] = 'T';
 						endy += 2;
 						works = true;
 						break;
 					}
 				case 'E':
-					if(meetsConditions(endx, endy, level, 'E', xTrace, yTrace)) {
+					if(meetsConditions(endx, endy, level, 'E', xTrace, yTrace, type)) {
 						level[endx-1][endy] = 'T';
 						endx -= 2;
 						works = true;
 						break;
 					}
 				case 'W':
-					if(meetsConditions(endx, endy, level, 'W', xTrace, yTrace)) {
+					if(meetsConditions(endx, endy, level, 'W', xTrace, yTrace, type)) {
 						level[endx+1][endy] = 'T';
 						endx += 2;
 						works = true;
@@ -424,7 +428,7 @@ public class Maze {
 			results[0] = endx;
 			results[1] = endy;
 		}
-		System.out.println("Rsults:" + results[0]);
+//		System.out.println("Rsults:" + results[0]);
 		return results;
 	}
 	
@@ -441,7 +445,7 @@ public class Maze {
 		return 'E';
 	}
 	
-	private boolean meetsConditions(int currentX, int currentY, char level[][], char dir, ArrayList<Integer> xTrace, ArrayList<Integer> yTrace) {
+	private boolean meetsConditions(int currentX, int currentY, char level[][], char dir, ArrayList<Integer> xTrace, ArrayList<Integer> yTrace, String type) {
 		boolean[] backup = {true, true, true, true};
 		int failCounter = 0;
 		boolean meets = true;
@@ -459,6 +463,10 @@ public class Maze {
 					meets = false;
 					break;
 				}
+				if(type.equals("spiralGen")) {
+					if(!((currentX == level.length-2)||(currentX == 1)))
+						meets = false;
+				}
 				break;
 			case 'S':
 				if(currentY < level[0].length-3) {
@@ -472,6 +480,11 @@ public class Maze {
 					failCounter++;
 					meets = false;
 					break;
+				}
+				if(type.equals("spiralGen")) {
+//					System.out.println(currentX+2 + " = " + (level.length-2) + " ");
+					if(!((currentX == level.length-2)||(currentX == 1)))
+						meets = false;
 				}
 				break;
 			case 'W':
@@ -487,6 +500,10 @@ public class Maze {
 					meets = false;
 					break;
 				}
+				if(type.equals("spiralGen")) {
+					if(!((currentY == level.length-2)||(currentY == 1)))
+						meets = false;
+				}
 				break;
 			case 'E':
 				if(currentX>2) {
@@ -500,6 +517,10 @@ public class Maze {
 					failCounter++;
 					meets = false;
 					break;
+				}
+				if(type.equals("spiralGen")) {
+					if(!((currentY == level.length-2)||(currentY == 1)))
+						meets = false;
 				}
 				break;
 		}
@@ -523,7 +544,7 @@ public class Maze {
 		}
 		return boolVal;
 	}
-	
+
 	private char[][][] createSpiralPath(char[][][] baseMaze) {
 		int aimMinMoves;
 		if (difficulty == 1) {
@@ -572,6 +593,7 @@ public class Maze {
 		int[] endCC = null;
 		int counter = 0;
 		while(!pathWorks) {
+//			System.out.println(counter);
 			boolean failure = false;
 			for(int i = 0; i<level.length;i++) {
 				for(int j = 0; j<level.length;j++) {
@@ -579,29 +601,20 @@ public class Maze {
 				}
 			}
 			
-			char dir = decideSpiralDir(startX, startY, level);
-			int counter2 = 0;
 			for(int i = 0; i< givenMoves+(counter/1000); i++) {
-				if(endx == level.length-2 || endy == level.length-2)
-					dir = decideSpiralDir(startX, startY, level);
-//				System.out.println(startX + " " + startY);
-//				System.out.println("given: " + givenMoves);
-//				if()
-				
-				int[] results = moveInDir(level, endx, endy, xTrace, yTrace, "spiralGen", dir);
+				int[] results = moveInDir(level, endx, endy, xTrace, yTrace, "spiralGen", 'Z');
 				if(results[0] == level.length-1 && results[1] == level.length-1) {
-					dir = decideSpiralDir(endx, endy, level);
+					break;
 				}
 				if(results[0] == -1 && results[1] == -1) {
-					dir = decideSpiralDir(endx, endy, level);
+					failure= true;
+					break;
 				} else {
 					endx = results[0];
 					endy = results[1];
 					xTrace.add(endx);
 					yTrace.add(endy);
-					counter2++;
 				}
-				
 			}
 			if(levelType.equals("end")) {
 				level[startX][startY] = 'U';
@@ -610,7 +623,16 @@ public class Maze {
 				level[endx][endy] = 'D';
 			} if(levelType.equals("first")) {
 				level[endx][endy] = 'D';
-			}		
+			}
+			
+			
+//			for(int i = 0; i<level.length;i++) {
+//				for(int j = 0; j<level.length;j++) {
+//					System.out.print(level[j][i] + " ");
+//				}
+//				System.out.println();
+//			}
+//			System.out.println("---------");
 			
 			if((endx == level.length-2 && endy == level.length-2) && levelType == "middle")
 				failure = true;
@@ -620,6 +642,9 @@ public class Maze {
 				if(yTrace.get(i) == startY && xTrace.get(i) == startX)
 					failure = true;
 			}
+			
+			
+//			System.out.println(failure);
 			
 			if(!failure) {
 				int[] startC = {0, startX, startY};
@@ -641,18 +666,31 @@ public class Maze {
 			counter++;
 			
 		}
-//		for(int i = 0; i<level.length;i++) {
-//			for(int j = 0; j<level.length;j++) {
-//				System.out.print(level[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println("-----------------------");
+		for(int i = 0; i<level.length;i++) {
+			for(int j = 0; j<level.length;j++) {
+				System.out.print(level[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println("-----------------------");
+		
 		return endCC;
 	}
 	
+	private boolean inCorner(int endx, int endy, int len) {
+		if(endx == len-2 & endy == len-2)
+			return true;
+		if(endx == len-2 && endy == 1)
+			return true;
+		if(endy == len-2 & endx == 1)
+			return true;
+		if(endx == 1 && endy == 1)
+			return true;
+		return false;
+	}
+	
 	private char decideSpiralDir(int startX, int startY, char[][] level) {
-		System.out.println(startX + " " + startY);
+//		System.out.println(startX + " " + startY);
 		int mazeSize = this.getMazeSize();
 		int decider = (int)(Math.random()*100);
 		char[] dirOptions = new char[2];
@@ -665,35 +703,35 @@ public class Maze {
 			if(startX == 1 && startY == 1) {
 				dirOptions[0] = 'S';
 				dirOptions[1] = 'E';
-				System.out.println("case 1");
+//				System.out.println("case 1");
 				return getDirOfTwo(dirOptions) ;
 			}
 			if(startX == 1 && startY == level.length-2){
-				dirOptions[0] = 'S';
-				dirOptions[1] = 'W';
-				System.out.println("case 2");
+				dirOptions[0] = 'N';
+				dirOptions[1] = 'E';
+//				System.out.println("case 2");
 				return getDirOfTwo(dirOptions) ;
 			}
 			if(startX == level.length-2 && startY == 1){
-				dirOptions[0] = 'N';
+				dirOptions[0] = 'S';
 				dirOptions[1] = 'W';
-				System.out.println("case 3");
+//				System.out.println("case 3");
 				return getDirOfTwo(dirOptions) ;
 			}
 			if(startX == level.length-2 && startY == level.length-2){
-				dirOptions[0] = 'E';
+				dirOptions[0] = 'W';
 				dirOptions[1] = 'N';
-				System.out.println("case 4");
+//				System.out.println("case 4");
 				return getDirOfTwo(dirOptions) ;
 			}
 //		}
-		for(int i = 0; i<level.length;i++) {
-			for(int j = 0; j<level.length;j++) {
-				System.out.print(level[i][j] + " ");
-			}
-			System.out.println();
-		}
-		System.out.println(startX +  " " + startY + " " + (level.length-2));
+//		for(int i = 0; i<level.length;i++) {
+//			for(int j = 0; j<level.length;j++) {
+//				System.out.print(level[i][j] + " ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println(startX +  " " + startY + " " + (level.length-2));
 		return 'N';
 	}
 	
@@ -755,6 +793,7 @@ public class Maze {
 		}
 		
 		int wallsSize = walls.size();
+		ArrayList<int[]> doorsIfNeeded = new ArrayList<int[]>();
 		for (int i=0; i<wallsSize; i++) {
 			wallCoords = walls.remove((int)(Math.random()*walls.size()));
 			charAtCoord = baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]];
@@ -773,9 +812,33 @@ public class Maze {
 					endCoords[1] = wallCoords[1]+1;
 					endCoords[2] = wallCoords[2];
 				}
-				if (pathFind(baseMaze, startCoords, endCoords) < 0 && !(difficulty == 1 && manyDoorsAroundAdjacentRooms(baseMaze, wallCoords))) {
+				boolean manyDoorsInEasy = (difficulty == 1 && manyDoorsAroundAdjacentRooms(baseMaze, wallCoords));
+				if (pathFind(baseMaze, startCoords, endCoords) < 0 && !manyDoorsInEasy) {
 					baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
+				} else if (manyDoorsInEasy) {
+					int[] wCoords = new int[3];
+					int[] sCoords = new int[3];
+					int[] eCoords = new int[3];
+					for (int j=0; j<3; j++) {
+						wCoords[j] = wallCoords[j];
+						sCoords[j] = startCoords[j];
+						eCoords[j] = endCoords[j];
+					}
+					doorsIfNeeded.add(wCoords);
+					doorsIfNeeded.add(sCoords);
+					doorsIfNeeded.add(eCoords);
 				}
+			}
+		}
+		
+		wallsSize = doorsIfNeeded.size()/3;
+		for (int i=0; i<wallsSize; i++) {
+			wallCoords = doorsIfNeeded.remove(0);
+			startCoords = doorsIfNeeded.remove(0);
+			endCoords = doorsIfNeeded.remove(0);
+			if (pathFind(baseMaze, startCoords, endCoords) < 0) {
+				System.out.println("Thing: " + wallCoords[0] + " " + wallCoords[1] + " " + wallCoords[2]);
+				baseMaze[wallCoords[0]][wallCoords[1]][wallCoords[2]] = 'T';
 			}
 		}
 	}
@@ -969,7 +1032,7 @@ public class Maze {
 			};
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(2);
+		Maze maze2 = new Maze(1);
 		System.out.println(maze2.getMinMoves());
 	}
 }
