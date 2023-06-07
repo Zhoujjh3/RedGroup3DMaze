@@ -40,7 +40,7 @@ public class Header {
         g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(15* scaleFactor.height/750)));
         Image temp = X.getScaledInstance((int)(100*scaleFactor.width/1000), (int)(30*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
         g.drawImage(temp, (int)(-40*scaleFactor.width/1000), (int)(4 * scaleFactor.height/750), null);
-        temp = digits[player.getCoordinate('Y') + 1].getScaledInstance((int)(13*scaleFactor.width/1000), (int)(13*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
+        temp = digits[player.getCoordinate('X') + 1].getScaledInstance((int)(13*scaleFactor.width/1000), (int)(13*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
         g.drawImage(temp, (int)(65*scaleFactor.width/1000), (int)(13 * scaleFactor.height/750), null);
         
         temp = Y.getScaledInstance((int)(100*scaleFactor.width/1000), (int)(30*scaleFactor.height/750), java.awt.Image.SCALE_SMOOTH);
