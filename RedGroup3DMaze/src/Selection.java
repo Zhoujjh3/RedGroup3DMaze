@@ -15,7 +15,8 @@ public class Selection extends JPanel implements ActionListener{
 	int difficulty; 
 	JFrame frame; 
 	JPanel panel;
-	JLabel title, logo, background;
+	//JLabel title, logo, background;
+	JLabel background;
 	JButton easyButt, mediumButt, hardButt; 
 	private boolean signal = false;
 	
@@ -24,7 +25,9 @@ public class Selection extends JPanel implements ActionListener{
 		this.frame = frame;
 		this.panel = panel;
 		panel.setLayout(null);
-		background = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("selBackground.png")));	
+		background = new JLabel(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("selBackground.png")).getImage().
+				getScaledInstance(1000, 750, java.awt.Image.SCALE_SMOOTH)));
 		easyButt = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("easy.png")).getImage().
 				getScaledInstance(400, 100, java.awt.Image.SCALE_SMOOTH)));
@@ -34,8 +37,8 @@ public class Selection extends JPanel implements ActionListener{
 		hardButt = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("hard.png")).getImage().
 				getScaledInstance(400, 100, java.awt.Image.SCALE_SMOOTH)));
-		logo = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("MazeLogo.png")));
-		title = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("Welcome.png")));	
+		//logo = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("MazeLogo.png")));
+		//title = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("Welcome.png")));	
 	}
 	
 //	public void paintComponent(Graphics g) {
@@ -44,7 +47,11 @@ public class Selection extends JPanel implements ActionListener{
 //	}
 	
 	public void display() {
-//	    background.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+		background.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("selBackground.png")).getImage().
+				getScaledInstance((int)(frame.getWidth()), (int)(frame.getHeight()), 
+						java.awt.Image.SCALE_SMOOTH)));
+	    background.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 //	    background.setOpaque(true);
 		
 	    easyButt.setActionCommand("Easy");
@@ -83,15 +90,15 @@ public class Selection extends JPanel implements ActionListener{
 						java.awt.Image.SCALE_SMOOTH)));
 	    
 	    easyButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.267),(int)(400*panelWidth/1000),(int)(110*panelHeight/750));
-	    easyButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
+	    //easyButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
 	    mediumButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.467), (int)(400*panelWidth/1000),(int)(110*panelHeight/750));
-	    mediumButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
+	    //mediumButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
 	    hardButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.667), (int)(400*panelWidth/1000),(int)(110*panelHeight/750));
-	    hardButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
+	    //hardButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
 	    	    
-	    title.setBounds((int)(panelWidth*0.01), (int)(panelHeight*.06), (int)(panelWidth*1), (int)(panelHeight*.13));
+	    //title.setBounds((int)(panelWidth*0.01), (int)(panelHeight*.06), (int)(panelWidth*1), (int)(panelHeight*.13));
 	    	    
-	    logo.setBounds((int)(panelWidth*0.5), (int)(panelHeight*.267), (int)(panelWidth*.4), (int)(panelHeight*.53));
+	    //logo.setBounds((int)(panelWidth*0.5), (int)(panelHeight*.267), (int)(panelWidth*.4), (int)(panelHeight*.53));
 	    
 //	    try {
 //            frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(getClass().getClassLoader().getResource("selBackground.png")))));
@@ -99,12 +106,13 @@ public class Selection extends JPanel implements ActionListener{
 //            e.printStackTrace();
 //        }
 	    
-	    panel.add(background);
+	    
 	    panel.add(easyButt);
 	    panel.add(mediumButt);
 	    panel.add(hardButt);
-	    panel.add(logo);
-	    panel.add(title);
+	    panel.add(background);
+	    //panel.add(logo);
+	    //panel.add(title);
 	}
 	
 	public void hide(JFrame frame, JPanel panel) {
@@ -112,8 +120,8 @@ public class Selection extends JPanel implements ActionListener{
 		panel.remove(easyButt);
 		panel.remove(mediumButt);
 		panel.remove(hardButt);
-		panel.remove(title);
-		panel.remove(logo);
+		//panel.remove(title);
+		//panel.remove(logo);
 	}
 
 //handles setting the difficulty of the maze
