@@ -137,14 +137,14 @@ public class Maze {
 			}
 			if (level < baseMaze.length-1) {
 				int numOfDs;
-				if (difficulty == 1) {
+				if (difficulty == 1 || (mazeType == 0 && difficulty == 2)) {
 					numOfDs = 1;
-				} else if (difficulty == 2 && mazeType == 1) {
+				} else if (difficulty == 2) {
 					numOfDs = 4;
-				} else if (difficulty == 2 /*&& mazeType == 0*/) {
-					numOfDs = 1;
-				} else {
+				} else if (difficulty == 3 && mazeType == 1){
 					numOfDs = 5;
+				} else {
+					numOfDs = 2;
 				}
 				for (int i=0; i<numOfDs; i++) {
 					walls.add(0, floors.remove((int)(Math.random()*floors.size())));
@@ -1039,7 +1039,7 @@ public class Maze {
 			};
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(2);
+		Maze maze2 = new Maze(3);
 		System.out.println(maze2.getMinMoves());
 	}
 }
