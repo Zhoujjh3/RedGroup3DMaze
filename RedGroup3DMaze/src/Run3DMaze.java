@@ -204,8 +204,8 @@ public class Run3DMaze {
 		levelDown.setVisible(false);
 		levelUp.setVisible(false);
 		changeView.setBounds(820, 5, 100, 30);
-		levelUp.setBounds(300, 665, 100, 30);
-		levelDown.setBounds(450, 665, 100, 30);
+		levelUp.setBounds(300, 712, 100, 30);
+		levelDown.setBounds(450, 712, 100, 30);
 		
 		changeView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

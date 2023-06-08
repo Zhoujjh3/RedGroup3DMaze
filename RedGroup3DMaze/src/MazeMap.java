@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 
 public class MazeMap {
@@ -12,6 +15,8 @@ public class MazeMap {
 	private double sHeight;
 	private double wScale;
 	private double hScale;
+	private Image displayedLevel;
+	private Image[] digits;
 	
 	MazeMap(ManualTestMaze maze, PlayerData player) {
 		this.manMaze = manMaze;
@@ -40,7 +45,15 @@ public class MazeMap {
 			sWidth = 133;
 			sHeight = 133;
 		}
-		
+		try {
+			displayedLevel = ImageIO.read(getClass().getClassLoader().getResource("displayedlevel.png"));
+			digits = new Image[10];
+			for (int i=0; i<10; i++) {
+				digits[i] = ImageIO.read(getClass().getClassLoader().getResource(String.valueOf(i)+".png"));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void display(Graphics g, int newLevel, Dimension dimension) {
@@ -103,7 +116,8 @@ public class MazeMap {
 		g.setColor(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(15*hScale)));
 		Integer newlevel = newLevel+1;
-		g.drawString("Displayed level: " + newlevel.toString(), (int)(625*wScale), (int)(735*hScale));
+		g.drawImage(displayedLevel.getScaledInstance((int)(160 * Run3DMaze.screen.getSize().width/1000), (int)(30* Run3DMaze.screen.getSize().height/750), java.awt.Image.SCALE_SMOOTH), (int)(625*wScale), (int)(721*hScale), null);
+		g.drawImage(digits[newlevel].getScaledInstance((int)(13*Run3DMaze.screen.getSize().width/1000), (int)(13*Run3DMaze.screen.getSize().height/750), java.awt.Image.SCALE_SMOOTH), (int)(790*wScale), (int)(722*hScale), null);
 	}
 	
 	public class Painter {

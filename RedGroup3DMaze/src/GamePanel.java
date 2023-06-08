@@ -124,8 +124,8 @@ public class GamePanel extends JPanel{
 		xScale = getWidth()/1000.0;
 		yScale = getHeight()/750.0;
 		Run3DMaze.changeView.setBounds((int)(820*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
-		Run3DMaze.levelDown.setBounds((int)(300*xScale), (int)(715*yScale), (int)(100*xScale), (int)(30*yScale));
-		Run3DMaze.levelUp.setBounds((int)(450*xScale), (int)(715*yScale), (int)(100*xScale), (int)(30*yScale));
+		Run3DMaze.levelDown.setBounds((int)(300*xScale), (int)(712*yScale), (int)(100*xScale), (int)(30*yScale));
+		Run3DMaze.levelUp.setBounds((int)(450*xScale), (int)(712*yScale), (int)(100*xScale), (int)(30*yScale));
 		Run3DMaze.changeView.setVisible(true);
 		Run3DMaze.levelDown.setVisible(true);
 		Run3DMaze.levelUp.setVisible(true);
