@@ -69,8 +69,12 @@ public class Maze {
 			baseMaze = new char[4][9][9];
 		}
 		setBaseMazeAndWalls(baseMaze, walls);
-		int randMazeVal = (int)(Math.random()*2);
-		switch(randMazeVal) {
+		if (difficulty == 1) {
+			mazeType = 1;
+		} else {
+			mazeType = (int)(Math.random()*2);
+		}
+		switch(mazeType) {
 		case 0:
 			createSpiralPath(baseMaze);
 			break;
@@ -89,7 +93,7 @@ public class Maze {
 		for (int level=0; level<baseMaze.length; level++) {
 			for (int x=0; x<baseMaze[0].length; x++) {
 				for (int y=0; y<baseMaze[0][0].length; y++) {
-//					System.out.print(baseMaze[level][x][y] + " ");
+					System.out.print(baseMaze[level][x][y] + " ");
 					int[] coords = getCoords(level, x, y);
 					char c = baseMaze[level][x][y];
 					if (c == 'Z' || c == 'U' || c == 'D' || c == 'B') {
@@ -103,6 +107,7 @@ public class Maze {
 			}
 			System.out.println("\n");
 		}
+		System.out.println("mazeType: " + mazeType);
 		if (theresAProblem) {
 			System.out.println("THERE'S A PROBLEM THAT MICHAEL NEEDS TO FIX");
 		}
@@ -132,12 +137,14 @@ public class Maze {
 			}
 			if (level < baseMaze.length-1) {
 				int numOfDs;
-				if (difficulty == 1) {
+				if (difficulty == 1 || (mazeType == 0 && difficulty == 2)) {
 					numOfDs = 1;
 				} else if (difficulty == 2) {
 					numOfDs = 4;
-				} else {
+				} else if (difficulty == 3 && mazeType == 1){
 					numOfDs = 5;
+				} else {
+					numOfDs = 2;
 				}
 				for (int i=0; i<numOfDs; i++) {
 					walls.add(0, floors.remove((int)(Math.random()*floors.size())));
@@ -550,9 +557,9 @@ public class Maze {
 		if (difficulty == 1) {
 			aimMinMoves = (int)(Math.random()*2) + 15 - 3;
 		} else if (difficulty == 2) {
-			aimMinMoves = (int)(Math.random()*2) + 18 - 3;
+			aimMinMoves = (int)(Math.random()*2) + 24 - 3;
 		} else {
-			aimMinMoves = (int)(Math.random()*2) + 22 - 4;
+			aimMinMoves = (int)(Math.random()*2) + 30 - 4;
 		}
 	
 		int movesPerLevel = aimMinMoves/baseMaze.length;
@@ -751,6 +758,141 @@ public class Maze {
 			}
 		}
 		return result;
+	}
+	
+	
+	
+
+	private char[][][] createUpDownPath(char[][][] baseMaze) {
+		int aimMinMoves;
+		if (difficulty == 1) {
+			aimMinMoves = (int)(Math.random()*2) + 15 - 3;
+		} else if (difficulty == 2) {
+			aimMinMoves = (int)(Math.random()*2) + 18 - 3;
+		} else {
+			aimMinMoves = (int)(Math.random()*2) + 22 - 4;
+		}
+	
+		int movesPerLevel = aimMinMoves/baseMaze.length;
+	
+		int[] endC = this.createUpDownLevelPath(baseMaze[0], movesPerLevel, 1, 1, "first");
+		aimMinMoves -= movesPerLevel;
+		int endx = endC[0];
+		int endy = endC[1];
+		
+		for(int i = 1; i< baseMaze.length;i++) {
+			if(i < baseMaze.length-1) {
+				endC = this.createUpDownLevelPath(baseMaze[i], movesPerLevel, endC[1], endC[2], "middle");
+				aimMinMoves -= movesPerLevel;
+			}
+			else
+				endC = this.createUpDownLevelPath(baseMaze[i], aimMinMoves, endC[1], endC[2], "end");
+		}
+		return baseMaze;
+	}
+	
+	private int[] createUpDownLevelPath(char[][] level, int givenMoves, int startX, int startY, String levelType){
+		char[][] levelCopy = new char[level.length][level.length];
+		
+		ArrayList<Integer> xTrace = new ArrayList<Integer>();
+		ArrayList<Integer> yTrace = new ArrayList<Integer>();
+	
+	
+		for(int i = 0; i<level.length;i++) {
+			for(int j = 0; j<level.length;j++) {
+				levelCopy[i][j] = level[i][j];
+			}
+		}
+		boolean pathWorks = false;
+		int endx = startX;
+		int endy = startY;
+		xTrace.add(endx);
+		yTrace.add(endy);
+		int[] endCC = null;
+		int counter = 0;
+		while(!pathWorks) {
+//			System.out.println(counter);
+			boolean failure = false;
+			for(int i = 0; i<level.length;i++) {
+				for(int j = 0; j<level.length;j++) {
+					level[i][j] = levelCopy[i][j];
+				}
+			}
+			
+			for(int i = 0; i< givenMoves+(counter/1000); i++) {
+				int[] results = moveInDir(level, endx, endy, xTrace, yTrace, "spiralGen", 'Z');
+				if(results[0] == level.length-1 && results[1] == level.length-1) {
+					break;
+				}
+				if(results[0] == -1 && results[1] == -1) {
+					failure= true;
+					break;
+				} else {
+					endx = results[0];
+					endy = results[1];
+					xTrace.add(endx);
+					yTrace.add(endy);
+				}
+			}
+			if(levelType.equals("end")) {
+				level[startX][startY] = 'U';
+			} if(levelType.equals("middle")) {
+				level[startX][startY] = 'U';
+				level[endx][endy] = 'D';
+			} if(levelType.equals("first")) {
+				level[endx][endy] = 'D';
+			}
+			
+			
+//			for(int i = 0; i<level.length;i++) {
+//				for(int j = 0; j<level.length;j++) {
+//					System.out.print(level[j][i] + " ");
+//				}
+//				System.out.println();
+//			}
+//			System.out.println("---------");
+			
+			if((endx == level.length-2 && endy == level.length-2) && levelType == "middle")
+				failure = true;
+			if(!(endx == level.length-2 && endy == level.length-2) && levelType == "end")
+				failure = true;
+			for(int i = 0; i<yTrace.size();i++) {
+				if(yTrace.get(i) == startY && xTrace.get(i) == startX)
+					failure = true;
+			}
+			
+			
+//			System.out.println(failure);
+			
+			if(!failure) {
+				int[] startC = {0, startX, startY};
+				int[] endC = {0, endx, endy};
+				endCC = endC;
+				pathWorks = pathFind(level, startC, endC) >= 0;
+//				System.out.println("-----------------------");
+//				System.out.println(startX + ",, " + startY);
+//				for(int i = 0; i<xTrace.size();i++) {
+//					System.out.println(xTrace.get(i) + ", " + yTrace.get(i));
+//				}
+//				System.out.println("-----------------------");
+
+			} else
+				pathWorks = false;
+			
+			yTrace.clear();
+			xTrace.clear();
+			counter++;
+			
+		}
+		for(int i = 0; i<level.length;i++) {
+			for(int j = 0; j<level.length;j++) {
+				System.out.print(level[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println("-----------------------");
+		
+		return endCC;
 	}
 	
 	
@@ -1032,7 +1174,7 @@ public class Maze {
 			};
 		maze = new Maze(test);
 		
-		Maze maze2 = new Maze(1);
+		Maze maze2 = new Maze(3);
 		System.out.println(maze2.getMinMoves());
 	}
 }
