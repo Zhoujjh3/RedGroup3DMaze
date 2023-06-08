@@ -47,9 +47,6 @@ public class GamePanel extends JPanel{
 		
 		Run3DMaze.mapLevelIncrement = 0;
 		Run3DMaze.changeView.setVisible(true);
-		Run3DMaze.changeView.setOpaque(false);
-		Run3DMaze.changeView.setContentAreaFilled(false);
-		Run3DMaze.changeView.setBorderPainted(false);
         Run3DMaze.levelDown.setVisible(false);
         Run3DMaze.levelUp.setVisible(false);
         
@@ -102,21 +99,33 @@ public class GamePanel extends JPanel{
 	
 	public void setMapView(Graphics g) {
 		if (Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement == Run3DMaze.maze.getMazeSize() - 1) {
-			Run3DMaze.levelUp.setBackground(Color.GRAY);
+			Run3DMaze.levelUp.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+    				getResource("leveldowndark.png")).getImage().
+    				getScaledInstance((int)(100 * Run3DMaze.screen.getSize().width/1000), (int)(30* Run3DMaze.screen.getSize().height/750), 
+    						java.awt.Image.SCALE_SMOOTH)));
         } else {
-        	Run3DMaze.levelUp.setBackground(Color.WHITE);
+        	Run3DMaze.levelUp.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+    				getResource("leveldown.png")).getImage().
+    				getScaledInstance((int)(100 * Run3DMaze.screen.getSize().width/1000), (int)(30* Run3DMaze.screen.getSize().height/750), 
+    						java.awt.Image.SCALE_SMOOTH)));
         }
         if (Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement == 0) {
-        	Run3DMaze.levelDown.setBackground(Color.GRAY);
+        	Run3DMaze.levelDown.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+    				getResource("levelupdark.png")).getImage().
+    				getScaledInstance((int)(100 * Run3DMaze.screen.getSize().width/1000), (int)(30* Run3DMaze.screen.getSize().height/750), 
+    						java.awt.Image.SCALE_SMOOTH)));
         } else {
-        	Run3DMaze.levelDown.setBackground(Color.WHITE);
+        	Run3DMaze.levelDown.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+    				getResource("levelup.png")).getImage().
+    				getScaledInstance((int)(100 * Run3DMaze.screen.getSize().width/1000), (int)(30* Run3DMaze.screen.getSize().height/750), 
+    						java.awt.Image.SCALE_SMOOTH)));
         }
 		Run3DMaze.map.display(g, Run3DMaze.player.getCoordinate('Z') + Run3DMaze.mapLevelIncrement, this.getSize());
 		xScale = getWidth()/1000.0;
 		yScale = getHeight()/750.0;
 		Run3DMaze.changeView.setBounds((int)(820*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
-		Run3DMaze.levelDown.setBounds((int)(300*xScale), (int)(715*yScale), (int)(100*xScale), (int)(30*yScale));
-		Run3DMaze.levelUp.setBounds((int)(450*xScale), (int)(715*yScale), (int)(100*xScale), (int)(30*yScale));
+		Run3DMaze.levelDown.setBounds((int)(300*xScale), (int)(712*yScale), (int)(100*xScale), (int)(30*yScale));
+		Run3DMaze.levelUp.setBounds((int)(450*xScale), (int)(712*yScale), (int)(100*xScale), (int)(30*yScale));
 		Run3DMaze.changeView.setVisible(true);
 		Run3DMaze.levelDown.setVisible(true);
 		Run3DMaze.levelUp.setVisible(true);
@@ -127,7 +136,6 @@ public class GamePanel extends JPanel{
 		xScale = getWidth()/1000.0;
 		yScale = getHeight()/750.0;
 		Run3DMaze.changeView.setBounds((int)(820*xScale), (int)(5*yScale), (int)(100*xScale), (int)(30*yScale));
-
 	}
 	
 	public PlayerData getPlayerData() {
