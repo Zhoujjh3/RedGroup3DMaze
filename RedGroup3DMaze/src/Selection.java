@@ -26,7 +26,7 @@ public class Selection extends JPanel implements ActionListener{
 		this.panel = panel;
 		panel.setLayout(null);
 		background = new JLabel(new ImageIcon(new ImageIcon(getClass().getClassLoader().
-				getResource("selBackground.png")).getImage().
+				getResource("3D maze loading screen for MARTIN.png")).getImage().
 				getScaledInstance(1000, 750, java.awt.Image.SCALE_SMOOTH)));
 		easyButt = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("easy.png")).getImage().
@@ -48,7 +48,7 @@ public class Selection extends JPanel implements ActionListener{
 	
 	public void display() {
 		background.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
-				getResource("selBackground.png")).getImage().
+				getResource("3D maze loading screen for MARTIN.png")).getImage().
 				getScaledInstance((int)(frame.getWidth()), (int)(frame.getHeight()), 
 						java.awt.Image.SCALE_SMOOTH)));
 	    background.setBounds(0, 0, frame.getWidth(), frame.getHeight());
@@ -78,20 +78,20 @@ public class Selection extends JPanel implements ActionListener{
 	    
 	    easyButt.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("easy.png")).getImage().
-				getScaledInstance((int)(400 * panelWidth/1000), (int)(100* panelHeight/750), 
+				getScaledInstance((int)(300 * panelWidth/1000), (int)(75* panelHeight/750), 
 						java.awt.Image.SCALE_SMOOTH)));
 	    mediumButt.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("medium.png")).getImage().
-				getScaledInstance((int)(400 * panelWidth/1000), (int)(100* panelHeight/750), 
+				getScaledInstance((int)(300 * panelWidth/1000), (int)(75* panelHeight/750), 
 						java.awt.Image.SCALE_SMOOTH)));
 	    hardButt.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("hard.png")).getImage().
-				getScaledInstance((int)(400 * panelWidth/1000), (int)(100* panelHeight/750), 
+				getScaledInstance((int)(300 * panelWidth/1000), (int)(75* panelHeight/750), 
 						java.awt.Image.SCALE_SMOOTH)));
 	    
-	    easyButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.267),(int)(400*panelWidth/1000),(int)(110*panelHeight/750));
+	    easyButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.333),(int)(400*panelWidth/1000),(int)(110*panelHeight/750));
 	    //easyButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
-	    mediumButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.467), (int)(400*panelWidth/1000),(int)(110*panelHeight/750));
+	    mediumButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.5), (int)(400*panelWidth/1000),(int)(110*panelHeight/750));
 	    //mediumButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));
 	    hardButt.setBounds((int)(panelWidth*.07), (int)(panelHeight*0.667), (int)(400*panelWidth/1000),(int)(110*panelHeight/750));
 	    //hardButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth*.03)));

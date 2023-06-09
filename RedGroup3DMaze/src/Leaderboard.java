@@ -19,6 +19,7 @@ public class Leaderboard implements ActionListener {
 	JFrame frame;
 	JPanel contentPane;
 	JButton restartButt;
+	JLabel background;
 	JScrollPane scrollPane;
 	JTextField yourScore;
 	private Image restart;
@@ -30,6 +31,9 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	public void display(JFrame frame, JPanel contentPane/*GamePanel contentPane*/) {
+		background = new JLabel(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("the 3D maze leaderboard screen.png")).getImage().
+				getScaledInstance(1000, 750, java.awt.Image.SCALE_SMOOTH)));
 		sortScores(score);
 		
 		this.frame = frame;
@@ -40,7 +44,7 @@ public class Leaderboard implements ActionListener {
 	    
 	    yourScore = new JTextField(Double.toString(score));
 	    yourScore.setEditable(false);
-	    yourScore.setHorizontalAlignment(JTextField.CENTER);
+	    yourScore.setHorizontalAlignment(JTextField.LEFT);
 	    contentPane.add(yourScore);
 	    
 	    for (int i = 0; i < top10.length; i++) {
@@ -53,16 +57,25 @@ public class Leaderboard implements ActionListener {
 	    	top10[i].setEditable(false);
 	    	contentPane.add(top10[i]);
 	    }
+	    for (int i=0; i<3; i++) {
+    		top10[i].setSelectedTextColor(Color.BLUE);
+        	top10[i].setForeground(Color.BLUE);
+    	}
+    	for (int i=3; i<10; i++) {
+    		top10[i].setSelectedTextColor(Color.WHITE);
+        	top10[i].setForeground(Color.WHITE);
+    	}
 	    
 	    restartButt = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("restart.png")).getImage().
-				getScaledInstance(300, 75, java.awt.Image.SCALE_SMOOTH)));
+				getScaledInstance(150, 37, java.awt.Image.SCALE_SMOOTH)));
 	    restartButt.setOpaque(false);
 	    restartButt.setContentAreaFilled(false);
 	    restartButt.setBorderPainted(false);
 	    restartButt.setActionCommand("click");
 	    restartButt.addActionListener(this);
 	    contentPane.add(restartButt);
+	    contentPane.add(background);
 
 	    //dynamic
 	    Timer timer = new Timer();
@@ -71,18 +84,31 @@ public class Leaderboard implements ActionListener {
 	    		int panelWidth = contentPane.getWidth();
 	    		int panelHeight = contentPane.getHeight();
 	    		
+	    		background.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+	    				getResource("the 3D maze leaderboard screen.png")).getImage().
+	    				getScaledInstance((int)(frame.getWidth()), (int)(frame.getHeight()), 
+	    						java.awt.Image.SCALE_SMOOTH)));
+	    	    background.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+	    		
 	    		for (int i = 0; i < 5; i++) {
-	    			top10[i].setBounds((int)(panelWidth * 0.140), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
-	    			top10[i + 5].setBounds((int)(panelWidth * 0.520), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
-	    			
+	    			top10[i].setBounds((int)(panelWidth * 0.210), (int)(panelHeight * (0.275 + (i * 0.099))), (int)(panelWidth * 0.267), (int)(panelHeight * 0.0667));
+	    			top10[i + 5].setBounds((int)(panelWidth * 0.524), (int)(panelHeight * (0.275 + (i * 0.099))), (int)(panelWidth * 0.267), (int)(panelHeight * 0.0667));
+	    			top10[i].setOpaque(false);
+	    			top10[i].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+	    			top10[i+5].setOpaque(false);
+	    			top10[i+5].setBorder(javax.swing.BorderFactory.createEmptyBorder());
 	    			top10[i].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
 	    			top10[i + 5].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
 	    		}
+	    		top10[0].setSelectedTextColor(Color.BLUE);
 	    		
-	    		yourScore.setBounds((int)(panelWidth * 0.165), (int)(panelHeight * 0.7), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
+	    		yourScore.setBounds((int)(panelWidth * 0.39), (int)(panelHeight * 0.763), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
 	    		yourScore.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.025)));
+	    		yourScore.setForeground(Color.WHITE);
+	    		yourScore.setOpaque(false);
+	    		yourScore.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 	    		
-	    		restartButt.setBounds((int)(panelWidth * 0.545), (int)(panelHeight * 0.7), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
+	    		restartButt.setBounds((int)(panelWidth * 0.58), (int)(panelHeight * 0.767), (int)(panelWidth * 0.155), (int)(panelHeight * 0.055));
 	    		restartButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.03)));
 	    	}
 	    };
@@ -144,11 +170,11 @@ public class Leaderboard implements ActionListener {
 //		test2b.display(new JFrame(), new JPanel());
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
 			public void run() {
 				runGUI();
 			}
 		});
-	}
+	}*/
 }
