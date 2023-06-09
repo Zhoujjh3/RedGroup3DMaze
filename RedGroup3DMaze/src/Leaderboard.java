@@ -1,13 +1,15 @@
+import javax.imageio.ImageIO;
 import javax.swing.*; 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Leaderboard implements ActionListener {
 	
 //	JTextField[] top10 = new JTextField[10];
-	JLabel[] top10 = new JLabel[10];
+	JTextField[] top10 = new JTextField[10];
 	double scoresList[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	double score;
 	static int width = 1000;
@@ -18,7 +20,8 @@ public class Leaderboard implements ActionListener {
 	JPanel contentPane;
 	JButton restartButt;
 	JScrollPane scrollPane;
-	JTextField title, yourScore;
+	JTextField yourScore;
+	private Image restart;
 	
 	private boolean signal = false;
 	
@@ -34,34 +37,29 @@ public class Leaderboard implements ActionListener {
 		
 	    contentPane.setLayout(null);
 	    
-	    title = new JTextField("Leaderboard");
-	    title.setEditable(false);
-	    title.setAlignmentY(Component.CENTER_ALIGNMENT);
-	    title.setAlignmentX(Component.CENTER_ALIGNMENT);
-	    title.setHorizontalAlignment(JTextField.CENTER);
-	    title.setBorder(BorderFactory.createEmptyBorder());
-	    contentPane.add(title);
 	    
-	    yourScore = new JTextField("Your Score: " + Double.toString(score));
+	    yourScore = new JTextField(Double.toString(score));
 	    yourScore.setEditable(false);
 	    yourScore.setHorizontalAlignment(JTextField.CENTER);
 	    contentPane.add(yourScore);
 	    
 	    for (int i = 0; i < top10.length; i++) {
 	    	if (scoresList[i] == 0) {
-//	    		top10[i] = new JTextField("---");
-	    		top10[i] = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("tempLeaderboardBox.png")));	
+	    		top10[i] = new JTextField("---");
 	    	} else {
-//	    		top10[i] = new JTextField(Double.toString(scoresList[i]));
-	    		top10[i] = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("")));	
+	    		top10[i] = new JTextField(Double.toString(scoresList[i]));
 	    	}
 	    	top10[i].setHorizontalAlignment(JTextField.CENTER);
-//	    	top10[i].setEditable(false);
+	    	top10[i].setEditable(false);
 	    	contentPane.add(top10[i]);
 	    }
 	    
-	    restartButt = new JButton("Restart");
-	    restartButt.setBackground(new Color(150, 150, 148));
+	    restartButt = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("restart.png")).getImage().
+				getScaledInstance(300, 75, java.awt.Image.SCALE_SMOOTH)));
+	    restartButt.setOpaque(false);
+	    restartButt.setContentAreaFilled(false);
+	    restartButt.setBorderPainted(false);
 	    restartButt.setActionCommand("click");
 	    restartButt.addActionListener(this);
 	    contentPane.add(restartButt);
@@ -73,15 +71,12 @@ public class Leaderboard implements ActionListener {
 	    		int panelWidth = contentPane.getWidth();
 	    		int panelHeight = contentPane.getHeight();
 	    		
-	    		title.setBounds((int)(panelWidth * 0.375), (int)(panelHeight * 0.08), (int)(panelWidth * 0.275), (int)(panelHeight * 0.08));
-	    		title.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
-	    		
 	    		for (int i = 0; i < 5; i++) {
 	    			top10[i].setBounds((int)(panelWidth * 0.140), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
 	    			top10[i + 5].setBounds((int)(panelWidth * 0.520), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
 	    			
-//	    			top10[i].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
-//	    			top10[i + 5].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+	    			top10[i].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+	    			top10[i + 5].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
 	    		}
 	    		
 	    		yourScore.setBounds((int)(panelWidth * 0.165), (int)(panelHeight * 0.7), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
@@ -97,7 +92,6 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	public void hide(JFrame frame, JPanel panel) {
-		panel.remove(title);
 		panel.remove(yourScore);
 		panel.remove(restartButt);
 		for (int i = 0; i < top10.length; i++) {
