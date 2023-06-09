@@ -26,8 +26,7 @@ public class Selection extends JPanel implements ActionListener{
 		this.panel = panel;
 		panel.setLayout(null);
 		background = new JLabel(new ImageIcon(new ImageIcon(getClass().getClassLoader().
-				getResource("3D maze loading screen for MARTIN.png")).getImage().
-				getScaledInstance(1000, 750, java.awt.Image.SCALE_SMOOTH)));
+				getResource("3D maze loading screen for MARTIN.png")).getImage()));
 		easyButt = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("easy.png")).getImage().
 				getScaledInstance(400, 100, java.awt.Image.SCALE_SMOOTH)));
@@ -49,9 +48,9 @@ public class Selection extends JPanel implements ActionListener{
 	public void display() {
 		background.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
 				getResource("3D maze loading screen for MARTIN.png")).getImage().
-				getScaledInstance((int)(frame.getWidth()), (int)(frame.getHeight()), 
+				getScaledInstance((int)(frame.getWidth()*0.99), (int)(frame.getHeight()*0.954), 
 						java.awt.Image.SCALE_SMOOTH)));
-	    background.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+	    background.setBounds(-5, -17, frame.getWidth(), frame.getHeight());
 //	    background.setOpaque(true);
 		
 	    easyButt.setActionCommand("Easy");
