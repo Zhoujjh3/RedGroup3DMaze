@@ -1,14 +1,16 @@
+import javax.imageio.ImageIO;
 import javax.swing.*; 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Leaderboard implements ActionListener {
 	
 //	JTextField[] top10 = new JTextField[10];
-	JLabel[] top10 = new JLabel[10];
-	double scoresList[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	JTextField[] top10 = new JTextField[10];
+	double scoresList[] = {0.012, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	double score;
 	static int width = 1000;
 	static int height = 750;
@@ -17,8 +19,10 @@ public class Leaderboard implements ActionListener {
 	JFrame frame;
 	JPanel contentPane;
 	JButton restartButt;
+	JLabel background;
 	JScrollPane scrollPane;
-	JTextField title, yourScore;
+	JTextField yourScore;
+	private Image restart;
 	
 	private boolean signal = false;
 	
@@ -27,6 +31,9 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	public void display(JFrame frame, JPanel contentPane/*GamePanel contentPane*/) {
+		background = new JLabel(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("the 3D maze leaderboard screen.png")).getImage().
+				getScaledInstance(1000, 750, java.awt.Image.SCALE_SMOOTH)));
 		sortScores(score);
 		
 		this.frame = frame;
@@ -34,37 +41,41 @@ public class Leaderboard implements ActionListener {
 		
 	    contentPane.setLayout(null);
 	    
-	    title = new JTextField("Leaderboard");
-	    title.setEditable(false);
-	    title.setAlignmentY(Component.CENTER_ALIGNMENT);
-	    title.setAlignmentX(Component.CENTER_ALIGNMENT);
-	    title.setHorizontalAlignment(JTextField.CENTER);
-	    title.setBorder(BorderFactory.createEmptyBorder());
-	    contentPane.add(title);
 	    
-	    yourScore = new JTextField("Your Score: " + Double.toString(score));
+	    yourScore = new JTextField(Double.toString(score));
 	    yourScore.setEditable(false);
-	    yourScore.setHorizontalAlignment(JTextField.CENTER);
+	    yourScore.setHorizontalAlignment(JTextField.LEFT);
 	    contentPane.add(yourScore);
 	    
 	    for (int i = 0; i < top10.length; i++) {
 	    	if (scoresList[i] == 0) {
-//	    		top10[i] = new JTextField("---");
-	    		top10[i] = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("tempLeaderboardBox.png")));	
+	    		top10[i] = new JTextField("---");
 	    	} else {
-//	    		top10[i] = new JTextField(Double.toString(scoresList[i]));
-	    		top10[i] = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("")));	
+	    		top10[i] = new JTextField(Double.toString(scoresList[i]));
 	    	}
 	    	top10[i].setHorizontalAlignment(JTextField.CENTER);
-//	    	top10[i].setEditable(false);
+	    	top10[i].setEditable(false);
 	    	contentPane.add(top10[i]);
 	    }
+	    for (int i=0; i<3; i++) {
+    		top10[i].setSelectedTextColor(Color.BLUE);
+        	top10[i].setForeground(Color.BLUE);
+    	}
+    	for (int i=3; i<10; i++) {
+    		top10[i].setSelectedTextColor(Color.WHITE);
+        	top10[i].setForeground(Color.WHITE);
+    	}
 	    
-	    restartButt = new JButton("Restart");
-	    restartButt.setBackground(new Color(150, 150, 148));
+	    restartButt = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+				getResource("restart.png")).getImage().
+				getScaledInstance(150, 37, java.awt.Image.SCALE_SMOOTH)));
+	    restartButt.setOpaque(false);
+	    restartButt.setContentAreaFilled(false);
+	    restartButt.setBorderPainted(false);
 	    restartButt.setActionCommand("click");
 	    restartButt.addActionListener(this);
 	    contentPane.add(restartButt);
+	    contentPane.add(background);
 
 	    //dynamic
 	    Timer timer = new Timer();
@@ -73,21 +84,31 @@ public class Leaderboard implements ActionListener {
 	    		int panelWidth = contentPane.getWidth();
 	    		int panelHeight = contentPane.getHeight();
 	    		
-	    		title.setBounds((int)(panelWidth * 0.375), (int)(panelHeight * 0.08), (int)(panelWidth * 0.275), (int)(panelHeight * 0.08));
-	    		title.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+	    		background.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+	    				getResource("the 3D maze leaderboard screen.png")).getImage().
+	    				getScaledInstance((int)(frame.getWidth()*.99), (int)(frame.getHeight()*0.954), 
+	    						java.awt.Image.SCALE_SMOOTH)));
+	    	    background.setBounds(-5, -17, frame.getWidth(), frame.getHeight());
 	    		
 	    		for (int i = 0; i < 5; i++) {
-	    			top10[i].setBounds((int)(panelWidth * 0.140), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
-	    			top10[i + 5].setBounds((int)(panelWidth * 0.520), (int)(panelHeight * (0.2 + (i * 0.1))), (int)(panelWidth * 0.350), (int)(panelHeight * 0.0667));
-	    			
-//	    			top10[i].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
-//	    			top10[i + 5].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+	    			top10[i].setBounds((int)(panelWidth * 0.205), (int)(panelHeight * (0.265 + (i * 0.094))), (int)(panelWidth * 0.267), (int)(panelHeight * 0.0667));
+	    			top10[i + 5].setBounds((int)(panelWidth * 0.519), (int)(panelHeight * (0.265 + (i * 0.094))), (int)(panelWidth * 0.267), (int)(panelHeight * 0.0667));
+	    			top10[i].setOpaque(false);
+	    			top10[i].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+	    			top10[i+5].setOpaque(false);
+	    			top10[i+5].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+	    			top10[i].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
+	    			top10[i + 5].setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.04)));
 	    		}
+	    		top10[0].setSelectedTextColor(Color.BLUE);
 	    		
-	    		yourScore.setBounds((int)(panelWidth * 0.165), (int)(panelHeight * 0.7), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
+	    		yourScore.setBounds((int)(panelWidth * 0.39), (int)(panelHeight * 0.727), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
 	    		yourScore.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.025)));
+	    		yourScore.setForeground(Color.WHITE);
+	    		yourScore.setOpaque(false);
+	    		yourScore.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 	    		
-	    		restartButt.setBounds((int)(panelWidth * 0.545), (int)(panelHeight * 0.7), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
+	    		restartButt.setBounds((int)(panelWidth * 0.575), (int)(panelHeight * 0.73), (int)(panelWidth * 0.155), (int)(panelHeight * 0.055));
 	    		restartButt.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.03)));
 	    	}
 	    };
@@ -97,7 +118,6 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	public void hide(JFrame frame, JPanel panel) {
-		panel.remove(title);
 		panel.remove(yourScore);
 		panel.remove(restartButt);
 		for (int i = 0; i < top10.length; i++) {
@@ -150,11 +170,11 @@ public class Leaderboard implements ActionListener {
 //		test2b.display(new JFrame(), new JPanel());
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
 			public void run() {
 				runGUI();
 			}
 		});
-	}
+	}*/
 }
