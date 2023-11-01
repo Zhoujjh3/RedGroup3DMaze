@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 public class Run3DMaze {
+	//Running the Program
 	
 	public static JFrame screen;
 	private static GamePanel gamePanel;
