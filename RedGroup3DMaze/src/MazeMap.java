@@ -72,7 +72,7 @@ public class MazeMap {
 		int length = size;
 		for (int i=0; i<length; i++) {
 			for (int o=0; o<length; o++) {
-				Room room = maze.getRoom(newLevel, o, i);//FIX, MICHAEL CHANGED THE ORDER
+				Room room = maze.getRoom(newLevel, o, i);
 				int[] coord = {o,i};
 				if (room.hasVisited()) {
 					if (room.getDirection('N')) {

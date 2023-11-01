@@ -11,14 +11,11 @@ public class GamePanel extends JPanel{
     Header header;
     int mapLevelIncrement = 0;
     Image up, down, left, right, forward;
-    //Image upMac, downMac, leftMac, rightMac, forwardMac;
     double xScale;
     double yScale;
     double buttonXScale;
     double buttonYScale;
-    
-    //char[] directions = {'W','S','E','N','U','D'};
-   
+       
     public static int timeCounter = 200;
     
     public GamePanel(int width, int height) {

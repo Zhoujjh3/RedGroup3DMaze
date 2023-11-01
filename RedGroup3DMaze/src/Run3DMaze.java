@@ -162,6 +162,19 @@ public class Run3DMaze {
 		screen.setResizable(true);
 		screen.setLocationRelativeTo(null);
 		state = mazeState.WELCOMESCREEN;
+		gamePanel = new GamePanel(1000, 700);
+		gamePanel.addMouseListener(new Clicker());
+		gamePanel.addKeyListener(new Clicker());
+		screen.pack();
+		screen.setVisible(true);
+		screen.setResizable(true);
+		screen.setLocationRelativeTo(null);
+		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		state = mazeState.WELCOMESCREEN;
+		selectionScreen = new Selection(screen, gamePanel);
+		screen.setContentPane(gamePanel);
+		screen.revalidate();
+		screen.repaint();
 		ShapesTimer.start();
 	}
 	
@@ -179,7 +192,7 @@ public class Run3DMaze {
 		map = new MazeMap(maze, player);
 		header = new Header(maze, player);
 		changeView = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
-				getResource("CHAMBER Button.png")).getImage().
+				getResource("MAP Button.png")).getImage().
 				getScaledInstance(80, 24, java.awt.Image.SCALE_SMOOTH)));
 		changeView.setOpaque(false);
         changeView.setContentAreaFilled(false);

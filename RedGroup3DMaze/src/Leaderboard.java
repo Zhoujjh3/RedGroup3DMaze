@@ -8,9 +8,8 @@ import java.util.TimerTask;
 
 public class Leaderboard implements ActionListener {
 	
-//	JTextField[] top10 = new JTextField[10];
 	JTextField[] top10 = new JTextField[10];
-	double scoresList[] = {0.012, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	double scoresList[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	double score;
 	static int width = 1000;
 	static int height = 750;
@@ -65,15 +64,15 @@ public class Leaderboard implements ActionListener {
     		top10[i].setSelectedTextColor(Color.WHITE);
         	top10[i].setForeground(Color.WHITE);
     	}
-	    
-	    restartButt = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
-				getResource("restart.png")).getImage().
-				getScaledInstance(150, 37, java.awt.Image.SCALE_SMOOTH)));
+    	restartButt = new JButton(new ImageIcon(new ImageIcon(getClass().getClassLoader().
+    			getResource("restart.png")).getImage().
+    			getScaledInstance(150, 37, java.awt.Image.SCALE_SMOOTH)));
 	    restartButt.setOpaque(false);
 	    restartButt.setContentAreaFilled(false);
 	    restartButt.setBorderPainted(false);
 	    restartButt.setActionCommand("click");
 	    restartButt.addActionListener(this);
+	    frame.addMouseListener(new Clicker2());
 	    contentPane.add(restartButt);
 	    contentPane.add(background);
 
@@ -102,7 +101,7 @@ public class Leaderboard implements ActionListener {
 	    		}
 	    		top10[0].setSelectedTextColor(Color.BLUE);
 	    		
-	    		yourScore.setBounds((int)(panelWidth * 0.39), (int)(panelHeight * 0.727), (int)(panelWidth * 0.3), (int)(panelHeight * 0.0667));
+	    		yourScore.setBounds((int)(panelWidth * 0.39), (int)(panelHeight * 0.727), (int)(panelWidth * 0.1), (int)(panelHeight * 0.0667));
 	    		yourScore.setFont(new Font("Serif", Font.PLAIN, (int)(panelWidth * 0.025)));
 	    		yourScore.setForeground(Color.WHITE);
 	    		yourScore.setOpaque(false);
@@ -149,7 +148,9 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "click") {
+		System.out.println("Fuck");
+		if (e.getActionCommand().equals("click")) {
+			System.out.println("Fuck");
 			signal = true;
 			hide(frame, contentPane);
 		}
@@ -163,18 +164,43 @@ public class Leaderboard implements ActionListener {
 		signal = false;
 	}
 	
-	//test2ing
 	private static void runGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		Leaderboard test2b = new Leaderboard();
-//		test2b.display(new JFrame(), new JPanel());
 	}
 	
-	/*public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(new Runnable(){
-			public void run() {
-				runGUI();
-			}
-		});
-	}*/
+	public class Clicker2 implements MouseListener{
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			System.out.println(e.getX());
+			System.out.println(e.getY());
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 }

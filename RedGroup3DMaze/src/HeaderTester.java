@@ -26,7 +26,6 @@ public class HeaderTester {
         changeView.setBorderPainted(false);
         panel.setLayout(null);
         changeView.setBounds(820, 5, 100, 30);
-        //195
         changeView.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 header.changeView();
@@ -51,7 +50,6 @@ public class HeaderTester {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             header.display(g ,this.getSize());
-            //121, 109 GamePanel
             changeView.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().
     				getResource("MAP Button.png")).getImage().
     				getScaledInstance((int)(80 * frame.getSize().width/1000), (int)(24* frame.getSize().height/750), 

@@ -334,12 +334,6 @@ public class Maze {
 				int[] endC = {0, endx, endy};
 				endCC = endC;
 				pathWorks = pathFind(level, startC, endC) >= 0;
-//				System.out.println("-----------------------");
-//				System.out.println(startX + ",, " + startY);
-//				for(int i = 0; i<xTrace.size();i++) {
-//					System.out.println(xTrace.get(i) + ", " + yTrace.get(i));
-//				}
-//				System.out.println("-----------------------");
 
 			} else
 				pathWorks = false;
@@ -349,13 +343,6 @@ public class Maze {
 			counter++;
 			
 		}
-//		for(int i = 0; i<level.length;i++) {
-//			for(int j = 0; j<level.length;j++) {
-//				System.out.print(level[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println("-----------------------");
 		return endCC;
 	}
 	
@@ -412,7 +399,6 @@ public class Maze {
 			results[0] = endx;
 			results[1] = endy;
 		}
-//		System.out.println("Rsults:" + results[0]);
 		return results;
 	}
 	
@@ -466,7 +452,6 @@ public class Maze {
 					break;
 				}
 				if(type.equals("spiralGen")) {
-//					System.out.println(currentX+2 + " = " + (level.length-2) + " ");
 					if(!((currentX == level.length-2)||(currentX == 1)))
 						meets = false;
 				}
@@ -577,7 +562,6 @@ public class Maze {
 		int[] endCC = null;
 		int counter = 0;
 		while(!pathWorks) {
-//			System.out.println(counter);
 			boolean failure = false;
 			for(int i = 0; i<level.length;i++) {
 				for(int j = 0; j<level.length;j++) {
@@ -610,14 +594,6 @@ public class Maze {
 			}
 			
 			
-//			for(int i = 0; i<level.length;i++) {
-//				for(int j = 0; j<level.length;j++) {
-//					System.out.print(level[j][i] + " ");
-//				}
-//				System.out.println();
-//			}
-//			System.out.println("---------");
-			
 			if((endx == level.length-2 && endy == level.length-2) && levelType == "middle")
 				failure = true;
 			if(!(endx == level.length-2 && endy == level.length-2) && levelType == "end")
@@ -626,21 +602,12 @@ public class Maze {
 				if(yTrace.get(i) == startY && xTrace.get(i) == startX)
 					failure = true;
 			}
-			
-			
-//			System.out.println(failure);
-			
+						
 			if(!failure) {
 				int[] startC = {0, startX, startY};
 				int[] endC = {0, endx, endy};
 				endCC = endC;
 				pathWorks = pathFind(level, startC, endC) >= 0;
-//				System.out.println("-----------------------");
-//				System.out.println(startX + ",, " + startY);
-//				for(int i = 0; i<xTrace.size();i++) {
-//					System.out.println(xTrace.get(i) + ", " + yTrace.get(i));
-//				}
-//				System.out.println("-----------------------");
 
 			} else
 				pathWorks = false;
@@ -666,48 +633,29 @@ public class Maze {
 	}
 	
 	private char decideSpiralDir(int startX, int startY, char[][] level) {
-//		System.out.println(startX + " " + startY);
 		int mazeSize = this.getMazeSize();
 		int decider = (int)(Math.random()*100);
 		char[] dirOptions = new char[2];
-//		if(floorOne) {
-//			if(Math.random() > .5)
-//				return 'S';
-//			else
-//				return 'E';
-//		} else {
 			if(startX == 1 && startY == 1) {
 				dirOptions[0] = 'S';
 				dirOptions[1] = 'E';
-//				System.out.println("case 1");
 				return getDirOfTwo(dirOptions) ;
 			}
 			if(startX == 1 && startY == level.length-2){
 				dirOptions[0] = 'N';
 				dirOptions[1] = 'E';
-//				System.out.println("case 2");
 				return getDirOfTwo(dirOptions) ;
 			}
 			if(startX == level.length-2 && startY == 1){
 				dirOptions[0] = 'S';
 				dirOptions[1] = 'W';
-//				System.out.println("case 3");
 				return getDirOfTwo(dirOptions) ;
 			}
 			if(startX == level.length-2 && startY == level.length-2){
 				dirOptions[0] = 'W';
 				dirOptions[1] = 'N';
-//				System.out.println("case 4");
 				return getDirOfTwo(dirOptions) ;
 			}
-//		}
-//		for(int i = 0; i<level.length;i++) {
-//			for(int j = 0; j<level.length;j++) {
-//				System.out.print(level[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println(startX +  " " + startY + " " + (level.length-2));
 		return 'N';
 	}
 	
@@ -854,7 +802,6 @@ public class Maze {
 			result[0] = true;
 		if(baseMaze[level][x][y+1] == 'T')
 			result[2] = true;
-		//n e s w u d
 		return result;
 	}
 	
@@ -1009,7 +956,6 @@ public class Maze {
 		maze = new Maze(test);
 		
 		Maze maze2 = new Maze(3);
-//		System.out.println(maze2.getMinMoves());
 	}
 }
 

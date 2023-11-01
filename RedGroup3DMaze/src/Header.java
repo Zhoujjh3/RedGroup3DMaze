@@ -97,9 +97,9 @@ public class Header {
     }
     public String getButtonView() {
         if(chamberView) {
-            return("CHAMBER");
-        } else {
             return("MAP");
+        } else {
+            return("CHAMBER");
         }
     }
 }
