@@ -148,9 +148,7 @@ public class Leaderboard implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Fuck");
 		if (e.getActionCommand().equals("click")) {
-			System.out.println("Fuck");
 			signal = true;
 			hide(frame, contentPane);
 		}
